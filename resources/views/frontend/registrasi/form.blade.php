@@ -195,17 +195,17 @@
 
                                                     <div class="form-group">
                                                         <label>Provinsi</label>
-                                                        <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="false"></vue-select>
+                                                        <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="false" @option-change="provinsiChange"></vue-select>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Kabupaten / Kota</label>
-                                                        <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="false"></vue-select>
+                                                        <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="false" @option-change="kabupatenChange"></vue-select>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Kecamatan</label>
-                                                        <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="false"></vue-select>
+                                                        <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="false" @option-change="kecamatanChange"></vue-select>
                                                     </div>
 
                                                     <div class="form-group">
@@ -575,53 +575,16 @@
                 onRequest: false,
                 requestMessage: "Sedang Mengirim Formulir Registrasi",
 
-                provinsi_ketua: [
-                    {
-                        id: 1,
-                        text: 'Jawa Timur'
-                    },
+                // data
+                provinsi: [],
+                kabupaten: [],
+                kecamatan: [],
+                desa: [],
 
-                    {
-                        id: 2,
-                        text: 'Jawa Barat'
-                    }
-                ],
-
-                kabupaten_ketua: [
-                    {
-                        id: 1,
-                        text: 'Kab. Trenggalek'
-                    },
-
-                    {
-                        id: 2,
-                        text: 'Kota Surabaya'
-                    }
-                ],
-
-                kecamatan_ketua: [
-                    {
-                        id: 1,
-                        text: 'Sukolilo'
-                    },
-
-                    {
-                        id: 2,
-                        text: 'Tegalsari'
-                    }
-                ],
-
-                desa_ketua: [
-                    {
-                        id: 1,
-                        text: 'Wonorejo'
-                    },
-
-                    {
-                        id: 2,
-                        text: 'Rungkut'
-                    }
-                ],
+                provinsi_ketua: [],
+                kabupaten_ketua: [],
+                kecamatan_ketua: [],
+                desa_ketua: [],
 
                 kewarganegaraan_ketua: [
                     {
@@ -727,6 +690,23 @@
             mounted: function(){
                 console.log('vue ready');
                 $('[data-toggle="tooltip"]').tooltip();
+
+                axios.get('{{ Route("frontend.registrasi.resource") }}')
+                        .then((response) => {
+                            console.log(response.data);
+
+                            this.provinsi = response.data.provinsi;
+                            this.kabupaten = response.data.kota;
+                            this.kecamatan = response.data.kecamatan;
+                            this.desa = response.data.kelurahan;
+
+                            this.provinsi_ketua = this.provinsi;
+                            this.provinsiChange(this.provinsi_ketua[0].id);
+
+                        }).catch((e) => {
+                            alert('ups. Terjadi Kesalahan. Err System...')
+                            console.log('System Bermasalah '+e)
+                        })
             },
 
             methods: {
@@ -763,6 +743,20 @@
                     e.stopImmediatePropagation();
 
                     this.logistik.splice(id, 1);
+                },
+
+                provinsiChange(e){
+                    this.kabupaten_ketua = $.grep(this.kabupaten, function(a) { return a.province_id == e });
+                    this.kabupatenChange(this.kabupaten_ketua[0].id);
+                },
+
+                kabupatenChange(e){
+                    this.kecamatan_ketua = $.grep(this.kecamatan, function(a) { return a.regency_id == e });
+                    this.kecamatanChange(this.kecamatan_ketua[0].id);
+                },
+
+                kecamatanChange(e){
+                    this.desa_ketua = $.grep(this.desa, function(a) { return a.district_id == e });
                 },
 
                 send: function(e){

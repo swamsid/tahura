@@ -29,9 +29,13 @@ Route::get('tes-pdf', function(){
 	    return view('frontend.registrasi.sop');
 	})->name('frontend.registrasi.sop');
 
-	Route::get('registrasi/form-register', function () {
-	    return view('frontend.registrasi.form');
-	})->name('frontend.registrasi.form');
+	Route::get('registrasi/form-register', [
+		'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@form'
+	])->name('frontend.registrasi.form');
+
+	Route::get('registrasi/form-register/resource', [
+		'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@resource'
+	])->name('frontend.registrasi.resource');
 
 	Route::post('registrasi/save', [
 		'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@save'
@@ -63,8 +67,12 @@ Route::group(['middleware' => 'auth'], function(){
 		'uses' => 'backend\pendaki\pendaki_controller@index'
 	])->name('wpadmin.pendaki.index');
 
-	Route::get('wpadmin/manajemen-pendaki/data-pendaftar', [
-		'uses' => 'backend\pendaki\pendaki_controller@index'
-	])->name('wpadmin.pendaki.index');
+	Route::get('wpadmin/manajemen-pendaki/detail', [
+		'uses' => 'backend\pendaki\pendaki_controller@detail'
+	])->name('wpadmin.pendaki.detail');
+
+	Route::get('wpadmin/manajemen-pendaki/konfirmasi', [
+		'uses' => 'backend\pendaki\pendaki_controller@konfirmasi'
+	])->name('wpadmin.pendaki.konfirmasi');
 	
 });

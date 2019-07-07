@@ -9,6 +9,26 @@ use DB;
 
 class pendaftaran_controller extends Controller
 {
+
+    protected function form(){
+        return view('frontend.registrasi.form');
+    }
+
+    protected function resource(){
+
+        $provinsi = DB::table('provinces')->select('id as id', 'name as text')->get();
+        $kota = DB::table('regencies')->select('id as id', 'province_id', 'name as text')->get();
+        $kecamatan = DB::table('districts')->select('id as id', 'regency_id', 'name as text')->get();
+        $kelurahan = DB::table('villages')->select('id as id', 'district_id', 'name as text')->get();
+
+        return json_encode([
+            'provinsi'      => $provinsi,
+            'kota'          => $kota,
+            'kecamatan'     => $kecamatan,
+            'kelurahan'     => $kelurahan
+        ]);
+    }
+
     protected function save(Request $request){
     	// return json_encode($request->all());
 

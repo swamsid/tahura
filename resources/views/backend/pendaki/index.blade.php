@@ -3,6 +3,22 @@
 @section('extra_style')
 	<!-- Data Tables -->
 	<link href="{{ asset('backend/css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+    <style type="text/css">
+        .table-mini th, .table-mini td{
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .table-mini th{
+            padding: 5px;
+            background: #eee;
+            text-align: left;
+        },
+
+        .table-mini td{
+            padding: 0px;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -39,10 +55,12 @@
                                             <td class="text-center">{{ $data->pd_nama_ketua }}</td>
                                             <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
                                             <td class="text-center">{{ date('d-m-Y', strtotime($data->pd_tgl_naik)) }}</td>
-                                            <td class="text-center">{{ $data->pd_status }}</td>
+                                            <td class="text-center">
+                                                <span class="label label-info">{{ $data->pd_status }}</span>
+                                            </td>
                                             <td class="text-center">
                                                 <center>
-                                                    <a class='btn btn-primary btn-xs' title='Delete Data' href='?view=pegawai&act=hapus&id=26'><span class='fa fa-folder-open'></span></a>
+                                                    <a class='btn btn-primary btn-xs detail' data-id="{{ $data->pd_id }}" title='Delete Data'><span class='fa fa-folder-open'></span></a>
                                                 </center>
                                             </td>
                                         </tr>
@@ -55,6 +73,18 @@
             </div>
     	</div>
 	</div>
+
+    <div class="modal inmodal" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-md modal-sm" style="margin-bottom: 100px;">
+            <div class="modal-content animated">
+                <div class="ibox product-detail">
+                    <div class="ibox-content" id="detail-wrap" style="margin-bottom: 0px; padding-bottom: 0px;">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('extra_script')
@@ -62,10 +92,15 @@
     <script src="{{ asset('backend/js/plugins/dataTables/datatables.min.js') }}"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
+
+            @if(Session::has('message'))
+                alert('{{ Session::get("message") }}');
+            @endif
+
             $('.dataTables-example').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
-                    { extend: 'copy'},
+                    {extend: 'copy'},
                     {extend: 'csv'},
                     {extend: 'excel', title: 'ExampleFile'},
                     {extend: 'pdf', title: 'ExampleFile'},
@@ -83,6 +118,12 @@
                 ]
 
             });
+
+            $('.detail').click(function(){
+                $('#modal-detail').modal('show');
+                $('#detail-wrap').html('<center><small> Sedang Mengambil Data</small></center>')
+                $('#detail-wrap').load('{{ Route("wpadmin.pendaki.detail") }}?id='+$(this).data('id'))
+            })
 
         });
     </script>
