@@ -15,7 +15,12 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-// rgeistrasi
+Route::get('tes-pdf', function(){
+	$pdf = PDF::loadView('backend.pdf.tes');
+	return $pdf->stream('invoice.pdf');
+});
+
+// registrasi
 	Route::get('registrasi', function () {
 	    return view('frontend.registrasi.index');
 	})->name('frontend.registrasi');
@@ -53,6 +58,10 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('wpadmin/logout', [
 		'uses' => 'backend\auth\authenticate@logout'
 	])->name('wpadmin.auth.logout');
+
+	Route::get('wpadmin/manajemen-pendaki/data-pendaftar', [
+		'uses' => 'backend\pendaki\pendaki_controller@index'
+	])->name('wpadmin.pendaki.index');
 
 	Route::get('wpadmin/manajemen-pendaki/data-pendaftar', [
 		'uses' => 'backend\pendaki\pendaki_controller@index'

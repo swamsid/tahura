@@ -22,29 +22,31 @@
 						        <thead>
 						          <tr>
 						            <th width="20px">No</th>
-						            <th width="115px">NIP</th>
-						            <th>Nama</th>
-						            <th>Jabatan</th>
-						            <th width="70px">Hak Akses</th>
+						            <th width="115px">Nomor Registrasi</th>
+						            <th>Nama Ketua</th>
+                                    <th>Tanggal Registrasi</th>
+						            <th>Tanggal Naik</th>
+                                    <th>Status</th>
 						            <th width="60px">Action</th>
 						          </tr>
 						        </thead>
 
 						        <tbody>
-						        	<tr>
-						        		<td>2</td>
-						                <td>123456789012345678</td>
-						                <td>coba</td>
-						                <td>Kasubag Tata Usaha</td>
-						                <td>admin</td>
-						                <td>
-						                  	<center>
-							                    <a class='btn btn-success btn-xs' title='Edit Data' href='?view=pegawai&act=edit&id=26'><span class='fa fa-pencil-square-o'></span></a>
-
-							                    <a class='btn btn-danger btn-xs' title='Delete Data' href='?view=pegawai&act=hapus&id=26'><span class='fa fa-trash'></span></a>
-						                  	</center>
-						                </td>
-						            </tr>
+                                    @foreach($data as $key => $data)
+                                        <tr>
+                                            <td class="text-center">{{ $key + 1 }}</td>
+                                            <td class="text-center">{{ $data->pd_nomor }}</td>
+                                            <td class="text-center">{{ $data->pd_nama_ketua }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data->pd_tgl_naik)) }}</td>
+                                            <td class="text-center">{{ $data->pd_status }}</td>
+                                            <td class="text-center">
+                                                <center>
+                                                    <a class='btn btn-primary btn-xs' title='Delete Data' href='?view=pegawai&act=hapus&id=26'><span class='fa fa-folder-open'></span></a>
+                                                </center>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 				              	</tbody>
 					      </table>
                         </div>
