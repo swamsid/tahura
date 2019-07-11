@@ -29,7 +29,11 @@
                     <div class="ibox-title">
                         <h5>Data Pendaftaran Pendakian</h5>
                         <div class="ibox-tools">
-						    
+                            <a href="{{ Route('wpadmin.jabatan.create') }}">
+    						    <button class="btn btn-sm btn-primary">
+                                    <i class="fa fa-plus"></i> &nbsp;Tambah / Edit Data
+                                </button>
+                            </a>
                         </div>
                     </div>
                     <div class="ibox-content">
@@ -38,31 +42,17 @@
 						        <thead>
 						          <tr>
 						            <th width="20px">No</th>
-						            <th width="115px">Nomor Registrasi</th>
-						            <th>Nama Ketua</th>
-                                    <th>Tanggal Registrasi</th>
-						            <th>Tanggal Naik</th>
-                                    <th>Status</th>
-						            <th width="60px">Action</th>
+						            <th width="115px">Nomor Jabatan</th>
+						            <th>Nama Jabatan</th>
 						          </tr>
 						        </thead>
 
 						        <tbody>
-                                    @foreach($data as $key => $data)
+                                    @foreach($data as $key => $jabatan)
                                         <tr>
-                                            <td class="text-center">{{ $key + 1 }}</td>
-                                            <td class="text-center">{{ $data->pd_nomor }}</td>
-                                            <td class="text-center">{{ $data->pd_nama_ketua }}</td>
-                                            <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
-                                            <td class="text-center">{{ date('d-m-Y', strtotime($data->pd_tgl_naik)) }}</td>
-                                            <td class="text-center">
-                                                <span class="label label-info">{{ $data->pd_status }}</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <center>
-                                                    <a href="{{ Route('wpadmin.pendaki.detail', 'id='.$data->pd_id) }}" class='btn btn-primary btn-xs' data-id="{{ $data->pd_id }}" title='Delete Data'><span class='fa fa-folder-open'></span></a>
-                                                </center>
-                                            </td>
+                                            <td style="text-align: center;">{{ $key + 1 }}</td>
+                                            <td style="text-align: center;">{{ $jabatan->nomor_jabatan }}</td>
+                                            <td>{{ $jabatan->nama_jabatan }}</td>
                                         </tr>
                                     @endforeach
 				              	</tbody>

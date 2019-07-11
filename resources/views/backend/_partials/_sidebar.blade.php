@@ -24,6 +24,12 @@
                 <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
             </li>
             <li>
+                <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Data Master</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li><a href="{{ Route('wpadmin.jabatan.index') }}">Master Data Jabatan</a></li>
+                </ul>
+            </li>
+            <li>
                 <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Manajemen Pendaki</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="{{ Route('wpadmin.pendaki.index') }}">Data Pendaftar</a></li>

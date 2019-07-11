@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `districts` (
   CONSTRAINT `districts_regency_id_foreign` FOREIGN KEY (`regency_id`) REFERENCES `regencies` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table dishut.districts: ~7.378 rows (approximately)
+-- Dumping data for table dishut.districts: ~7.071 rows (approximately)
 /*!40000 ALTER TABLE `districts` DISABLE KEYS */;
 REPLACE INTO `districts` (`id`, `regency_id`, `name`) VALUES
 	('1101010', '1101', 'TEUPAH SELATAN'),
@@ -7108,49 +7108,51 @@ REPLACE INTO `districts` (`id`, `regency_id`, `name`) VALUES
 DROP TABLE IF EXISTS `jabatan`;
 CREATE TABLE IF NOT EXISTS `jabatan` (
   `id_jabatan` int(11) NOT NULL AUTO_INCREMENT,
-  `namajabatan` varchar(150) NOT NULL,
+  `nomor_jabatan` varchar(50) NOT NULL DEFAULT '0',
+  `nama_jabatan` varchar(150) NOT NULL,
   PRIMARY KEY (`id_jabatan`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.jabatan: ~36 rows (approximately)
+-- Dumping data for table dishut.jabatan: ~37 rows (approximately)
 /*!40000 ALTER TABLE `jabatan` DISABLE KEYS */;
-REPLACE INTO `jabatan` (`id_jabatan`, `namajabatan`) VALUES
-	(1, 'Kepala UPT'),
-	(2, 'Kasubag Tata Usaha'),
-	(3, 'Pengadministrasi Sarana dan Prasarana'),
-	(4, 'Pengelola Keuangan'),
-	(5, 'Pengadministrasi Kepegawaian'),
-	(6, 'Pengelola Pengadaan Barang/Jasa Ahli Pertama'),
-	(7, 'Pengelola Teknologi Informasi'),
-	(8, 'Pengadministrasi Umum'),
-	(9, 'Pranata Komputer Ketrampilan Terampil'),
-	(10, 'Pengadministrasi Perencanaan dan Program'),
-	(11, 'Pengadministrasi Keuangan'),
-	(12, 'Petugas Keamanan'),
-	(13, 'Kepala Seksi Perencanaan, Pengembangan dan Pemanfaatan'),
-	(14, 'Analis Dokumen Perijinan'),
-	(15, 'Pengelola Sarana Wisata'),
-	(16, 'Pengendali Ekosistem Hutan Ahli Pertama'),
-	(17, 'Pengadministrasi Penerimaan OWA Cangar'),
-	(18, 'Pengelola Pelestarian Sumber Daya Alam'),
-	(19, 'Pengadministrasi Penerimaan OWA Pendakian Pos Tretes'),
-	(20, 'Pengendali Ekosistem Hutan Terampil'),
-	(21, 'Pemandu Wisata Pendakian Pos Tretes Prigen'),
-	(22, 'Pemandu Wisata'),
-	(23, 'Pemandu OWA Tretes Galengdowo'),
-	(24, 'Pengadministrasi Penerimaan OWA Watulumpang'),
-	(25, 'Pengadministrasi Penerimaan OWA Pendakian Pos Wonorejo'),
-	(26, 'Pengadministrasi Penerimaan OWA Pacet'),
-	(27, 'Pemandu Wisata OWA Watuondo'),
-	(28, 'Pengadministrasi Penerimaan OWA Watuondo'),
-	(29, 'Kepala Seksi Perlindungan dan Pemberdayaan Masyarakat'),
-	(30, 'Analis Rehabilitasi dan Konservasi'),
-	(31, 'Penyuluh Kehutanan Keahlian Ahli Muda'),
-	(32, 'Pengolah Data'),
-	(33, 'Pengendali Ekosistem Hutan Mahir'),
-	(34, 'Polisi Kehutanan Ketrampilan Mahir'),
-	(35, 'Pengendali Ekosistem Hutan Ketrampilan Terampil'),
-	(36, 'Polisi Kehutanan Ketrampilan Terampil');
+REPLACE INTO `jabatan` (`id_jabatan`, `nomor_jabatan`, `nama_jabatan`) VALUES
+	(1, '0', 'Kepala UPT'),
+	(2, '0', 'Kasubag Tata Usaha'),
+	(3, '0', 'Pengadministrasi Sarana dan Prasarana'),
+	(4, '0', 'Pengelola Keuangan'),
+	(5, '0', 'Pengadministrasi Kepegawaian'),
+	(6, '0', 'Pengelola Pengadaan Barang/Jasa Ahli Pertama'),
+	(7, '0', 'Pengelola Teknologi Informasi'),
+	(8, '0', 'Pengadministrasi Umum'),
+	(9, '0', 'Pranata Komputer Ketrampilan Terampil'),
+	(10, '0', 'Pengadministrasi Perencanaan dan Program'),
+	(11, '0', 'Pengadministrasi Keuangan'),
+	(12, '0', 'Petugas Keamanan'),
+	(13, '0', 'Kepala Seksi Perencanaan, Pengembangan dan Pemanfaatan'),
+	(14, '0', 'Analis Dokumen Perijinan'),
+	(15, '0', 'Pengelola Sarana Wisata'),
+	(16, '0', 'Pengendali Ekosistem Hutan Ahli Pertama'),
+	(17, '0', 'Pengadministrasi Penerimaan OWA Cangar'),
+	(18, '0', 'Pengelola Pelestarian Sumber Daya Alam'),
+	(19, '0', 'Pengadministrasi Penerimaan OWA Pendakian Pos Tretes'),
+	(20, '0', 'Pengendali Ekosistem Hutan Terampil'),
+	(21, '0', 'Pemandu Wisata Pendakian Pos Tretes Prigen'),
+	(22, '0', 'Pemandu Wisata'),
+	(23, '0', 'Pemandu OWA Tretes Galengdowo'),
+	(24, '0', 'Pengadministrasi Penerimaan OWA Watulumpang'),
+	(25, '0', 'Pengadministrasi Penerimaan OWA Pendakian Pos Wonorejo'),
+	(26, '0', 'Pengadministrasi Penerimaan OWA Pacet'),
+	(27, '0', 'Pemandu Wisata OWA Watuondo'),
+	(28, '0', 'Pengadministrasi Penerimaan OWA Watuondo'),
+	(29, '0', 'Kepala Seksi Perlindungan dan Pemberdayaan Masyarakat'),
+	(30, '0', 'Analis Rehabilitasi dan Konservasi'),
+	(31, '0', 'Penyuluh Kehutanan Keahlian Ahli Muda'),
+	(32, '0', 'Pengolah Data'),
+	(33, '0', 'Pengendali Ekosistem Hutan Mahir'),
+	(34, '0', 'Polisi Kehutanan Ketrampilan Mahir'),
+	(35, '0', 'Pengendali Ekosistem Hutan Ketrampilan Terampil'),
+	(36, '0', 'Polisi Kehutanan Ketrampilan Terampil'),
+	(38, 'JB-0038', 'tes gaannn');
 /*!40000 ALTER TABLE `jabatan` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.provinces
@@ -7742,7 +7744,7 @@ CREATE TABLE IF NOT EXISTS `tb_anggota_pendakian` (
   CONSTRAINT `FK_tb_anggota_pendakian_tb_pendakian` FOREIGN KEY (`ap_pendakian`) REFERENCES `tb_pendakian` (`pd_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.tb_anggota_pendakian: ~1 rows (approximately)
+-- Dumping data for table dishut.tb_anggota_pendakian: ~2 rows (approximately)
 /*!40000 ALTER TABLE `tb_anggota_pendakian` DISABLE KEYS */;
 REPLACE INTO `tb_anggota_pendakian` (`ap_pendakian`, `ap_nomor`, `ap_nama`, `ap_no_ktp`, `ap_kelamin`) VALUES
 	(1, 1, 'Ammirruzuhad Gunes', '092893878450001', 'L'),
@@ -7762,7 +7764,7 @@ CREATE TABLE IF NOT EXISTS `tb_kontak_darurat` (
   CONSTRAINT `FK_pd_kontak_darurat_tb_pendakian` FOREIGN KEY (`kd_pendakian`) REFERENCES `tb_pendakian` (`pd_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.tb_kontak_darurat: ~1 rows (approximately)
+-- Dumping data for table dishut.tb_kontak_darurat: ~2 rows (approximately)
 /*!40000 ALTER TABLE `tb_kontak_darurat` DISABLE KEYS */;
 REPLACE INTO `tb_kontak_darurat` (`kd_pendakian`, `kd_nomor`, `kd_nama`, `kd_no_telp`, `kd_email`, `kd_hubungan`) VALUES
 	(1, 1, 'Revia Karina', '092893874676', 'revia@gmail.com', 'Saudara'),
@@ -7780,13 +7782,32 @@ CREATE TABLE IF NOT EXISTS `tb_logistik` (
   CONSTRAINT `FK_tb_logistik_tb_pendakian` FOREIGN KEY (`lg_pendakian`) REFERENCES `tb_pendakian` (`pd_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.tb_logistik: ~2 rows (approximately)
+-- Dumping data for table dishut.tb_logistik: ~3 rows (approximately)
 /*!40000 ALTER TABLE `tb_logistik` DISABLE KEYS */;
 REPLACE INTO `tb_logistik` (`lg_pendakian`, `lg_nomor`, `lg_nama`, `lg_jumlah`) VALUES
 	(1, 1, 'Indomie', 10),
 	(1, 2, 'Beras', 5),
 	(1, 3, 'Lauk-Pauk', 8);
 /*!40000 ALTER TABLE `tb_logistik` ENABLE KEYS */;
+
+-- Dumping structure for table dishut.tb_menu
+DROP TABLE IF EXISTS `tb_menu`;
+CREATE TABLE IF NOT EXISTS `tb_menu` (
+  `m_id` int(11) NOT NULL AUTO_INCREMENT,
+  `m_name` varchar(255) NOT NULL,
+  `m_role` varchar(100) NOT NULL,
+  `m_route` varchar(255) NOT NULL,
+  `m_group` varchar(255) NOT NULL,
+  PRIMARY KEY (`m_id`),
+  UNIQUE KEY `m_role` (`m_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table dishut.tb_menu: ~2 rows (approximately)
+/*!40000 ALTER TABLE `tb_menu` DISABLE KEYS */;
+REPLACE INTO `tb_menu` (`m_id`, `m_name`, `m_role`, `m_route`, `m_group`) VALUES
+	(1, 'Dashboard', 'dashboard', '', 'dashboard'),
+	(2, 'Master Data Jabatan', 'data_jabatan', '', 'data master');
+/*!40000 ALTER TABLE `tb_menu` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.tb_pendakian
 DROP TABLE IF EXISTS `tb_pendakian`;
@@ -7821,10 +7842,10 @@ CREATE TABLE IF NOT EXISTS `tb_pendakian` (
   CONSTRAINT `FK_tb_pendakian_tb_pos_pendakian_2` FOREIGN KEY (`pd_pos_turun`) REFERENCES `tb_pos_pendakian` (`pp_id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.tb_pendakian: ~0 rows (approximately)
+-- Dumping data for table dishut.tb_pendakian: ~1 rows (approximately)
 /*!40000 ALTER TABLE `tb_pendakian` DISABLE KEYS */;
 REPLACE INTO `tb_pendakian` (`pd_id`, `pd_nomor`, `pd_nama_ketua`, `pd_no_ktp`, `pd_tempat_lahir`, `pd_tgl_lahir`, `pd_no_hp`, `pd_email`, `pd_tgl_naik`, `pd_tgl_turun`, `pd_alamat`, `pd_provinsi`, `pd_kabupaten`, `pd_kecamatan`, `pd_desa`, `pd_kewarganegaraan`, `pd_jenis_kelamin`, `pd_status`, `pd_pos_pendakian`, `pd_pos_turun`, `created_at`, `updated_at`) VALUES
-	(1, 'PD-491653', 'Dirga Ambara', '91827837647635', 'Surabaya', '1995-05-06', '087857487026', 'swamsid@gmail.com', '2007-07-14', '2019-07-17', 'Wonorejo 3 no 101', '35', '3578', '3578180', '3578180004', 'WNI', 'L', 'registered', NULL, NULL, '2019-07-07 22:58:39', '2019-07-07 22:58:39');
+	(1, 'PD-491653', 'Dirga Ambara', '91827837647635', 'Surabaya', '1995-05-06', '087857487026', 'dirgaambaraloh@gmail.com', '2007-07-14', '2019-07-17', 'Wonorejo 3 no 101', '35', '3578', '3578180', '3578180004', 'WNI', 'L', 'registered', NULL, NULL, '2019-07-12 03:23:27', '2019-07-12 03:23:27');
 /*!40000 ALTER TABLE `tb_pendakian` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.tb_peralatan
@@ -7870,6 +7891,28 @@ REPLACE INTO `tb_pos_pendakian` (`pp_id`, `pp_nama`) VALUES
 	(4, 'Pos Tretes');
 /*!40000 ALTER TABLE `tb_pos_pendakian` ENABLE KEYS */;
 
+-- Dumping structure for table dishut.tb_role_menu
+DROP TABLE IF EXISTS `tb_role_menu`;
+CREATE TABLE IF NOT EXISTS `tb_role_menu` (
+  `rm_jabatan` int(11) NOT NULL,
+  `rm_menu` int(11) NOT NULL,
+  `rm_read` enum('1','0') DEFAULT NULL,
+  `rm_create` enum('1','0') DEFAULT NULL,
+  `rm_update` enum('1','0') DEFAULT NULL,
+  `rm_delete` enum('1','0') DEFAULT NULL,
+  PRIMARY KEY (`rm_jabatan`,`rm_menu`),
+  KEY `FK_tb_role_menu_tb_menu` (`rm_menu`),
+  CONSTRAINT `FK_tb_role_menu_jabatan` FOREIGN KEY (`rm_jabatan`) REFERENCES `jabatan` (`id_jabatan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_tb_role_menu_tb_menu` FOREIGN KEY (`rm_menu`) REFERENCES `tb_menu` (`m_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table dishut.tb_role_menu: ~2 rows (approximately)
+/*!40000 ALTER TABLE `tb_role_menu` DISABLE KEYS */;
+REPLACE INTO `tb_role_menu` (`rm_jabatan`, `rm_menu`, `rm_read`, `rm_create`, `rm_update`, `rm_delete`) VALUES
+	(38, 1, '1', '1', '1', '1'),
+	(38, 2, '1', '1', '1', '1');
+/*!40000 ALTER TABLE `tb_role_menu` ENABLE KEYS */;
+
 -- Dumping structure for table dishut.user
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
@@ -7901,7 +7944,7 @@ CREATE TABLE IF NOT EXISTS `villages` (
   CONSTRAINT `villages_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table dishut.villages: ~82.082 rows (approximately)
+-- Dumping data for table dishut.villages: ~81.935 rows (approximately)
 /*!40000 ALTER TABLE `villages` DISABLE KEYS */;
 REPLACE INTO `villages` (`id`, `district_id`, `name`) VALUES
 	('1101010001', '1101010', 'LATIUNG'),

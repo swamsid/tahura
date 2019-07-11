@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Model\backend\tb_pendakian as pendakian;
 
 use DB;
+use PDF;
+use Mail;
+use QrCode;
 use Session;
 
 class pendaki_controller extends Controller
@@ -47,6 +50,8 @@ class pendaki_controller extends Controller
     protected function konfirmasi(Request $request){
     	// return json_encode($request->all());
 
+        DB::beginTransaction();
+
     	try {
     		
     		$context = DB::table('tb_pendakian')->where('pd_id', $request->id);
@@ -70,9 +75,43 @@ class pendaki_controller extends Controller
 	    			'pd_pos_turun'		=> $request->pos,
 	    			'pd_tgl_turun'		=> date('Y-m-d')
 	    		]);
-    		}
+    		}else if($request->sts == 'diterima'){
 
-    		DB::commit();
+                $data = pendakian::where('pd_id', 1)
+                    ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
+                    ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
+                    ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
+                    ->leftJoin('regencies', 'regencies.id', 'pd_kabupaten')
+                    ->leftJoin('districts', 'districts.id', 'pd_kecamatan')
+                    ->leftJoin('villages', 'villages.id', 'pd_desa')
+                    ->with('kontak')
+                    ->with('anggota')
+                    ->with('peralatan')
+                    ->with('logistik')
+                    ->select(
+                        'tb_pendakian.*',
+                        'a.pp_nama as pos_naik',
+                        'b.pp_nama as pos_turun',
+                        'provinces.name as provinsi',
+                        'regencies.name as kabupaten',
+                        'districts.name as kecamatan',
+                        'villages.name as kelurahan',
+                    )->first();
+
+                $email = $data->pd_email;
+                $pdf = PDF::loadView('backend.pdf.berkas', compact('data'));
+                $qrcode = QrCode::format('png')->size(1000);
+
+                Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
+                    $message->subject("Konfirmasi Pendaftaran");
+                    $message->from('noreply@dishut.com', 'Dinas Kehutanan Provinsi Jawa Timur');
+                    $message->to($email);
+                    $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
+                    $message->attachData($qrcode->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id)), 'kode.png');
+                });
+            }
+
+    		// DB::commit();
     		Session::flash('message', 'Status pendakian berhasil diubah menjadi '.$request->sts);
     		return redirect()->route('wpadmin.pendaki.index');
 

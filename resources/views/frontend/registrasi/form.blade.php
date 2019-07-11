@@ -483,7 +483,7 @@
     <!-- Vue js -->
     <script src="{{ asset('frontend/js/vendors/vue/vue.js') }}"></script>
     <script src="{{ asset('frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
-    <script src="{{asset('frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
+    <script src="{{ asset('frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
 
     <script>
 
