@@ -34,7 +34,7 @@
             <form class="m-t" role="form" method="post" action="{{ Route('wpadmin.login.authenticate') }}">
             	<input type="hidden" name="_token" value="{{ csrf_token() }}" readonly>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="NIP" required="" name="nip" data-mask="99999999 999999 9 999" value="{{ old('nip') }}">
+                    <input type="text" class="form-control" placeholder="NIP" required="" name="nip" value="{{ old('nip') }}">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Password" required="" name="password">

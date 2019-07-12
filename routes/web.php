@@ -116,5 +116,30 @@ Route::group(['middleware' => 'auth'], function(){
 
 		Route::post('wpadmin/data-master/jabatan/delete', [
 			'uses' => 'backend\master\jabatan\jabatan_controller@delete'
-		])->name('wpadmin.jabatan.delete');	
+		])->name('wpadmin.jabatan.delete');
+
+	// Master Pegawai
+		Route::get('wpadmin/data-master/pegawai', [
+			'uses' => 'backend\master\pegawai\pegawai_controller@index'
+		])->name('wpadmin.pegawai.index');
+
+		Route::get('wpadmin/data-master/pegawai/create', [
+			'uses' => 'backend\master\pegawai\pegawai_controller@create'
+		])->name('wpadmin.pegawai.create');
+
+		Route::get('wpadmin/data-master/pegawai/resource', [
+			'uses' => 'backend\master\pegawai\pegawai_controller@resource'
+		])->name('wpadmin.pegawai.resource');
+
+		Route::post('wpadmin/data-master/pegawai/save', [
+			'uses' => 'backend\master\pegawai\pegawai_controller@save'
+		])->name('wpadmin.pegawai.save');
+
+		Route::post('wpadmin/data-master/pegawai/update', [
+			'uses' => 'backend\master\pegawai\pegawai_controller@update'
+		])->name('wpadmin.pegawai.update');	
+
+		Route::post('wpadmin/data-master/pegawai/delete', [
+			'uses' => 'backend\master\pegawai\pegawai_controller@delete'
+		])->name('wpadmin.pegawai.delete');	
 });

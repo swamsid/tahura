@@ -59,6 +59,10 @@
             .table-mini td{
                 padding: 0px;
             }
+
+            .error{
+                background: rgba(255,0,0,0.1);
+            }
      </style>
 
 </head>
@@ -114,342 +118,379 @@
                             </div>
                         </div>
                         <div class="ibox-content" id="ibox-content" style="background-color: #ffffff; font-size: 14px">
-                            <form id="form-data" class="wizard-big">
-                                <input type="hidden" name="_token" readonly value="{{ csrf_token() }}">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h3 style="color: #1ab394">
-                                            Informasi Ketua Regu &nbsp;
-                                            <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata ketua regu"></i>
-                                        </h3>
-                                    </div>
+                            <template v-if="!downloadingResource">
+                                <form id="form-data" class="wizard-big" enctype="multipart/form-data">
+                                    <input type="hidden" name="_token" readonly value="{{ csrf_token() }}">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h3 style="color: #1ab394">
+                                                Informasi Ketua Regu &nbsp;
+                                                <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata ketua regu"></i>
+                                            </h3>
+                                        </div>
 
-                                    <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
-                                        <fieldset style="font-size: 9pt;">
+                                        <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
+                                            <fieldset style="font-size: 9pt;">
+                                                <div class="row">
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label>Nama Ketua</label>
+                                                            <input id="nama_ketua" name="nama_ketua" type="text" :class="$v.single.nama_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="contoh: Dirga Ambara" v-model="single.nama_ketua">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>No Identitas (KTP, Kartu Pelajar)</label>
+                                                            <input id="no_ktp_ketua" name="no_ktp_ketua" type="number" :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Contoh: 928938872800001" v-model="single.no_ktp_ketua">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Tempat Lahir</label>
+                                                            <input id="tempat_lahir_ketua" name="tempat_lahir_ketua" type="text" class="form-control" placeholder="Contoh : Surabaya" v-model="single.tempat_lahir_ketua">
+                                                        </div>
+
+                                                        <div class="form-group" id="data_1">
+                                                            <label>Tanggal Lahir</label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+
+                                                                <vue-datepicker :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :class="'form-control'" :placeholder="'Pilih Tanggal Lahir Ketua'" :readonly="true" v-model="single.tgl_lahir_ketua"></vue-datepicker>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>No Hp</label>
+                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" class="form-control" placeholder="Masukkan Nomor Hp Ketua" v-model="single.no_hp_ketua">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Email</label>
+                                                            <input id="email_ketua" name="email_ketua" type="email" class="form-control" placeholder="Masukkan Email Ketua" v-model="single.email_ketua">
+                                                        </div>
+
+                                                        <div class="form-group" id="data_1">
+                                                            <label>Tanggal Naik</label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                                <vue-datepicker :name="'tgl_naik'" :id="'tgl_naik'" :class="$v.single.tgl_naik.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Pilih Tanggal Naik'" :readonly="true" v-model="single.tgl_naik"></vue-datepicker>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group" id="data_1">
+                                                            <label>Tanggal Turun</label>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                                <vue-datepicker :name="'tgl_turun'" :id="'tgl_turun'" :class="$v.single.tgl_turun.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Pilih Tanggal Turun'" :readonly="true" v-model="single.tgl_turun"></vue-datepicker>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+
+                                                        <div class="form-group">
+                                                            <label>Alamat Lengkap</label>
+                                                            <textarea rows="1" class="form-control" style="resize: none;" placeholder="Masukkan Alamat Ketua" name="alamat_ketua" v-model="single.alamat_ketua"> </textarea>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Provinsi</label>
+                                                            <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="false" @option-change="provinsiChange"></vue-select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Kabupaten / Kota</label>
+                                                            <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="false" @option-change="kabupatenChange"></vue-select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Kecamatan</label>
+                                                            <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="false" @option-change="kecamatanChange"></vue-select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Desa / Kelurahan</label>
+                                                            <vue-select :name="'desa_ketua'" :id="'desa_ketua'" :options="desa_ketua" :search="false"></vue-select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Kewarganegaraan</label>
+                                                            <vue-select :name="'kewarganegaraan_ketua'" :id="'kewarganegaraan_ketua'" :options="kewarganegaraan_ketua" :search="false"></vue-select>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label>Jenis Kelamin</label>
+                                                            <vue-select :name="'kelamin_ketua'" :options="kelamin" :search="false"></vue-select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="col-md-12" style="margin-top: 20px;">
+                                            <h3 style="color: #1ab394">
+                                                Kontak Darurat &nbsp;
+                                                <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan kontak darurat yang suatu saat dapat dihubungi (keluarga, saudara, teman selain yang mengikuti rombongan pendakian)"></i>
+                                            </h3>
+                                        </div>
+
+                                        <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
+                                            <fieldset style="font-size: 9pt;">  
+                                                <div class="row" v-for="(kontak, idx) in kontak_darurat">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label>Nama</label>
+                                                            <input name="nama_kontak_darurat[]" type="text" class="form-control" :placeholder="'Nama kontak darurat '+(idx + 1)" v-model="kontak.nama">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label>No HP</label>
+                                                            <input name="no_kontak_darurat[]" type="text" class="form-control " :placeholder="'No hp kontak darurat '+(idx + 1)" v-model="kontak.no_hp">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label>Alamat Email</label>
+                                                            <input id="email" name="email_kontak_darurat[]" type="text" class="form-control" :placeholder="'Email kontak darurat '+(idx + 1)" v-model="kontak.email">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label>Hubungan Keluarga</label>
+                                                            <vue-select :name="'hubungan_kontak_darurat[]'" :options="hubungan_kontak_darurat" :search="false"></vue-select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="col-md-12" style="margin-top: 20px;">
                                             <div class="row">
+                                                <div class="col-md-10">
+                                                    <h3 style="color: #1ab394">
+                                                        Anggota Rombongan&nbsp;
+                                                        <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata daftar anggota rombongan"></i>
+                                                    </h3>
+                                                </div>
+
+                                                <div class="col-md-2 text-right">
+                                                    <button type="button" class="btn btn-success btn-xs" @click="tambahAnggota">
+                                                        <i class="fa fa-plus"></i> &nbsp;
+                                                        Tambah Anggota
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12" style="background: #eee; margin-top: 10px; padding: 0px;">
+                                            <fieldset style="font-size: 9pt;">
+                                                <table class="table-mini" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="5%">***</th>
+                                                            <th width="40%">Nama</th>
+                                                            <th width="30%">No Identitas</th>
+                                                            <th width="25%">Jenis Kelamin</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr v-for="(anggota, idx) in anggota">
+                                                            <td class="text-center">
+                                                                <template v-if="idx > 0">
+                                                                    <i class="fa fa-trash hint" @click="deleteAnggota($event, idx)"></i>
+                                                                </template>
+
+                                                                <template v-if="idx == 0">
+                                                                    <i class="fa fa-lock"></i>
+                                                                </template>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
+                                                            </td>
+                                                            <td>
+                                                                <input type="mail" name="no_ktp_anggota[]"  class="form-control" :placeholder="'No KTP Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control hint" name="kelamin_anggota[]" v-model="anggota.kelamin">
+                                                                    <option v-for="kelamin in kelamin" :value="kelamin.id">@{{ kelamin.text }}</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="col-md-12" style="margin-top: 20px;">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <h3 style="color: #1ab394">
+                                                        Perlengkapan Yang DIbawa&nbsp;
+                                                        <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan jumlah perlengkapan pendakian yang dibawa sesuai dengan kolom yang disediakan (satuan yang digunakan adalah Satuan dalam unit)"></i>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
+                                            <fieldset style="font-size: 9pt;">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Tenda</label>
+                                                        <input name="tenda" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.tenda">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Sleeping Bags / Kantong Tidur</label>
+                                                        <input name="sleeping_bag" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.sleeping_bag">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Peralatan Masak</label>
+                                                        <input name="peralatan_masak" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Bahan Bakar</label>
+                                                        <input name="bahan_bakar" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Ponco / Jas Hujan</label>
+                                                        <input name="jas_hujan" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.jas_hujan">
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <label>Nama Ketua</label>
-                                                        <input id="nama_ketua" name="nama_ketua" type="text" class="form-control" placeholder="contoh: Lucinta Luna" v-model="single.nama_ketua">
+                                                        <label>Senter / Alat Penerangan</label>
+                                                        <input name="senter" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.senter">
                                                     </div>
-
                                                     <div class="form-group">
-                                                        <label>No Identitas (KTP, Kartu Pelajar)</label>
-                                                        <input id="no_ktp_ketua" name="no_ktp_ketua" type="number" class="form-control" placeholder="Contoh: 928938872800001" v-model="single.no_ktp_ketua">
+                                                        <label>Obat-Obatan Pribadi dan P3K</label>
+                                                        <input name="obat" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.obat">
                                                     </div>
-
                                                     <div class="form-group">
-                                                        <label>Tempat Lahir</label>
-                                                        <input id="tempat_lahir_ketua" name="tempat_lahir_ketua" type="text" class="form-control" placeholder="Contoh : Surabaya" v-model="single.tempat_lahir_ketua">
+                                                        <label>Matras</label>
+                                                        <input name="matras" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.matras">
                                                     </div>
-
-                                                    <div class="form-group" id="data_1">
-                                                        <label>Tanggal Lahir</label>
-                                                        <div class="input-group date">
-                                                            <span class="input-group-addon">
-                                                                <i class="fa fa-calendar"></i>
-                                                            </span>
-
-                                                            <vue-datepicker :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :class="'form-control'" :placeholder="'Pilih Tanggal Lahir Ketua'" :readonly="true" v-model="single.tgl_lahir_ketua"></vue-datepicker>
-                                                        </div>
-                                                    </div>
-
                                                     <div class="form-group">
-                                                        <label>No Hp</label>
-                                                        <input id="no_hp_ketua" name="no_hp_ketua" type="number" class="form-control" placeholder="Masukkan Nomor Hp Ketua" v-model="single.no_hp_ketua">
+                                                        <label>Kantong Sampah</label>
+                                                        <input name="kantong_sampah" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.kantong_sampah">
                                                     </div>
-
                                                     <div class="form-group">
-                                                        <label>Email</label>
-                                                        <input id="email_ketua" name="email_ketua" type="email" class="form-control" placeholder="Masukkan Email Ketua" v-model="single.email_ketua">
-                                                    </div>
-
-                                                    <div class="form-group" id="data_1">
-                                                        <label>Tanggal Naik</label>
-                                                        <div class="input-group date">
-                                                            <span class="input-group-addon">
-                                                                <i class="fa fa-calendar"></i>
-                                                            </span>
-                                                            <vue-datepicker :name="'tgl_naik'" :id="'tgl_naik'" :class="'form-control'" :placeholder="'Pilih Tanggal Naik'" :readonly="true" v-model="single.tgl_naik"></vue-datepicker>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group" id="data_1">
-                                                        <label>Tanggal Turun</label>
-                                                        <div class="input-group date">
-                                                            <span class="input-group-addon">
-                                                                <i class="fa fa-calendar"></i>
-                                                            </span>
-                                                            <vue-datepicker :name="'tgl_turun'" :id="'tgl_turun'" :class="'form-control'" :placeholder="'Pilih Tanggal Turun'" :readonly="true" v-model="single.tgl_turun"></vue-datepicker>
-                                                        </div>
+                                                        <label>Jaket</label>
+                                                        <input name="jaket" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.jaket">
                                                     </div>
                                                 </div>
+                                            </fieldset>
+                                        </div>
 
-                                                <div class="col-lg-6">
+                                        <div class="col-md-12" style="margin-top: 20px;">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <h3 style="color: #1ab394">
+                                                        Logistik yang dibawa&nbsp;
+                                                        <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan jumlah makanan dan minuman yang akan dibawa mendaki (satuan yang digunakan adalah unit)"></i>
+                                                    </h3>
+                                                </div>
 
-                                                    <div class="form-group">
-                                                        <label>Alamat Lengkap</label>
-                                                        <textarea rows="1" class="form-control" style="resize: none;" placeholder="Masukkan Alamat Ketua" name="alamat_ketua" v-model="single.alamat_ketua"> </textarea>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Provinsi</label>
-                                                        <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="false" @option-change="provinsiChange"></vue-select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Kabupaten / Kota</label>
-                                                        <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="false" @option-change="kabupatenChange"></vue-select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Kecamatan</label>
-                                                        <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="false" @option-change="kecamatanChange"></vue-select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Desa / Kelurahan</label>
-                                                        <vue-select :name="'desa_ketua'" :id="'desa_ketua'" :options="desa_ketua" :search="false"></vue-select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Kewarganegaraan</label>
-                                                        <vue-select :name="'kewarganegaraan_ketua'" :id="'kewarganegaraan_ketua'" :options="kewarganegaraan_ketua" :search="false"></vue-select>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Jenis Kelamin</label>
-                                                        <vue-select :name="'kelamin_ketua'" :options="kelamin" :search="false"></vue-select>
-                                                    </div>
+                                                <div class="col-md-2 text-right">
+                                                    <button type="button" class="btn btn-success btn-xs" @click="tambahLogistik">
+                                                        <i class="fa fa-plus"></i> &nbsp;
+                                                        Tambah Logistik
+                                                    </button>
                                                 </div>
                                             </div>
-                                        </fieldset>
-                                    </div>
+                                        </div>
 
-                                    <div class="col-md-12" style="margin-top: 20px;">
-                                        <h3 style="color: #1ab394">
-                                            Kontak Darurat &nbsp;
-                                            <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan kontak darurat yang suatu saat dapat dihubungi (keluarga, saudara, teman selain yang mengikuti rombongan pendakian)"></i>
-                                        </h3>
-                                    </div>
+                                        <div class="col-md-12" style="background: #eee; margin-top: 10px; padding: 0px;">
+                                            <fieldset style="font-size: 9pt;">
+                                                <table class="table-mini" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="5%">***</th>
+                                                            <th>Makanan dan Minumam</th>
+                                                            <th>Jumlah</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr v-for="(logistik, idx) in logistik">
+                                                            <td class="text-center">
+                                                                <template v-if="idx > 0">
+                                                                    <i class="fa fa-trash hint" @click="deleteLogistik($event, idx)"></i>
+                                                                </template>
 
-                                    <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
-                                        <fieldset style="font-size: 9pt;">  
-                                            <div class="row" v-for="(kontak, idx) in kontak_darurat">
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label>Nama</label>
-                                                        <input name="nama_kontak_darurat[]" type="text" class="form-control" :placeholder="'Nama kontak darurat '+(idx + 1)" v-model="kontak.nama">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label>No HP</label>
-                                                        <input name="no_kontak_darurat[]" type="text" class="form-control " :placeholder="'No hp kontak darurat '+(idx + 1)" v-model="kontak.no_hp">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label>Alamat Email</label>
-                                                        <input id="email" name="email_kontak_darurat[]" type="text" class="form-control" :placeholder="'Email kontak darurat '+(idx + 1)" v-model="kontak.email">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <label>Hubungan Keluarga</label>
-                                                        <vue-select :name="'hubungan_kontak_darurat[]'" :options="hubungan_kontak_darurat" :search="false"></vue-select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-top: 20px;">
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <h3 style="color: #1ab394">
-                                                    Anggota Rombongan&nbsp;
-                                                    <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata daftar anggota rombongan"></i>
-                                                </h3>
-                                            </div>
-
-                                            <div class="col-md-2 text-right">
-                                                <button type="button" class="btn btn-success btn-xs" @click="tambahAnggota">
-                                                    <i class="fa fa-plus"></i> &nbsp;
-                                                    Tambah Anggota
-                                                </button>
-                                            </div>
+                                                                <template v-if="idx == 0">
+                                                                    <i class="fa fa-lock"></i>
+                                                                </template>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="nama_logistik[]" class="form-control" placeholder="Masukkan Nama Logistik" v-model="logistik.nama"/>
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" name="jumlah_logistik[]"  class="form-control" placeholder="Satuan dalam unit" v-model="logistik.jumlah"/>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </fieldset>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12" style="background: #eee; margin-top: 10px; padding: 0px;">
-                                        <fieldset style="font-size: 9pt;">
-                                            <table class="table-mini" width="100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="5%">***</th>
-                                                        <th width="40%">Nama</th>
-                                                        <th width="30%">No Identitas</th>
-                                                        <th width="25%">Jenis Kelamin</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <tr v-for="(anggota, idx) in anggota">
-                                                        <td class="text-center">
-                                                            <template v-if="idx > 0">
-                                                                <i class="fa fa-trash hint" @click="deleteAnggota($event, idx)"></i>
-                                                            </template>
-
-                                                            <template v-if="idx == 0">
-                                                                <i class="fa fa-lock"></i>
-                                                            </template>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
-                                                        </td>
-                                                        <td>
-                                                            <input type="mail" name="no_ktp_anggota[]"  class="form-control" :placeholder="'No KTP Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/>
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control hint" name="kelamin_anggota[]" v-model="anggota.kelamin">
-                                                                <option v-for="kelamin in kelamin" :value="kelamin.id">@{{ kelamin.text }}</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-top: 20px;">
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <h3 style="color: #1ab394">
-                                                    Perlengkapan Yang DIbawa&nbsp;
-                                                    <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan jumlah perlengkapan pendakian yang dibawa sesuai dengan kolom yang disediakan (satuan yang digunakan adalah Satuan dalam unit)"></i>
-                                                </h3>
-                                            </div>
+                                    <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 30px 0px 0px;">
+                                        <div class="col-md-10 text-right" style="padding-top: 10px;">
+                                            <small style="font-style: italic;" v-if="onRequest">@{{ requestMessage }}</small>
+                                        </div>
+                                        <div class="col-md-2 text-right">
+                                            <button type="button" class="btn btn-primary btn-sm" @click="send" :disabled="disabledButton">Kirim Formulir Registrasi</button>
                                         </div>
                                     </div>
+                                </form>
+                            </template>
 
-                                    <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
-                                        <fieldset style="font-size: 9pt;">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>Tenda</label>
-                                                    <input name="tenda" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.tenda">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Sleeping Bags / Kantong Tidur</label>
-                                                    <input name="sleeping_bag" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.sleeping_bag">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Peralatan Masak</label>
-                                                    <input name="peralatan_masak" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Bahan Bakar</label>
-                                                    <input name="bahan_bakar" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Ponco / Jas Hujan</label>
-                                                    <input name="jas_hujan" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.jas_hujan">
-                                                </div>
-                                            </div>
+                            <template v-if="downloadingResource">
+                                <center><small>Sedang Menyiapkan Form</small></center>
+                            </template>
 
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>Senter / Alat Penerangan</label>
-                                                    <input name="senter" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.senter">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Obat-Obatan Pribadi dan P3K</label>
-                                                    <input name="obat" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.obat">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Matras</label>
-                                                    <input name="matras" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.matras">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Kantong Sampah</label>
-                                                    <input name="kantong_sampah" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.kantong_sampah">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Jaket</label>
-                                                    <input name="jaket" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.jaket">
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-top: 20px;">
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <h3 style="color: #1ab394">
-                                                    Logistik yang dibawa&nbsp;
-                                                    <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan jumlah makanan dan minuman yang akan dibawa mendaki (satuan yang digunakan adalah unit)"></i>
-                                                </h3>
-                                            </div>
-
-                                            <div class="col-md-2 text-right">
-                                                <button type="button" class="btn btn-success btn-xs" @click="tambahLogistik">
-                                                    <i class="fa fa-plus"></i> &nbsp;
-                                                    Tambah Logistik
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="background: #eee; margin-top: 10px; padding: 0px;">
-                                        <fieldset style="font-size: 9pt;">
-                                            <table class="table-mini" width="100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="5%">***</th>
-                                                        <th>Makanan dan Minumam</th>
-                                                        <th>Jumlah</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="(logistik, idx) in logistik">
-                                                        <td class="text-center">
-                                                            <template v-if="idx > 0">
-                                                                <i class="fa fa-trash hint" @click="deleteLogistik($event, idx)"></i>
-                                                            </template>
-
-                                                            <template v-if="idx == 0">
-                                                                <i class="fa fa-lock"></i>
-                                                            </template>
-                                                        </td>
-                                                        <td>
-                                                            <input type="text" name="nama_logistik[]" class="form-control" placeholder="Masukkan Nama Logistik" v-model="logistik.nama"/>
-                                                        </td>
-                                                        <td>
-                                                            <input type="number" name="jumlah_logistik[]"  class="form-control" placeholder="Satuan dalam unit" v-model="logistik.jumlah"/>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </fieldset>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 30px 0px 0px;">
-                                    <div class="col-md-10 text-right" style="padding-top: 10px;">
-                                        <small style="font-style: italic;" v-if="onRequest">@{{ requestMessage }}</small>
-                                    </div>
-                                    <div class="col-md-2 text-right">
-                                        <button type="button" class="btn btn-primary btn-sm" @click="send" :disabled="disabledButton">Kirim Formulir Registrasi</button>
-                                    </div>
-                                </div>
-                            </form>
+                            <template v-if="downloadingResource == 'Nan'">
+                                <center><small>Formuir Sedang Bermasalah. Coba Lagi Nanti. :(</small></center>
+                            </template>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="modal inmodal" id="modal-info" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" style="margin-bottom: 100px; width: 30%">
+                <div class="modal-content animated fade-in">
+                    <div class="ibox product-detail">
+                        <div class="ibox-content" style="margin-bottom: 0px; padding-bottom: 0px; padding-top: 10px;">
+                            <div class="row">
+                                <div class="col-md-12" style="padding: 0px 5px; border-bottom: 1px solid #eee;">
+                                    <h4>Terima Kasih</h4>
+                                </div>
+
+                                <div class="col-md-12" style="padding-top: 20px;">
+                                    Permintaan anda sudah kami terima. Untuk selanjutnya, kami akan melakukan <b>konfirmasi permintaan anda via alamat email</b> yang sudah anda inputkan.
+                                </div>
+
+                                <div class="col-md-12 text-right" style="padding: 15px 5px 0px 5px; border-top: 1px solid #eee; margin-top: 15px;">
+                                    <a href="{{ Route('frontend.registrasi') }}">
+                                        <button class="btn btn-primary btn-xs">Baik, Saya Mengerti</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -484,6 +525,8 @@
     <script src="{{ asset('frontend/js/vendors/vue/vue.js') }}"></script>
     <script src="{{ asset('frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
     <script src="{{ asset('frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
+    <script src="{{ asset('frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
 
     <script>
 
@@ -566,6 +609,9 @@
             });
         }
 
+        Vue.use(window.vuelidate.default)
+        const { required, minLength } = window.validators;
+
         var vue = new Vue({
             el: '#page-wrapper',
             data: {
@@ -574,6 +620,7 @@
                 disabledButton: false,
                 onRequest: false,
                 requestMessage: "Sedang Mengirim Formulir Registrasi",
+                downloadingResource: true,
 
                 // data
                 provinsi: [],
@@ -665,10 +712,10 @@
                         nama_ketua: '',
                         no_ktp_ketua: '',
                         tempat_lahir_ketua: '',
-                        tgl_lahir_ketua: '{{ date("Y-m-d") }}',
+                        tgl_lahir_ketua: '{{ date("d/m/Y") }}',
                         no_hp_ketua: '',
                         email_ketua: '',
-                        tgl_naik: '{{ date("Y-m-d") }}',
+                        tgl_naik: '{{ date("d/m/Y") }}',
                         tgl_turun: '',
                         alamat_ketua: '',
 
@@ -687,8 +734,29 @@
 
             },
 
+            validations: {
+                single : {
+                    nama_ketua: {
+                        required,
+                    },
+
+                    no_ktp_ketua: {
+                        required,
+                    },
+
+                    tgl_naik: {
+                        required,
+                    },
+
+                    tgl_turun: {
+                        required,
+                    },
+                }
+            },
+
             mounted: function(){
                 console.log('vue ready');
+                
                 $('[data-toggle="tooltip"]').tooltip();
 
                 axios.get('{{ Route("frontend.registrasi.resource") }}')
@@ -704,8 +772,11 @@
                             this.provinsiChange(this.provinsi_ketua[0].id);
 
                         }).catch((e) => {
+                            this.downloadingResource = 'Nan';
                             alert('ups. Terjadi Kesalahan. Err System...')
                             console.log('System Bermasalah '+e)
+                        }).then(() => {
+                            this.downloadingResource = false;
                         })
             },
 
@@ -762,30 +833,113 @@
                 send: function(e){
                     e.preventDefault();
                     e.stopImmediatePropagation();
+                    this.$v.$touch();
 
-                    this.disabledButton = true;
-                    this.onRequest = true;
+                    if(!this.$v.$invalid){
 
-                    var dataForm = $('#form-data').serialize();
+                        this.disabledButton = true;
+                        this.onRequest = true;
 
-                    axios.post('{{ Route("frontend.registrasi.save") }}', dataForm)
-                            .then((response) => {
-                                console.log(response.data);
-                                
+                        var dataForm = $('#form-data').serialize();
 
-                            }).catch((e) => {
-                                console.log(e);
-                                $.toast({
-                                    text: 'System Error, '+e,
-                                    showHideTransition: 'slide',
-                                    icon: 'error',
-                                    stack: 1
+                        axios.post('{{ Route("frontend.registrasi.save") }}', dataForm)
+                                .then((response) => {
+                                    console.log(response.data);
+                                    
+                                    $.toast({
+                                        text: response.data.message,
+                                        showHideTransition: 'slide',
+                                        icon: response.data.status,
+                                        position: 'top-right',
+                                        stack: 1
+                                    })
+
+                                    if(response.data.status == 'success'){
+                                        $("#modal-info").modal('show');
+                                        this.formReset();
+                                    }
+
+                                }).catch((e) => {
+                                    console.log(e);
+                                    $.toast({
+                                        text: 'System Error, '+e,
+                                        showHideTransition: 'slide',
+                                        icon: 'error',
+                                        position: 'top-right',
+                                        stack: 1
+                                    })
+                                }).then((e) => {
+                                    this.onRequest = false;
+                                    this.requestMessage = 'Sedang menyimpan data..';
+                                    this.disabledButton = false;
                                 })
-                            }).then((e) => {
-                                this.onRequest = false;
-                                this.requestMessage = 'Sedang menyimpan data..';
-                                this.disabledButton = false;
-                            })
+                    }else{
+                        $.toast({
+                            text: 'Alangkah baiknya jika anda mengisi semua form yang tersedia',
+                            showHideTransition: 'slide',
+                            icon: 'error',
+                            position: 'top-right',
+                            stack: 1
+                        })
+                    }
+                },
+
+                formReset: function(e){
+                    // tab Informasi Ketua
+                        this.single.nama_ketua = '';
+                        this.single.no_ktp_ketua = '';
+                        this.single.tempat_lahir_ketua = '';
+                        this.single.tgl_lahir_ketua = '{{ date("d/m/Y") }}';
+                        this.single.no_hp_ketua = '';
+                        this.single.email_ketua = '';
+                        this.single.tgl_naik = '{{ date("d/m/Y") }}';
+                        this.single.tgl_turun = '';
+                        this.single.alamat_ketua = '';
+
+                    // tab perlengkapan
+                        this.single.tenda = '';
+                        this.single.sleeping_bag = '';
+                        this.single.peralatan_masak = '';
+                        this.single.bahan_bakar = '';
+                        this.single.jas_hujan = '';
+                        this.single.senter = '';
+                        this.single.obat = '';
+                        this.single.matras = '';
+                        this.single.kantong_sampah = '';
+                        this.single.jaket = '';
+
+                    this.anggota = [
+                        {
+                            nama: '',
+                            no_ktp: '',
+                            kelamin: 'L',
+                        }
+
+                    ];
+
+                    this.kontak_darurat = [
+                        {
+                            nama: '',
+                            no_hp: '',
+                            email: '',
+                            hub: 'Orang Tua',
+                        },
+
+                        {
+                            nama: '',
+                            no_hp: '',
+                            email: '',
+                            hub: 'Orang Tua',
+                        }
+                    ];
+                    
+                    this.logistik = [
+                        {
+                            nama: '',
+                            jumlah: '',
+                        }
+
+                    ];
                 }
             }
         })

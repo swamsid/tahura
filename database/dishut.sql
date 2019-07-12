@@ -7116,43 +7116,43 @@ CREATE TABLE IF NOT EXISTS `jabatan` (
 -- Dumping data for table dishut.jabatan: ~37 rows (approximately)
 /*!40000 ALTER TABLE `jabatan` DISABLE KEYS */;
 REPLACE INTO `jabatan` (`id_jabatan`, `nomor_jabatan`, `nama_jabatan`) VALUES
-	(1, '0', 'Kepala UPT'),
-	(2, '0', 'Kasubag Tata Usaha'),
-	(3, '0', 'Pengadministrasi Sarana dan Prasarana'),
-	(4, '0', 'Pengelola Keuangan'),
-	(5, '0', 'Pengadministrasi Kepegawaian'),
-	(6, '0', 'Pengelola Pengadaan Barang/Jasa Ahli Pertama'),
-	(7, '0', 'Pengelola Teknologi Informasi'),
-	(8, '0', 'Pengadministrasi Umum'),
-	(9, '0', 'Pranata Komputer Ketrampilan Terampil'),
-	(10, '0', 'Pengadministrasi Perencanaan dan Program'),
-	(11, '0', 'Pengadministrasi Keuangan'),
-	(12, '0', 'Petugas Keamanan'),
-	(13, '0', 'Kepala Seksi Perencanaan, Pengembangan dan Pemanfaatan'),
-	(14, '0', 'Analis Dokumen Perijinan'),
-	(15, '0', 'Pengelola Sarana Wisata'),
-	(16, '0', 'Pengendali Ekosistem Hutan Ahli Pertama'),
-	(17, '0', 'Pengadministrasi Penerimaan OWA Cangar'),
-	(18, '0', 'Pengelola Pelestarian Sumber Daya Alam'),
-	(19, '0', 'Pengadministrasi Penerimaan OWA Pendakian Pos Tretes'),
-	(20, '0', 'Pengendali Ekosistem Hutan Terampil'),
-	(21, '0', 'Pemandu Wisata Pendakian Pos Tretes Prigen'),
-	(22, '0', 'Pemandu Wisata'),
-	(23, '0', 'Pemandu OWA Tretes Galengdowo'),
-	(24, '0', 'Pengadministrasi Penerimaan OWA Watulumpang'),
-	(25, '0', 'Pengadministrasi Penerimaan OWA Pendakian Pos Wonorejo'),
-	(26, '0', 'Pengadministrasi Penerimaan OWA Pacet'),
-	(27, '0', 'Pemandu Wisata OWA Watuondo'),
-	(28, '0', 'Pengadministrasi Penerimaan OWA Watuondo'),
-	(29, '0', 'Kepala Seksi Perlindungan dan Pemberdayaan Masyarakat'),
-	(30, '0', 'Analis Rehabilitasi dan Konservasi'),
-	(31, '0', 'Penyuluh Kehutanan Keahlian Ahli Muda'),
-	(32, '0', 'Pengolah Data'),
-	(33, '0', 'Pengendali Ekosistem Hutan Mahir'),
-	(34, '0', 'Polisi Kehutanan Ketrampilan Mahir'),
-	(35, '0', 'Pengendali Ekosistem Hutan Ketrampilan Terampil'),
-	(36, '0', 'Polisi Kehutanan Ketrampilan Terampil'),
-	(38, 'JB-0038', 'tes gaannn');
+	(1, 'JB-0001', 'Kepala UPT'),
+	(2, 'JB-0002', 'Kasubag Tata Usaha'),
+	(3, 'JB-0003', 'Pengadministrasi Sarana dan Prasarana'),
+	(4, 'JB-0004', 'Pengelola Keuangan'),
+	(5, 'JB-0005', 'Pengadministrasi Kepegawaian'),
+	(6, 'JB-0006', 'Pengelola Pengadaan Barang/Jasa Ahli Pertama'),
+	(7, 'JB-0007', 'Pengelola Teknologi Informasi'),
+	(8, 'JB-0008', 'Pengadministrasi Umum'),
+	(9, 'JB-0009', 'Pranata Komputer Ketrampilan Terampil'),
+	(10, 'JB-0010', 'Pengadministrasi Perencanaan dan Program'),
+	(11, 'JB-0011', 'Pengadministrasi Keuangan'),
+	(12, 'JB-0012', 'Petugas Keamanan'),
+	(13, 'JB-0013', 'Kepala Seksi Perencanaan, Pengembangan dan Pemanfaatan'),
+	(14, 'JB-0014', 'Analis Dokumen Perijinan'),
+	(15, 'JB-0015', 'Pengelola Sarana Wisata'),
+	(16, 'JB-0016', 'Pengendali Ekosistem Hutan Ahli Pertama'),
+	(17, 'JB-0017', 'Pengadministrasi Penerimaan OWA Cangar'),
+	(18, 'JB-0018', 'Pengelola Pelestarian Sumber Daya Alam'),
+	(19, 'JB-0019', 'Pengadministrasi Penerimaan OWA Pendakian Pos Tretes'),
+	(20, 'JB-0020', 'Pengendali Ekosistem Hutan Terampil'),
+	(21, 'JB-0021', 'Pemandu Wisata Pendakian Pos Tretes Prigen'),
+	(22, 'JB-0022', 'Pemandu Wisata'),
+	(23, 'JB-0023', 'Pemandu OWA Tretes Galengdowo'),
+	(24, 'JB-0024', 'Pengadministrasi Penerimaan OWA Watulumpang'),
+	(25, 'JB-0025', 'Pengadministrasi Penerimaan OWA Pendakian Pos Wonorejo'),
+	(26, 'JB-0026', 'Pengadministrasi Penerimaan OWA Pacet'),
+	(27, 'JB-0027', 'Pemandu Wisata OWA Watuondo'),
+	(28, 'JB-0028', 'Pengadministrasi Penerimaan OWA Watuondo'),
+	(29, 'JB-0029', 'Kepala Seksi Perlindungan dan Pemberdayaan Masyarakat'),
+	(30, 'JB-0030', 'Analis Rehabilitasi dan Konservasi'),
+	(31, 'JB-0031', 'Penyuluh Kehutanan Keahlian Ahli Muda'),
+	(32, 'JB-0032', 'Pengolah Data'),
+	(33, 'JB-0033', 'Pengendali Ekosistem Hutan Mahir'),
+	(34, 'JB-0034', 'Polisi Kehutanan Ketrampilan Mahir'),
+	(35, 'JB-0035', 'Pengendali Ekosistem Hutan Ketrampilan Terampil'),
+	(36, 'JB-0036', 'Polisi Kehutanan Ketrampilan Terampil'),
+	(37, '7', 'tes gaannn');
 /*!40000 ALTER TABLE `jabatan` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.provinces
@@ -7909,8 +7909,8 @@ CREATE TABLE IF NOT EXISTS `tb_role_menu` (
 -- Dumping data for table dishut.tb_role_menu: ~2 rows (approximately)
 /*!40000 ALTER TABLE `tb_role_menu` DISABLE KEYS */;
 REPLACE INTO `tb_role_menu` (`rm_jabatan`, `rm_menu`, `rm_read`, `rm_create`, `rm_update`, `rm_delete`) VALUES
-	(38, 1, '1', '1', '1', '1'),
-	(38, 2, '1', '1', '1', '1');
+	(37, 1, '1', '1', '1', '1'),
+	(37, 2, '1', '1', '1', '1');
 /*!40000 ALTER TABLE `tb_role_menu` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.user
@@ -7921,15 +7921,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `nip` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `nama` varchar(100) NOT NULL,
-  `foto` varchar(200) NOT NULL,
-  `level` varchar(50) NOT NULL,
+  `foto` varchar(200) DEFAULT NULL,
+  `level` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dishut.user: ~2 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 REPLACE INTO `user` (`user_id`, `id_jabatan`, `nip`, `password`, `nama`, `foto`, `level`) VALUES
-	(1, '7', '199510212019031005', 'admin', 'Amiruzzuhhad Gunes', '20190531035029-3 x 4 biru.jpg', 'superadmin'),
+	(1, '7', '199510212019031005', 'admin', 'Amiruzzuhhad Gunes', '1667.jpg', 'superadmin'),
 	(26, '2', '123456789012345678', '714511', 'coba', '', 'admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
