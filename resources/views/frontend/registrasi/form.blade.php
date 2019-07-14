@@ -146,7 +146,7 @@
 
                                                         <div class="form-group">
                                                             <label>Tempat Lahir</label>
-                                                            <input id="tempat_lahir_ketua" name="tempat_lahir_ketua" type="text" class="form-control" placeholder="Contoh : Surabaya" v-model="single.tempat_lahir_ketua">
+                                                            <input id="tempat_lahir_ketua" name="tempat_lahir_ketua" type="text" :class="$v.single.tempat_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Contoh : Surabaya" v-model="single.tempat_lahir_ketua">
                                                         </div>
 
                                                         <div class="form-group" id="data_1">
@@ -162,7 +162,7 @@
 
                                                         <div class="form-group">
                                                             <label>No Hp</label>
-                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" class="form-control" placeholder="Masukkan Nomor Hp Ketua" v-model="single.no_hp_ketua">
+                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Masukkan Nomor Hp Ketua" v-model="single.no_hp_ketua">
                                                         </div>
 
                                                         <div class="form-group">
@@ -741,6 +741,14 @@
                     },
 
                     no_ktp_ketua: {
+                        required,
+                    },
+
+                    tempat_lahir_ketua: {
+                        required,
+                    },
+
+                    no_hp_ketua: {
                         required,
                     },
 

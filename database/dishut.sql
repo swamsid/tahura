@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `districts` (
   CONSTRAINT `districts_regency_id_foreign` FOREIGN KEY (`regency_id`) REFERENCES `regencies` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table dishut.districts: ~7.071 rows (approximately)
+-- Dumping data for table dishut.districts: ~7.378 rows (approximately)
 /*!40000 ALTER TABLE `districts` DISABLE KEYS */;
 REPLACE INTO `districts` (`id`, `regency_id`, `name`) VALUES
 	('1101010', '1101', 'TEUPAH SELATAN'),
@@ -7152,7 +7152,7 @@ REPLACE INTO `jabatan` (`id_jabatan`, `nomor_jabatan`, `nama_jabatan`) VALUES
 	(34, 'JB-0034', 'Polisi Kehutanan Ketrampilan Mahir'),
 	(35, 'JB-0035', 'Pengendali Ekosistem Hutan Ketrampilan Terampil'),
 	(36, 'JB-0036', 'Polisi Kehutanan Ketrampilan Terampil'),
-	(37, '7', 'tes gaannn');
+	(37, 'JB-0037', 'Super Admin');
 /*!40000 ALTER TABLE `jabatan` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.provinces
@@ -7782,7 +7782,7 @@ CREATE TABLE IF NOT EXISTS `tb_logistik` (
   CONSTRAINT `FK_tb_logistik_tb_pendakian` FOREIGN KEY (`lg_pendakian`) REFERENCES `tb_pendakian` (`pd_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.tb_logistik: ~3 rows (approximately)
+-- Dumping data for table dishut.tb_logistik: ~2 rows (approximately)
 /*!40000 ALTER TABLE `tb_logistik` DISABLE KEYS */;
 REPLACE INTO `tb_logistik` (`lg_pendakian`, `lg_nomor`, `lg_nama`, `lg_jumlah`) VALUES
 	(1, 1, 'Indomie', 10),
@@ -7800,13 +7800,15 @@ CREATE TABLE IF NOT EXISTS `tb_menu` (
   `m_group` varchar(255) NOT NULL,
   PRIMARY KEY (`m_id`),
   UNIQUE KEY `m_role` (`m_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table dishut.tb_menu: ~2 rows (approximately)
 /*!40000 ALTER TABLE `tb_menu` DISABLE KEYS */;
 REPLACE INTO `tb_menu` (`m_id`, `m_name`, `m_role`, `m_route`, `m_group`) VALUES
 	(1, 'Dashboard', 'dashboard', '', 'dashboard'),
-	(2, 'Master Data Jabatan', 'data_jabatan', '', 'data master');
+	(2, 'Master Data Jabatan', 'data_jabatan', '', 'data master'),
+	(3, 'Master Data Pegawai', 'data_pegawai', '', 'data master'),
+	(4, 'Data Pendaftar', 'data_pendaftar', '', 'manajemen pendaki');
 /*!40000 ALTER TABLE `tb_menu` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.tb_pendakian
@@ -7845,7 +7847,8 @@ CREATE TABLE IF NOT EXISTS `tb_pendakian` (
 -- Dumping data for table dishut.tb_pendakian: ~1 rows (approximately)
 /*!40000 ALTER TABLE `tb_pendakian` DISABLE KEYS */;
 REPLACE INTO `tb_pendakian` (`pd_id`, `pd_nomor`, `pd_nama_ketua`, `pd_no_ktp`, `pd_tempat_lahir`, `pd_tgl_lahir`, `pd_no_hp`, `pd_email`, `pd_tgl_naik`, `pd_tgl_turun`, `pd_alamat`, `pd_provinsi`, `pd_kabupaten`, `pd_kecamatan`, `pd_desa`, `pd_kewarganegaraan`, `pd_jenis_kelamin`, `pd_status`, `pd_pos_pendakian`, `pd_pos_turun`, `created_at`, `updated_at`) VALUES
-	(1, 'PD-491653', 'Dirga Ambara', '91827837647635', 'Surabaya', '1995-05-06', '087857487026', 'dirgaambaraloh@gmail.com', '2007-07-14', '2019-07-17', 'Wonorejo 3 no 101', '35', '3578', '3578180', '3578180004', 'WNI', 'L', 'registered', NULL, NULL, '2019-07-12 03:23:27', '2019-07-12 03:23:27');
+	(1, 'PD-491653', 'Dirga Ambara', '91827837647635', 'Surabaya', '1995-05-06', '087857487026', 'dirgaambaraloh@gmail.com', '2007-07-14', '2019-07-17', 'Wonorejo 3 no 101', '35', '3578', '3578180', '3578180004', 'WNI', 'L', 'registered', NULL, NULL, '2019-07-12 03:23:27', '2019-07-12 03:23:27'),
+	(2, 'PD-671752', 'Andre Oke deh', '18012381028309', 'Surabaya', '2019-07-14', '18031830182274', 'dirgaamaraloh@gmail.com', '2019-07-14', '2019-07-17', 'SUrbaya', '11', '1101', '1101010', '1101010001', 'WNI', 'L', 'registered', NULL, NULL, '2019-07-14 22:04:19', '2019-07-14 22:04:19');
 /*!40000 ALTER TABLE `tb_pendakian` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.tb_peralatan
@@ -7868,10 +7871,11 @@ CREATE TABLE IF NOT EXISTS `tb_peralatan` (
   CONSTRAINT `FK_tb_peralatan_tb_pendakian` FOREIGN KEY (`pr_pendakian`) REFERENCES `tb_pendakian` (`pd_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.tb_peralatan: ~1 rows (approximately)
+-- Dumping data for table dishut.tb_peralatan: ~0 rows (approximately)
 /*!40000 ALTER TABLE `tb_peralatan` DISABLE KEYS */;
 REPLACE INTO `tb_peralatan` (`pr_id`, `pr_pendakian`, `pr_tenda`, `pr_sleeping_bag`, `pr_peralatan_masak`, `pr_bahan_bakar`, `pr_ponco`, `pr_senter`, `pr_obat`, `pr_matras`, `pr_kantong_sampah`, `pr_jaket`) VALUES
-	(1, 1, 5, 4, 6, 6, 7, 3, 2, 6, 2, 3);
+	(1, 1, 5, 4, 6, 6, 7, 3, 2, 6, 2, 3),
+	(2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 /*!40000 ALTER TABLE `tb_peralatan` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.tb_pos_pendakian
@@ -7909,8 +7913,10 @@ CREATE TABLE IF NOT EXISTS `tb_role_menu` (
 -- Dumping data for table dishut.tb_role_menu: ~2 rows (approximately)
 /*!40000 ALTER TABLE `tb_role_menu` DISABLE KEYS */;
 REPLACE INTO `tb_role_menu` (`rm_jabatan`, `rm_menu`, `rm_read`, `rm_create`, `rm_update`, `rm_delete`) VALUES
-	(37, 1, '1', '1', '1', '1'),
-	(37, 2, '1', '1', '1', '1');
+	(7, 1, '1', '1', '1', '1'),
+	(7, 2, '1', '1', '1', '1'),
+	(7, 3, '1', '1', '1', '1'),
+	(7, 4, '1', '1', '1', '1');
 /*!40000 ALTER TABLE `tb_role_menu` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.user
@@ -7944,7 +7950,7 @@ CREATE TABLE IF NOT EXISTS `villages` (
   CONSTRAINT `villages_district_id_foreign` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table dishut.villages: ~81.935 rows (approximately)
+-- Dumping data for table dishut.villages: ~82.082 rows (approximately)
 /*!40000 ALTER TABLE `villages` DISABLE KEYS */;
 REPLACE INTO `villages` (`id`, `district_id`, `name`) VALUES
 	('1101010001', '1101010', 'LATIUNG'),

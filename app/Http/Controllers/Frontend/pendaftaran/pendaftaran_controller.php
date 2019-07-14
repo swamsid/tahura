@@ -31,11 +31,6 @@ class pendaftaran_controller extends Controller
 
     protected function save(Request $request){
     	// return json_encode($request->all());
-
-        return json_encode([
-            "status"    => 'success',
-            "message"   => 'Data berhasil di simpan'
-        ]);
         
     	try {
     		

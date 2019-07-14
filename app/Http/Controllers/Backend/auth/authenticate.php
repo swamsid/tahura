@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\backend\user;
 
 use Auth;
+use DB;
 use Session;
 
 class authenticate extends Controller
@@ -15,13 +16,20 @@ class authenticate extends Controller
     	try {
     		
     		$nip = str_replace(' ', '', $request->nip);
-    		$user = user::where('nip', $nip)->first();
+    		$user = user::where('nip', $nip)->join('jabatan', 'user.id_jabatan', '=', 'jabatan.id_jabatan')->first();
 
 	    	if($user && $user->password == $request->password){
 				Auth::login($user);
 
+                $roles = DB::table('tb_role_menu')
+                        ->where('rm_jabatan', $user->id_jabatan)
+                        ->join('tb_menu', 'tb_menu.m_id', '=', 'tb_role_menu.rm_menu')
+                        ->select('tb_role_menu.*', DB::raw('lower(tb_menu.m_name) as name'), 'tb_menu.m_group as group')
+                        ->get()->toArray();
+
 	            Session([
-	                'jabatan'   => $user->id_jabatan,
+	                'jabatan'   => $user->nama_jabatan,
+                    'roles'     => $roles
 	            ]);
 
 				return redirect()->route('wpadmin.dashboard');
