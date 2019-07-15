@@ -356,7 +356,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Bahan Bakar</label>
-                                                        <input name="bahan_bakar" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
+                                                        <input name="bahan_bakar" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.bahan_bakar">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Ponco / Jas Hujan</label>
