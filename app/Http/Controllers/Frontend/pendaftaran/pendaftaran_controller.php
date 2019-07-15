@@ -64,7 +64,7 @@ class pendaftaran_controller extends Controller
     			'pd_desa'				=> $request->desa_ketua,
     			'pd_kewarganegaraan'	=> $request->kewarganegaraan_ketua,
     			'pd_jenis_kelamin'		=> $request->kelamin_ketua,
-    			'pd_status'				=> 'registered'
+    			'pd_status'				=> 'belum disetujui'
 
     		]);
 

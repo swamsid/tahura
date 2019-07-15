@@ -145,7 +145,7 @@
                         <div class="row" style="border-top: 1px solid #dedede; margin-top: 20px;">
                             <div class="col-md-12" style="padding: 20px; text-align: right;">
                                 <template v-if="formState == 'insert'">
-                                    <button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="disabledButton">Simpan Data</button>
+                                    <button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="disabledButton">Proses</button>
                                     <!-- <button type="button" class="btn btn-primary btn-sm" @click="formReset">reset</button> -->
                                 </template>
 

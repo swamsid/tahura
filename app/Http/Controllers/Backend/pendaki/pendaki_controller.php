@@ -8,6 +8,7 @@ use App\Model\backend\tb_pendakian as pendakian;
 
 use DB;
 use PDF;
+use Auth;
 use Mail;
 use QrCode;
 use Session;
@@ -20,7 +21,7 @@ class pendaki_controller extends Controller
     }
 
     protected function detail(Request $request){
-    	$data = pendakian::where('pd_id', 1)
+    	$data = pendakian::where('pd_id', $request->id)
     				->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
     				->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
                     ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
@@ -68,14 +69,16 @@ class pendaki_controller extends Controller
     		if($request->sts == 'sudah naik'){
     			$context->update([
 	    			'pd_pos_pendakian'	=> $request->pos,
-	    			'pd_tgl_naik'		=> date('Y-m-d')
+	    			'pd_tgl_naik'		=> date('Y-m-d'),
+                    'pd_acc_naik_by'    => Auth::user()->user_id
 	    		]);
     		}else if($request->sts == 'sudah turun'){
     			$context->update([
 	    			'pd_pos_turun'		=> $request->pos,
-	    			'pd_tgl_turun'		=> date('Y-m-d')
+	    			'pd_tgl_turun'		=> date('Y-m-d'),
+                    'pd_acc_turun_by'   => Auth::user()->user_id
 	    		]);
-    		}else if($request->sts == 'diterima'){
+    		}else if($request->sts == 'disetujui'){
 
                 $data = pendakian::where('pd_id', 1)
                     ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
@@ -109,9 +112,49 @@ class pendaki_controller extends Controller
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                     $message->attachData($qrcode->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id)), 'kode.png');
                 });
+
+                $context->update([
+                    'pd_acc_by' => Auth::user()->user_id
+                ]);
+            }else if($request->sts == 'ditolak'){
+
+                $data = pendakian::where('pd_id', 1)
+                    ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
+                    ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
+                    ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
+                    ->leftJoin('regencies', 'regencies.id', 'pd_kabupaten')
+                    ->leftJoin('districts', 'districts.id', 'pd_kecamatan')
+                    ->leftJoin('villages', 'villages.id', 'pd_desa')
+                    ->with('kontak')
+                    ->with('anggota')
+                    ->with('peralatan')
+                    ->with('logistik')
+                    ->select(
+                        'tb_pendakian.*',
+                        'a.pp_nama as pos_naik',
+                        'b.pp_nama as pos_turun',
+                        'provinces.name as provinsi',
+                        'regencies.name as kabupaten',
+                        'districts.name as kecamatan',
+                        'villages.name as kelurahan',
+                    )->first();
+
+                $email = $data->pd_email;
+                $pdf = PDF::loadView('backend.pdf.berkas', compact('data'));
+
+                Mail::send('addition.email.tolak', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $request, $email){
+                    $message->subject("Konfirmasi Pendaftaran");
+                    $message->from('noreply@dishut.com', 'Dinas Kehutanan Provinsi Jawa Timur');
+                    $message->to($email);
+                    $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
+                });
+
+                $context->update([
+                    'pd_acc_by' => Auth::user()->user_id
+                ]);
             }
 
-    		// DB::commit();
+    		DB::commit();
     		Session::flash('message', 'Status pendakian berhasil diubah menjadi '.$request->sts);
     		return redirect()->route('wpadmin.pendaki.index');
 

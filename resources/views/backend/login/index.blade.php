@@ -33,6 +33,14 @@
             </p>
             <form class="m-t" role="form" method="post" action="{{ Route('wpadmin.login.authenticate') }}">
             	<input type="hidden" name="_token" value="{{ csrf_token() }}" readonly>
+                <input type="hidden" name="path" value="{{ (Session::has('path')) ? Session::get('path') : '' }}" readonly>
+
+                <?php
+                    $crop = (Session::has('full')) ? explode('?', Session::get('full')) : [];
+                    $params = (isset($crop[1])) ? $crop[1] : '';
+                ?>
+
+                <input type="hidden" name="params" value="{{ $params }}" readonly>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="NIP" required="" name="nip" value="{{ old('nip') }}">
                 </div>

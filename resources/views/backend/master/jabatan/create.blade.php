@@ -140,42 +140,7 @@
                                 </div>
 
                                 <div class="col-md-7" style="box-shadow: 0px 0px 10px #ccc; padding: 10px;">
-                                    <table class="table-mini" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th width="40%">Nama Menu</th>
-                                                <th width="15%">Read</th>
-                                                <th width="15%">Create</th>
-                                                <th width="15%">Update</th>
-                                                <th width="15%">Delete</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <template v-for="(role, idx) in role">
-                                                <tr>
-                                                    <td colspan="5" style="background: #eee; font-weight: bold;">@{{ role.m_group }}</td>
-                                                </tr>
-
-                                                <template v-for="(detail, idx) in role.detail">
-                                                    <tr>
-                                                        <td style="padding-left: 20px;">@{{ detail.m_name }}</td>
-                                                        <td style="text-align: center;">
-                                                            <input type="checkbox" :name="'read['+detail.m_id+'][]'" class="check" :id="detail.m_id+'_read'">
-                                                        </td>
-                                                        <td style="text-align: center;">
-                                                            <input type="checkbox" :name="'create['+detail.m_id+'][]'" class="check" :id="detail.m_id+'_create'">
-                                                        </td>
-                                                        <td style="text-align: center;">
-                                                            <input type="checkbox" :name="'update['+detail.m_id+'][]'" class="check" :id="detail.m_id+'_update'">
-                                                        </td>
-                                                        <td style="text-align: center;">
-                                                            <input type="checkbox" :name="'delete['+detail.m_id+'][]'" class="check" :id="detail.m_id+'_delete'">
-                                                        </td>
-                                                    </tr>
-                                                </template>
-                                            </template>
-                                        </tbody>
-                                    </table>
+                                    
                                 </div>
                             </div>
                         </form>
@@ -460,22 +425,6 @@
                         this.single.id_jabatan = ctx.id_jabatan;
                         this.single.nomor_jabatan = ctx.nomor_jabatan;
                         this.single.nama_jabatan = ctx.nama_jabatan;
-
-                        $.each(ctx.roles, function(idx, content){
-                            console.log(content);
-
-                            if(content.rm_read == '1')
-                                $('#'+content.rm_menu+'_read').prop('checked', true);
-
-                            if(content.rm_create == '1')
-                                $('#'+content.rm_menu+'_create').prop('checked', true);
-
-                            if(content.rm_update == '1')
-                                $('#'+content.rm_menu+'_update').prop('checked', true);
-
-                            if(content.rm_delete == '1')
-                                $('#'+content.rm_menu+'_delete').prop('checked', true);
-                        })
                     }
 
                     $('#modal-detail').modal('toggle');
@@ -488,7 +437,7 @@
                     this.single.nama_jabatan = '';
                     this.single.nomor_jabatan = '';
 
-                    $('.check').prop('checked', false);
+                    // $('.check').prop('checked', false);
                 }
             }
         });

@@ -9,7 +9,4 @@ class jabatan extends Model
     protected $table = 'jabatan';
     protected $primaryKey = 'id_jabatan';
 
-    public function roles(){
-    	return $this->hasMany('App\Model\backend\tb_role_menu', 'rm_jabatan', 'id_jabatan');
-    }
 }

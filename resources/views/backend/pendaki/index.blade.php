@@ -56,7 +56,17 @@
                                             <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
                                             <td class="text-center">{{ date('d-m-Y', strtotime($data->pd_tgl_naik)) }}</td>
                                             <td class="text-center">
-                                                <span class="label label-info">{{ $data->pd_status }}</span>
+                                                <?php
+                                                    $class = 'label-info';
+
+                                                    if($data->pd_status == 'disetujui')
+                                                        $class = 'label-success';
+                                                    else if($data->pd_status == 'ditolak')
+                                                        $class = 'label-danger';
+                                                    else if($data->pd_status == 'sudah naik' || $data->pd_status == 'sudah turun')
+                                                        $class = 'label-warning';
+                                                 ?>
+                                                <span class="label {{ $class }}">{{ $data->pd_status }}</span>
                                             </td>
                                             <td class="text-center">
                                                 <center>

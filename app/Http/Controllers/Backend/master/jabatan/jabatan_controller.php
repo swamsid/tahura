@@ -22,7 +22,7 @@ class jabatan_controller extends Controller
 
     protected function resource(){
     	$role = menu::distinct('m_group')->select('m_group')->with('detail')->get();
-    	$jabatan = jabatan::with('roles')->get();
+    	$jabatan = jabatan::get();
 
     	return json_encode([
     		'role'		=> $role,
@@ -46,27 +46,9 @@ class jabatan_controller extends Controller
     			'nama_jabatan'		=> $request->nama_jabatan
     		]);
 
-    		$menu = DB::table('tb_menu')->select('m_id')->get();
-    		$feeder = [];
-
-    		foreach ($menu as $key => $value) {
-
-    			// return json_encode($request->read);
-
-    			array_push($feeder, [
-    				"rm_jabatan"	=> $id,
-    				"rm_menu"		=> $value->m_id,
-    				"rm_read"		=> (isset($request->read[$value->m_id])) ? '1' : '0',
-    				"rm_create"		=> (isset($request->create[$value->m_id])) ? '1' : '0',
-    				"rm_update"		=> (isset($request->update[$value->m_id])) ? '1' : '0',
-    				"rm_delete"		=> (isset($request->delete[$value->m_id])) ? '1' : '0',
-    			]);
-    		}
-
-    		DB::table('tb_role_menu')->insert($feeder);
     		DB::commit();
 
-    		$jabatan = jabatan::with('roles')->get();
+    		$jabatan = jabatan::get();
 
     		return json_encode([
     			'status'	=> 'success',
@@ -107,29 +89,9 @@ class jabatan_controller extends Controller
     			'nama_jabatan'		=> $request->nama_jabatan
     		]);
 
-    		DB::table('tb_role_menu')->where('rm_jabatan', $request->id)->delete();
-
-    		$menu = DB::table('tb_menu')->select('m_id')->get();
-    		$feeder = [];
-
-    		foreach ($menu as $key => $value) {
-
-    			// return json_encode($request->read);
-
-    			array_push($feeder, [
-    				"rm_jabatan"	=> $id,
-    				"rm_menu"		=> $value->m_id,
-    				"rm_read"		=> (isset($request->read[$value->m_id])) ? '1' : '0',
-    				"rm_create"		=> (isset($request->create[$value->m_id])) ? '1' : '0',
-    				"rm_update"		=> (isset($request->update[$value->m_id])) ? '1' : '0',
-    				"rm_delete"		=> (isset($request->delete[$value->m_id])) ? '1' : '0',
-    			]);
-    		}
-
-    		DB::table('tb_role_menu')->insert($feeder);
     		DB::commit();
 
-    		$jabatan = jabatan::with('roles')->get();
+    		$jabatan = jabatan::get();
 
     		return json_encode([
     			'status'	=> 'success',
@@ -177,7 +139,7 @@ class jabatan_controller extends Controller
 
     		DB::commit();
 
-    		$jabatan = jabatan::with('roles')->get();
+    		$jabatan = jabatan::get();
 
     		return json_encode([
     			'status'	=> 'success',

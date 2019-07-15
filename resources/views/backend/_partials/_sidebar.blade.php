@@ -20,32 +20,44 @@
                     IN+
                 </div>
             </li>
-            <li class="active">
-                <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
-            </li>
-            <li>
-                <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Data Master</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    @if(Auth::user()->can('read', 'master data jabatan'))
-                        <li><a href="{{ Route('wpadmin.jabatan.index') }}">Master Data Jabatan</a></li>
-                    @endif
 
-                    @if(Auth::user()->can('read', 'master data pegawai'))
-                        <li><a href="{{ Route('wpadmin.pegawai.index') }}">Master Data Pegawai</a></li>
-                    @endif
-                </ul>
-            </li>
-            <li>
-                <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Manajemen Pendaki</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    @if(Auth::user()->can('read', 'data pendaftar'))
-                        <li><a href="{{ Route('wpadmin.pendaki.index') }}">Data Pendaftar</a></li>
-                    @endif
-                </ul>
-            </li>
-            <li>
-                <a href="package.html"><i class="fa fa-database"></i> <span class="nav-label">Laporan</span></a>
-            </li>
+            @if(Auth::user()->hasAccessTo('dashboard'))
+                <li class="active">
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
+                </li>
+            @endif
+
+            @if(Auth::user()->hasAccessTo('data master'))
+                <li>
+                    <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Data Master</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        @if(Auth::user()->can('read', 'master data jabatan'))
+                            <li><a href="{{ Route('wpadmin.jabatan.index') }}">Master Data Jabatan</a></li>
+                        @endif
+
+                        @if(Auth::user()->can('read', 'master data pegawai'))
+                            <li><a href="{{ Route('wpadmin.pegawai.index') }}">Master Data Pegawai</a></li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+
+            @if(Auth::user()->hasAccessTo('manajemen pendaki'))
+                <li>
+                    <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Manajemen Pendaki</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        @if(Auth::user()->can('read', 'data pendaftar'))
+                            <li><a href="{{ Route('wpadmin.pendaki.index') }}">Data Pendaftar</a></li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+
+            @if(Auth::user()->hasAccessTo('laporan'))
+                <li>
+                    <a href="{{ Route('wpadmin.laporan.pendaki_masuk.index') }}"><i class="fa fa-database"></i> <span class="nav-label">Laporan</span></a>
+                </li>
+            @endif
         </ul>
 
     </div>

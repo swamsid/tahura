@@ -7800,15 +7800,16 @@ CREATE TABLE IF NOT EXISTS `tb_menu` (
   `m_group` varchar(255) NOT NULL,
   PRIMARY KEY (`m_id`),
   UNIQUE KEY `m_role` (`m_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.tb_menu: ~2 rows (approximately)
+-- Dumping data for table dishut.tb_menu: ~5 rows (approximately)
 /*!40000 ALTER TABLE `tb_menu` DISABLE KEYS */;
 REPLACE INTO `tb_menu` (`m_id`, `m_name`, `m_role`, `m_route`, `m_group`) VALUES
 	(1, 'Dashboard', 'dashboard', '', 'dashboard'),
 	(2, 'Master Data Jabatan', 'data_jabatan', '', 'data master'),
 	(3, 'Master Data Pegawai', 'data_pegawai', '', 'data master'),
-	(4, 'Data Pendaftar', 'data_pendaftar', '', 'manajemen pendaki');
+	(4, 'Data Pendaftar', 'data_pendaftar', '', 'manajemen pendaki'),
+	(5, 'Laporan Pendaki Masuk', 'laporan', '', 'laporan');
 /*!40000 ALTER TABLE `tb_menu` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.tb_pendakian
@@ -7822,8 +7823,6 @@ CREATE TABLE IF NOT EXISTS `tb_pendakian` (
   `pd_tgl_lahir` date NOT NULL,
   `pd_no_hp` varchar(20) NOT NULL,
   `pd_email` varchar(100) NOT NULL,
-  `pd_tgl_naik` date NOT NULL,
-  `pd_tgl_turun` date NOT NULL,
   `pd_alamat` varchar(255) NOT NULL,
   `pd_provinsi` varchar(255) NOT NULL,
   `pd_kabupaten` varchar(255) NOT NULL,
@@ -7831,8 +7830,14 @@ CREATE TABLE IF NOT EXISTS `tb_pendakian` (
   `pd_desa` varchar(255) NOT NULL,
   `pd_kewarganegaraan` char(3) NOT NULL,
   `pd_jenis_kelamin` enum('L','P') NOT NULL,
+  `pd_tanggal_registrasi` timestamp NOT NULL DEFAULT current_timestamp(),
   `pd_status` char(20) NOT NULL,
+  `pd_acc_by` int(11) DEFAULT NULL,
+  `pd_acc_naik_by` int(11) DEFAULT NULL,
+  `pd_tgl_naik` date NOT NULL,
   `pd_pos_pendakian` int(11) DEFAULT NULL,
+  `pd_acc_turun_by` int(11) DEFAULT NULL,
+  `pd_tgl_turun` date NOT NULL,
   `pd_pos_turun` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -7840,15 +7845,20 @@ CREATE TABLE IF NOT EXISTS `tb_pendakian` (
   UNIQUE KEY `pd_nomor` (`pd_nomor`),
   KEY `FK_tb_pendakian_tb_pos_pendakian` (`pd_pos_pendakian`),
   KEY `FK_tb_pendakian_tb_pos_pendakian_2` (`pd_pos_turun`),
+  KEY `FK_tb_pendakian_user_2` (`pd_acc_by`),
+  KEY `FK_tb_pendakian_user_3` (`pd_acc_turun_by`),
   CONSTRAINT `FK_tb_pendakian_tb_pos_pendakian` FOREIGN KEY (`pd_pos_pendakian`) REFERENCES `tb_pos_pendakian` (`pp_id`) ON DELETE SET NULL ON UPDATE SET NULL,
-  CONSTRAINT `FK_tb_pendakian_tb_pos_pendakian_2` FOREIGN KEY (`pd_pos_turun`) REFERENCES `tb_pos_pendakian` (`pp_id`) ON DELETE SET NULL ON UPDATE SET NULL
+  CONSTRAINT `FK_tb_pendakian_tb_pos_pendakian_2` FOREIGN KEY (`pd_pos_turun`) REFERENCES `tb_pos_pendakian` (`pp_id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `FK_tb_pendakian_user` FOREIGN KEY (`pd_acc_by`) REFERENCES `user` (`user_id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `FK_tb_pendakian_user_2` FOREIGN KEY (`pd_acc_by`) REFERENCES `user` (`user_id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `FK_tb_pendakian_user_3` FOREIGN KEY (`pd_acc_turun_by`) REFERENCES `user` (`user_id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.tb_pendakian: ~1 rows (approximately)
+-- Dumping data for table dishut.tb_pendakian: ~2 rows (approximately)
 /*!40000 ALTER TABLE `tb_pendakian` DISABLE KEYS */;
-REPLACE INTO `tb_pendakian` (`pd_id`, `pd_nomor`, `pd_nama_ketua`, `pd_no_ktp`, `pd_tempat_lahir`, `pd_tgl_lahir`, `pd_no_hp`, `pd_email`, `pd_tgl_naik`, `pd_tgl_turun`, `pd_alamat`, `pd_provinsi`, `pd_kabupaten`, `pd_kecamatan`, `pd_desa`, `pd_kewarganegaraan`, `pd_jenis_kelamin`, `pd_status`, `pd_pos_pendakian`, `pd_pos_turun`, `created_at`, `updated_at`) VALUES
-	(1, 'PD-491653', 'Dirga Ambara', '91827837647635', 'Surabaya', '1995-05-06', '087857487026', 'dirgaambaraloh@gmail.com', '2007-07-14', '2019-07-17', 'Wonorejo 3 no 101', '35', '3578', '3578180', '3578180004', 'WNI', 'L', 'registered', NULL, NULL, '2019-07-12 03:23:27', '2019-07-12 03:23:27'),
-	(2, 'PD-671752', 'Andre Oke deh', '18012381028309', 'Surabaya', '2019-07-14', '18031830182274', 'dirgaamaraloh@gmail.com', '2019-07-14', '2019-07-17', 'SUrbaya', '11', '1101', '1101010', '1101010001', 'WNI', 'L', 'registered', NULL, NULL, '2019-07-14 22:04:19', '2019-07-14 22:04:19');
+REPLACE INTO `tb_pendakian` (`pd_id`, `pd_nomor`, `pd_nama_ketua`, `pd_no_ktp`, `pd_tempat_lahir`, `pd_tgl_lahir`, `pd_no_hp`, `pd_email`, `pd_alamat`, `pd_provinsi`, `pd_kabupaten`, `pd_kecamatan`, `pd_desa`, `pd_kewarganegaraan`, `pd_jenis_kelamin`, `pd_tanggal_registrasi`, `pd_status`, `pd_acc_by`, `pd_acc_naik_by`, `pd_tgl_naik`, `pd_pos_pendakian`, `pd_acc_turun_by`, `pd_tgl_turun`, `pd_pos_turun`, `created_at`, `updated_at`) VALUES
+	(1, 'PD-491653', 'Dirga Ambara', '91827837647635', 'Surabaya', '1995-05-06', '087857487026', 'dirgaambaraloh@gmail.com', 'Wonorejo 3 no 101', '35', '3578', '3578180', '3578180004', 'WNI', 'L', '2019-07-16 04:20:27', 'disetujui', 1, NULL, '2019-07-15', NULL, NULL, '2019-07-15', NULL, '2019-07-16 05:00:04', '2019-07-16 05:00:04'),
+	(2, 'PD-671752', 'Andre Oke deh', '18012381028309', 'Surabaya', '2019-07-14', '18031830182274', 'dirgaamaraloh@gmail.com', 'SUrbaya', '11', '1101', '1101010', '1101010001', 'WNI', 'L', '2019-07-16 04:20:27', 'belum disetujui', NULL, NULL, '2019-07-14', NULL, NULL, '2019-07-17', NULL, '2019-07-16 04:25:43', '2019-07-16 04:25:43');
 /*!40000 ALTER TABLE `tb_pendakian` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.tb_peralatan
@@ -7898,25 +7908,31 @@ REPLACE INTO `tb_pos_pendakian` (`pp_id`, `pp_nama`) VALUES
 -- Dumping structure for table dishut.tb_role_menu
 DROP TABLE IF EXISTS `tb_role_menu`;
 CREATE TABLE IF NOT EXISTS `tb_role_menu` (
-  `rm_jabatan` int(11) NOT NULL,
+  `rm_user` int(11) NOT NULL,
   `rm_menu` int(11) NOT NULL,
   `rm_read` enum('1','0') DEFAULT NULL,
   `rm_create` enum('1','0') DEFAULT NULL,
   `rm_update` enum('1','0') DEFAULT NULL,
   `rm_delete` enum('1','0') DEFAULT NULL,
-  PRIMARY KEY (`rm_jabatan`,`rm_menu`),
+  PRIMARY KEY (`rm_user`,`rm_menu`),
   KEY `FK_tb_role_menu_tb_menu` (`rm_menu`),
-  CONSTRAINT `FK_tb_role_menu_jabatan` FOREIGN KEY (`rm_jabatan`) REFERENCES `jabatan` (`id_jabatan`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_tb_role_menu_jabatan` FOREIGN KEY (`rm_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_tb_role_menu_tb_menu` FOREIGN KEY (`rm_menu`) REFERENCES `tb_menu` (`m_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.tb_role_menu: ~2 rows (approximately)
+-- Dumping data for table dishut.tb_role_menu: ~10 rows (approximately)
 /*!40000 ALTER TABLE `tb_role_menu` DISABLE KEYS */;
-REPLACE INTO `tb_role_menu` (`rm_jabatan`, `rm_menu`, `rm_read`, `rm_create`, `rm_update`, `rm_delete`) VALUES
-	(7, 1, '1', '1', '1', '1'),
-	(7, 2, '1', '1', '1', '1'),
-	(7, 3, '1', '1', '1', '1'),
-	(7, 4, '1', '1', '1', '1');
+REPLACE INTO `tb_role_menu` (`rm_user`, `rm_menu`, `rm_read`, `rm_create`, `rm_update`, `rm_delete`) VALUES
+	(1, 1, '1', '1', '1', '1'),
+	(1, 2, '1', '1', '1', '1'),
+	(1, 3, '1', '1', '1', '1'),
+	(1, 4, '1', '1', '1', '1'),
+	(1, 5, '1', '1', '1', '1'),
+	(2, 1, '0', '0', '0', '0'),
+	(2, 2, '1', '1', '0', '0'),
+	(2, 3, '0', '0', '0', '0'),
+	(2, 4, '0', '0', '0', '0'),
+	(2, 5, '0', '0', '0', '0');
 /*!40000 ALTER TABLE `tb_role_menu` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.user
@@ -7929,14 +7945,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `nama` varchar(100) NOT NULL,
   `foto` varchar(200) DEFAULT NULL,
   `level` varchar(50) DEFAULT NULL,
+  `posisi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dishut.user: ~2 rows (approximately)
+-- Dumping data for table dishut.user: ~1 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-REPLACE INTO `user` (`user_id`, `id_jabatan`, `nip`, `password`, `nama`, `foto`, `level`) VALUES
-	(1, '7', '199510212019031005', 'admin', 'Amiruzzuhhad Gunes', '1667.jpg', 'superadmin'),
-	(26, '2', '123456789012345678', '714511', 'coba', '', 'admin');
+REPLACE INTO `user` (`user_id`, `id_jabatan`, `nip`, `password`, `nama`, `foto`, `level`, `posisi`) VALUES
+	(1, '7', '199510212019031005', 'admin', 'Amiruzzuhhad Gunes', '1667.jpg', 'superadmin', 'kantor'),
+	(2, '1', '123456789', '226874', 'Contoh User', NULL, NULL, 'kantor');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 -- Dumping structure for table dishut.villages

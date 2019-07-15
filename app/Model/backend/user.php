@@ -20,12 +20,16 @@ class user extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public $remenber_token = false;
 
+    public function roles(){
+        return $this->hasMany('App\Model\backend\tb_role_menu', 'rm_user', 'user_id');
+    }
+
     public function can (String $role, String $menu){
     	$roles = Session::get('roles');
     	$key = array_search(strtolower($menu), array_column($roles, 'name'));
     	$grantAccess = 0;
 
-    	if(!$key)
+    	if(!isset($key))
     		return 0;
 
     	switch (strtolower($role)) {
@@ -42,7 +46,7 @@ class user extends Model implements AuthenticatableContract, CanResetPasswordCon
     			break;
 
     		case 'delete':
-    			$grantAccess = ($roles[$key]->rm_rm_delete) ? 1 : 0;
+    			$grantAccess = ($roles[$key]->rm_delete) ? 1 : 0;
     			break;
     		
     		default:
@@ -50,8 +54,20 @@ class user extends Model implements AuthenticatableContract, CanResetPasswordCon
     			break;
     	}
 
-    	return $key;
+    	return $grantAccess;
+    }
 
+    public function hasAccessTo(String $menu){
+        $roles = Session::get('roles');
+        $key = array_search(strtolower($menu), array_column($roles, 'grup'));
+        $grantAccess = 1;
 
+        if(!isset($key))
+            return 0;
+
+        if($roles[$key]->rm_read == 0 && $roles[$key]->rm_create == 0 && $roles[$key]->rm_update == 0 && $roles[$key]->rm_delete == 0)
+            return 0;
+        else
+            return 1;
     }
 }

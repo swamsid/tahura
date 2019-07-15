@@ -82,7 +82,8 @@
             }
 
             .error{
-                background: rgba(255,0,0,0.1);
+                /*background: rgba(255,0,0,0.1);*/
+                /*border: 1px solid #eee;*/
             }
 
             .picture-wrap{
@@ -190,6 +191,16 @@
                                         </div>
                                     </div>
 
+                                    <div class="row model-form-template">
+                                        <div class="col-md-4 label-form">
+                                            <label>Posisi Pegawai</label>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <vue-select :name="'posisi_pegawai'" :id="'posisi_pegawai'" :options="posisi_pegawai" :search="false"></vue-select>
+                                        </div>
+                                    </div>
+
                                     <hr>
 
                                     <div class="row model-form-template">
@@ -200,6 +211,54 @@
                                         <div class="col-md-7">
                                             <input type="Password" name="password_pegawai" :class="$v.single.password_pegawai.$invalid ? 'form-control error' : 'form-control'" v-model="single.password_pegawai" placeholder="Password Wajib Diisi" style="font-size: 9pt;">
                                         </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="col-md-12" style="font-weight: 600;">
+                                            <i class="fa fa-arrow-right"></i> &nbsp;Assessment Role (Hak Akses)
+                                        </div>
+
+                                        <div class="col-md-12" style="margin-top: 20px;">
+                                            <table class="table-mini" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="40%">Nama Menu</th>
+                                                        <th width="15%">Read</th>
+                                                        <th width="15%">Create</th>
+                                                        <th width="15%">Update</th>
+                                                        <th width="15%">Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <template v-for="(role, idx) in role">
+                                                        <tr>
+                                                            <td colspan="5" style="background: #eee; font-weight: bold;">@{{ role.m_group }}</td>
+                                                        </tr>
+
+                                                        <template v-for="(detail, idx) in role.detail">
+                                                            <tr>
+                                                                <td style="padding-left: 20px;">@{{ detail.m_name }}</td>
+                                                                <td style="text-align: center;">
+                                                                    <input type="checkbox" :name="'read['+detail.m_id+'][]'" class="check" :id="detail.m_id+'_read'">
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                    <input type="checkbox" :name="'create['+detail.m_id+'][]'" class="check" :id="detail.m_id+'_create'">
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                    <input type="checkbox" :name="'update['+detail.m_id+'][]'" class="check" :id="detail.m_id+'_update'">
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                    <input type="checkbox" :name="'delete['+detail.m_id+'][]'" class="check" :id="detail.m_id+'_delete'">
+                                                                </td>
+                                                            </tr>
+                                                        </template>
+                                                    </template>
+                                                </tbody>
+                                            </table>                                            
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -273,11 +332,18 @@
                 formState: 'insert',
                 disabledButton: false,
 
-                jabatan_pegawai: [
+                jabatan_pegawai: [],
+
+                posisi_pegawai: [
                     {
-                        id: 1,
-                        text: 'okee gan'
-                    }
+                        id: 'kantor',
+                        text: 'Petugas Kantor'
+                    },
+
+                    {
+                        id: 'pos',
+                        text: 'Petugas Penjaga Pos'
+                    },
                 ],
 
                 data_table_user: {
@@ -334,7 +400,8 @@
                             console.log(response.data);
 
                             this.jabatan_pegawai = response.data.jabatan;
-                            this.data_table_user.data.source = response.data.user
+                            this.data_table_user.data.source = response.data.user;
+                            this.role = response.data.role;
 
                         }).catch((e) => {
                             alert('System Error');
@@ -366,9 +433,8 @@
 
                                     if(response.data.status == 'success'){
                                         this.data_table_user.data.source = response.data.user;
+                                        this.formReset();
                                     }
-
-                                    this.formReset();
 
                                 }).catch((e) => {
                                     console.log(e);
@@ -418,9 +484,8 @@
 
                                     if(response.data.status == 'success'){
                                         this.data_table_user.data.source = response.data.user;
+                                        this.formReset();
                                     }
-
-                                    this.formReset();
 
                                 }).catch((e) => {
                                     console.log(e);
@@ -467,9 +532,8 @@
 
                                 if(response.data.status == 'success'){
                                     this.data_table_user.data.source = response.data.user;
+                                    this.formReset();
                                 }
-
-                                // this.formReset();
 
                             }).catch((e) => {
                                 console.log(e);
@@ -608,7 +672,24 @@
                         this.single.nama_pegawai = conteks.nama;
                         this.single.password_pegawai = conteks.password;
 
+                        $.each(conteks.roles, function(idx, content){
+                            console.log(content);
+
+                            if(content.rm_read == '1')
+                                $('#'+content.rm_menu+'_read').prop('checked', true);
+
+                            if(content.rm_create == '1')
+                                $('#'+content.rm_menu+'_create').prop('checked', true);
+
+                            if(content.rm_update == '1')
+                                $('#'+content.rm_menu+'_update').prop('checked', true);
+
+                            if(content.rm_delete == '1')
+                                $('#'+content.rm_menu+'_delete').prop('checked', true);
+                        })
+
                         $('#jabatan_pegawai').val(conteks.id_jabatan).trigger('change.select2');
+                        $('#posisi_pegawai').val(conteks.posisi).trigger('change.select2');
 
                         $("#picture-wrap-1").attr("src", '{{ asset("backend/img/upload/pegawai/".Auth::user()->user_id) }}/'+conteks.foto).animate({
                             opacity: 1
@@ -627,7 +708,10 @@
 
                     this.firstPictureDeleted = true;
 
+                    $('.check').prop('checked', false);
+
                     $('#jabatan_pegawai').val(this.jabatan_pegawai[0].id).trigger('change.select2');
+                    $('#posisi_pegawai').val(this.posisi_pegawai[0].id).trigger('change.select2');
                     $("#picture-wrap-1").attr("src", '{{ asset('backend/img/default.jpg') }}').animate({
                         opacity: 1
                     }, 700);

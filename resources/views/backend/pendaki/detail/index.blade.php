@@ -250,36 +250,38 @@
 
                         <div class="row" style="margin-top: 20px; border-top: 1px solid #eee;">
                             <div class="col-md-12 text-right" style="padding-top: 15px;">
-                                @if($data->pd_status == 'registered')
-                                    <div class="btn-group">
-                                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm">Konfirmasi Registrasi &nbsp;<span class="caret"></span></button>
+                                @if($data->pd_status == 'belum disetujui')
+                                    
+                                    @if(Auth::user()->posisi == 'kantor')
+                                      <div class="btn-group">
+                                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm">Konfirmasi Pendaftaran &nbsp;<span class="caret"></span></button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ Route('wpadmin.pendaki.konfirmasi', 'id='.$data->pd_id.'&sts=diterima') }}">Terima</a></li>
+                                            <li><a href="{{ Route('wpadmin.pendaki.konfirmasi', 'id='.$data->pd_id.'&sts=disetujui') }}">Setujui</a></li>
                                             <li><a href="{{ Route('wpadmin.pendaki.konfirmasi', 'id='.$data->pd_id.'&sts=ditolak') }}">Tolak</a></li>
                                         </ul>
                                     </div>
-                                @elseif($data->pd_status == 'diterima')
-                                    <div class="btn-group">
-                                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm">
-                                        Tandai Sudah Naik &nbsp;<span class="caret"></span></button>
+                                    @else
+                                      <span class="label label-info">Hanya Petugas Kantor Yang Dapat Konfirmasi Pendaftaran</span>
+                                    @endif
 
-                                        <ul class="dropdown-menu">
-                                            @foreach($pos as $key => $pos)
-                                                <li><a href="{{ Route('wpadmin.pendaki.konfirmasi', 'id='.$data->pd_id.'&sts=sudah naik&pos='.$pos->pp_id) }}">Via {{ $pos->pp_nama }}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
+                                @elseif($data->pd_status == 'disetujui')
+
+                                  @if(Auth::user()->posisi == 'pos' || Auth::user()->posisi == 'kantor')
+                                    <button data-toggle="modal" data-target="#modal-pos-naik" class="btn btn-primary dropdown-toggle btn-sm">
+                                    Tandai Sudah Naik &nbsp;<span class="caret"></span></button>
+                                  @else
+                                    <span class="label label-info">Hanya Petugas Pos Yang Dapat Acc Naik/Turun</span>
+                                  @endif  
+
                                 @elseif($data->pd_status == 'sudah naik')
-                                    <div class="btn-group">
-                                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle btn-sm">
-                                        Tandai Sudah Turun &nbsp;<span class="caret"></span></button>
 
-                                        <ul class="dropdown-menu">
-                                            @foreach($pos as $key => $pos)
-                                                <li><a href="{{ Route('wpadmin.pendaki.konfirmasi', 'id='.$data->pd_id.'&sts=sudah turun&pos='.$pos->pp_id) }}">Via {{ $pos->pp_nama }}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
+                                  @if(Auth::user()->posisi == 'pos' || Auth::user()->posisi == 'kantor')
+                                    <button data-toggle="modal" data-target="#modal-pos-turun" class="btn btn-primary dropdown-toggle btn-sm">
+                                    Tandai Sudah Turun &nbsp;<span class="caret"></span></button>
+                                  @else
+                                    <span class="label label-info">Hanya Petugas Pos Yang Dapat Acc Naik/Turun</span>
+                                  @endif 
+
                                 @elseif($data->pd_status == 'sudah turun')
                                     <span class="label label-primary">Pendakian Ini Sudah Selesai</span>
                                 @endif
@@ -291,13 +293,29 @@
       </div>
   </div>
 
-    <div class="modal inmodal" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-md modal-sm" style="margin-bottom: 100px;">
+    <div class="modal inmodal" id="modal-pos-naik" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="width: 30%">
             <div class="modal-content animated">
-                <div class="ibox product-detail">
-                    <div class="ibox-content" id="detail-wrap" style="margin-bottom: 0px; padding-bottom: 0px;">
-                        
-                    </div>
+                <div class="row" style="padding: 10px 20px;">
+                  @foreach($pos as $key => $pos1)
+                      <div class="col-md-12" style="padding: 8px 15px; color: #666; border-top: 1px solid #ccc;">
+                        <a href="{{ Route('wpadmin.pendaki.konfirmasi', 'id='.$data->pd_id.'&sts=sudah naik&pos='.$pos1->pp_id) }}">Via {{ $pos1->pp_nama }}</a>
+                      </div>
+                  @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="modal-pos-turun" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" style="width: 30%">
+            <div class="modal-content animated">
+                <div class="row" style="padding: 10px 20px;">
+                  @foreach($pos as $key => $pos2)
+                      <div class="col-md-12" style="padding: 8px 15px; color: #666; border-top: 1px solid #ccc;">
+                        <a href="{{ Route('wpadmin.pendaki.konfirmasi', 'id='.$data->pd_id.'&sts=sudah turun&pos='.$pos2->pp_id) }}">Via {{ $pos2->pp_nama }}</a>
+                      </div>
+                  @endforeach
                 </div>
             </div>
         </div>

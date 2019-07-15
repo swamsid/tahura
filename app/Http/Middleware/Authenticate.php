@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Session;
+use Request;
 
 class Authenticate extends Middleware
 {
@@ -17,6 +18,9 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             Session::flash('message', 'Login diperlukan untuk bisa mengakses halaman wpadmin');
+            Session::flash('path', Request::path());
+            Session::flash('full', Request::fullUrl());
+
             return route('wpadmin.auth.login');
         }
     }

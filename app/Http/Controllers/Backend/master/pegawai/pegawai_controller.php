@@ -4,6 +4,8 @@ namespace App\Http\Controllers\backend\master\pegawai;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\backend\tb_menu as menu;
+use App\Model\backend\user;
 
 use DB;
 use File;
@@ -22,11 +24,15 @@ class pegawai_controller extends Controller
 
     protected function resource(){
     	$jabatan = DB::table('jabatan')->select('id_jabatan as id', DB::raw('concat(nomor_jabatan, " - ", nama_jabatan) as text'))->get();
-    	$user = DB::table('user')->join('jabatan', 'jabatan.id_jabatan', '=', 'user.id_jabatan')->select('user.*', 'jabatan.nama_jabatan')->get();
+
+    	$user = user::join('jabatan', 'jabatan.id_jabatan', '=', 'user.id_jabatan')->select('user.*', 'jabatan.nama_jabatan')->with('roles')->get();
+
+        $role = menu::distinct('m_group')->select('m_group')->with('detail')->get();
 
     	return json_encode([
     		'jabatan'	=> $jabatan,
-    		'user'		=> $user
+    		'user'		=> $user,
+            'role'      => $role
     	]);
     }
 
@@ -45,6 +51,8 @@ class pegawai_controller extends Controller
 
     	try {
     		
+            // return json_encode($request->all());
+
     		$id = DB::table('user')->max('user_id') + 1;
 
     		DB::table('user')->insert([
@@ -53,6 +61,7 @@ class pegawai_controller extends Controller
     			'nip'			=> $request->nip_pegawai,
     			'password'		=> $request->password_pegawai,
     			'nama'			=> $request->nama_pegawai,
+                'posisi'        => $request->posisi_pegawai
     		]);
 
     		$data = DB::table('user')->where('user_id', $id);
@@ -64,9 +73,25 @@ class pegawai_controller extends Controller
                 }
             }
 
+            $menu = DB::table('tb_menu')->select('m_id')->get();
+            $feeder = [];
+
+            foreach ($menu as $key => $value) {
+
+                array_push($feeder, [
+                    "rm_user"       => $id,
+                    "rm_menu"       => $value->m_id,
+                    "rm_read"       => (isset($request->read[$value->m_id])) ? '1' : '0',
+                    "rm_create"     => (isset($request->create[$value->m_id])) ? '1' : '0',
+                    "rm_update"     => (isset($request->update[$value->m_id])) ? '1' : '0',
+                    "rm_delete"     => (isset($request->delete[$value->m_id])) ? '1' : '0',
+                ]);
+            }
+
+            DB::table('tb_role_menu')->insert($feeder);
     		DB::commit();
 
-    		$user = DB::table('user')->join('jabatan', 'jabatan.id_jabatan', '=', 'user.id_jabatan')->select('user.*', 'jabatan.nama_jabatan')->get();
+    		$user = user::join('jabatan', 'jabatan.id_jabatan', '=', 'user.id_jabatan')->select('user.*', 'jabatan.nama_jabatan')->with('roles')->get();
 
     		return json_encode([
     			'status'	=> 'success',
@@ -109,13 +134,14 @@ class pegawai_controller extends Controller
 
     	try {
     		
-    		$id = DB::table('user')->max('user_id') + 1;
+    		// $id = DB::table('user')->max('user_id') + 1;
 
     		$user->update([
-    			'id_jabatan' 	=> $request->jabatan_pegawai,
-    			'nip'			=> $request->nip_pegawai,
-    			'password'		=> $request->password_pegawai,
-    			'nama'			=> $request->nama_pegawai,
+    			'id_jabatan' 	   => $request->jabatan_pegawai,
+    			'nip'			   => $request->nip_pegawai,
+    			'password'		   => $request->password_pegawai,
+    			'nama'			   => $request->nama_pegawai,
+                'posisi'           => $request->posisi_pegawai
     		]);
 
     		$data = $user;
@@ -127,9 +153,28 @@ class pegawai_controller extends Controller
                 }
             }
 
+            DB::table('tb_role_menu')->where('rm_user', $request->id)->delete();
+
+            $menu = DB::table('tb_menu')->select('m_id')->get();
+            $feeder = [];
+
+            foreach ($menu as $key => $value) {
+
+                array_push($feeder, [
+                    "rm_user"       => $request->id,
+                    "rm_menu"       => $value->m_id,
+                    "rm_read"       => (isset($request->read[$value->m_id])) ? '1' : '0',
+                    "rm_create"     => (isset($request->create[$value->m_id])) ? '1' : '0',
+                    "rm_update"     => (isset($request->update[$value->m_id])) ? '1' : '0',
+                    "rm_delete"     => (isset($request->delete[$value->m_id])) ? '1' : '0',
+                ]);
+            }
+
+            DB::table('tb_role_menu')->insert($feeder);
+
     		DB::commit();
 
-    		$user = DB::table('user')->join('jabatan', 'jabatan.id_jabatan', '=', 'user.id_jabatan')->select('user.*', 'jabatan.nama_jabatan')->get();
+    		$user = user::join('jabatan', 'jabatan.id_jabatan', '=', 'user.id_jabatan')->select('user.*', 'jabatan.nama_jabatan')->with('roles')->get();
 
     		return json_encode([
     			'status'	=> 'success',
@@ -171,7 +216,7 @@ class pegawai_controller extends Controller
 
     		DB::commit();
 
-    		$user = DB::table('user')->join('jabatan', 'jabatan.id_jabatan', '=', 'user.id_jabatan')->select('user.*', 'jabatan.nama_jabatan')->get();
+    		$user = user::join('jabatan', 'jabatan.id_jabatan', '=', 'user.id_jabatan')->select('user.*', 'jabatan.nama_jabatan')->with('roles')->get();
 
     		return json_encode([
     			'status'	=> 'success',
