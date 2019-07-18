@@ -26,16 +26,24 @@ class pendaki_masuk_controller extends Controller
     }
 
     protected function result(Request $request){
+
+        // return json_encode($request-all())
+
     	$jalur = DB::table('tb_pos_pendakian')->where('pp_id', '=', $request->jalur)->first();
     	$tgl1 = $this->tgl_generator($request->tgl_1);
     	$tgl2 = $this->tgl_generator($request->tgl_2);
 
     	$data = pendakian::where('pd_tgl_naik', '>=', $tgl1)
+                    ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
+                    ->join('regencies', 'regencies.id', '=', 'tb_pendakian.pd_kabupaten')
     				->where('pd_tgl_naik', '<=', $tgl2)
+                    ->where('pd_pos_pendakian', $request->jalur)
     				->with('anggota')
     				->get();
 
-    	$pdf = PDF::loadView('backend.pdf.laporan', compact('jalur', 'data'));
+    	$pdf = PDF::loadView('backend.pdf.laporan', compact('jalur', 'data'))->setPaper('a4', 'landscape');
+
+        // return json_encode($data);
 
     	return $pdf->stream();
     }

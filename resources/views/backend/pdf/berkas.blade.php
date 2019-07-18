@@ -20,7 +20,7 @@
   <tr>
     <th class="tg-lj5e" rowspan="5"><img style="height: 100px" src="{{ asset('backend/img/LogoJawaTimur.png') }}"></th>
     <th class="tg-puex" colspan="2" style="font-weight: bold">PEMERINTAH PROVINSI JAWA TIMUR</th>
-    <th class="tg-lj5e" rowspan="5">barcode</th>
+    <th class="tg-lj5e" rowspan="5"></th>
   </tr>
   <tr>
     <td class="tg-puex" colspan="2" style="font-weight: bold">DINAS KEHUTANAN</td>
@@ -41,7 +41,7 @@
     <td style="padding: 10px 0" class="tg-xeyn" colspan="4">SURAT IJIN KHUSUS PENDAKIAN GUNUNG DI KAWASAN TAHURA R. SOERJO</td>
   </tr>
   <tr>
-    <td class="tg-lj5e" colspan="4">Nomor Register : REG/5/19/00007 Tanggal 29 Mei 2019</td>
+    <td class="tg-lj5e" colspan="4">Nomor Register : REG/{{ date('m', strtotime($data->pd_tanggal_registrasi)) }}/{{ date('d', strtotime($data->pd_tanggal_registrasi)) }}/{{ str_pad($data->pd_id, 4, '0', STR_PAD_LEFT) }} Tanggal {{ date('d/m/Y', strtotime($data->pd_tanggal_registrasi)) }}</td>
   </tr>
   <tr>
     <td style="padding-bottom: 10px" class="tg-lj5e" colspan="4">Nomor Karcis : .......................s/d...........................</td>
@@ -187,12 +187,12 @@
 		<td class="tg-2c25">Lampiran</td>
 		<td class="tg-2c25">:</td>
 		<td class="tg-2c25" style="width: 550px">Surat Ijin Khusus Pendakian Gunung Di Kawasan Tahura R. SOERJO</td>
-		<td rowspan="4" style="vertical-align: top">barcode</td>
+		<td rowspan="4" style="vertical-align: top"><!-- barcode --></td>
 	</tr>
 	<tr>
 		<td class="tg-2c25">No. Register</td>
 		<td class="tg-2c25">:</td>
-		<td class="tg-2c25"></td>
+		<td class="tg-2c25">REG/{{ date('m', strtotime($data->pd_tanggal_registrasi)) }}/{{ date('d', strtotime($data->pd_tanggal_registrasi)) }}/{{ str_pad($data->pd_id, 4, '0', STR_PAD_LEFT) }}</td>
 	</tr>
 </table>
 

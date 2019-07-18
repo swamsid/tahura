@@ -13,16 +13,16 @@
 
 <table class="tg" style="undefined;table-layout: fixed; width: 100%">
   <tr>
-    <th rowspan="3"><img style="height: 100px" src="{{ asset('backend/img/LogoJawaTimur.png') }}"></th>
+    <th rowspan="4"><img style="height: 100px" src="{{ asset('backend/img/LogoJawaTimur.png') }}"></th>
     <th colspan="2" style="font-weight: bold; text-align: center;">LAPORAN PENDAKI MASUK</th>
-    <th rowspan="3"></th>
+    <th rowspan="4"></th>
   </tr>
   <tr>
     <td colspan="2" style="font-weight: bold; text-align: center;">GUNUNG ARJUNO - WELIRANG</td>
   </tr>
-  <!-- <tr>
-    <td colspan="2" style="font-weight: bold; text-align: center;">JALUR "CODE"</td>
-  </tr> -->
+  <tr>
+    <td colspan="2" style="font-weight: bold; text-align: center;">JALUR {{ ($jalur) ? $jalur->pp_nama : '---' }}</td>
+  </tr>
   <tr>
     <td colspan="2" style="font-weight: bold; text-align: center;">TANGGAL {{ $_GET['tgl_1'] }} - {{ $_GET['tgl_2'] }}</td>
   </tr>
@@ -42,25 +42,49 @@
 
 <table class="ta" style="margin-top: 15px; width: 100%">
   <tr>
-    <th>No</th>
-    <th>Nama Ketua</th>
-    <th>Kota Asal</th>
-    <th>Tanggal Naik</th>
-    <th>Tanggal Turun</th>
-    <th>Jalur Turun</th>
-    <th>Anggota</th>
-    <th>Status</th>
+    <th width="5%">No</th>
+    <th width="10%">Nama Ketua</th>
+    <th width="18%">Kota Asal</th>
+    <th width="15%">Tanggal Naik</th>
+    <th width="15%">Tanggal Turun</th>
+    <th width="17%">Jalur Turun</th>
+    <th width="10%">Anggota</th>
+    <th width="10%">Status</th>
   </tr>
+  <?php $totKetua = $totAnggota = 0; ?>
   @foreach($data as $key => $pd)
     <tr>
       <td>{{ $key + 1 }}.</td>
       <td>{{ $pd->pd_nama_ketua }}</td>
-      <td>{{ $pd->pd_kabupaten }}</td>
+      <td>{{ $pd->name }}</td>
       <td>{{ date('d/m/Y', strtotime($pd->pd_tgl_naik)) }}</td>
-      <td>{{ date('d/m/Y', strtotime($pd->pd_tgl_turun)) }}</td>
-      <td>{{ $pd->pd_pos_pendakian }}</td>
-      <td>{{ count($pd->anggota) }}</td>
+      <td>{{ date('d/m/Y', strtotime($pd->pd_tgl_turun)) }} &nbsp;<small><b>{{ ($pd->pd_pos_turun) ? '' : '(rencana)' }}</b></small></td>
+      <td>{{ ($pd->pd_pos_turun) ? $pd->pp_nama : '---' }}</td>
+      <td>{{ count($pd->anggota) }} Orang</td>
       <td>{{ $pd->pd_status }}</td>
     </tr>
+
+    <?php $totKetua++; $totAnggota += count($pd->anggota) ?>
   @endforeach
+</table>
+
+<table class="ta" style="margin-top: 30px; width: 30%; ">
+  <tr>
+    <th colspan="2">Total Pendaki Naik :</th>
+  </tr>
+
+  <tr>
+    <td>Ketua</td>
+    <td>{{ $totKetua }} orang</td>
+  </tr>
+
+  <tr>
+    <td>Anggota</td>
+    <td>{{ $totAnggota }} orang</td>
+  </tr>
+
+  <tr>
+    <td style="background: #cccccc; font-weight: bold">Total</td>
+    <td style="background: #cccccc; font-weight: bold">{{ $totAnggota + $totKetua }} orang</td>
+  </tr>
 </table>

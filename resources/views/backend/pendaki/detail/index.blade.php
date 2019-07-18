@@ -230,19 +230,39 @@
                             <div class="col-md-12" style="margin-top: 10px;">
                                 <table class="table-mini" width="100%" border="1">
                                    <tr>
-                                       <th>Status Pendakian</th>
-                                       <th>Rencana Tgl Naik</th>
-                                       <th>Pos Naik Via</th>
-                                       <th>Rencana Tgl Turun</th>
-                                       <th>Pos Turun Via</th>
+                                       <th width="10%">Nomor Registrasi</th>
+                                       <th width="14%">Tanggal Registrasi</th>
+                                       <th width="14%">Status Pendakian</th>
                                    </tr>
 
                                    <tr>
-                                        <td class="text-center" style="font-weight: 500;">{{ $data->pd_status }}</td>
-                                        <td class="text-center">{{ date('d/m/Y', strtotime($data->pd_tgl_naik)) }}</td>
+                                        <td class="text-center">{{ $data->pd_nomor }}</td>
+                                        <td class="text-center">{{ date('d/m/Y', strtotime($data->pd_tanggal_registrasi)) }}</td>
+                                        <td class="text-center" style="font-weight: 500;">
+                                          <span class="label label-info">{{ $data->pd_status }}</span>
+                                        </td>
+                                   </tr>
+                                </table>
+                            </div>
+
+                            <div class="col-md-12" style="margin-top: 20px;">
+                                <table class="table-mini" width="100%" border="1">
+                                   <tr>
+                                       <th width="14%">Tanggal Naik</th>
+                                       <th width="14%">Pos Naik Via</th>
+                                       <th width="17%">Di Acc Naik Oleh</th>
+                                       <th width="14%">Tanggal Turun</th>
+                                       <th width="14%">Pos Turun Via</th>
+                                       <th width="17%">Di Acc Turun Oleh</th>
+                                   </tr>
+
+                                   <tr>
+                                        <td class="text-center">{{ date('d/m/Y', strtotime($data->pd_tgl_naik)) }} &nbsp;<small><b>{{ ($data->pos_naik) ? '' : '(rencana)' }}</b></small></td>
                                         <td class="text-center" style="font-weight: 500;">{{ ($data->pos_naik) ? $data->pos_naik : '---' }}</td>
-                                        <td class="text-center">{{ ($data->pd_tgl_turun) ? date('d/m/Y', strtotime($data->pd_tgl_turun)) : '---' }}</td>
+                                        <td class="text-center">{{ ($data->acc_naik_by) ? $data->acc_naik_by : '---' }}</td>
+                                        <td class="text-center">{{ ($data->pd_tgl_turun) ? date('d/m/Y', strtotime($data->pd_tgl_turun)) : '---' }} &nbsp;<small><b>{{ ($data->pos_turun) ? '' : '(rencana)' }}</b></small></td>
                                         <td class="text-center" style="font-weight: 500;">{{ ($data->pos_turun) ? $data->pos_turun : '---' }}</td>
+                                        <td class="text-center">{{ ($data->acc_turun_by) ? $data->acc_turun_by : '---' }}</td>
                                    </tr>
                                 </table>
                             </div>

@@ -104,7 +104,8 @@
     	$(document).ready(function(){
 
             @if(Session::has('message'))
-                alert('{{ Session::get("message") }}');
+                // alert('{{ Session::get("message") }}');
+                // {{ Session::forget('message') }}
             @endif
 
             $('.dataTables-example').DataTable({

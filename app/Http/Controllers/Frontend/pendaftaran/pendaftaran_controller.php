@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use DB;
+use Mail;
 
 class pendaftaran_controller extends Controller
 {
@@ -67,6 +68,12 @@ class pendaftaran_controller extends Controller
     			'pd_status'				=> 'belum disetujui'
 
     		]);
+
+            Mail::send('addition.email.daftar', ['kode' => $nomor], function ($message) use ($request){
+                $message->subject("Pendaftaran Pendakian");
+                $message->from('noreply@dishut.com', 'UPT Tahura Raden Soerjo');
+                $message->to($request->email_ketua);
+            });
 
     		$num = 1;
     		foreach($request->nama_kontak_darurat as $key => $kontak){

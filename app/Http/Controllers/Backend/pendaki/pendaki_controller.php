@@ -28,6 +28,8 @@ class pendaki_controller extends Controller
                     ->leftJoin('regencies', 'regencies.id', 'pd_kabupaten')
                     ->leftJoin('districts', 'districts.id', 'pd_kecamatan')
                     ->leftJoin('villages', 'villages.id', 'pd_desa')
+                    ->leftJoin('user as naik', 'naik.user_id', '=', 'tb_pendakian.pd_acc_naik_by')
+                    ->leftJoin('user as turun', 'turun.user_id', '=', 'tb_pendakian.pd_acc_turun_by')
     				->with('kontak')
     				->with('anggota')
     				->with('peralatan')
@@ -40,6 +42,8 @@ class pendaki_controller extends Controller
                         'regencies.name as kabupaten',
                         'districts.name as kecamatan',
                         'villages.name as kelurahan',
+                        'naik.nama as acc_naik_by',
+                        'turun.nama as acc_turun_by'
                     )->first();
 
     	$pos = DB::table('tb_pos_pendakian')->get();
@@ -107,7 +111,7 @@ class pendaki_controller extends Controller
 
                 Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
-                    $message->from('noreply@dishut.com', 'Dinas Kehutanan Provinsi Jawa Timur');
+                    $message->from('noreply@dishut.com', 'UPT Tahura Raden Soerjo');
                     $message->to($email);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                     $message->attachData($qrcode->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id)), 'kode.png');
@@ -144,7 +148,7 @@ class pendaki_controller extends Controller
 
                 Mail::send('addition.email.tolak', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
-                    $message->from('noreply@dishut.com', 'Dinas Kehutanan Provinsi Jawa Timur');
+                    $message->from('noreply@dishut.com', 'UPT Tahura Raden Soerjo');
                     $message->to($email);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                 });
@@ -154,7 +158,7 @@ class pendaki_controller extends Controller
                 ]);
             }
 
-    		DB::commit();
+    		// DB::commit();
     		Session::flash('message', 'Status pendakian berhasil diubah menjadi '.$request->sts);
     		return redirect()->route('wpadmin.pendaki.index');
 
