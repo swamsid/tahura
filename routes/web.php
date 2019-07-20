@@ -82,6 +82,14 @@ Route::get('qrcode', function () {
 		'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@save'
 	])->name('frontend.registrasi.save');
 
+// cek-pendakian
+	Route::get('cek-pendakian', function () {
+	    return view('frontend.cek_pendakian.index');
+	})->name('frontend.cek_pendakian');
+
+	Route::get('cek-pendakian/send', [
+	    'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@cek_pendakian'
+	])->name('frontend.cek_pendakian.send');
 
 
 Route::group(['middleware' => ['guest', 'web']], function(){

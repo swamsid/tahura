@@ -19,6 +19,7 @@
 		        <li><a href="#profil">Profil</a></li>
 				<li><a href="#contact">Kontak</a></li>
 				<li><a href="{{ Route('frontend.registrasi') }}" target="_blank">Registrasi Pendakian</a></li>
+                <li><a href="{{ Route('frontend.cek_pendakian') }}" target="_blank">Cek Status Pendakian</a></li>
 		        <!-- <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
 		          <ul class="dropdown-menu">

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Frontend\pendaftaran;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\backend\tb_pendakian as pendakian;
 
 use DB;
 use Mail;
+use Session;
 
 class pendaftaran_controller extends Controller
 {
@@ -163,5 +165,43 @@ class pendaftaran_controller extends Controller
     			"message"	=> 'System mengalami masalah '.$e
     		]);
     	}
+    }
+
+    protected function cek_pendakian(Request $request){
+        // return json_encode($request->all());
+
+        $data = pendakian::where('pd_nomor', 'PD-'.$request->kode_pendakian)
+                    ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
+                    ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
+                    ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
+                    ->leftJoin('regencies', 'regencies.id', 'pd_kabupaten')
+                    ->leftJoin('districts', 'districts.id', 'pd_kecamatan')
+                    ->leftJoin('villages', 'villages.id', 'pd_desa')
+                    ->leftJoin('user as naik', 'naik.user_id', '=', 'tb_pendakian.pd_acc_naik_by')
+                    ->leftJoin('user as turun', 'turun.user_id', '=', 'tb_pendakian.pd_acc_turun_by')
+                    ->with('kontak')
+                    ->with('anggota')
+                    ->with('peralatan')
+                    ->with('logistik')
+                    ->select(
+                        'tb_pendakian.*',
+                        'a.pp_nama as pos_naik',
+                        'b.pp_nama as pos_turun',
+                        'provinces.name as provinsi',
+                        'regencies.name as kabupaten',
+                        'districts.name as kecamatan',
+                        'villages.name as kelurahan',
+                        'naik.nama as acc_naik_by',
+                        'turun.nama as acc_turun_by'
+                    )->first();
+
+        // return json_encode($data);
+
+        if($data){
+            return view('frontend.cek_pendakian.result', compact('data'));
+        }else{
+            Session::flash('message', 'Kode pendakian yang anda maksud Anda tidak bisa ditemukan');
+            return redirect()->back();
+        }
     }
 }

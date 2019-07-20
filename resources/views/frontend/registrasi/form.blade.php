@@ -200,22 +200,22 @@
 
                                                         <div class="form-group">
                                                             <label>Provinsi</label>
-                                                            <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="false" @option-change="provinsiChange"></vue-select>
+                                                            <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="true" @option-change="provinsiChange"></vue-select>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Kabupaten / Kota</label>
-                                                            <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="false" @option-change="kabupatenChange"></vue-select>
+                                                            <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="true" @option-change="kabupatenChange"></vue-select>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Kecamatan</label>
-                                                            <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="false" @option-change="kecamatanChange"></vue-select>
+                                                            <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="true" @option-change="kecamatanChange"></vue-select>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Desa / Kelurahan</label>
-                                                            <vue-select :name="'desa_ketua'" :id="'desa_ketua'" :options="desa_ketua" :search="false"></vue-select>
+                                                            <vue-select :name="'desa_ketua'" :id="'desa_ketua'" :options="desa_ketua" :search="true"></vue-select>
                                                         </div>
 
                                                         <div class="form-group">
