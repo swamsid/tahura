@@ -13,7 +13,7 @@
 
 <table class="tg" style="undefined;table-layout: fixed; width: 100%">
   <tr>
-    <th rowspan="4"><img style="height: 100px" src="{{ asset('backend/img/LogoJawaTimur.png') }}"></th>
+    <th rowspan="4"><img style="height: 100px" src="{{ asset('public/backend/img/LogoJawaTimur.png') }}"></th>
     <th colspan="2" style="font-weight: bold; text-align: center;">LAPORAN PENDAKI MASUK</th>
     <th rowspan="4"></th>
   </tr>

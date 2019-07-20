@@ -2,7 +2,7 @@
 
 @section('extra_style')
 	<!-- Data Tables -->
-	<link href="{{ asset('backend/css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('public/backend/css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
     <style type="text/css">
         .table-mini th, .table-mini td{
             border: 1px solid #ccc;
@@ -99,7 +99,7 @@
 
 @section('extra_script')
 	<!-- Data Tables -->
-    <script src="{{ asset('backend/js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('public/backend/js/plugins/dataTables/datatables.min.js') }}"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
 

@@ -1,21 +1,21 @@
 <!-- Core JavaScript Files -->
-    <script src="{{ asset('frontend/js/jquery-2.1.1.js') }}"></script>
-    <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/jquery.easing.min.js') }}"></script>	
-	<script src="{{ asset('frontend/js/jquery.scrollTo.js') }}"></script>
-	<script src="{{ asset('frontend/js/wow.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/jquery-2.1.1.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/jquery.easing.min.js') }}"></script>	
+	<script src="{{ asset('public/frontend/js/jquery.scrollTo.js') }}"></script>
+	<script src="{{ asset('public/frontend/js/wow.min.js') }}"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="{{ asset('frontend/js/custom.js') }}"></script>
-    <script src="{{ asset('frontend/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
-    <script src="{{ asset('frontend/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/custom.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="{{ asset('frontend/js/inspinia.js') }}"></script>
-    <script src="{{ asset('frontend/js/plugins/pace/pace.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/plugins/slick/slick.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/inspinia.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/pace/pace.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/slick/slick.min.js') }}"></script>
 
-    <script src="{{ asset('frontend/js/jquery.magnify.js') }}"></script>
-    <script src="{{ asset('frontend/js/jquery.magnify-mobile.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/jquery.magnify.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/jquery.magnify-mobile.js') }}"></script>
 
 	<script>
 	    $(document).ready(function(){

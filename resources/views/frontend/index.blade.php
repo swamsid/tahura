@@ -8,7 +8,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                    <h1><img src="{{ asset('frontend/img/logoweb-01.png') }}" height="40px" class="imeg"></h1>
+                    <h1><img src="{{ asset('public/frontend/img/logoweb-01.png') }}" height="40px" class="imeg"></h1>
                 </a>
             </div>
 
@@ -424,7 +424,7 @@
                         <div class="ibox-content">
                             <h2>ORARI</h2>
                             <p>
-                                <img src="{{ asset('frontend/img/mitra/orari.jpg') }}">
+                                <img src="{{ asset('public/frontend/img/mitra/orari.jpg') }}">
                             </p>
                         </div>
                     </div>
@@ -432,7 +432,7 @@
                         <div class="ibox-content">
                             <h2>BASARNAS</h2>
                             <p>
-                                <img src="{{ asset('frontend/img/mitra/basarnas.png') }}">
+                                <img src="{{ asset('public/frontend/img/mitra/basarnas.png') }}">
                             </p>
                         </div>
                     </div>
@@ -440,7 +440,7 @@
                         <div class="ibox-content">
                             <h2>BPBD Kota Malang</h2>
                             <p>
-                                <img src="{{ asset('frontend/img/mitra/malang.jpg') }}">
+                                <img src="{{ asset('public/frontend/img/mitra/malang.jpg') }}">
                             </p>
                         </div>
                     </div>
@@ -448,7 +448,7 @@
                         <div class="ibox-content">
                             <h2>BPBD Kota Batu</h2>
                             <p>
-                                <img src="{{ asset('frontend/img/mitra/batu.png') }}">
+                                <img src="{{ asset('public/frontend/img/mitra/batu.png') }}">
                             </p>
                         </div>
                     </div>
@@ -456,7 +456,7 @@
                         <div class="ibox-content">
                             <h2>BPBD Kabupaten Mojokerto</h2>
                             <p>
-                                <img src="{{ asset('frontend/img/mitra/mojokerto.png') }}">
+                                <img src="{{ asset('public/frontend/img/mitra/mojokerto.png') }}">
                             </p>
                         </div>
                     </div>
@@ -464,7 +464,7 @@
                         <div class="ibox-content">
                             <h2>BPBD Kota Jombang</h2>
                             <p>
-                                <img src="{{ asset('frontend/img/mitra/jombang.jpg') }}">
+                                <img src="{{ asset('public/frontend/img/mitra/jombang.jpg') }}">
                             </p>
                         </div>
                     </div>
@@ -472,7 +472,7 @@
                         <div class="ibox-content">
                             <h2>BPBD Kota Pasuruan</h2>
                             <p>
-                                <img src="{{ asset('frontend/img/mitra/pasuruan.jpg') }}">
+                                <img src="{{ asset('public/frontend/img/mitra/pasuruan.jpg') }}">
                             </p>
                         </div>
                     </div>
@@ -480,7 +480,7 @@
                         <div class="ibox-content">
                             <h2>PMI</h2>
                             <p>
-                                <img src="{{ asset('frontend/img/mitra/pmi.png') }}">
+                                <img src="{{ asset('public/frontend/img/mitra/pmi.png') }}">
                             </p>
                         </div>
                     </div>
@@ -600,7 +600,7 @@
                                 <div class="product-images">
                                     <div>
                                         <div class="image-imitation">
-                                            <img src="{{ asset('frontend/img/wisata/welirang.jpg') }}" style="height: 300px; width: 514px">
+                                            <img src="{{ asset('public/frontend/img/wisata/welirang.jpg') }}" style="height: 300px; width: 514px">
                                         </div>
                                     </div>
                                     <div>
@@ -658,8 +658,8 @@
                     <div class="ibox-content" style="max-height: unset; padding-bottom: 10px">
                         <div class="row">
                             <div class="col-md-4 col-xs-12 tengah">
-                            	<img src="{{ asset('frontend/img/tambaksari.jpg') }}" class="zoom" data-magnify-src="{{ asset('frontend/img/tambaksari.jpg') }}">
-								<!-- <img class="tengah" src="{{ asset('frontend/img/tambaksari.jpeg') }}" style="height: 500px; width: auto">      -->   
+                            	<img src="{{ asset('public/frontend/img/tambaksari.jpg') }}" class="zoom" data-magnify-src="{{ asset('public/frontend/img/tambaksari.jpg') }}">
+								<!-- <img class="tengah" src="{{ asset('public/frontend/img/tambaksari.jpeg') }}" style="height: 500px; width: auto">      -->   
                             </div>
                             <div class="col-md-8 col-xs-12">
                                 <h2 class="font-bold m-b-xs">

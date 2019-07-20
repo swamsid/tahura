@@ -8,11 +8,11 @@
 
     <title>480 Error</title>
 
-    <link href="{{ asset('backend/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('backend/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/backend/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/backend/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('backend/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/backend/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/backend/css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -41,8 +41,8 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="{{ asset('backend/js/jquery-2.1.1.js')}} "></script>
-    <script src="{{ asset('backend/js/bootstrap.min.js')}} "></script>
+    <script src="{{ asset('public/backend/js/jquery-2.1.1.js')}} "></script>
+    <script src="{{ asset('public/backend/js/bootstrap.min.js')}} "></script>
 
 </body>
 

@@ -8,19 +8,19 @@
 
     <title>Data Pendakian</title>
 
-    <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/css/styleregist.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/css/plugins/jasny/jasny-bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('frontend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
+    <link href="{{ asset('public/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/styleregist.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/plugins/jasny/jasny-bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
 
     <style type="text/css">
         /* select 2 custom element */
@@ -160,38 +160,38 @@
 
 
     <!-- Mainly scripts -->
-    <script src="{{ asset('frontend/js/jquery-2.1.1.js') }}"></script>
-    <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
-    <script src="{{ asset('frontend/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/jquery-2.1.1.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="{{ asset('frontend/js/inspinia.js') }}"></script>
-    <script src="{{ asset('frontend/js/plugins/pace/pace.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/inspinia.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/pace/pace.min.js') }}"></script>
 
     <!-- Steps -->
-    <script src="{{ asset('frontend/js/plugins/staps/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/staps/jquery.steps.min.js') }}"></script>
 
     <!-- Jquery Validate -->
-    <script src="{{ asset('frontend/js/plugins/validate/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/validate/jquery.validate.min.js') }}"></script>
 
     <!-- Input Mask-->
-    <script src="{{ asset('frontend/js/plugins/jasny/jasny-bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/jasny/jasny-bootstrap.min.js') }}"></script>
 
     <!-- iCheck -->
-    <script src="{{ asset('frontend/js/plugins/iCheck/icheck.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/iCheck/icheck.min.js') }}"></script>
 
-    <script src="{{ asset('frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/axios/axios.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/axios/axios.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
 
     <!-- Vue js -->
-    <script src="{{ asset('frontend/js/vendors/vue/vue.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vue.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
 
     <script>
 

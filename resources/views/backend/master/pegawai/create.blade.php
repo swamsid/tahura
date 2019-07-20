@@ -2,10 +2,10 @@
 
 @section('extra_style')
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
 
     <style type="text/css">
         [v-cloak]{
@@ -135,7 +135,7 @@
                                     <div class="picture-wrap">
                                         <i class="fa fa-times" data-placement="top" title="Hapus Gambar 1" v-if="!firstPictureDeleted" @click="deletePicture" data-id="1"></i>
                                         <img 
-                                            src="{{ asset('backend/img/default.jpg') }}"
+                                            src="{{ asset('public/backend/img/default.jpg') }}"
                                             id="picture-wrap-1"
                                             tabindex="0"
                                             data-id="1"
@@ -323,18 +323,18 @@
 
 @section('extra_script')
 
-    <script src="{{ asset('frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/axios/axios.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/axios/axios.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
 
     <!-- Vue js -->
-    <script src="{{ asset('frontend/js/vendors/vue/vue.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/components/datatable-v1/datatable.component.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vue.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/datatable-v1/datatable.component.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
 
     <script type="text/javascript">
     	
@@ -657,7 +657,7 @@
 
                     var conteks = $(e.target)
                     $('#input-image-'+conteks.data('id')).val('');
-                    $("#picture-wrap-"+conteks.data('id')).attr("src", '{{ asset('backend/img/default.jpg') }}').animate({
+                    $("#picture-wrap-"+conteks.data('id')).attr("src", '{{ asset('public/backend/img/default.jpg') }}').animate({
                         opacity: 1
                     }, 700);
 
@@ -707,7 +707,7 @@
                         $('#jabatan_pegawai').val(conteks.id_jabatan).trigger('change.select2');
                         $('#posisi_pegawai').val(conteks.posisi).trigger('change.select2');
 
-                        $("#picture-wrap-1").attr("src", '{{ asset("backend/img/upload/pegawai/".Auth::user()->user_id) }}/'+conteks.foto).animate({
+                        $("#picture-wrap-1").attr("src", '{{ asset("public/backend/img/upload/pegawai/".Auth::user()->user_id) }}/'+conteks.foto).animate({
                             opacity: 1
                         }, 700);
                     }
@@ -728,7 +728,7 @@
 
                     $('#jabatan_pegawai').val(this.jabatan_pegawai[0].id).trigger('change.select2');
                     $('#posisi_pegawai').val(this.posisi_pegawai[0].id).trigger('change.select2');
-                    $("#picture-wrap-1").attr("src", '{{ asset('backend/img/default.jpg') }}').animate({
+                    $("#picture-wrap-1").attr("src", '{{ asset('public/backend/img/default.jpg') }}').animate({
                         opacity: 1
                     }, 700);
                 }

@@ -3,7 +3,7 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element"> <span>
-                    <img alt="image" class="clip-circle" src="{{ asset('backend/img/upload/pegawai/'.Auth::user()->user_id.'/'.Auth::user()->foto) }}" style="object-fit: scale-down;" />
+                    <img alt="image" class="clip-circle" src="{{ asset('public/backend/img/upload/pegawai/'.Auth::user()->user_id.'/'.Auth::user()->foto) }}" style="object-fit: scale-down;" />
                      </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ Auth::user()->nama }}</strong>
