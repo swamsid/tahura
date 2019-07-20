@@ -12,11 +12,18 @@ use DB;
 class jabatan_controller extends Controller
 {
     protected function index(){
+
+        if(!Auth::user()->can('read', 'master data jabatan'))
+            return view('error.480');
+
     	$data = DB::table('jabatan')->get();
     	return view('backend.master.jabatan.index', compact('data'));
     }
 
     protected function create(){
+        if(!Auth::user()->can('create', 'master data jabatan') && !Auth::user()->can('update', 'master data jabatan') && !Auth::user()->can('delete', 'master data jabatan'))
+           return view('error.480');
+
     	return view('backend.master.jabatan.create');
     }
 

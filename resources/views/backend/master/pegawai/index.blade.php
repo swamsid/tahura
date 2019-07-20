@@ -29,11 +29,15 @@
                     <div class="ibox-title">
                         <h5>Data Pegawai</h5>
                         <div class="ibox-tools">
-                            <a href="{{ Route('wpadmin.pegawai.create') }}">
-    						    <button class="btn btn-sm btn-primary">
-                                    <i class="fa fa-plus"></i> &nbsp;Tambah / Edit Data
-                                </button>
-                            </a>
+                            @if(Auth::user()->can('create', 'master data pegawai') || Auth::user()->can('update', 'master data pegawai') || Auth::user()->can('delete', 'master data pegawai'))
+                                <a href="{{ Route('wpadmin.pegawai.create') }}">
+        						    <button class="btn btn-sm btn-primary">
+                                        <i class="fa fa-plus"></i> &nbsp;Tambah / Edit Data
+                                    </button>
+                                </a>
+                            @else
+                                <small>Tidak Memiliki Akses Menuju Form Pegawai</small>
+                            @endif
                         </div>
                     </div>
                     <div class="ibox-content">

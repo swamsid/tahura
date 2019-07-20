@@ -7,11 +7,15 @@ use App\Http\Controllers\Controller;
 use App\Model\backend\tb_pendakian as pendakian;
 
 use DB;
+use Auth;
 use PDF;
 
 class pendaki_masuk_controller extends Controller
 {
     protected function index(){
+        if(!Auth::user()->can('read', 'laporan'))
+            return view('error.480');
+
     	return view('backend.laporan.pendaki_masuk.index');
     } 
 

@@ -29,11 +29,15 @@
                     <div class="ibox-title">
                         <h5>Data Pendaftaran Pendakian</h5>
                         <div class="ibox-tools">
-                            <a href="{{ Route('wpadmin.jabatan.create') }}">
-    						    <button class="btn btn-sm btn-primary">
-                                    <i class="fa fa-plus"></i> &nbsp;Tambah / Edit Data
-                                </button>
-                            </a>
+                            @if(Auth::user()->can('create', 'master data jabatan') || Auth::user()->can('update', 'master data jabatan') || Auth::user()->can('delete', 'master data jabatan'))
+                                <a href="{{ Route('wpadmin.jabatan.create') }}">
+                                    <button class="btn btn-sm btn-primary">
+                                        <i class="fa fa-plus"></i> &nbsp;Tambah / Edit Data
+                                    </button>
+                                </a>
+                            @else
+                                <small>Tidak Memiliki Akses Menuju Form Jabatan</small>
+                            @endif
                         </div>
                     </div>
                     <div class="ibox-content">

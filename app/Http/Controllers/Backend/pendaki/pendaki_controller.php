@@ -16,11 +16,19 @@ use Session;
 class pendaki_controller extends Controller
 {
     protected function index(){
+
+        if(!Auth::user()->can('read', 'manajemen_pendaki'))
+            return view('error.480');
+
     	$data = DB::table('tb_pendakian')->get();
     	return view('backend.pendaki.index', compact('data'));
     }
 
     protected function detail(Request $request){
+
+        if(!Auth::user()->can('update', 'manajemen_pendaki'))
+            return view('error.480');
+
     	$data = pendakian::where('pd_id', $request->id)
     				->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
     				->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')

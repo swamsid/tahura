@@ -8,18 +8,26 @@ use App\Model\backend\tb_menu as menu;
 use App\Model\backend\user;
 
 use DB;
+use Auth;
 use File;
 
 class pegawai_controller extends Controller
 {
     protected function index(){
+
+        if(!Auth::user()->can('read', 'master data pegawai'))
+            return view('error.480');
+
     	$data = DB::table('user')->join('jabatan', 'jabatan.id_jabatan', '=', 'user.id_jabatan')->select('user.*', 'jabatan.nama_jabatan')->get();
 
     	return view('backend.master.pegawai.index', compact('data'));
     }
 
     protected function create(){
-    	return view('backend.master.pegawai.create');
+        if(!Auth::user()->can('create', 'master data pegawai') && !Auth::user()->can('update', 'master data pegawai') && !Auth::user()->can('delete', 'master data pegawai'))
+    	   return view('error.480');
+
+        return view('backend.master.pegawai.create');
     }
 
     protected function resource(){
@@ -29,10 +37,13 @@ class pegawai_controller extends Controller
 
         $role = menu::distinct('m_group')->select('m_group')->with('detail')->get();
 
+        $password = rand(100000, 999999);
+
     	return json_encode([
     		'jabatan'	=> $jabatan,
     		'user'		=> $user,
-            'role'      => $role
+            'role'      => $role,
+            'password'  => $password
     	]);
     }
 
