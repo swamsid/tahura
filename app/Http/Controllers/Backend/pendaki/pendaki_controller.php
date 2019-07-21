@@ -166,7 +166,7 @@ class pendaki_controller extends Controller
                 ]);
             }
 
-    		// DB::commit();
+    		DB::commit();
     		Session::flash('message', 'Status pendakian berhasil diubah menjadi '.$request->sts);
     		return redirect()->route('wpadmin.pendaki.index');
 
