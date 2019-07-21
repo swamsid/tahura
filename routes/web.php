@@ -51,7 +51,7 @@ Route::get('send-email', function(){
 	Mail::send('addition.email.tes', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode){
         $message->subject("test mail gan");
         $message->from('donotreply@kiddy.com', 'Kiddy');
-        $message->to('swamsid@gmail.com');
+        $message->to('dirgaambaraloh@gmail.com');
     });
 
     return 'email terkirim';
