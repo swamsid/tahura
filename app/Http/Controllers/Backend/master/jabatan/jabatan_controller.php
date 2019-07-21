@@ -8,6 +8,7 @@ use App\Model\backend\tb_menu as menu;
 use App\Model\backend\jabatan;
 
 use DB;
+use Auth;
 
 class jabatan_controller extends Controller
 {
