@@ -2,10 +2,10 @@
 
 @section('extra_style')
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
 
     <style type="text/css">
         [v-cloak]{
@@ -188,18 +188,18 @@
 
 @section('extra_script')
 
-    <script src="{{ asset('frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/axios/axios.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/axios/axios.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
 
     <!-- Vue js -->
-    <script src="{{ asset('frontend/js/vendors/vue/vue.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/components/datatable-v1/datatable.component.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vue.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/datatable-v1/datatable.component.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
 
     <script type="text/javascript">
     	
