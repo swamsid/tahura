@@ -39,13 +39,13 @@ Route::get('tes-pdf', function(){
  //                    )->first();
 
 	// $qrcode = QrCode::format('png')->size(1000)->generate('https://www.simplesoftware.io');
-	// $pdf = PDF::loadView('Backend.pdf.berkas', compact('data'));
+	// $pdf = PDF::loadView('backend.pdf.berkas', compact('data'));
 	// return $pdf->stream('berkas.pdf');
 });
 
 Route::get('send-email', function(){
 
-	$pdf = PDF::loadView('Backend.pdf.tes');
+	$pdf = PDF::loadView('backend.pdf.tes');
 	$qrcode = QrCode::format('png')->size(1000);
 
 	Mail::send('addition.email.tes', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode){
@@ -98,92 +98,92 @@ Route::group(['middleware' => ['guest', 'web']], function(){
 	})->name('wpadmin.auth.login');
 
 	Route::post('wpadmin/login/authenticate', [
-		'uses' => 'Backend\auth\authenticate@authenticate'
+		'uses' => 'backend\auth\authenticate@authenticate'
 	])->name('wpadmin.login.authenticate');
 });
 
 Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('wpadmin/dashboard', function(){
-		return view('Backend.dashboard');
+		return view('backend.dashboard');
 	})->name('wpadmin.dashboard');
 
 	Route::get('wpadmin/logout', [
-		'uses' => 'Backend\auth\authenticate@logout'
+		'uses' => 'backend\auth\authenticate@logout'
 	])->name('wpadmin.auth.logout');
 
 	Route::get('wpadmin/manajemen-pendaki/data-pendaftar', [
-		'uses' => 'Backend\pendaki\pendaki_controller@index'
+		'uses' => 'backend\pendaki\pendaki_controller@index'
 	])->name('wpadmin.pendaki.index');
 
 	Route::get('wpadmin/manajemen-pendaki/detail', [
-		'uses' => 'Backend\pendaki\pendaki_controller@detail'
+		'uses' => 'backend\pendaki\pendaki_controller@detail'
 	])->name('wpadmin.pendaki.detail');
 
 	Route::get('wpadmin/manajemen-pendaki/konfirmasi', [
-		'uses' => 'Backend\pendaki\pendaki_controller@konfirmasi'
+		'uses' => 'backend\pendaki\pendaki_controller@konfirmasi'
 	])->name('wpadmin.pendaki.konfirmasi');
 
 	// Master Jabatan
 		Route::get('wpadmin/data-master/jabatan', [
-			'uses' => 'Backend\master\jabatan\jabatan_controller@index'
+			'uses' => 'backend\master\jabatan\jabatan_controller@index'
 		])->name('wpadmin.jabatan.index');
 
 		Route::get('wpadmin/data-master/jabatan/create', [
-			'uses' => 'Backend\master\jabatan\jabatan_controller@create'
+			'uses' => 'backend\master\jabatan\jabatan_controller@create'
 		])->name('wpadmin.jabatan.create');
 
 		Route::get('wpadmin/data-master/jabatan/resource', [
-			'uses' => 'Backend\master\jabatan\jabatan_controller@resource'
+			'uses' => 'backend\master\jabatan\jabatan_controller@resource'
 		])->name('wpadmin.jabatan.resource');
 
 		Route::post('wpadmin/data-master/jabatan/save', [
-			'uses' => 'Backend\master\jabatan\jabatan_controller@save'
+			'uses' => 'backend\master\jabatan\jabatan_controller@save'
 		])->name('wpadmin.jabatan.save');
 
 		Route::post('wpadmin/data-master/jabatan/update', [
-			'uses' => 'Backend\master\jabatan\jabatan_controller@update'
+			'uses' => 'backend\master\jabatan\jabatan_controller@update'
 		])->name('wpadmin.jabatan.update');	
 
 		Route::post('wpadmin/data-master/jabatan/delete', [
-			'uses' => 'Backend\master\jabatan\jabatan_controller@delete'
+			'uses' => 'backend\master\jabatan\jabatan_controller@delete'
 		])->name('wpadmin.jabatan.delete');
 
 	// Master Pegawai
 		Route::get('wpadmin/data-master/pegawai', [
-			'uses' => 'Backend\master\pegawai\pegawai_controller@index'
+			'uses' => 'backend\master\pegawai\pegawai_controller@index'
 		])->name('wpadmin.pegawai.index');
 
 		Route::get('wpadmin/data-master/pegawai/create', [
-			'uses' => 'Backend\master\pegawai\pegawai_controller@create'
+			'uses' => 'backend\master\pegawai\pegawai_controller@create'
 		])->name('wpadmin.pegawai.create');
 
 		Route::get('wpadmin/data-master/pegawai/resource', [
-			'uses' => 'Backend\master\pegawai\pegawai_controller@resource'
+			'uses' => 'backend\master\pegawai\pegawai_controller@resource'
 		])->name('wpadmin.pegawai.resource');
 
 		Route::post('wpadmin/data-master/pegawai/save', [
-			'uses' => 'Backend\master\pegawai\pegawai_controller@save'
+			'uses' => 'backend\master\pegawai\pegawai_controller@save'
 		])->name('wpadmin.pegawai.save');
 
 		Route::post('wpadmin/data-master/pegawai/update', [
-			'uses' => 'Backend\master\pegawai\pegawai_controller@update'
+			'uses' => 'backend\master\pegawai\pegawai_controller@update'
 		])->name('wpadmin.pegawai.update');	
 
 		Route::post('wpadmin/data-master/pegawai/delete', [
-			'uses' => 'Backend\master\pegawai\pegawai_controller@delete'
+			'uses' => 'backend\master\pegawai\pegawai_controller@delete'
 		])->name('wpadmin.pegawai.delete');
 
 	// Laporan
 		Route::get('wpadmin/data-laporan/pendaki-masuk', [
-			'uses' => 'Backend\laporan\pendaki_masuk\pendaki_masuk_controller@index'
+			'uses' => 'backend\laporan\pendaki_masuk\pendaki_masuk_controller@index'
 		])->name('wpadmin.laporan.pendaki_masuk.index');
 
 		Route::get('wpadmin/data-laporan/pendaki-masuk/resource', [
-			'uses' => 'Backend\laporan\pendaki_masuk\pendaki_masuk_controller@resource'
+			'uses' => 'backend\laporan\pendaki_masuk\pendaki_masuk_controller@resource'
 		])->name('wpadmin.laporan.pendaki_masuk.resource');
 
 		Route::get('wpadmin/data-laporan/pendaki-masuk/result', [
-			'uses' => 'Backend\laporan\pendaki_masuk\pendaki_masuk_controller@result'
+			'uses' => 'backend\laporan\pendaki_masuk\pendaki_masuk_controller@result'
 		])->name('wpadmin.laporan.pendaki_masuk.result');
 });
