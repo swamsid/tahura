@@ -12,35 +12,35 @@
 */
 
 Route::get('/', function () {
-    return view('frontend.index');
+    return view('frontend.registrasi.index');
 });
 
 Route::get('tes-pdf', function(){
 
-	$data = App\Model\backend\tb_pendakian::where('pd_id', 1)
-                    ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
-                    ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
-                    ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
-                    ->leftJoin('regencies', 'regencies.id', 'pd_kabupaten')
-                    ->leftJoin('districts', 'districts.id', 'pd_kecamatan')
-                    ->leftJoin('villages', 'villages.id', 'pd_desa')
-                    ->with('kontak')
-                    ->with('anggota')
-                    ->with('peralatan')
-                    ->with('logistik')
-                    ->select(
-                        'tb_pendakian.*',
-                        'a.pp_nama as pos_naik',
-                        'b.pp_nama as pos_turun',
-                        'provinces.name as provinsi',
-                        'regencies.name as kabupaten',
-                        'districts.name as kecamatan',
-                        'villages.name as kelurahan',
-                    )->first();
+	// $data = App\Model\backend\tb_pendakian::where('pd_id', 1)
+ //                    ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
+ //                    ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
+ //                    ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
+ //                    ->leftJoin('regencies', 'regencies.id', 'pd_kabupaten')
+ //                    ->leftJoin('districts', 'districts.id', 'pd_kecamatan')
+ //                    ->leftJoin('villages', 'villages.id', 'pd_desa')
+ //                    ->with('kontak')
+ //                    ->with('anggota')
+ //                    ->with('peralatan')
+ //                    ->with('logistik')
+ //                    ->select(
+ //                        'tb_pendakian.*',
+ //                        'a.pp_nama as pos_naik',
+ //                        'b.pp_nama as pos_turun',
+ //                        'provinces.name as provinsi',
+ //                        'regencies.name as kabupaten',
+ //                        'districts.name as kecamatan',
+ //                        'villages.name as kelurahan',
+ //                    )->first();
 
-	$qrcode = QrCode::format('png')->size(1000)->generate('https://www.simplesoftware.io');
-	$pdf = PDF::loadView('Backend.pdf.berkas', compact('data'));
-	return $pdf->stream('berkas.pdf');
+	// $qrcode = QrCode::format('png')->size(1000)->generate('https://www.simplesoftware.io');
+	// $pdf = PDF::loadView('Backend.pdf.berkas', compact('data'));
+	// return $pdf->stream('berkas.pdf');
 });
 
 Route::get('send-email', function(){
@@ -51,10 +51,10 @@ Route::get('send-email', function(){
 	Mail::send('addition.email.tes', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode){
         $message->subject("test mail gan");
         $message->from('donotreply@kiddy.com', 'Kiddy');
-        $message->to('dirgaambaraloh@gmail.com');
-        $message->attachData($pdf->output(), "invoice.pdf");
-        $message->attachData($qrcode->generate('https://www.simplesoftware.io'), 'kode.png');
+        $message->to('swamsid@gmail.com');
     });
+
+    return 'email terkirim';
 });
 
 Route::get('qrcode', function () {
