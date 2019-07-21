@@ -92,7 +92,7 @@ class pendaki_controller extends Controller
 	    		]);
     		}else if($request->sts == 'disetujui'){
 
-                $data = pendakian::where('pd_id', 1)
+                $data = pendakian::where('pd_id', $request->id)
                     ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
                     ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
                     ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
@@ -130,7 +130,7 @@ class pendaki_controller extends Controller
                 ]);
             }else if($request->sts == 'ditolak'){
 
-                $data = pendakian::where('pd_id', 1)
+                $data = pendakian::where('pd_id', $request->id)
                     ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
                     ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
                     ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
