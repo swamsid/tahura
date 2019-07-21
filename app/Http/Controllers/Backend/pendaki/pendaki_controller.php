@@ -110,7 +110,7 @@ class pendaki_controller extends Controller
                         'provinces.name as provinsi',
                         'regencies.name as kabupaten',
                         'districts.name as kecamatan',
-                        'villages.name as kelurahan',
+                        'villages.name as kelurahan'
                     )->first();
 
                 $email = $data->pd_email;
@@ -148,7 +148,7 @@ class pendaki_controller extends Controller
                         'provinces.name as provinsi',
                         'regencies.name as kabupaten',
                         'districts.name as kecamatan',
-                        'villages.name as kelurahan',
+                        'villages.name as kelurahan'
                     )->first();
 
                 $email = $data->pd_email;
