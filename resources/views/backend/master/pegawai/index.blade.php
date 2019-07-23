@@ -29,7 +29,7 @@
                     <div class="ibox-title">
                         <h5>Data Pegawai</h5>
                         <div class="ibox-tools">
-                            @if(Auth::user()->can('create', 'master data pegawai') || Auth::user()->can('update', 'master data pegawai') || Auth::user()->can('delete', 'master data pegawai'))
+                            @if(Auth::user()->can('create', 'data_pegawai') || Auth::user()->can('update', 'data_pegawai') || Auth::user()->can('delete', 'data_pegawai'))
                                 <a href="{{ Route('wpadmin.pegawai.create') }}">
         						    <button class="btn btn-sm btn-primary">
                                         <i class="fa fa-plus"></i> &nbsp;Tambah / Edit Data

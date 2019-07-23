@@ -31,11 +31,11 @@
                 <li>
                     <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Data Master</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        @if(Auth::user()->can('read', 'master data jabatan'))
+                        @if(Auth::user()->can('read', 'data_jabatan'))
                             <li><a href="{{ Route('wpadmin.jabatan.index') }}">Master Data Jabatan</a></li>
                         @endif
 
-                        @if(Auth::user()->can('read', 'master data pegawai'))
+                        @if(Auth::user()->can('read', 'data_pegawai'))
                             <li><a href="{{ Route('wpadmin.pegawai.index') }}">Master Data Pegawai</a></li>
                         @endif
                     </ul>
@@ -46,7 +46,7 @@
                 <li>
                     <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Manajemen Pendaki</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        @if(Auth::user()->can('read', 'data pendaftar'))
+                        @if(Auth::user()->can('read', 'data_pendaftar'))
                             <li><a href="{{ Route('wpadmin.pendaki.index') }}">Data Pendaftar</a></li>
                         @endif
                     </ul>

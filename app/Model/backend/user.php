@@ -26,7 +26,7 @@ class user extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function can (String $role, String $menu){
     	$roles = Session::get('roles');
-    	$key = array_search(strtolower($menu), array_column($roles, 'name'));
+    	$key = array_search(strtolower($menu), array_column($roles, 'role'));
     	$grantAccess = 0;
 
     	if(!isset($key))

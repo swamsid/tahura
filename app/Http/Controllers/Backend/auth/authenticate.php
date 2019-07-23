@@ -26,7 +26,7 @@ class authenticate extends Controller
                 $roles = DB::table('tb_role_menu')
                         ->where('rm_user', $user->user_id)
                         ->join('tb_menu', 'tb_menu.m_id', '=', 'tb_role_menu.rm_menu')
-                        ->select('tb_role_menu.*', DB::raw('lower(tb_menu.m_name) as name'), DB::raw('lower(tb_menu.m_group) as grup'))
+                        ->select('tb_role_menu.*', DB::raw('lower(tb_menu.m_name) as name'), DB::raw('lower(tb_menu.m_group) as grup'), DB::raw('lower(tb_menu.m_role) as role'))
                         ->get()->toArray();
 
                 // return json_encode($roles);
