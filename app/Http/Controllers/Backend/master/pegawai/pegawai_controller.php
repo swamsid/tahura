@@ -107,7 +107,8 @@ class pegawai_controller extends Controller
     		return json_encode([
     			'status'	=> 'success',
     			'message'	=> 'Data Pegawai Berhasil Disimpan',
-    			'user'		=> $user
+    			'user'		=> $user,
+                'password'  => $password = rand(100000, 999999)
     		]);
 
     	} catch (Exception $e) {
@@ -190,7 +191,8 @@ class pegawai_controller extends Controller
     		return json_encode([
     			'status'	=> 'success',
     			'message'	=> 'Data Pegawai Berhasil DIperbarui',
-    			'user'		=> $user
+    			'user'		=> $user,
+                'password'  => $password = rand(100000, 999999)
     		]);
 
     	} catch (Exception $e) {
@@ -232,7 +234,8 @@ class pegawai_controller extends Controller
     		return json_encode([
     			'status'	=> 'success',
     			'message'	=> 'Data Pegawai Berhasil Dihapus',
-    			'user'		=> $user
+    			'user'		=> $user,
+                'password'  => $password = rand(100000, 999999)
     		]);
 
     	} catch (Exception $e) {

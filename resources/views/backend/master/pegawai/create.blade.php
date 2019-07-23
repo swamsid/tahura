@@ -386,6 +386,7 @@
                     nip_pegawai: '',
                     nama_pegawai: '',
                     password_pegawai: '',
+                    password_generator: '',
 
                 }
 
@@ -417,7 +418,8 @@
                             this.jabatan_pegawai = response.data.jabatan;
                             this.data_table_user.data.source = response.data.user;
                             this.role = response.data.role;
-                            this.single.password_pegawai = response.data.password;
+                            this.single.password_generator = response.data.password;
+                            this.single.password_pegawai = this.single.password_generator;
 
                         }).catch((e) => {
                             alert('System Error');
@@ -449,6 +451,7 @@
 
                                     if(response.data.status == 'success'){
                                         this.data_table_user.data.source = response.data.user;
+                                        this.single.password_generator = response.data.password;
                                         this.formReset();
                                     }
 
@@ -500,6 +503,7 @@
 
                                     if(response.data.status == 'success'){
                                         this.data_table_user.data.source = response.data.user;
+                                        this.single.password_generator = response.data.password;
                                         this.formReset();
                                     }
 
@@ -548,6 +552,7 @@
 
                                 if(response.data.status == 'success'){
                                     this.data_table_user.data.source = response.data.user;
+                                    this.single.password_generator = response.data.password;
                                     this.formReset();
                                 }
 
@@ -720,7 +725,7 @@
                     this.single.id = '';
                     this.single.nip_pegawai = '';
                     this.single.nama_pegawai = '';
-                    this.single.password_pegawai = '';
+                    this.single.password_pegawai = this.single.password_generator;
 
                     this.firstPictureDeleted = true;
 
