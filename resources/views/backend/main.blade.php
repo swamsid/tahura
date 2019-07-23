@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>INSPINIA | Dashboard</title>
+    <title>UPT Tahura Raden Soerjo</title>
 
     @include('backend._partials._head')
         @yield('extra_style')

@@ -18,7 +18,7 @@
 <col style="width: 150px">
 </colgroup>
   <tr>
-    <th class="tg-lj5e" rowspan="5"><img style="height: 100px" src="{{ asset('public/backend/img/LogoJawaTimur.png') }}"></th>
+    <th class="tg-lj5e" rowspan="5"><img style="height: 100px" src="<?php echo e(asset('public/backend/img/LogoJawaTimur.png')); ?>"></th>
     <th class="tg-puex" colspan="2" style="font-weight: bold">PEMERINTAH PROVINSI JAWA TIMUR</th>
     <th class="tg-lj5e" rowspan="5"></th>
   </tr>
@@ -41,7 +41,7 @@
     <td style="padding: 10px 0" class="tg-xeyn" colspan="4">SURAT IJIN KHUSUS PENDAKIAN GUNUNG DI KAWASAN TAHURA R. SOERJO</td>
   </tr>
   <tr>
-    <td class="tg-lj5e" colspan="4">Nomor Registrasi : {{ $data->pd_nomor }} Tanggal {{ date('d/m/Y', strtotime($data->updated_at)) }}</td>
+    <td class="tg-lj5e" colspan="4">Nomor Registrasi : <?php echo e($data->pd_nomor); ?> Tanggal <?php echo e(date('d/m/Y', strtotime($data->updated_at))); ?></td>
   </tr>
   <tr>
     <td style="padding-bottom: 10px" class="tg-lj5e" colspan="4">Nomor Karcis : .......................s/d...........................</td>
@@ -62,21 +62,21 @@
     	<table class="list">
     		<tr>
     			<td class="tg-2c25">Nama Lengkap (Ketua) : </td>
-    			<td class="tg-vlyc" style="width: 300px">{{ $data->pd_nama_ketua }}</td>
+    			<td class="tg-vlyc" style="width: 300px"><?php echo e($data->pd_nama_ketua); ?></td>
 			    <td class="tg-2c25">Nomor Identitas : </td>
-			    <td class="tg-vlyc">{{ $data->pd_no_ktp }}</td>
+			    <td class="tg-vlyc"><?php echo e($data->pd_no_ktp); ?></td>
     		</tr>
     		<tr>
 			    <td class="tg-2c25">Tempat Tanggal Lahir : </td>
-			    <td class="tg-vlyc">{{ $data->pd_tempat_lahir }} {{ date('d/m/Y', strtotime($data->pd_tgl_lahir)) }}</td>
+			    <td class="tg-vlyc"><?php echo e($data->pd_tempat_lahir); ?> <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_lahir))); ?></td>
 			    <td class="tg-2c25">Kebangsaan : </td>
-			    <td class="tg-vlyc" style="padding-right: 20px;">{{ $data->pd_kewarganegaraan }}</td>
+			    <td class="tg-vlyc" style="padding-right: 20px;"><?php echo e($data->pd_kewarganegaraan); ?></td>
 			</tr>
 			<tr>
 			    <td class="tg-2c25">Alamat Lengkap : </td>
-			    <td class="tg-vlyc">{{ $data->pd_alamat }}, {{ $data->kabupaten }}</td>
+			    <td class="tg-vlyc"><?php echo e($data->pd_alamat); ?>, <?php echo e($data->kabupaten); ?></td>
 			    <td class="tg-2c25">Personel : </td>
-			    <td class="tg-vlyc">{{ count($data->anggota) }} Orang</td>
+			    <td class="tg-vlyc"><?php echo e(count($data->anggota)); ?> Orang</td>
 			  </tr>
     	</table>
 	</td>
@@ -192,7 +192,7 @@
 	<tr>
 		<td class="tg-2c25">No. Registrasi</td>
 		<td class="tg-2c25">:</td>
-		<td class="tg-2c25">REG/{{ $data->pd_nomor }}</td>
+		<td class="tg-2c25">REG/<?php echo e($data->pd_nomor); ?></td>
 	</tr>
 </table>
 
@@ -214,23 +214,23 @@
   </tr>
   <tr>
     <td class="tg-0lax">1.</td>
-    <td class="tg-0lax">{{ $data->pd_nama_ketua }}</td>
-    <td class="tg-0lax">{{ $data->pd_no_ktp }}</td>
-    <td class="tg-0lax">{{ ($data->pd_jenis_kelamin == 'L') ? 'Laki-laki' : Perempuan }}</td>
+    <td class="tg-0lax"><?php echo e($data->pd_nama_ketua); ?></td>
+    <td class="tg-0lax"><?php echo e($data->pd_no_ktp); ?></td>
+    <td class="tg-0lax"><?php echo e(($data->pd_jenis_kelamin == 'L') ? 'Laki-laki' : Perempuan); ?></td>
     <td class="tg-0lax"></td>
   </tr>
 
   <?php $no = 2; ?>
-  @foreach($data->anggota as $key => $anggota)
+  <?php $__currentLoopData = $data->anggota; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $anggota): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
   	<tr>
-	    <td class="tg-0lax">{{ $no }}. </td>
-	    <td class="tg-0lax">{{ $anggota->ap_nama }}</td>
-	    <td class="tg-0lax">{{ $anggota->ap_no_ktp }}</td>
-	    <td class="tg-0lax">{{ ($anggota->ap_kelamin == 'L') ? 'Laki-laki' : Perempuan }}</td>
+	    <td class="tg-0lax"><?php echo e($no); ?>. </td>
+	    <td class="tg-0lax"><?php echo e($anggota->ap_nama); ?></td>
+	    <td class="tg-0lax"><?php echo e($anggota->ap_no_ktp); ?></td>
+	    <td class="tg-0lax"><?php echo e(($anggota->ap_kelamin == 'L') ? 'Laki-laki' : Perempuan); ?></td>
 	    <td class="tg-0lax"></td>
   	</tr>
   	<?php $no++; ?>
-  @endforeach
+  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </table>
 
 <h5 style="margin-bottom: 5px">II. NAMA, ALAMAT DAN NOMOR TELEPON YANG DAPAT DIHUBUNGI DALAM KEADAAN DARURAT</h5>
@@ -242,15 +242,15 @@
     <th class="tg-hgcj" style="width: 190px">Alamat Email</th>
     <th class="tg-hgcj" style="width: 80px">Hubungan</th>
   </tr>
-  @foreach($data->kontak as $key => $kontak)
+  <?php $__currentLoopData = $data->kontak; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $kontak): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
   	<tr>
-	    <td class="tg-0lax">{{ $key+1 }}. </td>
-	    <td class="tg-0lax">{{ $kontak->kd_nama }}</td>
-	    <td class="tg-0lax">{{ $kontak->kd_no_telp }}</td>
-	    <td class="tg-0lax">{{ $kontak->kd_email }}</td>
-	    <td class="tg-0lax">{{ $kontak->kd_hubungan }}</td>
+	    <td class="tg-0lax"><?php echo e($key+1); ?>. </td>
+	    <td class="tg-0lax"><?php echo e($kontak->kd_nama); ?></td>
+	    <td class="tg-0lax"><?php echo e($kontak->kd_no_telp); ?></td>
+	    <td class="tg-0lax"><?php echo e($kontak->kd_email); ?></td>
+	    <td class="tg-0lax"><?php echo e($kontak->kd_hubungan); ?></td>
 	</tr>
-  @endforeach
+  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </table>
 
 <h5 style="margin-bottom: 5px">III. DAFTAR PERLENGKAPAN DAN LOGISTIK YANG DIBAWA</h5>
@@ -264,43 +264,43 @@
 				</tr>
 				<tr>
 					<td class="tg-0lax">Tenda</td>
-					<td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_tenda }}</td>
+					<td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_tenda); ?></td>
 				</tr>
 				<tr>
 				    <td class="tg-0lax">Sleeping Bag / Kantong Tidur</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_sleeping_bag }}</td>
+				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_sleeping_bag); ?></td>
 				</tr>
 				<tr>
 				    <td class="tg-0lax">Peralatan Masak</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_peralatan_masak }}</td>
+				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_peralatan_masak); ?></td>
 				</tr>
 				<tr>
 				    <td class="tg-0lax">Bahan Bakar</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_bahan_bakar }}</td>
+				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_bahan_bakar); ?></td>
 				</tr>
 				<tr>
 				    <td class="tg-0lax">Ponco / Jas Hujan</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_ponco }}</td>
+				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_ponco); ?></td>
 				</tr>
 				<tr>
 				    <td class="tg-0lax">Senter / Alat Penerangan</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_senter }}</td>
+				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_senter); ?></td>
 				</tr>
 				<tr>
 				    <td class="tg-0lax">Obat - Obatan dan P3K</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_obat }}</td>
+				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_obat); ?></td>
 				</tr>
 				<tr>
 				    <td class="tg-0lax">Matras / Alas Tidur</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_matras }}</td>
+				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_matras); ?></td>
 				</tr>
 				<tr>
 				    <td class="tg-0lax">Kantong Sampah</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_kantong_sampah }}</td>
+				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_kantong_sampah); ?></td>
 				</tr>
 				<tr>
 				    <td class="tg-0lax">Jaket</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_jaket }}</td>
+				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_jaket); ?></td>
 				</tr>		
 			</table>
 		</td>
@@ -312,12 +312,12 @@
 				    <th class="tg-hgcj" style="width: 100px">Jumlah</th>
 				</tr>
 					
-				@foreach($data->logistik as $key => $logistik)
+				<?php $__currentLoopData = $data->logistik; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $logistik): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 				  	<tr>
-						<td class="tg-0lax">{{ $logistik->lg_nama }}</td>
-						<td class="tg-0lax">{{ $logistik->lg_jumlah }}</td>
+						<td class="tg-0lax"><?php echo e($logistik->lg_nama); ?></td>
+						<td class="tg-0lax"><?php echo e($logistik->lg_jumlah); ?></td>
 					</tr>
-				@endforeach
+				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 			</table>
 		</td>
 	</tr>
@@ -378,4 +378,4 @@
 		<td class="tg-vlyc">5. </td>
 		<td class="tg-vlyc">Wajib membawa Surat Keterangan Kesehatan</td>
 	</tr>
-</table>
+</table><?php /**PATH C:\xampp\htdocs\sipenerang\tahura\resources\views/backend/pdf/berkas.blade.php ENDPATH**/ ?>

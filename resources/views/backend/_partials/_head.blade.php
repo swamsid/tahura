@@ -9,3 +9,4 @@
 
 <link href="{{ asset('public/backend/css/animate.css') }}" rel="stylesheet">
 <link href="{{ asset('public/backend/css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('public/backend/css/plugins/c3/c3.min.css') }}" rel="stylesheet">

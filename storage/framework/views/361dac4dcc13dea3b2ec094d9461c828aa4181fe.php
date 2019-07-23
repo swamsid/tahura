@@ -1,6 +1,4 @@
-@extends('backend.main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="row border-bottom white-bg dashboard-header">
         <!-- <div class="col-sm-3">
             <h2>Selamat Datang</h2>
@@ -55,9 +53,9 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('extra_script')
+<?php $__env->startSection('extra_script'); ?>
     <script>
         $(document).ready(function() {
             setTimeout(function() {
@@ -139,4 +137,5 @@
             });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\sipenerang\tahura\resources\views/backend/dashboard.blade.php ENDPATH**/ ?>
