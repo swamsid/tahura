@@ -105,6 +105,10 @@ Route::group(['middleware' => ['guest', 'web']], function(){
 Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('wpadmin/dashboard', function(){
+
+		if(!Auth::user()->can('read', 'dashboard'))
+            return view('error.480');
+
 		return view('backend.dashboard');
 	})->name('wpadmin.dashboard');
 
