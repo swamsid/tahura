@@ -15,7 +15,7 @@ class pegawai_controller extends Controller
 {
     protected function index(){
 
-        if(!Auth::user()->can('read', 'master data pegawai'))
+        if(!Auth::user()->can('read', 'data_pegawai'))
             return view('error.480');
 
     	$data = DB::table('user')->join('jabatan', 'jabatan.id_jabatan', '=', 'user.id_jabatan')->select('user.*', 'jabatan.nama_jabatan')->get();
@@ -24,7 +24,7 @@ class pegawai_controller extends Controller
     }
 
     protected function create(){
-        if(!Auth::user()->can('create', 'master data pegawai') && !Auth::user()->can('update', 'master data pegawai') && !Auth::user()->can('delete', 'master data pegawai'))
+        if(!Auth::user()->can('create', 'data_pegawai') && !Auth::user()->can('update', 'data_pegawai') && !Auth::user()->can('delete', 'master data pegawai'))
     	   return view('error.480');
 
         return view('backend.master.pegawai.create');
@@ -107,7 +107,8 @@ class pegawai_controller extends Controller
     		return json_encode([
     			'status'	=> 'success',
     			'message'	=> 'Data Pegawai Berhasil Disimpan',
-    			'user'		=> $user
+    			'user'		=> $user,
+                'password'  => $password = rand(100000, 999999)
     		]);
 
     	} catch (Exception $e) {
@@ -190,7 +191,8 @@ class pegawai_controller extends Controller
     		return json_encode([
     			'status'	=> 'success',
     			'message'	=> 'Data Pegawai Berhasil DIperbarui',
-    			'user'		=> $user
+    			'user'		=> $user,
+                'password'  => $password = rand(100000, 999999)
     		]);
 
     	} catch (Exception $e) {
@@ -232,7 +234,8 @@ class pegawai_controller extends Controller
     		return json_encode([
     			'status'	=> 'success',
     			'message'	=> 'Data Pegawai Berhasil Dihapus',
-    			'user'		=> $user
+    			'user'		=> $user,
+                'password'  => $password = rand(100000, 999999)
     		]);
 
     	} catch (Exception $e) {

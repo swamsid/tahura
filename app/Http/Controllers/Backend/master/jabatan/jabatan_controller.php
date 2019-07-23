@@ -14,7 +14,7 @@ class jabatan_controller extends Controller
 {
     protected function index(){
 
-        if(!Auth::user()->can('read', 'master data jabatan'))
+        if(!Auth::user()->can('read', 'data_jabatan'))
             return view('error.480');
 
     	$data = DB::table('jabatan')->get();
@@ -22,7 +22,7 @@ class jabatan_controller extends Controller
     }
 
     protected function create(){
-        if(!Auth::user()->can('create', 'master data jabatan') && !Auth::user()->can('update', 'master data jabatan') && !Auth::user()->can('delete', 'master data jabatan'))
+        if(!Auth::user()->can('create', 'data_jabatan') && !Auth::user()->can('update', 'data_jabatan') && !Auth::user()->can('delete', 'master data jabatan'))
            return view('error.480');
 
     	return view('backend.master.jabatan.create');

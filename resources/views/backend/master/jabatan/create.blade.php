@@ -147,15 +147,32 @@
 
                         <div class="row" style="border-top: 1px solid #dedede; margin-top: 20px;">
                             <div class="col-md-12" style="padding: 20px; text-align: right;">
+                                
                                 <template v-if="formState == 'insert'">
-                                    <button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="disabledButton">Simpan Data</button>
+                                     @if(Auth::user()->can('create', 'data_jabatan'))
+                                        <button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="disabledButton">Simpan Data</button>
+                                    @else
+                                        <small>Tidak Memiliki Akses Untuk Menambah Data Pegawai</small>
+                                    @endif
                                     <!-- <button type="button" class="btn btn-primary btn-sm" @click="formReset">reset</button> -->
                                 </template>
 
                                 <template v-if="formState == 'update'">
-                                    <button type="button" class="btn btn-primary btn-sm" @click="update" :disabled="disabledButton">Simpan Perubahan</button>
-                                    <button type="button" class="btn btn-danger btn-sm" @click="deleted">Hapus</button>
+
+                                    @if(Auth::user()->can('update', 'data_jabatan'))
+                                        <button type="button" class="btn btn-primary btn-sm" @click="update" :disabled="disabledButton">Simpan Perubahan</button>
+                                    @else
+                                        <small>Tidak Memiliki Akses Untuk Merubah Data Pegawai</small>
+                                    @endif
+
+                                    @if(Auth::user()->can('delete', 'data_jabatan'))
+                                        <button type="button" class="btn btn-danger btn-sm" @click="deleted">Hapus</button>
+                                    @else
+                                        <small>Tidak Memiliki Akses Untuk Menghapus Data Pegawai</small>
+                                    @endif
+
                                 </template>
+
                             </div>
                         </div>
                     </div>

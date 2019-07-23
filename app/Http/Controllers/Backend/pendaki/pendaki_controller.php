@@ -17,8 +17,8 @@ class pendaki_controller extends Controller
 {
     protected function index(){
 
-        if(!Auth::user()->can('read', 'manajemen_pendaki'))
-            return view('error.480');
+        if(!Auth::user()->can('read', 'data_pendaftar'))
+            return Session::get('roles');
 
     	$data = DB::table('tb_pendakian')->get();
     	return view('backend.pendaki.index', compact('data'));
@@ -26,7 +26,7 @@ class pendaki_controller extends Controller
 
     protected function detail(Request $request){
 
-        if(!Auth::user()->can('update', 'manajemen_pendaki'))
+        if(!Auth::user()->can('update', 'data_pendaftar'))
             return view('error.480');
 
     	$data = pendakian::where('pd_id', $request->id)

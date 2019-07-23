@@ -29,7 +29,7 @@
                     <div class="ibox-title">
                         <h5>Data Pendaftaran Pendakian</h5>
                         <div class="ibox-tools">
-                            @if(Auth::user()->can('create', 'master data jabatan') || Auth::user()->can('update', 'master data jabatan') || Auth::user()->can('delete', 'master data jabatan'))
+                            @if(Auth::user()->can('create', 'data_jabatan') || Auth::user()->can('update', 'data_jabatan') || Auth::user()->can('delete', 'data_jabatan'))
                                 <a href="{{ Route('wpadmin.jabatan.create') }}">
                                     <button class="btn btn-sm btn-primary">
                                         <i class="fa fa-plus"></i> &nbsp;Tambah / Edit Data
