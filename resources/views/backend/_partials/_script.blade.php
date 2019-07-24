@@ -32,7 +32,7 @@
 <script src="{{ asset('public/backend/js/demo/sparkline-demo.js') }}"></script>
 
 <!-- ChartJS-->
-<script src="{{ asset('public/backend/js/plugins/chartJs/Chart.min.js') }}"></script>
+<script src="{{ asset('public/backend/js/plugins/chartJs/dists/chart.min.js') }}"></script>
 
 <!-- Toastr -->
 <script src="{{ asset('public/backend/js/plugins/toastr/toastr.min.js') }}"></script>
