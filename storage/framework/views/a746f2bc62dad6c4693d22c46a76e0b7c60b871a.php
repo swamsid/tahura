@@ -1,8 +1,6 @@
-@extends('backend.main')
+<?php $__env->startSection('content'); ?>
 
-@section('content')
-
-    @if(Auth::user()->posisi == 'kantor')
+    <?php if(Auth::user()->posisi == 'kantor'): ?>
         <div class="row border-bottom white-bg dashboard-header">
             <!-- <div class="col-sm-3">
                 <h2>Selamat Datang</h2>
@@ -57,7 +55,7 @@
                 </div>
             </div>
         </div>
-    @else
+    <?php else: ?>
         <div class="row border-bottom white-bg dashboard-header">
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
@@ -87,10 +85,10 @@
                 </div>
             </div>
         </div>
-    @endif
-@endsection
+    <?php endif; ?>
+<?php $__env->stopSection(); ?>
 
-@section('extra_script')
+<?php $__env->startSection('extra_script'); ?>
     <script>
         $(document).ready(function () {
             setTimeout(function() {
@@ -100,7 +98,7 @@
                     showMethod: 'slideDown',
                     timeOut: 4000
                 };
-                toastr.success('Selamat Data {{ Auth::user()->nama }}', 'UPT Tahura Raden Soerjo');
+                toastr.success('Selamat Data <?php echo e(Auth::user()->nama); ?>', 'UPT Tahura Raden Soerjo');
             }, 1300);
 
             c3.generate({
@@ -169,4 +167,5 @@
             });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/dashboard.blade.php ENDPATH**/ ?>

@@ -1,11 +1,9 @@
-@extends('backend.main')
+<?php $__env->startSection('extra_style'); ?>
 
-@section('extra_style')
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/select2/dist/css/select2.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css')); ?>">
 
     <style type="text/css">
         [v-cloak]{
@@ -85,9 +83,9 @@
                 background: rgba(255,0,0,0.1);
             }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<div class="wrapper wrapper-content animated fadeInRight" id="vue-element">
         <div class="row" v-cloak>
             <div class="col-lg-12">
@@ -100,7 +98,7 @@
                     </div>
                     <div class="ibox-content">
                         <form id="data-form">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}" readonly>
+                            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" readonly>
                             <input type="hidden" name="id" v-model="single.id_jabatan" readonly>
                             <div class="row">
                                 <div class="col-md-12">
@@ -149,27 +147,27 @@
                             <div class="col-md-12" style="padding: 20px; text-align: right;">
                                 
                                 <template v-if="formState == 'insert'">
-                                     @if(Auth::user()->can('create', 'data_jabatan'))
+                                     <?php if(Auth::user()->can('create', 'data_jabatan')): ?>
                                         <button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="disabledButton">Simpan Data</button>
-                                    @else
+                                    <?php else: ?>
                                         <small>Tidak Memiliki Akses Untuk Menambah Data Pegawai</small>
-                                    @endif
+                                    <?php endif; ?>
                                     <!-- <button type="button" class="btn btn-primary btn-sm" @click="formReset">reset</button> -->
                                 </template>
 
                                 <template v-if="formState == 'update'">
 
-                                    @if(Auth::user()->can('update', 'data_jabatan'))
+                                    <?php if(Auth::user()->can('update', 'data_jabatan')): ?>
                                         <button type="button" class="btn btn-primary btn-sm" @click="update" :disabled="disabledButton">Simpan Perubahan</button>
-                                    @else
+                                    <?php else: ?>
                                         <small>Tidak Memiliki Akses Untuk Merubah Data Pegawai</small>
-                                    @endif
+                                    <?php endif; ?>
 
-                                    @if(Auth::user()->can('delete', 'data_jabatan'))
+                                    <?php if(Auth::user()->can('delete', 'data_jabatan')): ?>
                                         <button type="button" class="btn btn-danger btn-sm" @click="deleted">Hapus</button>
-                                    @else
+                                    <?php else: ?>
                                         <small>Tidak Memiliki Akses Untuk Menghapus Data Pegawai</small>
-                                    @endif
+                                    <?php endif; ?>
 
                                 </template>
 
@@ -201,22 +199,22 @@
         </div>
 
 	</div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('extra_script')
+<?php $__env->startSection('extra_script'); ?>
 
-    <script src="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/axios/axios.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/select2/dist/js/select2.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/axios/axios.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js')); ?>"></script>
 
     <!-- Vue js -->
-    <script src="{{ asset('public/frontend/js/vendors/vue/vue.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/datatable-v1/datatable.component.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vue.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/select/select.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/datatable-v1/datatable.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js')); ?>"></script>
 
     <script type="text/javascript">
     	
@@ -266,7 +264,7 @@
             mounted: function(){
                 console.log('vue ready');
 
-                axios.get('{{ Route("wpadmin.jabatan.resource") }}')
+                axios.get('<?php echo e(Route("wpadmin.jabatan.resource")); ?>')
                         .then((response) => {
                             console.log(response.data);
 
@@ -289,7 +287,7 @@
                         this.disabledButton = true;
                         var form = $('#data-form').serialize();
 
-                        axios.post('{{ Route("wpadmin.jabatan.save") }}', form)
+                        axios.post('<?php echo e(Route("wpadmin.jabatan.save")); ?>', form)
                                 .then((response) => {
                                     console.log(response.data);
 
@@ -341,7 +339,7 @@
                         this.disabledButton = true;
                         var form = $('#data-form').serialize();
 
-                        axios.post('{{ Route("wpadmin.jabatan.update") }}', form)
+                        axios.post('<?php echo e(Route("wpadmin.jabatan.update")); ?>', form)
                                 .then((response) => {
                                     console.log(response.data);
 
@@ -390,7 +388,7 @@
 
                     this.disabledButton = true;
 
-                    axios.post('{{ Route("wpadmin.jabatan.delete") }}', {_token: '{{ csrf_token() }}', id: this.single.id_jabatan})
+                    axios.post('<?php echo e(Route("wpadmin.jabatan.delete")); ?>', {_token: '<?php echo e(csrf_token()); ?>', id: this.single.id_jabatan})
                             .then((response) => {
                                 console.log(response.data);
 
@@ -460,4 +458,5 @@
         });
 
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\sipenerang\tahura\resources\views/backend/master/jabatan/create.blade.php ENDPATH**/ ?>

@@ -1,11 +1,9 @@
-@extends('backend.main')
+<?php $__env->startSection('extra_style'); ?>
 
-@section('extra_style')
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/select2/dist/css/select2.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css')); ?>">
 
     <style type="text/css">
         [v-cloak]{
@@ -95,9 +93,9 @@
                 background: rgba(255,0,0,0.1);
             }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<div class="wrapper wrapper-content animated fadeInRight" id="vue-element">
         <div class="row" v-cloak>
             <div class="col-lg-6 col-md-offset-3">
@@ -109,8 +107,8 @@
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <form id="data-form" action="{{ Route('wpadmin.laporan.pendaki_masuk.result') }}" target="_blank">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}" readonly>
+                        <form id="data-form" action="<?php echo e(Route('wpadmin.laporan.pendaki_masuk.result')); ?>" target="_blank">
+                            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" readonly>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row model-form-template">
@@ -161,22 +159,22 @@
     	</div>
 
 	</div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('extra_script')
+<?php $__env->startSection('extra_script'); ?>
 
-    <script src="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/axios/axios.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/select2/dist/js/select2.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/axios/axios.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js')); ?>"></script>
 
     <!-- Vue js -->
-    <script src="{{ asset('public/frontend/js/vendors/vue/vue.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/datatable-v1/datatable.component.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vue.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/select/select.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/datatable-v1/datatable.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js')); ?>"></script>
 
     <script type="text/javascript">
     	
@@ -193,7 +191,7 @@
 
                 single: {
                     id_jabatan: '',
-                    tgl_1: '{{ date("d/m/Y") }}',
+                    tgl_1: '<?php echo e(date("d/m/Y")); ?>',
                     tgl_2: '',
                 }
 
@@ -213,10 +211,10 @@
 
             mounted: function(){
                 console.log('vue ready');
-                this.tgl1Change('{{ date("d/m/Y") }}');
-                this.single.tgl_2 = '{{ date("d/m/Y") }}';
+                this.tgl1Change('<?php echo e(date("d/m/Y")); ?>');
+                this.single.tgl_2 = '<?php echo e(date("d/m/Y")); ?>';
 
-                axios.get('{{ Route("wpadmin.laporan.pendaki_masuk.resource") }}')
+                axios.get('<?php echo e(Route("wpadmin.laporan.pendaki_masuk.resource")); ?>')
                         .then((response) => {
                             console.log(response.data);
                             this.jalur = response.data.pos;
@@ -257,4 +255,5 @@
         });
 
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\sipenerang\tahura\resources\views/backend/laporan/pendaki_masuk/index.blade.php ENDPATH**/ ?>

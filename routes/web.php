@@ -198,3 +198,8 @@ Route::group(['middleware' => 'auth'], function(){
 			'uses' => 'Backend\laporan\pendaki_masuk\pendaki_masuk_controller@result'
 		])->name('wpadmin.laporan.pendaki_masuk.result');
 });
+
+Route::get('/clear-cache',function(){
+	Artisan::call('cache:clear');
+	return "Cache is cleared";
+});

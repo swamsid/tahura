@@ -1,8 +1,6 @@
-@extends('backend.main')
-
-@section('extra_style')
+<?php $__env->startSection('extra_style'); ?>
 	<!-- Data Tables -->
-	<link href="{{ asset('public/backend/css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+	<link href="<?php echo e(asset('public/backend/css/plugins/dataTables/datatables.min.css')); ?>" rel="stylesheet">
     <style type="text/css">
         .table-mini th, .table-mini td{
             border: 1px solid #ccc;
@@ -19,25 +17,25 @@
             padding: 0px;
         }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<div class="wrapper wrapper-content animated fadeInRight minimize">
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins ukuran_minimize">
                     <div class="ibox-title">
-                        <h5>Data Pegawai</h5>
+                        <h5>Data Jabatan</h5>
                         <div class="ibox-tools">
-                            @if(Auth::user()->can('create', 'data_pegawai') || Auth::user()->can('update', 'data_pegawai') || Auth::user()->can('delete', 'data_pegawai'))
-                                <a href="{{ Route('wpadmin.pegawai.create') }}">
-        						    <button class="btn btn-sm btn-primary">
+                            <?php if(Auth::user()->can('create', 'data_jabatan') || Auth::user()->can('update', 'data_jabatan') || Auth::user()->can('delete', 'data_jabatan')): ?>
+                                <a href="<?php echo e(Route('wpadmin.jabatan.create')); ?>">
+                                    <button class="btn btn-sm btn-primary">
                                         <i class="fa fa-plus"></i> &nbsp;Tambah / Edit Data
                                     </button>
                                 </a>
-                            @else
-                                <small>Tidak Memiliki Akses Menuju Form Pegawai</small>
-                            @endif
+                            <?php else: ?>
+                                <small>Tidak Memiliki Akses Menuju Form Jabatan</small>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="ibox-content">
@@ -45,22 +43,20 @@
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example">
 						        <thead>
 						          <tr>
-						            <th width="5%">No</th>
-						            <th width="15%">Nip Pegawai</th>
-						            <th>Nama Pegawai</th>
-                                    <th>Jabatan Pegawai</th>
+						            <th width="20px">No</th>
+						            <th width="115px">Nomor Jabatan</th>
+						            <th>Nama Jabatan</th>
 						          </tr>
 						        </thead>
 
 						        <tbody>
-                                    @foreach($data as $key => $user)
+                                    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $jabatan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td style="text-align: center;">{{ $key+1 }}</td>
-                                            <td>{{ $user->nip }}</td>
-                                            <td>{{ $user->nama }}</td>
-                                            <td>{{ $user->nama_jabatan }}</td>
+                                            <td style="text-align: center;"><?php echo e($key + 1); ?></td>
+                                            <td style="text-align: center;"><?php echo e($jabatan->nomor_jabatan); ?></td>
+                                            <td><?php echo e($jabatan->nama_jabatan); ?></td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				              	</tbody>
 					      </table>
                         </div>
@@ -81,17 +77,17 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('extra_script')
+<?php $__env->startSection('extra_script'); ?>
 	<!-- Data Tables -->
-    <script src="{{ asset('public/backend/js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/backend/js/plugins/dataTables/datatables.min.js')); ?>"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
 
-            @if(Session::has('message'))
-                alert('{{ Session::get("message") }}');
-            @endif
+            <?php if(Session::has('message')): ?>
+                alert('<?php echo e(Session::get("message")); ?>');
+            <?php endif; ?>
 
             $('.dataTables-example').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
@@ -114,6 +110,14 @@
                 ]
 
             });
+
+            $('.detail').click(function(){
+                $('#modal-detail').modal('show');
+                $('#detail-wrap').html('<center><small> Sedang Mengambil Data</small></center>')
+                $('#detail-wrap').load('<?php echo e(Route("wpadmin.pendaki.detail")); ?>?id='+$(this).data('id'))
+            })
+
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\sipenerang\tahura\resources\views/backend/master/jabatan/index.blade.php ENDPATH**/ ?>

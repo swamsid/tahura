@@ -129,7 +129,7 @@ Vue.component('vue-datatable',{
           </select>
         </div> -->
 
-        <div class="col-md-5 col-sm-5 col-xs-5 form-datatable-vue" style="padding: 0px 0px 0px 20px;">
+        <div class="col-md-5 col-sm-5 col-xs-11 form-datatable-vue" style="padding: 0px 0px 0px 20px;">
           <input type="text" class="form-control modul-keuangan vue-datatable-search" v-model="search" style="background:white;" placeholder="Kata Kunci..." @keydown="onTable">
         </div>
 

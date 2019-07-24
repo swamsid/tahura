@@ -1,11 +1,9 @@
-@extends('backend.main')
+<?php $__env->startSection('extra_style'); ?>
 
-@section('extra_style')
-
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/select2/dist/css/select2.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css')); ?>">
 
     <style type="text/css">
         [v-cloak]{
@@ -113,9 +111,9 @@
                 border: 1px solid #eee;
             }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<div class="wrapper wrapper-content animated fadeInRight minimize" id="vue-element">
         <div class="row" v-cloak>
             <div class="col-lg-12">
@@ -128,14 +126,14 @@
                     </div>
                     <div class="ibox-content">
                         <form id="data-form" enctype="multipart/form-data">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}" readonly>
+                            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" readonly>
                             <input type="hidden" name="id" v-model="single.id" readonly>
                             <div class="row">
                                 <div class="col-md-6" style="box-shadow: 0px 0px 0px #ccc;">
                                     <div class="picture-wrap">
                                         <i class="fa fa-times" data-placement="top" title="Hapus Gambar 1" v-if="!firstPictureDeleted" @click="deletePicture" data-id="1"></i>
                                         <img 
-                                            src="{{ asset('public/backend/img/default.jpg') }}"
+                                            src="<?php echo e(asset('public/backend/img/default.jpg')); ?>"
                                             id="picture-wrap-1"
                                             tabindex="0"
                                             data-id="1"
@@ -234,12 +232,12 @@
                                                 <tbody>
                                                     <template v-for="(role, idx) in role">
                                                         <tr>
-                                                            <td colspan="5" style="background: #eee; font-weight: bold;">@{{ role.m_group }}</td>
+                                                            <td colspan="5" style="background: #eee; font-weight: bold;">{{ role.m_group }}</td>
                                                         </tr>
 
                                                         <template v-for="(detail, idx) in role.detail">
                                                             <tr>
-                                                                <td style="padding-left: 20px;">@{{ detail.m_name }}</td>
+                                                                <td style="padding-left: 20px;">{{ detail.m_name }}</td>
                                                                 <td style="text-align: center;">
                                                                     <input type="checkbox" :name="'read['+detail.m_id+'][]'" class="check" :id="detail.m_id+'_read'">
                                                                 </td>
@@ -268,27 +266,27 @@
                         <div class="row" style="border-top: 1px solid #dedede; margin-top: 20px;">
                             <div class="col-md-12" style="padding: 20px; text-align: right;">
                                 <template v-if="formState == 'insert'">
-                                     @if(Auth::user()->can('create', 'data_jabatan'))
+                                     <?php if(Auth::user()->can('create', 'data_jabatan')): ?>
                                         <button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="disabledButton">Simpan Data</button>
-                                    @else
+                                    <?php else: ?>
                                         <small>Tidak Memiliki Akses Untuk Menambah Data Pegawai</small>
-                                    @endif
+                                    <?php endif; ?>
                                     <!-- <button type="button" class="btn btn-primary btn-sm" @click="formReset">reset</button> -->
                                 </template>
 
                                 <template v-if="formState == 'update'">
 
-                                    @if(Auth::user()->can('update', 'data_pegawai'))
+                                    <?php if(Auth::user()->can('update', 'data_pegawai')): ?>
                                         <button type="button" class="btn btn-primary btn-sm" @click="update" :disabled="disabledButton">Simpan Perubahan</button>
-                                    @else
+                                    <?php else: ?>
                                         <small>Tidak Memiliki Akses Untuk Merubah Data Pegawai</small>
-                                    @endif
+                                    <?php endif; ?>
 
-                                    @if(Auth::user()->can('delete', 'data_pegawai'))
+                                    <?php if(Auth::user()->can('delete', 'data_pegawai')): ?>
                                         <button type="button" class="btn btn-danger btn-sm" @click="deleted">Hapus</button>
-                                    @else
+                                    <?php else: ?>
                                         <small>Tidak Memiliki Akses Untuk Menghapus Data Pegawai</small>
-                                    @endif
+                                    <?php endif; ?>
 
                                 </template>
                             </div>
@@ -319,22 +317,22 @@
         </div>
 
 	</div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('extra_script')
+<?php $__env->startSection('extra_script'); ?>
 
-    <script src="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/axios/axios.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/select2/dist/js/select2.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/axios/axios.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js')); ?>"></script>
 
     <!-- Vue js -->
-    <script src="{{ asset('public/frontend/js/vendors/vue/vue.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/datatable-v1/datatable.component.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vue.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/select/select.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/datatable-v1/datatable.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js')); ?>"></script>
 
     <script type="text/javascript">
     	
@@ -411,7 +409,7 @@
             mounted: function(){
                 console.log('vue ready');
 
-                axios.get('{{ Route("wpadmin.pegawai.resource") }}')
+                axios.get('<?php echo e(Route("wpadmin.pegawai.resource")); ?>')
                         .then((response) => {
                             console.log(response.data);
 
@@ -437,7 +435,7 @@
                         this.disabledButton = true;
                         var form = new FormData(document.querySelector("form"));
 
-                        axios.post('{{ Route("wpadmin.pegawai.save") }}', form)
+                        axios.post('<?php echo e(Route("wpadmin.pegawai.save")); ?>', form)
                                 .then((response) => {
                                     console.log(response.data);
 
@@ -489,7 +487,7 @@
                         this.disabledButton = true;
                         var form = new FormData(document.querySelector("form"));
 
-                        axios.post('{{ Route("wpadmin.pegawai.update") }}', form)
+                        axios.post('<?php echo e(Route("wpadmin.pegawai.update")); ?>', form)
                                 .then((response) => {
                                     console.log(response.data);
 
@@ -538,7 +536,7 @@
 
                     this.disabledButton = true;
 
-                    axios.post('{{ Route("wpadmin.pegawai.delete") }}', {_token: '{{ csrf_token() }}', id: this.single.id})
+                    axios.post('<?php echo e(Route("wpadmin.pegawai.delete")); ?>', {_token: '<?php echo e(csrf_token()); ?>', id: this.single.id})
                             .then((response) => {
                                 console.log(response.data);
 
@@ -662,7 +660,7 @@
 
                     var conteks = $(e.target)
                     $('#input-image-'+conteks.data('id')).val('');
-                    $("#picture-wrap-"+conteks.data('id')).attr("src", '{{ asset('public/backend/img/default.jpg') }}').animate({
+                    $("#picture-wrap-"+conteks.data('id')).attr("src", '<?php echo e(asset('public/backend/img/default.jpg')); ?>').animate({
                         opacity: 1
                     }, 700);
 
@@ -712,7 +710,7 @@
                         $('#jabatan_pegawai').val(conteks.id_jabatan).trigger('change.select2');
                         $('#posisi_pegawai').val(conteks.posisi).trigger('change.select2');
 
-                        $("#picture-wrap-1").attr("src", '{{ asset("public/backend/img/upload/pegawai/".Auth::user()->user_id) }}/'+conteks.foto).animate({
+                        $("#picture-wrap-1").attr("src", '<?php echo e(asset("public/backend/img/upload/pegawai/".Auth::user()->user_id)); ?>/'+conteks.foto).animate({
                             opacity: 1
                         }, 700);
                     }
@@ -733,7 +731,7 @@
 
                     $('#jabatan_pegawai').val(this.jabatan_pegawai[0].id).trigger('change.select2');
                     $('#posisi_pegawai').val(this.posisi_pegawai[0].id).trigger('change.select2');
-                    $("#picture-wrap-1").attr("src", '{{ asset('public/backend/img/default.jpg') }}').animate({
+                    $("#picture-wrap-1").attr("src", '<?php echo e(asset('public/backend/img/default.jpg')); ?>').animate({
                         opacity: 1
                     }, 700);
                 }
@@ -741,4 +739,5 @@
         });
 
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/master/pegawai/create.blade.php ENDPATH**/ ?>

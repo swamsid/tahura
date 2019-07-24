@@ -1,8 +1,6 @@
-@extends('backend.main')
-
-@section('extra_style')
+<?php $__env->startSection('extra_style'); ?>
 	<!-- Data Tables -->
-	<link href="{{ asset('public/backend/css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+	<link href="<?php echo e(asset('public/backend/css/plugins/dataTables/datatables.min.css')); ?>" rel="stylesheet">
     <style type="text/css">
         .table-mini th, .table-mini td{
             border: 1px solid #ccc;
@@ -19,9 +17,9 @@
             padding: 0px;
         }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<div class="wrapper wrapper-content animated fadeInRight minimize">
         <div class="row">
             <div class="col-lg-12">
@@ -29,15 +27,15 @@
                     <div class="ibox-title">
                         <h5>Data Pegawai</h5>
                         <div class="ibox-tools">
-                            @if(Auth::user()->can('create', 'data_pegawai') || Auth::user()->can('update', 'data_pegawai') || Auth::user()->can('delete', 'data_pegawai'))
-                                <a href="{{ Route('wpadmin.pegawai.create') }}">
+                            <?php if(Auth::user()->can('create', 'data_pegawai') || Auth::user()->can('update', 'data_pegawai') || Auth::user()->can('delete', 'data_pegawai')): ?>
+                                <a href="<?php echo e(Route('wpadmin.pegawai.create')); ?>">
         						    <button class="btn btn-sm btn-primary">
                                         <i class="fa fa-plus"></i> &nbsp;Tambah / Edit Data
                                     </button>
                                 </a>
-                            @else
+                            <?php else: ?>
                                 <small>Tidak Memiliki Akses Menuju Form Pegawai</small>
-                            @endif
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="ibox-content">
@@ -53,14 +51,14 @@
 						        </thead>
 
 						        <tbody>
-                                    @foreach($data as $key => $user)
+                                    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td style="text-align: center;">{{ $key+1 }}</td>
-                                            <td>{{ $user->nip }}</td>
-                                            <td>{{ $user->nama }}</td>
-                                            <td>{{ $user->nama_jabatan }}</td>
+                                            <td style="text-align: center;"><?php echo e($key+1); ?></td>
+                                            <td><?php echo e($user->nip); ?></td>
+                                            <td><?php echo e($user->nama); ?></td>
+                                            <td><?php echo e($user->nama_jabatan); ?></td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				              	</tbody>
 					      </table>
                         </div>
@@ -81,17 +79,17 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('extra_script')
+<?php $__env->startSection('extra_script'); ?>
 	<!-- Data Tables -->
-    <script src="{{ asset('public/backend/js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/backend/js/plugins/dataTables/datatables.min.js')); ?>"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
 
-            @if(Session::has('message'))
-                alert('{{ Session::get("message") }}');
-            @endif
+            <?php if(Session::has('message')): ?>
+                alert('<?php echo e(Session::get("message")); ?>');
+            <?php endif; ?>
 
             $('.dataTables-example').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
@@ -116,4 +114,5 @@
             });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\sipenerang\tahura\resources\views/backend/master/pegawai/index.blade.php ENDPATH**/ ?>

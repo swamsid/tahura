@@ -4,12 +4,9 @@
 <script src="{{ asset('public/backend/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
 <script src="{{ asset('public/backend/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
-<!-- Flot -->
-<script src="{{ asset('public/backend/js/plugins/flot/jquery.flot.js') }}"></script>
-<script src="{{ asset('public/backend/js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
-<script src="{{ asset('public/backend/js/plugins/flot/jquery.flot.spline.js') }}"></script>
-<script src="{{ asset('public/backend/js/plugins/flot/jquery.flot.resize.js') }}"></script>
-<script src="{{ asset('public/backend/js/plugins/flot/jquery.flot.pie.js') }}"></script>
+<!-- Morris -->
+<script src="{{ asset('public/backend/js/plugins/d3/d3.min.js') }}"></script>
+<script src="{{ asset('public/backend/js/plugins/c3/c3.min.js') }}"></script>
 
 <!-- Peity -->
 <script src="{{ asset('public/backend/js/plugins/peity/jquery.peity.min.js') }}"></script>

@@ -1,8 +1,6 @@
-@extends('backend.main')
-
-@section('extra_style')
+<?php $__env->startSection('extra_style'); ?>
 	<!-- Data Tables -->
-	<link href="{{ asset('public/backend/css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
+	<link href="<?php echo e(asset('public/backend/css/plugins/dataTables/datatables.min.css')); ?>" rel="stylesheet">
     <style type="text/css">
         .table-mini th, .table-mini td{
             border: 1px solid #ccc;
@@ -19,9 +17,9 @@
             padding: 0px;
         }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<div class="wrapper wrapper-content animated fadeInRight minimize">
         <div class="row">
             <div class="col-lg-12">
@@ -48,13 +46,13 @@
 						        </thead>
 
 						        <tbody>
-                                    @foreach($data as $key => $data)
+                                    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td class="text-center">{{ $key + 1 }}</td>
-                                            <td class="text-center">{{ $data->pd_nomor }}</td>
-                                            <td class="text-center">{{ $data->pd_nama_ketua }}</td>
-                                            <td class="text-center">{{ date('d-m-Y', strtotime($data->created_at)) }}</td>
-                                            <td class="text-center">{{ date('d-m-Y', strtotime($data->pd_tgl_naik)) }}</td>
+                                            <td class="text-center"><?php echo e($key + 1); ?></td>
+                                            <td class="text-center"><?php echo e($data->pd_nomor); ?></td>
+                                            <td class="text-center"><?php echo e($data->pd_nama_ketua); ?></td>
+                                            <td class="text-center"><?php echo e(date('d-m-Y', strtotime($data->created_at))); ?></td>
+                                            <td class="text-center"><?php echo e(date('d-m-Y', strtotime($data->pd_tgl_naik))); ?></td>
                                             <td class="text-center">
                                                 <?php
                                                     $class = 'label-info';
@@ -66,15 +64,15 @@
                                                     else if($data->pd_status == 'sudah naik' || $data->pd_status == 'sudah turun')
                                                         $class = 'label-warning';
                                                  ?>
-                                                <span class="label {{ $class }}">{{ $data->pd_status }}</span>
+                                                <span class="label <?php echo e($class); ?>"><?php echo e($data->pd_status); ?></span>
                                             </td>
                                             <td class="text-center">
                                                 <center>
-                                                    <a href="{{ Route('wpadmin.pendaki.detail', 'id='.$data->pd_id) }}" class='btn btn-primary btn-xs' data-id="{{ $data->pd_id }}" title='Delete Data'><span class='fa fa-folder-open'></span></a>
+                                                    <a href="<?php echo e(Route('wpadmin.pendaki.detail', 'id='.$data->pd_id)); ?>" class='btn btn-primary btn-xs' data-id="<?php echo e($data->pd_id); ?>" title='Delete Data'><span class='fa fa-folder-open'></span></a>
                                                 </center>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				              	</tbody>
 					      </table>
                         </div>
@@ -95,18 +93,19 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('extra_script')
+<?php $__env->startSection('extra_script'); ?>
 	<!-- Data Tables -->
-    <script src="{{ asset('public/backend/js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/backend/js/plugins/dataTables/datatables.min.js')); ?>"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
 
-            @if(Session::has('message'))
-                // alert('{{ Session::get("message") }}');
-                // {{ Session::forget('message') }}
-            @endif
+            <?php if(Session::has('message')): ?>
+                // alert('<?php echo e(Session::get("message")); ?>');
+                // <?php echo e(Session::forget('message')); ?>
+
+            <?php endif; ?>
 
             $('.dataTables-example').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
@@ -133,9 +132,10 @@
             $('.detail').click(function(){
                 $('#modal-detail').modal('show');
                 $('#detail-wrap').html('<center><small> Sedang Mengambil Data</small></center>')
-                $('#detail-wrap').load('{{ Route("wpadmin.pendaki.detail") }}?id='+$(this).data('id'))
+                $('#detail-wrap').load('<?php echo e(Route("wpadmin.pendaki.detail")); ?>?id='+$(this).data('id'))
             })
 
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\sipenerang\tahura\resources\views/backend/pendaki/index.blade.php ENDPATH**/ ?>

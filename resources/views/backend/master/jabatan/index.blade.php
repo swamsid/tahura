@@ -22,12 +22,12 @@
 @endsection
 
 @section('content')
-	<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="wrapper wrapper-content animated fadeInRight minimize">
         <div class="row">
             <div class="col-lg-12">
-                <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins ukuran_minimize">
                     <div class="ibox-title">
-                        <h5>Data Pendaftaran Pendakian</h5>
+                        <h5>Data Jabatan</h5>
                         <div class="ibox-tools">
                             @if(Auth::user()->can('create', 'data_jabatan') || Auth::user()->can('update', 'data_jabatan') || Auth::user()->can('delete', 'data_jabatan'))
                                 <a href="{{ Route('wpadmin.jabatan.create') }}">
