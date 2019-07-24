@@ -17,48 +17,51 @@ Route::get('/', function () {
 
 Route::get('tes-pdf', function(){
 
-	// $data = App\Model\backend\tb_pendakian::where('pd_id', 1)
- //                    ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
- //                    ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
- //                    ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
- //                    ->leftJoin('regencies', 'regencies.id', 'pd_kabupaten')
- //                    ->leftJoin('districts', 'districts.id', 'pd_kecamatan')
- //                    ->leftJoin('villages', 'villages.id', 'pd_desa')
- //                    ->with('kontak')
- //                    ->with('anggota')
- //                    ->with('peralatan')
- //                    ->with('logistik')
- //                    ->select(
- //                        'tb_pendakian.*',
- //                        'a.pp_nama as pos_naik',
- //                        'b.pp_nama as pos_turun',
- //                        'provinces.name as provinsi',
- //                        'regencies.name as kabupaten',
- //                        'districts.name as kecamatan',
- //                        'villages.name as kelurahan',
- //                    )->first();
+	$data = App\Model\backend\tb_pendakian::where('pd_id', 1)
+                    ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
+                    ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
+                    ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
+                    ->leftJoin('regencies', 'regencies.id', 'pd_kabupaten')
+                    ->leftJoin('districts', 'districts.id', 'pd_kecamatan')
+                    ->leftJoin('villages', 'villages.id', 'pd_desa')
+                    ->with('kontak')
+                    ->with('anggota')
+                    ->with('peralatan')
+                    ->with('logistik')
+                    ->select(
+                        'tb_pendakian.*',
+                        'a.pp_nama as pos_naik',
+                        'b.pp_nama as pos_turun',
+                        'provinces.name as provinsi',
+                        'regencies.name as kabupaten',
+                        'districts.name as kecamatan',
+                        'villages.name as kelurahan'
+                    )->first();
 
-	// $qrcode = QrCode::format('png')->size(1000)->generate('https://www.simplesoftware.io');
-	// $pdf = PDF::loadView('backend.pdf.berkas', compact('data'));
-	// return $pdf->stream('berkas.pdf');
+	$qrcode = QrCode::format('png')->size(1000)->generate('https://www.simplesoftware.io');
+	$pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'));
+	return $pdf->stream('berkas.pdf');
 });
 
 Route::get('send-email', function(){
 
-	$pdf = PDF::loadView('backend.pdf.tes');
-	$qrcode = QrCode::format('png')->size(1000);
+	$qrcode = QrCode::format('png')->size(1000)->merge('/public/backend/img/logoJawaTimur.png', .3)->generate('asd');
+	$pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'));
 
 	Mail::send('addition.email.tes', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode){
         $message->subject("test mail gan");
         $message->from('donotreply@kiddy.com', 'Kiddy');
         $message->to('dirgaambaraloh@gmail.com');
+        $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
+		$message->attachData($qrcode, 'kode.png');
     });
 
     return 'email terkirim';
 });
 
 Route::get('qrcode', function () {
-    return QrCode::size(300)->generate('https://www.simplesoftware.io');
+	$qr = QrCode::format('png')->size(300)->merge('/public/backend/img/logoJawaTimur.png', .3)->generate('https://www.simplesoftware.io');
+	return view('welcome', compact('qr'));
 });
 
 // registrasi
@@ -105,10 +108,6 @@ Route::group(['middleware' => ['guest', 'web']], function(){
 Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('wpadmin/dashboard', function(){
-
-		if(!Auth::user()->can('read', 'dashboard'))
-            return view('error.480');
-
 		return view('backend.dashboard');
 	})->name('wpadmin.dashboard');
 
@@ -127,6 +126,14 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('wpadmin/manajemen-pendaki/konfirmasi', [
 		'uses' => 'Backend\pendaki\pendaki_controller@konfirmasi'
 	])->name('wpadmin.pendaki.konfirmasi');
+
+	Route::get('wpadmin/manajemen-pendaki/pdf', [
+		'uses' => 'Backend\pendaki\pendaki_controller@pdf'
+	])->name('wpadmin.pendaki.pdf');
+
+	Route::get('wpadmin/manajemen-pendaki/qr', [
+		'uses' => 'Backend\pendaki\pendaki_controller@qr'
+	])->name('wpadmin.pendaki.qr');
 
 	// Master Jabatan
 		Route::get('wpadmin/data-master/jabatan', [

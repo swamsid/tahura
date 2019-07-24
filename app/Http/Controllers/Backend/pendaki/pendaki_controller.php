@@ -54,10 +54,13 @@ class pendaki_controller extends Controller
                         'turun.nama as acc_turun_by'
                     )->first();
 
+        $qrcode = QrCode::format('png')->size(1000)
+                            ->merge('/public/backend/img/logoJawaTimur.png', .3)
+                            ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
     	$pos = DB::table('tb_pos_pendakian')->get();
 
         // return json_encode($data);
-    	return view('backend.pendaki.detail.index', compact('data', 'pos'));
+    	return view('backend.pendaki.detail.index', compact('data', 'pos', 'qrcode'));
     }
 
     protected function konfirmasi(Request $request){
@@ -114,15 +117,19 @@ class pendaki_controller extends Controller
                     )->first();
 
                 $email = $data->pd_email;
-                $pdf = PDF::loadView('backend.pdf.berkas', compact('data'));
-                $qrcode = QrCode::format('png')->size(1000);
+                
+                $qrcode = QrCode::format('png')->size(1000)
+                            ->merge('/public/backend/img/logoJawaTimur.png', .3)
+                            ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
+
+                $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'));
 
                 Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
                     $message->from('noreply@dishut.com', 'UPT Tahura Raden Soerjo');
                     $message->to($email);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
-                    $message->attachData($qrcode->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id)), 'kode.png');
+                    $message->attachData($qrcode, 'kode.png');
                 });
 
                 $context->update([
@@ -178,5 +185,53 @@ class pendaki_controller extends Controller
     			"message"	=> 'System mengalami masalah '.$e
     		]);
     	}
+    }
+
+    protected function pdf(Request $request){
+        try {
+            
+            $data = pendakian::where('pd_id', $request->id)
+                    ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
+                    ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
+                    ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
+                    ->leftJoin('regencies', 'regencies.id', 'pd_kabupaten')
+                    ->leftJoin('districts', 'districts.id', 'pd_kecamatan')
+                    ->leftJoin('villages', 'villages.id', 'pd_desa')
+                    ->with('kontak')
+                    ->with('anggota')
+                    ->with('peralatan')
+                    ->with('logistik')
+                    ->select(
+                        'tb_pendakian.*',
+                        'a.pp_nama as pos_naik',
+                        'b.pp_nama as pos_turun',
+                        'provinces.name as provinsi',
+                        'regencies.name as kabupaten',
+                        'districts.name as kecamatan',
+                        'villages.name as kelurahan'
+                    )->first();
+
+            $qrcode = QrCode::format('png')->size(1000)
+                            ->merge('/public/backend/img/logoJawaTimur.png', .3)
+                            ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
+
+            $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'));
+
+            return $pdf->stream();
+
+        } catch (Exception $e) {
+            return json_encode([
+                "status"    => 'error',
+                "message"   => 'System mengalami masalah '.$e
+            ]);
+        }
+    }
+
+    protected function qr(Request $request){
+        $qrcode = QrCode::format('png')->size(1000)
+                            ->merge('/public/backend/img/logoJawaTimur.png', .3)
+                            ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
+
+        return view('backend.pendaki.detail.qr', compact('qrcode'));
     }
 }

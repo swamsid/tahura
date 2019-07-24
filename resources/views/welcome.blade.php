@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                   <img src="data:image/png;base64, {{ base64_encode($qr) }} " width="100">
                 </div>
 
                 <div class="links">

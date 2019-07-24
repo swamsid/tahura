@@ -20,7 +20,9 @@
   <tr>
     <th class="tg-lj5e" rowspan="5"><img style="height: 100px" src="{{ asset('public/backend/img/LogoJawaTimur.png') }}"></th>
     <th class="tg-puex" colspan="2" style="font-weight: bold">PEMERINTAH PROVINSI JAWA TIMUR</th>
-    <th class="tg-lj5e" rowspan="5"></th>
+    <th class="tg-lj5e" rowspan="5">
+      <img src="data:image/png;base64, {{ base64_encode($qrcode) }} " width="100">
+    </th>
   </tr>
   <tr>
     <td class="tg-puex" colspan="2" style="font-weight: bold">DINAS KEHUTANAN</td>

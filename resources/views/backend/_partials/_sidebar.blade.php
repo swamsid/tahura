@@ -21,11 +21,11 @@
                 </div>
             </li>
 
-            @if(Auth::user()->hasAccessTo('dashboard'))
+            <!-- @if(Auth::user()->hasAccessTo('dashboard')) -->
                 <li class="active">
-                    <a href="{{Route('wpadmin.dashboard')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
+                    <a href="{{ Route('wpadmin.dashboard') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
                 </li>
-            @endif
+            <!-- @endif -->
 
             @if(Auth::user()->hasAccessTo('data master'))
                 <li>

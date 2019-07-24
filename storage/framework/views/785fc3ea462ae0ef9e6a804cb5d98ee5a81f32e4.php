@@ -21,11 +21,11 @@
                 </div>
             </li>
 
-            <?php if(Auth::user()->hasAccessTo('dashboard')): ?>
+            <!-- <?php if(Auth::user()->hasAccessTo('dashboard')): ?> -->
                 <li class="active">
                     <a href="<?php echo e(Route('wpadmin.dashboard')); ?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
                 </li>
-            <?php endif; ?>
+            <!-- <?php endif; ?> -->
 
             <?php if(Auth::user()->hasAccessTo('data master')): ?>
                 <li>
