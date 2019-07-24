@@ -347,4 +347,4 @@
 
     </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\sipenerang\tahura\resources\views/backend/pendaki/detail/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/pendaki/detail/index.blade.php ENDPATH**/ ?>

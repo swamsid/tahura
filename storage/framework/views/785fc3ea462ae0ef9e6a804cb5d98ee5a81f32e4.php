@@ -61,4 +61,4 @@
         </ul>
 
     </div>
-</nav><?php /**PATH C:\xampp\htdocs\sipenerang\tahura\resources\views/backend/_partials/_sidebar.blade.php ENDPATH**/ ?>
+</nav><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/_partials/_sidebar.blade.php ENDPATH**/ ?>

@@ -20,14 +20,14 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-	<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="wrapper wrapper-content animated fadeInRight minimize">
         <div class="row">
             <div class="col-lg-12">
-                <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins ukuran_minimize">
                     <div class="ibox-title">
                         <h5>Data Pegawai</h5>
                         <div class="ibox-tools">
-                            <?php if(Auth::user()->can('create', 'master data pegawai') || Auth::user()->can('update', 'master data pegawai') || Auth::user()->can('delete', 'master data pegawai')): ?>
+                            <?php if(Auth::user()->can('create', 'data_pegawai') || Auth::user()->can('update', 'data_pegawai') || Auth::user()->can('delete', 'data_pegawai')): ?>
                                 <a href="<?php echo e(Route('wpadmin.pegawai.create')); ?>">
         						    <button class="btn btn-sm btn-primary">
                                         <i class="fa fa-plus"></i> &nbsp;Tambah / Edit Data

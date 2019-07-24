@@ -64,7 +64,6 @@
                 /*background: rgba(255,0,0,0.1);*/
             }
      </style>
-
 </head>
 
 <body>
@@ -152,7 +151,7 @@
                                                                     <i class="fa fa-calendar"></i>
                                                                 </span>
 
-                                                                <vue-datepicker :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :class="'form-control'" :placeholder="'Pilih Tanggal Lahir Ketua'" :readonly="true" v-model="single.tgl_lahir_ketua"></vue-datepicker>
+                                                                <vue-datepicker :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :class="$v.single.tgl_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Tanggal Lahir'" :readonly="true" v-model="single.tgl_lahir_ketua"></vue-datepicker>
                                                             </div>
                                                         </div>
 
@@ -163,7 +162,7 @@
 
                                                         <div class="form-group">
                                                             <label>Email</label>
-                                                            <input id="email_ketua" name="email_ketua" type="email" class="form-control" placeholder="Masukkan Email Ketua" v-model="single.email_ketua">
+                                                            <input id="email_ketua" name="email_ketua" type="email" :class=" $v.single.email_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Masukkan Email Ketua" v-model="single.email_ketua">
                                                         </div>
 
                                                         <div class="form-group" id="data_1">
@@ -191,7 +190,7 @@
 
                                                         <div class="form-group">
                                                             <label>Alamat Lengkap</label>
-                                                            <textarea rows="1" class="form-control" style="resize: none;" placeholder="Masukkan Alamat Ketua" name="alamat_ketua" v-model="single.alamat_ketua"> </textarea>
+                                                            <textarea rows="1" :class="$v.single.alamat_ketua.$invalid ? 'form-control error' : 'form-control'" style="resize: none;" placeholder="Masukkan Alamat Ketua" name="alamat_ketua" v-model="single.alamat_ketua"> </textarea>
                                                         </div>
 
                                                         <div class="form-group">
@@ -241,19 +240,19 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>Nama</label>
-                                                            <input name="nama_kontak_darurat[]" type="text" class="form-control" :placeholder="'Nama kontak darurat '+(idx + 1)" v-model="kontak.nama">
+                                                            <input name="nama_kontak_darurat[]" type="text" :class="$v.single.nama_kontak_darurat.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Nama kontak darurat '+(idx + 1)" v-model="kontak.nama">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>No HP</label>
-                                                            <input name="no_kontak_darurat[]" type="text" class="form-control " :placeholder="'No hp kontak darurat '+(idx + 1)" v-model="kontak.no_hp">
+                                                            <input name="no_kontak_darurat[]" type="text" :class="$v.single.no_kontak_darurat.$invalid ? 'form-control error' : 'form-control'" :placeholder="'No hp kontak darurat '+(idx + 1)" v-model="kontak.no_hp">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>Alamat Email</label>
-                                                            <input id="email" name="email_kontak_darurat[]" type="text" class="form-control" :placeholder="'Email kontak darurat '+(idx + 1)" v-model="kontak.email">
+                                                            <input id="email" name="email_kontak_darurat[]" type="text" :class="$v.single.email_kontak_darurat.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Email kontak darurat '+(idx + 1)" v-model="kontak.email">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3">
@@ -308,10 +307,10 @@
                                                                 </template>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
+                                                                <input type="text" name="nama_anggota[]" :class="$v.single.nama_anggota.$invalid ? 'form-control error' : 'form-control'" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="mail" name="no_ktp_anggota[]"  class="form-control" :placeholder="'No KTP Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/>
+                                                                <input type="mail" name="no_ktp_anggota[]"  :class="$v.single.no_ktp_anggota.$invalid ? 'form-control error' : 'form-control'" :placeholder="'No KTP Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/>
                                                             </td>
                                                             <td>
                                                                 <select class="form-control hint" name="kelamin_anggota[]" v-model="anggota.kelamin">
@@ -340,46 +339,46 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Tenda</label>
-                                                        <input name="tenda" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.tenda">
+                                                        <input name="tenda" type="number" :class="$v.single.tenda.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.tenda">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Sleeping Bags / Kantong Tidur</label>
-                                                        <input name="sleeping_bag" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.sleeping_bag">
+                                                        <input name="sleeping_bag" type="number" :class="$v.single.sleeping_bag.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.sleeping_bag">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Peralatan Masak</label>
-                                                        <input name="peralatan_masak" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
+                                                        <input name="peralatan_masak" type="number" :class="$v.single.peralatan_masak.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Bahan Bakar</label>
-                                                        <input name="bahan_bakar" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.bahan_bakar">
+                                                        <input name="bahan_bakar" type="number" :class="$v.single.bahan_bakar.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.bahan_bakar">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Ponco / Jas Hujan</label>
-                                                        <input name="jas_hujan" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.jas_hujan">
+                                                        <input name="jas_hujan" type="number" :class="$v.single.jas_hujan.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.jas_hujan">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Senter / Alat Penerangan</label>
-                                                        <input name="senter" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.senter">
+                                                        <input name="senter" type="number" :class="$v.single.senter.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.senter">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Obat-Obatan Pribadi dan P3K</label>
-                                                        <input name="obat" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.obat">
+                                                        <input name="obat" type="number" :class="$v.single.obat.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.obat">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Matras</label>
-                                                        <input name="matras" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.matras">
+                                                        <input name="matras" type="number" :class="$v.single.matras.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.matras">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Kantong Sampah</label>
-                                                        <input name="kantong_sampah" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.kantong_sampah">
+                                                        <input name="kantong_sampah" type="number" :class="$v.single.kantong_sampah.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.kantong_sampah">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Jaket</label>
-                                                        <input name="jaket" type="number" class="form-control" placeholder="Satuan dalam unit" v-model="single.jaket">
+                                                        <input name="jaket" type="number" :class="$v.single.jaket.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.jaket">
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -425,10 +424,10 @@
                                                                 </template>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="nama_logistik[]" class="form-control" placeholder="Masukkan Nama Logistik" v-model="logistik.nama"/>
+                                                                <input type="text" name="nama_logistik[]" :class="$v.single.nama_logistik.$invalid ? 'form-control error' : 'form-control'" placeholder="Masukkan Nama Logistik" v-model="logistik.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="jumlah_logistik[]"  class="form-control" placeholder="Satuan dalam unit" v-model="logistik.jumlah"/>
+                                                                <input type="number" name="jumlah_logistik[]" :class="$v.single.jumlah_logistik.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="logistik.jumlah"/>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -629,7 +628,7 @@
                         nama_ketua: '',
                         no_ktp_ketua: '',
                         tempat_lahir_ketua: '',
-                        tgl_lahir_ketua: '<?php echo e(date("d/m/Y")); ?>',
+                        tgl_lahir_ketua: '',
                         no_hp_ketua: '',
                         email_ketua: '',
                         tgl_naik: '<?php echo e(date("d/m/Y")); ?>',
@@ -665,7 +664,15 @@
                         required,
                     },
 
+                    tgl_lahir_ketua: {
+                        required,
+                    },
+
                     no_hp_ketua: {
+                        required,
+                    },
+
+                    email_ketua: {
                         required,
                     },
 
@@ -674,6 +681,82 @@
                     },
 
                     tgl_turun: {
+                        required,
+                    },
+
+                    alamat_ketua: {
+                        required,
+                    },
+
+                    nama_kontak_darurat: {
+                        required,
+                    },
+
+                    no_kontak_darurat: {
+                        required,
+                    },
+
+                    email_kontak_darurat: {
+                        required,
+                    },
+
+                    hubungan_kontak_darurat: {
+                        required,
+                    },
+
+                    nama_anggota: {
+                        required,
+                    },
+
+                    no_ktp_anggota: {
+                        required,
+                    },
+
+                    tenda: {
+                        required,
+                    },
+
+                    sleeping_bag: {
+                        required,
+                    },
+
+                    peralatan_masak: {
+                        required,
+                    },
+
+                    bahan_bakar: {
+                        required,
+                    },
+
+                    jas_hujan: {
+                        required,
+                    },
+
+                    senter: {
+                        required,
+                    },
+
+                    obat: {
+                        required,
+                    },
+
+                    matras: {
+                        required,
+                    },
+
+                    kantong_sampah: {
+                        required,
+                    },
+
+                    jaket: {
+                        required,
+                    },
+
+                    nama_logistik: {
+                        required,
+                    },
+
+                    jumlah_logistik: {
                         required,
                     },
                 }
@@ -800,7 +883,7 @@
                                 })
                     }else{
                         $.toast({
-                            text: 'Alangkah baiknya jika anda mengisi semua form yang tersedia',
+                            text: 'Di mohon untuk mengisi semua kolom yang tersedia dengan benar dan sesuai',
                             showHideTransition: 'slide',
                             icon: 'error',
                             position: 'top-right',

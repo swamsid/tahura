@@ -103,17 +103,17 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" readonly>
                             <input type="hidden" name="id" v-model="single.id_jabatan" readonly>
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-12">
                                     <div class="row model-form-template">
-                                        <div class="col-md-4 label-form">
+                                        <div class="col-md-2 label-form">
                                             <label>Kode Jabatan</label>
                                         </div>
 
-                                        <div class="col-md-5">
+                                        <div class="col-md-5 col-xs-10">
                                             <input id="nomor_jabatan" name="nomor_jabatan" type="text" class="form-control" placeholder="Diisi oleh system" v-model="single.nomor_jabatan" readonly>
                                         </div>
 
-                                        <div class="col-md-1" style="padding: 0px; padding-top: 5px; cursor: pointer; color: #1ab394">
+                                        <div class="col-md-1 col-xs-1" style="padding: 0px; padding-top: 5px; cursor: pointer; color: #1ab394">
                                             <template v-if="formState == 'insert'">
                                                 <button type="button" class="btn btn-primary btn-xs" style="font-size: 8pt;" @click="btnHelperClicked" :disabled="disabledButton">
                                                     <i class="fa fa-search"></i>
@@ -129,17 +129,17 @@
                                     </div>
 
                                     <div class="row model-form-template">
-                                        <div class="col-md-4 label-form">
+                                        <div class="col-md-2 label-form">
                                             <label>Nama Jabatan</label>
                                         </div>
 
-                                        <div class="col-md-7">
+                                        <div class="col-md-6">
                                             <input id="nama_jabatan" name="nama_jabatan" type="text" :class="$v.single.nama_jabatan.$invalid ? 'form-control error' : 'form-control'" placeholder="Contoh : Kepala UPT" v-model="single.nama_jabatan">
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-7" style="box-shadow: 0px 0px 10px #ccc; padding: 10px;">
+                                <div class="col-md-7">
                                     
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
     	</div>
 
         <div class="modal inmodal" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" style="margin-bottom: 100px; width: 50%">
+            <div class="modal-dialog" style="margin-bottom: 100px; ">
                 <div class="modal-content animated">
                     <div class="ibox product-detail">
                         <div class="ibox-content" style="margin-bottom: 0px; padding-bottom: 0px; padding-top: 10px;">

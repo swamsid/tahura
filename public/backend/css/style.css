@@ -8212,6 +8212,8 @@ body.md-skin {
     float: none;
     text-align: left;
     display: inline-block;
+    top: 6px;
+    left: 20px
   }
 }
 /* Only demo */
@@ -8283,4 +8285,64 @@ select.input-sm {
 
 .red{
   color: red
+}
+
+@media (max-width: 320px){
+  .minimize{
+    overflow: auto;
+  }
+  .ukuran_minimize{
+    width: 300px
+  }
+  .ukuran_minimize_detil{
+    width: 600px
+  }
+  .ukuran_minimize_pegawai{
+    width: 320px
+  }
+  .picture-wrap{
+    width: 240px !important;
+    height: 100% !important;
+    margin: 0px 0px 20px 0px !important
+  }
+  .picture-wrap img{
+    width: 240px !important;
+    height: auto !important; 
+  }
+}
+
+@media (max-width: 376px){
+  .minimize{
+    overflow: auto;
+  }
+  .ukuran_minimize_detil{
+    width: 600px
+  }
+  .picture-wrap{
+    width: 280px !important;
+    height: 100% !important;
+    margin: 0px 0px 20px 0px !important
+  }
+  .picture-wrap img{
+    width: 280px !important;
+    height: auto !important; 
+  }
+}
+
+@media (max-width: 426px){
+  .minimize{
+    overflow: auto;
+  }
+  .ukuran_minimize_detil{
+    width: 600px
+  }
+  .picture-wrap{
+    width: 300px !important;
+    height: 100% !important;
+    margin: 0px 0px 20px 0px !important
+  }
+  .picture-wrap img{
+    width: 300px !important;
+    height: auto !important; 
+  }
 }

@@ -101,7 +101,7 @@
             <div class="col-lg-6 col-md-offset-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Setting Untuk Laporan Pendaki Masuk</h5>
+                        <h5>Laporan Pendaki Masuk</h5>
                         <div class="ibox-tools">
 
                         </div>

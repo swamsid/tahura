@@ -116,10 +116,10 @@
 @endsection
 
 @section('content')
-	<div class="wrapper wrapper-content animated fadeInRight" id="vue-element">
+	<div class="wrapper wrapper-content animated fadeInRight minimize" id="vue-element">
         <div class="row" v-cloak>
             <div class="col-lg-12">
-                <div class="ibox float-e-margins">
+                <div class="ibox float-e-margins ukuran_minimize_pegawai">
                     <div class="ibox-title">
                         <h5>Tambah / Edit Data Pegawai</h5>
                         <div class="ibox-tools">
@@ -152,11 +152,11 @@
                                             <label>Nip Pegawai</label>
                                         </div>
 
-                                        <div class="col-md-5">
+                                        <div class="col-md-5 col-xs-10">
                                             <input id="nip_pegawai" name="nip_pegawai" type="text" class="form-control" placeholder="Isilah dengan benar" v-model="single.nip_pegawai" :class="$v.single.nama_pegawai.$invalid ? 'form-control error' : 'form-control'">
                                         </div>
 
-                                        <div class="col-md-1" style="padding: 0px; padding-top: 5px; cursor: pointer; color: #1ab394">
+                                        <div class="col-md-1 col-xs-1" style="padding: 0px; padding-top: 5px; cursor: pointer; color: #1ab394">
                                             <template v-if="formState == 'insert'">
                                                 <button type="button" class="btn btn-primary btn-xs" style="font-size: 8pt;" @click="btnHelperClicked" :disabled="disabledButton">
                                                     <i class="fa fa-search"></i>
