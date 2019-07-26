@@ -159,7 +159,10 @@ class pendaki_controller extends Controller
                     )->first();
 
                 $email = $data->pd_email;
-                $pdf = PDF::loadView('backend.pdf.berkas', compact('data'));
+                $qrcode = QrCode::format('png')->size(1000)
+                            ->merge('/public/backend/img/LogoJawaTimur.png', .3)
+                            ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
+                $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qr'));
 
                 Mail::send('addition.email.tolak', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
