@@ -24,12 +24,14 @@ class pendaftaran_controller extends Controller
         $kecamatan = DB::table('districts')->select('id as id', 'regency_id', 'name as text')->get();
         $kelurahan = DB::table('villages')->select('id as id', 'district_id', 'name as text')->get();
 
-        return json_encode([
+        $data = [
             'provinsi'      => $provinsi,
             'kota'          => $kota,
             'kecamatan'     => $kecamatan,
             'kelurahan'     => $kelurahan
-        ]);
+        ];
+
+        return response()->json($data);
     }
 
     protected function save(Request $request){
