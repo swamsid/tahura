@@ -100,7 +100,7 @@
                     showMethod: 'slideDown',
                     timeOut: 4000
                 };
-                toastr.success('Selamat Data {{ Auth::user()->nama }}', 'UPT Tahura Raden Soerjo');
+                toastr.success('Selamat Datang {{ Auth::user()->nama }}', 'UPT Tahura Raden Soerjo');
             }, 1300);
 
             c3.generate({

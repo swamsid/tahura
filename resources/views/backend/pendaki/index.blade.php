@@ -70,7 +70,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <center>
-                                                    <a href="{{ Route('wpadmin.pendaki.detail', 'id='.$data->pd_id) }}" class='btn btn-primary btn-xs' data-id="{{ $data->pd_id }}" title='Delete Data'><span class='fa fa-folder-open'></span></a>
+                                                    <a href="{{ Route('wpadmin.pendaki.detail', 'id='.$data->pd_id) }}" class='btn btn-primary btn-xs' data-id="{{ $data->pd_id }}" title='Detail'><span class='fa fa-folder-open'></span></a>
                                                 </center>
                                             </td>
                                         </tr>

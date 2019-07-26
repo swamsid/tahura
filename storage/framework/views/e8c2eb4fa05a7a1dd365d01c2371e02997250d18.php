@@ -264,6 +264,56 @@
                                    </tr>
                                 </table>
                             </div>
+
+                            <div class="col-md-12" style="color: #1ab394; margin-top: 30px;">
+                                <i class="fa fa-arrow-right"></i> &nbsp;
+                                <strong>Dokumen Penunjang</strong>
+                            </div>
+
+                            <div class="col-md-12" style="margin-top: 20px;">
+                              <div class="file-box">
+                                <div class="file">
+                                    <a href="<?php echo e(Route('wpadmin.pendaki.pdf', 'id='.$data->pd_id)); ?>" target="_blank">
+                                        <span class="corner"></span>
+
+                                        <div class="icon">
+                                            <i class="fa fa-file-pdf-o" style="color: #0099CC"></i>
+                                        </div>
+                                        <div class="file-name text-center">
+                                            berkas-pendaftaran.pdf
+                                            <br/>
+                                            <?php if($data->pd_status != 'belum disetujui'): ?>
+                                              <small>Sudah dikirim ke email ketua</small>
+                                            <?php else: ?>
+                                              <small>Belum dikirim ke email ketua</small>
+                                            <?php endif; ?>
+                                        </div>
+                                    </a>
+                                </div>
+                              </div>
+
+                              <div class="file-box">
+                                <div class="file">
+                                    <a href="<?php echo e(Route('wpadmin.pendaki.qr', 'id='.$data->pd_id)); ?>" target="_blank">
+                                        <span class="corner"></span>
+
+                                        <div class="icon">
+                                            <img src="data:image/png;base64, <?php echo e(base64_encode($qrcode)); ?> " width="100">
+                                        </div>
+                                        <div class="file-name text-center">
+                                            kode-QR-pendaftaran.pdf
+                                            <br/>
+                                            <?php if($data->pd_status != 'belum disetujui'): ?>
+                                              <small>Sudah dikirim ke email ketua</small>
+                                            <?php else: ?>
+                                              <small>Belum dikirim ke email ketua</small>
+                                            <?php endif; ?>
+                                        </div>
+                                    </a>
+                                </div>
+                              </div>
+
+                            </div>
                         </div>
 
                         <div class="row" style="margin-top: 20px; border-top: 1px solid #eee;">

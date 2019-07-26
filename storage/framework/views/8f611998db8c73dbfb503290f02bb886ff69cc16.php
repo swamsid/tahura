@@ -77,7 +77,7 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>SOP Pendakian</h2>
+                <h2>Registrasi Pendakian</h2>
                 <ol class="breadcrumb">
                     <li>
                         <a href="index.html">Home</a>
