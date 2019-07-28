@@ -143,31 +143,92 @@
             </div>
         </div> -->
     @else
-        <div class="row border-bottom white-bg dashboard-header">
-            <div class="col-sm-12">
+        <div class="row">
+            <div class="col-lg-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Hallo Petugas Pos</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#">Config option 1</a>
-                                </li>
-                                <li><a href="#">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
+                        <span class="label label-success pull-right">Bulan Ini</span>
+                        <h5>Total Registrasi</h5>
                     </div>
                     <div class="ibox-content">
-                        Isi Dashboard khusus penjaga pos
+                        <h1 class="no-margins" style="padding-bottom: 5px;">{{ $data['registrasi'] }} Tim</h1>
+                        <small>
+                            <b class="text-success">
+                                <?php
+                                    $cur = ($data['totregis'] > 0) ? ($data['registrasi'] / $data['totregis']) * 100 : 0;
+                                ?>
+                                {{ number_format($cur) }}%
+                            </b> &nbsp;
+                            Dari Total Keseluruhan
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-danger pull-right">Bulan Ini</span>
+                        <h5>Total Ditolak</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px;">{{ $data['tolak'] }} Tim</h1>
+                        <small>
+                            <b class="text-danger">
+                                <?php
+                                    $cur = ($data['tottolak'] > 0) ? ($data['tolak'] / $data['tottolak']) * 100 : 0;
+                                ?>
+                                {{ number_format($cur) }}%
+                            </b> &nbsp;
+                            Dari Total Keseluruhan
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-info pull-right">Bulan Ini</span>
+                        <h5>Total Sudah Naik</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px;">{{ $data['naik'] }} Tim</h1>
+                        <div class="stat-percent font-bold text-info">
+                            <small>
+                                <?php
+                                    $cur = ($data['totnaik'] > 0) ? ($data['naik'] / $data['totnaik']) * 100 : 0;
+                                ?>
+
+                                ({{ number_format($cur) }}%)
+                            </small>
+                        </div>
+                        <small>
+                            <b class="text-info">Total {{ $data['naik'] }} tim</b>
+                            Yang Anda Acc
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right">Bulan Ini</span>
+                        <h5>Total Sudah Turun</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px;">{{ $data['totturun'] }} Tim</h1>
+                        <div class="stat-percent font-bold text-navy">
+                            <?php
+                                    $cur = ($data['totturun'] > 0) ? ($data['turun'] / $data['totturun']) * 100 : 0;
+                                ?>
+
+                            <small>
+                                ({{ number_format($cur) }}%)
+                            </small>
+                        </div>
+                        <small>
+                            <b class="text-navy">Total {{ $data['turun'] }} tim</b>
+                            Yang Anda Acc
+                        </small>
                     </div>
                 </div>
             </div>
@@ -177,293 +238,307 @@
 
 @section('extra_script')
     <script>
-        $(document).ready(function () {
+        @if(Auth::user()->posisi == 'kantor')
+            $(document).ready(function () {
 
-            var line = {!! $line !!};
-            var polar = {!! $provinsi !!};
-            var doughnut = {!! $lpk !!};
+                var line = {!! $line !!};
+                var polar = {!! $provinsi !!};
+                var doughnut = {!! $lpk !!};
 
-            console.log(polar.province);
+                // console.log(polar.province);
 
-            setTimeout(function() {
-                toastr.options = {
-                    closeButton: true,
-                    progressBar: true,
-                    showMethod: 'slideDown',
-                    timeOut: 4000
-                };
-                toastr.success('Selamat Data {{ Auth::user()->nama }}', 'UPT Tahura Raden Soerjo');
-            }, 1300);
+                setTimeout(function() {
+                    toastr.options = {
+                        closeButton: true,
+                        progressBar: true,
+                        showMethod: 'slideDown',
+                        timeOut: 4000
+                    };
+                    toastr.success('Selamat Data {{ Auth::user()->nama }}', 'UPT Tahura Raden Soerjo');
+                }, 1300);
 
-            // line area
+                // line area
 
-                var lineChartData = {
-                    labels: line.bulan,
-                    datasets: [{
-                        label: 'Pos Tambaksari',
-                        borderColor: "#23c6c8",
-                        backgroundColor: 'rgba(35, 198, 200, 0.3)',
-                        fill: true,
-                        data: line.tot1,
-                        yAxisID: 'y-axis-1',
-                        borderWidth: 1,
-                        pointRadius: 1.5,
-                    }, {
-                        label: 'Pos Sumberbrantas',
-                        borderColor: '#aa66cc',
-                        backgroundColor: 'rgba(170, 102, 204, 0.3)',
-                        fill: true,
-                        data: line.tot2,
-                        yAxisID: 'y-axis-2',
-                        borderWidth: 1,
-                        pointRadius: 1.5,
-                    }, {
-                        label: 'Pos Lawang',
-                        borderColor: '#ff3547',
-                        backgroundColor: 'rgba(255, 53, 71, 0.3)',
-                        fill: true,
-                        data: line.tot3,
-                        yAxisID: 'y-axis-3',
-                        borderWidth: 1,
-                        pointRadius: 1.5,
-                    }, {
-                        label: 'Pos Tretes',
-                        borderColor: '#ff8800',
-                        backgroundColor: 'rgba(255, 136, 0, 0.3)',
-                        fill: true,
-                        data: line.tot4,
-                        yAxisID: 'y-axis-4',
-                        borderWidth: 1,
-                        pointRadius: 1.5,
-                    }]
-                };
-
-                var lineChart = document.getElementById('lineChart').getContext('2d');
-                window.myLine = Chart.Line(lineChart, {
-                    data: lineChartData,
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        hoverMode: 'index',
-                        stacked: false,
-                        legend: {
-                            display: false
-                        },
-                        title: {
-                            display: false,
-                            text: 'Chart.js Line Chart - Multi Axis'
-                        },
-                        tooltips: {
-                            mode: 'index',
-                            intersect: false,
-                        },
-                        hover: {
-                            mode: 'nearest',
-                            intersect: true
-                        },
-                        scales: {
-                            yAxes: [
-                            {
-                                type: 'linear',
-                                display: true,
-                                position: 'left',
-                                id: 'y-axis-1',
-
-                                ticks: {
-                                    min: 0,
-                                    max: {{ $max + 4 }},
-
-                                    step: 10
-                                }
-                            }, {
-                                type: 'linear',
-                                display: false,
-                                position: 'right',
-                                id: 'y-axis-2',
-
-                                ticks: {
-                                    min: 0,
-                                    max: {{ $max + 4 }},
-
-                                    step: 10
-                                }
-                            }, {
-                                type: 'linear',
-                                display: false,
-                                position: 'right',
-                                id: 'y-axis-3',
-
-                                ticks: {
-                                    min: 0,
-                                    max: {{ $max + 4 }},
-
-                                    step: 10
-                                }
-                            }, {
-                                type: 'linear',
-                                display: false,
-                                position: 'right',
-                                id: 'y-axis-4',
-
-                                ticks: {
-                                    min: 0,
-                                    max: {{ $max + 4 }},
-
-                                    step: 10
-                                }
-                            }],
-                        },
-                        elements: {
-                            line: {
-                                tension: 0.4
-                            }
-                        },
-                    }
-                });
-
-            // polar area
-
-                var polarConfig = {
-                    data: {
+                    var lineChartData = {
+                        labels: line.bulan,
                         datasets: [{
-                            data: polar.tot,
-                            backgroundColor: [
-                                'rgba(35, 198, 200, 0.5)',
-                                'rgba(170, 102, 204, 0.5)',
-                                'rgba(255, 53, 71, 0.5)'],
-                            label: 'My dataset' // for legend
-                        }],
-                        labels: polar.province
-                    },
-                    options: {
-                        responsive: true,
-                        legend: {
-                            display: false,
-                            position: 'right',
-                        },
-                        title: {
-                            display: false,
-                            text: 'Chart.js Polar Area Chart'
-                        },
-                        scale: {
-                            ticks: {
-                                max: {{ $max2 + 3 }},
-                                beginAtZero: true
+                            label: 'Pos Tambaksari',
+                            borderColor: "#23c6c8",
+                            backgroundColor: 'rgba(35, 198, 200, 0.3)',
+                            fill: true,
+                            data: line.tot1,
+                            yAxisID: 'y-axis-1',
+                            borderWidth: 1,
+                            pointRadius: 1.5,
+                        }, {
+                            label: 'Pos Sumberbrantas',
+                            borderColor: '#aa66cc',
+                            backgroundColor: 'rgba(170, 102, 204, 0.3)',
+                            fill: true,
+                            data: line.tot2,
+                            yAxisID: 'y-axis-2',
+                            borderWidth: 1,
+                            pointRadius: 1.5,
+                        }, {
+                            label: 'Pos Lawang',
+                            borderColor: '#ff3547',
+                            backgroundColor: 'rgba(255, 53, 71, 0.3)',
+                            fill: true,
+                            data: line.tot3,
+                            yAxisID: 'y-axis-3',
+                            borderWidth: 1,
+                            pointRadius: 1.5,
+                        }, {
+                            label: 'Pos Tretes',
+                            borderColor: '#ff8800',
+                            backgroundColor: 'rgba(255, 136, 0, 0.3)',
+                            fill: true,
+                            data: line.tot4,
+                            yAxisID: 'y-axis-4',
+                            borderWidth: 1,
+                            pointRadius: 1.5,
+                        }]
+                    };
+
+                    var lineChart = document.getElementById('lineChart').getContext('2d');
+                    window.myLine = Chart.Line(lineChart, {
+                        data: lineChartData,
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            hoverMode: 'index',
+                            stacked: false,
+                            legend: {
+                                display: false
                             },
-                            reverse: false
-                        },
-                        animation: {
-                            animateRotate: false,
-                            animateScale: true
-                        },
-                        tooltipFontSize: 10,
-                        tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>hrs",
-                        percentageInnerCutout : 70
-                    }
-                };
+                            title: {
+                                display: false,
+                                text: 'Chart.js Line Chart - Multi Axis'
+                            },
+                            tooltips: {
+                                mode: 'index',
+                                intersect: false,
+                            },
+                            hover: {
+                                mode: 'nearest',
+                                intersect: true
+                            },
+                            scales: {
+                                yAxes: [
+                                {
+                                    type: 'linear',
+                                    display: true,
+                                    position: 'left',
+                                    id: 'y-axis-1',
 
-                var myPolar = document.getElementById('myPolar');
-                window.myPolarArea = Chart.PolarArea(myPolar, polarConfig);
+                                    ticks: {
+                                        min: 0,
+                                        max: {{ $max + 4 }},
 
-            // doughnut are
+                                        step: 10
+                                    }
+                                }, {
+                                    type: 'linear',
+                                    display: false,
+                                    position: 'right',
+                                    id: 'y-axis-2',
 
-                var doughnutConfig = {
-                    type: 'doughnut',
-                    data: {
-                        datasets: [{
-                            data: doughnut.tot,
-                            backgroundColor: [
-                                'rgba(75, 81, 93, 0.5)',
-                                'rgba(255, 136, 0, 0.5)'
-                            ],
-                            label: 'Dataset 1'
-                        }],
-                        labels: doughnut.kelamin
-                    },
-                    options: {
-                        responsive: true,
-                        legend: {
-                            display: false,
-                            position: 'top',
-                        },
-                        title: {
-                            display: false,
-                            text: 'Chart.js Doughnut Chart'
-                        },
-                        animation: {
-                            animateScale: true,
-                            animateRotate: true
+                                    ticks: {
+                                        min: 0,
+                                        max: {{ $max + 4 }},
+
+                                        step: 10
+                                    }
+                                }, {
+                                    type: 'linear',
+                                    display: false,
+                                    position: 'right',
+                                    id: 'y-axis-3',
+
+                                    ticks: {
+                                        min: 0,
+                                        max: {{ $max + 4 }},
+
+                                        step: 10
+                                    }
+                                }, {
+                                    type: 'linear',
+                                    display: false,
+                                    position: 'right',
+                                    id: 'y-axis-4',
+
+                                    ticks: {
+                                        min: 0,
+                                        max: {{ $max + 4 }},
+
+                                        step: 10
+                                    }
+                                }],
+                            },
+                            elements: {
+                                line: {
+                                    tension: 0.4
+                                }
+                            },
                         }
-                    }
-                };
+                    });
 
-                var myDoughnut = document.getElementById('myDoughnut').getContext('2d');
-                window.myDoughnut = new Chart(myDoughnut, doughnutConfig);
+                // polar area
 
-            // c3.generate({
-            //     bindto: '#slineChart',
-            //     data:{
-            //         columns: [
-            //             ['Lawang',          
-            //                 <?php 
-            //                     $con = mysqli_connect("localhost","root","","dishut");
-            //                     for ($i = 1; $i <= 12; $i++) {
-            //                         $bln    = substr('0'.$i, -2); 
-            //                         $lawang_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-            //                         $lawang = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-            //                         echo $lawang+$lawang_anggota.',';
-            //                     } 
-            //                 ?>],
-            //             ['Tambaksari',      
-            //                 <?php 
-            //                     for ($i = 1; $i <= 12; $i++) {
-            //                         $bln    = substr('0'.$i, -2); 
-            //                         $tambaksari_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-            //                         $tambaksari = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-            //                         echo $tambaksari+$tambaksari_anggota.',';
-            //                     } 
-            //                 ?>],
-            //             ['Sumberbrantas',  
-            //                 <?php 
-            //                     for ($i = 1; $i <= 12; $i++) {
-            //                         $bln    = substr('0'.$i, -2); 
-            //                         $sumber_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-            //                         $sumber = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-            //                         echo $sumber+$sumber_anggota.',';
-            //                     } 
-            //                 ?>],
-            //             ['Tretes', 
-            //                 <?php 
-            //                     for ($i = 1; $i <= 12; $i++) {
-            //                         $bln    = substr('0'.$i, -2); 
-            //                         $tambaksari_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-            //                         $tambaksari = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-            //                         echo $tambaksari+$tambaksari_anggota.',';
-            //                     } 
-            //                 ?>]
-            //         ],
-            //         type: 'spline',
-            //         labels: true,
-            //         colors:{
-            //             Lawang: '#A5D6A7',
-            //             Tambaksari: '#80DEEA',
-            //             Sumberbrantas: '#FFCC80',
-            //             Tretes: '#FF8A65'
-            //         }
-            //     },
-            //     axis: {
-            //         x: {
-            //             type: 'category',
-            //             categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
-            //         },
-            //         y: {
-            //             label: {
-            //                 text: 'Pendaki',
-            //                 position: 'outer-middle'
-            //             }
-            //         }
-            //     }
-            // });
-        });
+                    var polarConfig = {
+                        data: {
+                            datasets: [{
+                                data: polar.tot,
+                                backgroundColor: [
+                                    'rgba(35, 198, 200, 0.5)',
+                                    'rgba(170, 102, 204, 0.5)',
+                                    'rgba(255, 53, 71, 0.5)'],
+                                label: 'My dataset' // for legend
+                            }],
+                            labels: polar.province
+                        },
+                        options: {
+                            responsive: true,
+                            legend: {
+                                display: false,
+                                position: 'right',
+                            },
+                            title: {
+                                display: false,
+                                text: 'Chart.js Polar Area Chart'
+                            },
+                            scale: {
+                                ticks: {
+                                    max: {{ $max2 + 3 }},
+                                    beginAtZero: true
+                                },
+                                reverse: false
+                            },
+                            animation: {
+                                animateRotate: false,
+                                animateScale: true
+                            },
+                            tooltipFontSize: 10,
+                            tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>hrs",
+                            percentageInnerCutout : 70
+                        }
+                    };
+
+                    var myPolar = document.getElementById('myPolar');
+                    window.myPolarArea = Chart.PolarArea(myPolar, polarConfig);
+
+                // doughnut are
+
+                    var doughnutConfig = {
+                        type: 'doughnut',
+                        data: {
+                            datasets: [{
+                                data: doughnut.tot,
+                                backgroundColor: [
+                                    'rgba(75, 81, 93, 0.5)',
+                                    'rgba(255, 136, 0, 0.5)'
+                                ],
+                                label: 'Dataset 1'
+                            }],
+                            labels: doughnut.kelamin
+                        },
+                        options: {
+                            responsive: true,
+                            legend: {
+                                display: false,
+                                position: 'top',
+                            },
+                            title: {
+                                display: false,
+                                text: 'Chart.js Doughnut Chart'
+                            },
+                            animation: {
+                                animateScale: true,
+                                animateRotate: true
+                            }
+                        }
+                    };
+
+                    var myDoughnut = document.getElementById('myDoughnut').getContext('2d');
+                    window.myDoughnut = new Chart(myDoughnut, doughnutConfig);
+
+                // c3.generate({
+                //     bindto: '#slineChart',
+                //     data:{
+                //         columns: [
+                //             ['Lawang',          
+                //                 <?php 
+                //                     $con = mysqli_connect("localhost","root","","dishut");
+                //                     for ($i = 1; $i <= 12; $i++) {
+                //                         $bln    = substr('0'.$i, -2); 
+                //                         $lawang_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                //                         $lawang = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                //                         echo $lawang+$lawang_anggota.',';
+                //                     } 
+                //                 ?>],
+                //             ['Tambaksari',      
+                //                 <?php 
+                //                     for ($i = 1; $i <= 12; $i++) {
+                //                         $bln    = substr('0'.$i, -2); 
+                //                         $tambaksari_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                //                         $tambaksari = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                //                         echo $tambaksari+$tambaksari_anggota.',';
+                //                     } 
+                //                 ?>],
+                //             ['Sumberbrantas',  
+                //                 <?php 
+                //                     for ($i = 1; $i <= 12; $i++) {
+                //                         $bln    = substr('0'.$i, -2); 
+                //                         $sumber_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                //                         $sumber = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                //                         echo $sumber+$sumber_anggota.',';
+                //                     } 
+                //                 ?>],
+                //             ['Tretes', 
+                //                 <?php 
+                //                     for ($i = 1; $i <= 12; $i++) {
+                //                         $bln    = substr('0'.$i, -2); 
+                //                         $tambaksari_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                //                         $tambaksari = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                //                         echo $tambaksari+$tambaksari_anggota.',';
+                //                     } 
+                //                 ?>]
+                //         ],
+                //         type: 'spline',
+                //         labels: true,
+                //         colors:{
+                //             Lawang: '#A5D6A7',
+                //             Tambaksari: '#80DEEA',
+                //             Sumberbrantas: '#FFCC80',
+                //             Tretes: '#FF8A65'
+                //         }
+                //     },
+                //     axis: {
+                //         x: {
+                //             type: 'category',
+                //             categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+                //         },
+                //         y: {
+                //             label: {
+                //                 text: 'Pendaki',
+                //                 position: 'outer-middle'
+                //             }
+                //         }
+                //     }
+                // });
+            });
+        @else
+            $(document).ready(function (){
+                setTimeout(function() {
+                    toastr.options = {
+                        closeButton: true,
+                        progressBar: true,
+                        showMethod: 'slideDown',
+                        timeOut: 4000
+                    };
+                    toastr.success('Selamat Data {{ Auth::user()->nama }}', 'UPT Tahura Raden Soerjo');
+                }, 1300);
+            });
+        @endif
     </script>
 @endsection
