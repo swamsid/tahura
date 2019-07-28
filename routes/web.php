@@ -45,7 +45,7 @@ Route::get('tes-pdf', function(){
 
 Route::get('send-email', function(){
 
-	$qrcode = QrCode::format('png')->size(1000)->merge('/public/backend/img/logoJawaTimur.png', .3)->generate('asd');
+	$qrcode = QrCode::format('png')->size(1000)->merge('/public/backend/img/LogoJawaTimur.png', .3)->generate('asd');
 	$pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'));
 
 	Mail::send('addition.email.tes', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode){
@@ -60,7 +60,7 @@ Route::get('send-email', function(){
 });
 
 Route::get('qrcode', function () {
-	$qr = QrCode::format('png')->size(300)->merge('/public/backend/img/logoJawaTimur.png', .3)->generate('https://www.simplesoftware.io');
+	$qr = QrCode::format('png')->size(300)->merge('/public/backend/img/LogoJawaTimur.png', .3)->generate('https://www.simplesoftware.io');
 	return view('welcome', compact('qr'));
 });
 

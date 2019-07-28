@@ -87,4 +87,4 @@
     <td style="background: #cccccc; font-weight: bold">Total</td>
     <td style="background: #cccccc; font-weight: bold"><?php echo e($totAnggota + $totKetua); ?> orang</td>
   </tr>
-</table><?php /**PATH C:\xampp\htdocs\sipenerang\tahura\resources\views/backend/pdf/laporan.blade.php ENDPATH**/ ?>
+</table><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/pdf/laporan.blade.php ENDPATH**/ ?>
