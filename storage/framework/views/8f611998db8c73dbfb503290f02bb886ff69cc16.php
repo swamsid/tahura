@@ -536,7 +536,7 @@
                 disabledButton: false,
                 onRequest: false,
                 requestMessage: "Sedang Mengirim Formulir Registrasi",
-                downloadingResource: false,
+                downloadingResource: true,
 
                 // data
                 provinsi: [],
@@ -767,7 +767,7 @@
 
                 axios.get('<?php echo e(Route("frontend.registrasi.resource")); ?>')
                         .then((response) => {
-                            console.log(response.data);
+                            // console.log(response.data);
 
                             this.provinsi = response.data.provinsi;
                             this.kabupaten = response.data.kota;
@@ -777,6 +777,10 @@
                             this.provinsi_ketua = this.provinsi;
                             this.provinsiChange(this.provinsi_ketua[0].id);
 
+                            setTimeout(function(e){
+                                $('[data-toggle="tooltip"]').tooltip();
+                            }, 0);
+
                         }).catch((e) => {
                             this.downloadingResource = 'Nan';
                             alert('ups. Terjadi Kesalahan. Err System...')
@@ -784,8 +788,6 @@
                         }).then(() => {
                             this.downloadingResource = false;
                         })
-
-                $('[data-toggle="tooltip"]').tooltip();
             },
 
             methods: {
