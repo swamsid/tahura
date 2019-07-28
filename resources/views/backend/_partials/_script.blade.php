@@ -29,7 +29,14 @@
 <script src="{{ asset('public/backend/js/demo/sparkline-demo.js') }}"></script>
 
 <!-- ChartJS-->
-<script src="{{ asset('public/backend/js/plugins/chartJs/dists/chart.min.js') }}"></script>
+<script src="{{ asset('public/backend/js/plugins/chartJs/dist/chart.min.js') }}"></script>
 
 <!-- Toastr -->
 <script src="{{ asset('public/backend/js/plugins/toastr/toastr.min.js') }}"></script>
+
+<!-- Flot -->
+<script src="{{ asset('public/backend/js/plugins/flot/jquery.flot.js') }}"></script>
+<script src="{{ asset('public/backend/js/plugins/flot/jquery.flot.tooltip.min.js') }}"></script>
+<script src="{{ asset('public/backend/js/plugins/flot/jquery.flot.spline.js') }}"></script>
+<script src="{{ asset('public/backend/js/plugins/flot/jquery.flot.resize.js') }}"></script>
+<script src="{{ asset('public/backend/js/plugins/flot/jquery.flot.pie.js') }}"></script>

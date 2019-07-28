@@ -107,9 +107,9 @@ Route::group(['middleware' => ['guest', 'web']], function(){
 
 Route::group(['middleware' => 'auth'], function(){
 
-	Route::get('wpadmin/dashboard', function(){
-		return view('backend.dashboard');
-	})->name('wpadmin.dashboard');
+	Route::get('wpadmin/dashboard', [
+		'uses'	=> 'Backend\dashboard@index'
+	])->name('wpadmin.dashboard');
 
 	Route::get('wpadmin/logout', [
 		'uses' => 'Backend\auth\authenticate@logout'

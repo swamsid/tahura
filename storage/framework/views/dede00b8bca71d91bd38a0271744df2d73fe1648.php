@@ -1,6 +1,4 @@
-@extends('backend.main')
-
-@section('extra_style')
+<?php $__env->startSection('extra_style'); ?>
     
     <style type="text/css">
         #lineChart{
@@ -9,18 +7,18 @@
         }
     </style>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
-    @if(Auth::user()->posisi == 'kantor')
+    <?php if(Auth::user()->posisi == 'kantor'): ?>
 
         <div class="row  border-bottom white-bg dashboard-header">
             <div class="col-sm-3">
                 <h2>Selamat Datang</h2>
                 <small>4 Pos Dengan Jumlah Pendakian Terbanyak</small>
                 <ul class="list-group clear-list m-t">
-                    @foreach($rangking as $key => $sr)
+                    <?php $__currentLoopData = $rangking; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $sr): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <?php
                             $label = 'label-default';
 
@@ -34,15 +32,16 @@
 
                         <li class="list-group-item fist-item">
                             <span class="pull-right" style="font-weight: 600">
-                                {{ $sr->tot }} Tim
+                                <?php echo e($sr->tot); ?> Tim
                             </span>
-                            <span class="label {{ $label }}" style="font-weight: bold;">{{ $key + 1 }}</span> {{ $sr->pp_nama }}
+                            <span class="label <?php echo e($label); ?>" style="font-weight: bold;"><?php echo e($key + 1); ?></span> <?php echo e($sr->pp_nama); ?>
+
                         </li>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     <li class="list-group-item fist-item">
                         <span class="pull-right" style="font-weight: 600">
-                            {{ $pendakian }} Tim
+                            <?php echo e($pendakian); ?> Tim
                         </span>
                         <span style="font-weight: bold; font-size: 9pt;">Total Pendakian Selama Ini</span>
                     </li>
@@ -63,7 +62,7 @@
                         <div class=" m-l-md">    
                         <span class="h4 font-bold m-t block">
                             <i class="fa fa-clipboard" style="color: #1c84c6;"></i> &nbsp;
-                            {{ $registrasi }} Tim
+                            <?php echo e($registrasi); ?> Tim
                         </span>
                         <small class="text-muted m-b block">Total Registrasi Bulan Ini</small>
                         </div>
@@ -71,14 +70,14 @@
                     <div class="col-xs-4">
                         <span class="h4 font-bold m-t block">
                             <i class="fa fa-clipboard" style="color: #1c84c6;"></i> &nbsp;
-                            {{ $naik }} Tim
+                            <?php echo e($naik); ?> Tim
                         </span>
                         <small class="text-muted m-b block">Total Sudah Naik Bulan Ini</small>
                     </div>
                     <div class="col-xs-4">
                         <span class="h4 font-bold m-t block">
                             <i class="fa fa-clipboard" style="color: #1c84c6;"></i> &nbsp;
-                            {{ $turun }} Tim
+                            <?php echo e($turun); ?> Tim
                         </span>
                         <small class="text-muted m-b block">Total Sudah Turun Bulan Ini</small>
                     </div>
@@ -142,7 +141,7 @@
                 </div>
             </div>
         </div> -->
-    @else
+    <?php else: ?>
         <div class="row border-bottom white-bg dashboard-header">
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
@@ -172,16 +171,16 @@
                 </div>
             </div>
         </div>
-    @endif
-@endsection
+    <?php endif; ?>
+<?php $__env->stopSection(); ?>
 
-@section('extra_script')
+<?php $__env->startSection('extra_script'); ?>
     <script>
         $(document).ready(function () {
 
-            var line = {!! $line !!};
-            var polar = {!! $provinsi !!};
-            var doughnut = {!! $lpk !!};
+            var line = <?php echo $line; ?>;
+            var polar = <?php echo $provinsi; ?>;
+            var doughnut = <?php echo $lpk; ?>;
 
             console.log(polar.province);
 
@@ -192,7 +191,7 @@
                     showMethod: 'slideDown',
                     timeOut: 4000
                 };
-                toastr.success('Selamat Data {{ Auth::user()->nama }}', 'UPT Tahura Raden Soerjo');
+                toastr.success('Selamat Data <?php echo e(Auth::user()->nama); ?>', 'UPT Tahura Raden Soerjo');
             }, 1300);
 
             // line area
@@ -271,7 +270,7 @@
 
                                 ticks: {
                                     min: 0,
-                                    max: {{ $max + 4 }},
+                                    max: <?php echo e($max + 4); ?>,
 
                                     step: 10
                                 }
@@ -283,7 +282,7 @@
 
                                 ticks: {
                                     min: 0,
-                                    max: {{ $max + 4 }},
+                                    max: <?php echo e($max + 4); ?>,
 
                                     step: 10
                                 }
@@ -295,7 +294,7 @@
 
                                 ticks: {
                                     min: 0,
-                                    max: {{ $max + 4 }},
+                                    max: <?php echo e($max + 4); ?>,
 
                                     step: 10
                                 }
@@ -307,7 +306,7 @@
 
                                 ticks: {
                                     min: 0,
-                                    max: {{ $max + 4 }},
+                                    max: <?php echo e($max + 4); ?>,
 
                                     step: 10
                                 }
@@ -347,7 +346,7 @@
                         },
                         scale: {
                             ticks: {
-                                max: {{ $max2 + 3 }},
+                                max: <?php echo e($max2 + 3); ?>,
                                 beginAtZero: true
                             },
                             reverse: false
@@ -466,4 +465,5 @@
             // });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\project_lain\tahura\resources\views/backend/dashboard.blade.php ENDPATH**/ ?>
