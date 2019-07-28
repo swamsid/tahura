@@ -1,0 +1,1 @@
+<img src="data:image/png;base64, <?php echo e(base64_encode($qrcode)); ?> " width="500"><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/pendaki/detail/qr.blade.php ENDPATH**/ ?>
