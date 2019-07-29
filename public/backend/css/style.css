@@ -8346,8 +8346,3 @@ select.input-sm {
     height: auto !important; 
   }
 }
-
-
-#myPieChart{
-  width: auto !important; height: 300px !important
-}

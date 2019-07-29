@@ -52,8 +52,9 @@
             </div>
 
             <div class="col-sm-6">
-                
+                <div class="row text-center">
                     <canvas id="myPieChart" style=""></canvas>
+                </div>
                
                 <!-- <div class="row text-left" style="margin-top: 0px;">
                     <div class="col-xs-4">
