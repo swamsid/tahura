@@ -68,6 +68,7 @@ class dashboard extends Controller
 
     	$provinsi = DB::table('provinces')
     						->leftJoin('tb_pendakian', 'tb_pendakian.pd_provinsi', 'provinces.id')
+                            ->where('pd_pos_pendakian','!=','')
     						->select(DB::raw('count(pd_id) as tot'), 'name')
     						->groupBy('name')
     						->orderBy('tot', 'desc')
@@ -75,19 +76,25 @@ class dashboard extends Controller
 
     	$l = DB::table('tb_pendakian')
 				->where('pd_jenis_kelamin', 'L')
+                ->where('pd_pos_pendakian','!=','')
 				->select(DB::raw('count(pd_id) as tot'))->first();
 
 		$l2 = DB::table('tb_anggota_pendakian')
+                ->leftjoin('tb_pendakian','tb_pendakian.pd_id','tb_anggota_pendakian.ap_pendakian')
 				->where('ap_kelamin', 'L')
-				->select(DB::raw('count(ap_pendakian) as tot'))->first();
+                ->where('pd_pos_pendakian','!=','')
+				->select(DB::raw('count(tb_anggota_pendakian.ap_pendakian) as tot'))->first();
 
 		$p = DB::table('tb_pendakian')
-				->where('pd_jenis_kelamin', 'P')
-				->select(DB::raw('count(pd_id) as tot'))->first();
+                ->where('pd_jenis_kelamin', 'P')
+                ->where('pd_pos_pendakian','!=','')
+                ->select(DB::raw('count(pd_id) as tot'))->first();
 
 		$p2 = DB::table('tb_anggota_pendakian')
-				->where('ap_kelamin', 'P')
-				->select(DB::raw('count(ap_pendakian) as tot'))->first();
+                ->leftjoin('tb_pendakian','tb_pendakian.pd_id','tb_anggota_pendakian.ap_pendakian')
+                ->where('ap_kelamin', 'P')
+                ->where('pd_pos_pendakian','!=','')
+                ->select(DB::raw('count(tb_anggota_pendakian.ap_pendakian) as tot'))->first();
 
 
 

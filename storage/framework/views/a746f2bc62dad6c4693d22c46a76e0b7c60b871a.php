@@ -452,6 +452,7 @@
                             ['Lawang',          
                                 <?php 
                                     $con = mysqli_connect("localhost","root","","dishut");
+                                    // $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
                                     for ($i = 1; $i <= 12; $i++) {
                                         $bln    = substr('0'.$i, -2); 
                                         $lawang_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
