@@ -21,7 +21,7 @@
     <th class="tg-lj5e" rowspan="5"><img style="height: 100px" src="<?php echo e(asset('public/backend/img/LogoJawaTimur.png')); ?>"></th>
     <th class="tg-puex" colspan="2" style="font-weight: bold">PEMERINTAH PROVINSI JAWA TIMUR</th>
     <th class="tg-lj5e" rowspan="5">
-      <img src="data:image/png;base64, <?php echo e(base64_encode($qrcode)); ?> " width="100">
+      <img src="data:image/png;base64, <?php echo e(base64_encode($qrcode)); ?>" width="100">
     </th>
   </tr>
   <tr>
@@ -43,7 +43,7 @@
     <td style="padding: 10px 0" class="tg-xeyn" colspan="4">SURAT IJIN KHUSUS PENDAKIAN GUNUNG DI KAWASAN TAHURA R. SOERJO</td>
   </tr>
   <tr>
-    <td class="tg-lj5e" colspan="4">Nomor Registrasi : <?php echo e($data->pd_nomor); ?> Tanggal <?php echo e(date('d/m/Y', strtotime($data->updated_at))); ?></td>
+    <td class="tg-lj5e" colspan="4">Nomor Registrasi : <?php echo e($data->pd_nomor); ?> Tanggal <?php echo e(date('d/m/Y', strtotime($data->created_at))); ?></td>
   </tr>
   <tr>
     <td style="padding-bottom: 10px" class="tg-lj5e" colspan="4">Nomor Karcis : .......................s/d...........................</td>
@@ -340,7 +340,7 @@
 </colgroup>
   <tr>
     <th class="tg-hgcj">Telah dicek oleh :</th>
-    <th class="tg-hgcj">Tanggal "Register"</th>
+    <th class="tg-hgcj">Tanggal <?php echo e(date('d/m/Y', strtotime($data->created_at))); ?></th>
   </tr>
   <tr>
     <td class="tg-baqh" style="padding-bottom: 60px">Petugas Pos Pendakian</td>
@@ -352,7 +352,7 @@
   </tr>
   <tr>
     <td class="tg-baqh">..............</td>
-    <td class="tg-baqh">"Nama Ketua"</td>
+    <td class="tg-baqh">...............</td>
   </tr>
 </table>
 			
