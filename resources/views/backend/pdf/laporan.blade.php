@@ -49,7 +49,7 @@
     <th width="15%">Tanggal Turun</th>
     <th width="17%">Jalur Turun</th>
     <th width="10%">Anggota</th>
-    <th width="10%">Status</th>
+    <th width="10%">Total</th>
   </tr>
   <?php $totKetua = $totAnggota = 0; ?>
   @foreach($data as $key => $pd)
@@ -61,14 +61,19 @@
       <td>{{ date('d/m/Y', strtotime($pd->pd_tgl_turun)) }} &nbsp;<small><b>{{ ($pd->pd_pos_turun) ? '' : '(rencana)' }}</b></small></td>
       <td>{{ ($pd->pd_pos_turun) ? $pd->pp_nama : '---' }}</td>
       <td>{{ count($pd->anggota) }} Orang</td>
-      <td>{{ $pd->pd_status }}</td>
+      <td>{{ count($pd->anggota) + 1 }} Orang</td>
     </tr>
 
     <?php $totKetua++; $totAnggota += count($pd->anggota) ?>
   @endforeach
+    <tr>
+      
+      <td colspan="7"><strong>Total Pendaki</strong></td>
+      <td>{{ $totAnggota + $totKetua }} orang</td>
+    </tr>
 </table>
 
-<table class="ta" style="margin-top: 30px; width: 30%; ">
+<!-- <table class="ta" style="margin-top: 30px; width: 30%; ">
   <tr>
     <th colspan="2">Total Pendaki Naik :</th>
   </tr>
@@ -87,4 +92,4 @@
     <td style="background: #cccccc; font-weight: bold">Total</td>
     <td style="background: #cccccc; font-weight: bold">{{ $totAnggota + $totKetua }} orang</td>
   </tr>
-</table>
+</table> -->
