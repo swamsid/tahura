@@ -69,7 +69,7 @@ class dashboard extends Controller
     	$provinsi = DB::table('provinces')
     						->leftJoin('tb_pendakian', 'tb_pendakian.pd_provinsi', 'provinces.id')
                             ->where('pd_pos_pendakian','!=','')
-    						->select(DB::raw('count(pd_id) as tot'), 'name')
+    						->select(DB::raw('count(tb_pendakian.pd_id) as tot'), 'name')
     						->groupBy('name')
     						->orderBy('tot', 'desc')
     						->limit(3)->get();
