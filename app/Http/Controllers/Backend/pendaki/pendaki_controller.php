@@ -126,7 +126,7 @@ class pendaki_controller extends Controller
 
                 Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
-                    $message->from('noreply@dishut.com', 'UPT Tahura Raden Soerjo');
+                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                     $message->to($email);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                     $message->attachData($qrcode, 'kode.png');
@@ -168,7 +168,7 @@ class pendaki_controller extends Controller
 
                 Mail::send('addition.email.tolak', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
-                    $message->from('noreply@dishut.com', 'UPT Tahura Raden Soerjo');
+                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                     $message->to($email);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                 });

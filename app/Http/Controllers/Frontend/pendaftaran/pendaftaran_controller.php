@@ -86,7 +86,7 @@ class pendaftaran_controller extends Controller
 
             Mail::send('addition.email.daftar', ['kode' => $nomor], function ($message) use ($request){
                 $message->subject("Pendaftaran Pendakian");
-                $message->from('noreply@dishut.com', 'UPT Tahura Raden Soerjo');
+                $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                 $message->to($request->email_ketua);
             });
 
