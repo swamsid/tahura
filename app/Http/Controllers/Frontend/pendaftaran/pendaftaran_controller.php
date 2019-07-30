@@ -20,9 +20,20 @@ class pendaftaran_controller extends Controller
     protected function resource(){
 
         $provinsi = DB::table('provinces')->select('id as id', 'name as text')->get();
-        $kota = DB::table('regencies')->select('id as id', 'province_id', 'name as text')->get();
-        $kecamatan = DB::table('districts')->select('id as id', 'regency_id', 'name as text')->get();
-        $kelurahan = DB::table('villages')->select('id as id', 'district_id', 'name as text')->get();
+
+        $kota = DB::table('regencies')->select('id as id', 'province_id', 'name as text')
+                    ->where('province_id', $provinsi[0]->id)
+                    ->get();
+
+        $kecamatan = DB::table('districts')->select('id as id', 'regency_id', 'name as text')
+                        ->where('regency_id', $kota[0]->id)
+                        ->get();
+
+        $kelurahan = DB::table('villages')->select('id as id', 'district_id', 'name as text')
+                        ->where('district_id', $kecamatan[0]->id)
+                        ->get();
+
+        // return json_encode($provinsi[0]->id);
 
         $data = [
             'provinsi'      => $provinsi,
@@ -205,5 +216,62 @@ class pendaftaran_controller extends Controller
             Session::flash('message', 'Kode pendakian yang anda maksud Anda tidak bisa ditemukan');
             return redirect()->back();
         }
+    }
+
+    protected function byprovinsi(Request $request){
+        $kota = DB::table('regencies')->select('id as id', 'province_id', 'name as text')
+                    ->where('province_id', $request->id)
+                    ->get();
+
+        $kecamatan = DB::table('districts')->select('id as id', 'regency_id', 'name as text')
+                        ->where('regency_id', $kota[0]->id)
+                        ->get();
+
+        $kelurahan = DB::table('villages')->select('id as id', 'district_id', 'name as text')
+                        ->where('district_id', $kecamatan[0]->id)
+                        ->get();
+
+        // return json_encode($provinsi[0]->id);
+
+        $data = [
+            'kota'          => $kota,
+            'kecamatan'     => $kecamatan,
+            'kelurahan'     => $kelurahan
+        ];
+
+        return response()->json($data);
+    }
+
+    protected function bykabupaten(Request $request){
+        $kecamatan = DB::table('districts')->select('id as id', 'regency_id', 'name as text')
+                        ->where('regency_id', $request->id)
+                        ->get();
+
+        $kelurahan = DB::table('villages')->select('id as id', 'district_id', 'name as text')
+                        ->where('district_id', $kecamatan[0]->id)
+                        ->get();
+
+        // return json_encode($provinsi[0]->id);
+
+        $data = [
+            'kecamatan'     => $kecamatan,
+            'kelurahan'     => $kelurahan
+        ];
+
+        return response()->json($data);
+    }
+
+    protected function bykecamatan(Request $request){
+        $kelurahan = DB::table('villages')->select('id as id', 'district_id', 'name as text')
+                        ->where('district_id', $request->id)
+                        ->get();
+
+        // return json_encode($provinsi[0]->id);
+
+        $data = [
+            'kelurahan'     => $kelurahan
+        ];
+
+        return response()->json($data);
     }
 }

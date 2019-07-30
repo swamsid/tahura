@@ -24,12 +24,19 @@ class dashboard extends Controller
 	    	$provinsi = json_encode($data['polar']);
 	    	$line = json_encode($data['line']);
 
-	    	$ck = [max($data['line']['tot1']), max($data['line']['tot2']), max($data['line']['tot3']), max($data['line']['tot4'])];
+            $max = $max2 = 0;
 
-	    	$max = max($ck);
-	    	$max2 = max($data['polar']['tot']);
+            if(count($data['line']['tot1']) && count($data['line']['tot2']) && count($data['line']['tot3']) && $data['line']['tot4']){
 
-	    	// return $lpk;
+                $ck = [max($data['line']['tot1']), max($data['line']['tot2']), max($data['line']['tot3']), max($data['line']['tot4'])];
+                $max = max($ck);
+
+            }
+
+            if(count($data['polar']['tot']))
+	    	  $max2 = max($data['polar']['tot']);
+
+	    	// return $data['polar']['tot'];
 
 	        return view('backend.dashboard', compact('rangking', 'line', 'max', 'pendakian', 'registrasi', 'naik', 'turun', 'provinsi', 'max2', 'lpk'));
     	}else{

@@ -81,6 +81,18 @@ Route::get('qrcode', function () {
 		'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@resource'
 	])->name('frontend.registrasi.resource');
 
+	Route::get('registrasi/form-register/resource/byprovinsi', [
+		'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@byprovinsi'
+	])->name('frontend.registrasi.resource.byprovinsi');
+
+	Route::get('registrasi/form-register/resource/bykabupaten', [
+		'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@bykabupaten'
+	])->name('frontend.registrasi.resource.bykabupaten');
+
+	Route::get('registrasi/form-register/resource/bykecamatan', [
+		'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@bykecamatan'
+	])->name('frontend.registrasi.resource.bykecamatan');
+
 	Route::post('registrasi/save', [
 		'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@save'
 	])->name('frontend.registrasi.save');

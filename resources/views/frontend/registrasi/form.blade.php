@@ -195,22 +195,42 @@
 
                                                         <div class="form-group">
                                                             <label>Provinsi</label>
-                                                            <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="true" @option-change="provinsiChange"></vue-select>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-check fa-fw" v-if="!provinsiSearch"></i><i class="fa fa-hourglass fa-dw" v-if="provinsiSearch" style="font-size: 8pt;"></i>
+                                                                </span>
+                                                                <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="true" @option-change="provinsiChange"></vue-select>
+                                                            </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Kabupaten / Kota</label>
-                                                            <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="true" @option-change="kabupatenChange"></vue-select>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-check fa-fw" v-if="!kotaSearch"></i><i class="fa fa-hourglass fa-dw" v-if="kotaSearch" style="font-size: 8pt;"></i>
+                                                                </span>
+                                                                <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="true" @option-change="kabupatenChange"></vue-select>
+                                                            </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Kecamatan</label>
-                                                            <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="true" @option-change="kecamatanChange"></vue-select>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-check fa-fw" v-if="!kecamatanSearch"></i><i class="fa fa-hourglass fa-dw" v-if="kecamatanSearch" style="font-size: 8pt;"></i>
+                                                                </span>
+                                                                <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="true" @option-change="kecamatanChange"></vue-select>
+                                                            </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Desa / Kelurahan</label>
-                                                            <vue-select :name="'desa_ketua'" :id="'desa_ketua'" :options="desa_ketua" :search="true"></vue-select>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-check fa-fw" v-if="!kelurahanSearch"></i><i class="fa fa-hourglass fa-dw" v-if="kelurahanSearch" style="font-size: 8pt;"></i>
+                                                                </span>
+                                                                <vue-select :name="'desa_ketua'" :id="'desa_ketua'" :options="desa_ketua" :search="true"></vue-select>
+                                                            </div>
                                                         </div>
 
                                                         <div class="form-group">
@@ -538,6 +558,11 @@
                 requestMessage: "Sedang Mengirim Formulir Registrasi",
                 downloadingResource: true,
 
+                provinsiSearch : false,
+                kotaSearch : false,
+                kecamatanSearch : false,
+                kelurahanSearch : false,
+
                 // data
                 provinsi: [],
                 kabupaten: [],
@@ -770,12 +795,11 @@
                             // console.log(response.data);
 
                             this.provinsi = response.data.provinsi;
-                            this.kabupaten = response.data.kota;
-                            this.kecamatan = response.data.kecamatan;
-                            this.desa = response.data.kelurahan;
+                            this.kabupaten_ketua = response.data.kota;
+                            this.kecamatan_ketua = response.data.kecamatan;
+                            this.desa_ketua = response.data.kelurahan;
 
                             this.provinsi_ketua = this.provinsi;
-                            this.provinsiChange(this.provinsi_ketua[0].id);
 
                             setTimeout(function(e){
                                 $('[data-toggle="tooltip"]').tooltip();
@@ -827,17 +851,56 @@
                 },
 
                 provinsiChange(e){
-                    this.kabupaten_ketua = $.grep(this.kabupaten, function(a) { return a.province_id == e });
-                    this.kabupatenChange(this.kabupaten_ketua[0].id);
+                    // this.kabupaten_ketua = $.grep(this.kabupaten, function(a) { return a.province_id == e });
+                    // this.kabupatenChange(this.kabupaten_ketua[0].id);
+                    this.kotaSearch = this.kecamatanSearch = this.kelurahanSearch = true;
+
+                    axios.get("{{ Route('frontend.registrasi.resource.byprovinsi') }}?id="+e)
+                            .then((response) => {
+                                // console.log(response.data)
+                                this.kabupaten_ketua = response.data.kota;
+                                this.kecamatan_ketua = response.data.kecamatan;
+                                this.desa_ketua = response.data.kelurahan;
+
+                                this.kotaSearch = this.kecamatanSearch = this.kelurahanSearch = false;
+                            })
+                            .catch((err) => {
+                                alert('system bermasalah saat memuat resource');
+                                console.log('err => '+err);
+                            })
                 },
 
                 kabupatenChange(e){
-                    this.kecamatan_ketua = $.grep(this.kecamatan, function(a) { return a.regency_id == e });
-                    this.kecamatanChange(this.kecamatan_ketua[0].id);
+                    this.kecamatanSearch = this.kelurahanSearch = true;
+                    axios.get("{{ Route('frontend.registrasi.resource.bykabupaten') }}?id="+e)
+                            .then((response) => {
+                                // console.log(response.data)
+
+                                this.kecamatan_ketua = response.data.kecamatan;
+                                this.desa_ketua = response.data.kelurahan;
+
+                                this.kecamatanSearch = this.kelurahanSearch = true;
+                            })
+                            .catch((err) => {
+                                alert('system bermasalah saat memuat resource');
+                                console.log('err => '+err);
+                            })
                 },
 
                 kecamatanChange(e){
-                    this.desa_ketua = $.grep(this.desa, function(a) { return a.district_id == e });
+                    this.kelurahanSearch = true;
+                    axios.get("{{ Route('frontend.registrasi.resource.bykecamatan') }}?id="+e)
+                            .then((response) => {
+                                // console.log(response.data)
+                                
+                                this.desa_ketua = response.data.kelurahan;
+
+                                this.kelurahanSearch = false;
+                            })
+                            .catch((err) => {
+                                alert('system bermasalah saat memuat resource');
+                                console.log('err => '+err);
+                            })
                 },
 
                 send: function(e){
