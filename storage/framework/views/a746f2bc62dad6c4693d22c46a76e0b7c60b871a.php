@@ -271,7 +271,9 @@
                                         echo $tambaksari+$tambaksari_anggota.',';
                                     }?>
                                 ],
-                                borderColor : ["rgba(26, 179, 148, 0.4)"],
+                                backgroundColor : "rgba(26, 179, 148, 0.4)",
+                                borderColor : "rgba(26, 179, 148, 0.4)",
+                                borderWidth : 3,
                                 fill : false
 
                             },
@@ -286,7 +288,9 @@
                                         echo $sumber+$sumber_anggota.',';
                                     }?>  
                                 ],
-                                borderColor : ["rgba(28, 132, 198, 0.4)"],
+                                backgroundColor : "rgba(28, 132, 198, 0.4)",
+                                borderColor : "rgba(28, 132, 198, 0.4)",
+                                borderWidth : 3,
                                 fill : false
                             },
                             {
@@ -300,7 +304,9 @@
                                         echo $lawang+$lawang_anggota.',';
                                     }?>
                                 ],
-                                borderColor : ["rgba(255,64,129,0.4)"],
+                                backgroundColor : "rgba(255,64,129,0.4)",
+                                borderColor : "rgba(255,64,129,0.4)",
+                                borderWidth : 3,
                                 fill : false
                             },
                             {
@@ -314,7 +320,9 @@
                                         echo $tambaksari+$tambaksari_anggota.',';
                                     } ?>
                                 ],
-                                borderColor : ["rgba(255,87,34,0.4)"],
+                                backgroundColor : "rgba(255,87,34,0.4)",
+                                borderColor : "rgba(255,87,34,0.4)",
+                                borderWidth : 3,
                                 fill : false
                             }
                         ]
