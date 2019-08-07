@@ -340,6 +340,29 @@
                                      }
                                  }],
                              },
+                            tooltips: {
+                              mode: 'index',
+                              intersect: false,
+                            },
+                           hover: {
+                              mode: 'nearest',
+                              intersect: true
+                            },
+                            scales: {
+                              xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                  display: true,
+                                  labelString: 'Month'
+                                }
+                              }],
+                              yAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                  display: true,
+                                },
+                              }]
+                            }
                         }
                 };
                     var myPieChart = document.getElementById('flot-dashboard-chart').getContext('2d');

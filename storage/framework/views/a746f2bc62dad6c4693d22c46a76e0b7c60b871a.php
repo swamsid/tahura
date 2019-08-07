@@ -18,6 +18,7 @@
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #1ab394;"></i> &nbsp;
                     <?php
                         $con = mysqli_connect("localhost","root","","dishut");
+                        // $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
                         $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' "));
                         $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' "));
                         $tot = $total_anggota+$total;
@@ -337,6 +338,29 @@
                                      }
                                  }],
                              },
+                            tooltips: {
+                              mode: 'index',
+                              intersect: false,
+                            },
+                           hover: {
+                              mode: 'nearest',
+                              intersect: true
+                            },
+                            scales: {
+                              xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                  display: true,
+                                  labelString: 'Month'
+                                }
+                              }],
+                              yAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                  display: true,
+                                },
+                              }]
+                            }
                         }
                 };
                     var myPieChart = document.getElementById('flot-dashboard-chart').getContext('2d');
