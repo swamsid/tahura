@@ -17,8 +17,8 @@
 
         <div class="row  border-bottom white-bg dashboard-header">
             <div class="col-sm-3">
-                <h2>Selamat Datang</h2>
-                <small>4 Pos Dengan Jumlah Pendakian Terbanyak</small>
+                <!-- <h2>Selamat Datang</h2> -->
+                <small>Jumlah Pendaki Naik Pada Tiap Pos Berdasarkan Ketua Regu. Data diambil dari awal periode pencatatan hingga saat ini.</small>
                 <ul class="list-group clear-list m-t">
                     @foreach($rangking as $key => $sr)
                         <?php
@@ -44,21 +44,19 @@
                         <span class="pull-right" style="font-weight: 600">
                             {{ $pendakian }} Tim
                         </span>
-                        <span style="font-weight: bold; font-size: 9pt;">Total Pendakian Selama Ini</span>
+                        <span style="font-weight: bold; font-size: 9pt;">Total</span>
+                        
+                         
                     </li>
                 </ul>
             </div>
 
             <div class="col-sm-6">
-                <div class="row text-center" style="margin-top: 0px;">
-                    <i class="fa fa-arrow-down" style="font-size: 8pt; color: #1ab394;"></i> &nbsp;
-                    <span>Jumlah Total Pendakian 5 Bulan Terakhir</span>&nbsp;
-                    <i class="fa fa-arrow-down" style="font-size: 8pt; color: #1ab394;"></i>
+                <div class="row text-center">
+                    <canvas id="myPieChart" style=""></canvas>
                 </div>
-                <div class="flot-chart dashboard-chart" style="background: none; padding: 0px; margin-top: 10px;">
-                    <canvas id="lineChart"></canvas>
-                </div>
-                <div class="row text-left" style="margin-top: 0px;">
+               
+                <!-- <div class="row text-left" style="margin-top: 0px;">
                     <div class="col-xs-4">
                         <div class=" m-l-md">    
                         <span class="h4 font-bold m-t block">
@@ -83,7 +81,7 @@
                         <small class="text-muted m-b block">Total Sudah Turun Bulan Ini</small>
                     </div>
 
-                </div>
+                </div> -->
             </div>
 
             <div class="col-sm-3" style=" background: none; padding-top: 0px;">
@@ -92,7 +90,7 @@
                     Grafik Info Pendaki
                 </h4>
                 <p>
-                    <small>Rangking Pendaki Berdasarkan 2 Kriteria</small>
+                    <!-- <small>Rangking Pendaki Berdasarkan 2 Kriteria</small> -->
                 </p>
                     <div class="row text-center" style="margin-top: 20px;">
                         <div class="col-lg-6">
@@ -110,40 +108,23 @@
 
                 </div>
             </div>
-        </div>
 
-
-        <!-- <div class="row border-bottom white-bg dashboard-header">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>Jumlah pendaki pada tahun 2019 </h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="fa fa-wrench"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#">Config option 1</a>
-                                </li>
-                                <li><a href="#">Config option 2</a>
-                                </li>
-                            </ul>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="ibox-content">
-                        <div id="slineChart" ></div>
-                    </div>
+            
+            <div class="col-md-12" style="margin-top: 50px">
+                <div class="row text-center" style="margin-top: 0px;">
+                    <i class="fa fa-arrow-down" style="font-size: 8pt; color: #1ab394;"></i> &nbsp;
+                    <span>Jumlah Total Pendaki Tahun <?php echo date('Y') ?></span>&nbsp;
+                    <i class="fa fa-arrow-down" style="font-size: 8pt; color: #1ab394;"></i>
                 </div>
+                <!-- <div class="flot-chart dashboard-chart" style="background: none; padding: 0px; margin-top: 10px;">
+                    <canvas id="lineChart"></canvas>
+                </div> -->
+                <div id="slineChart" ></div>
+                <!-- <canvas id="myLineChart" ></canvas> -->
             </div>
-        </div> -->
+            
     @else
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-3">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
@@ -232,6 +213,9 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+        <div class="row border-bottom white-bg dashboard-header">
+            Dashboard Petugas
         </div>
     @endif
 @endsection
@@ -300,89 +284,89 @@
                         }]
                     };
 
-                    var lineChart = document.getElementById('lineChart').getContext('2d');
-                    window.myLine = Chart.Line(lineChart, {
-                        data: lineChartData,
-                        options: {
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            hoverMode: 'index',
-                            stacked: false,
-                            legend: {
-                                display: false
-                            },
-                            title: {
-                                display: false,
-                                text: 'Chart.js Line Chart - Multi Axis'
-                            },
-                            tooltips: {
-                                mode: 'index',
-                                intersect: false,
-                            },
-                            hover: {
-                                mode: 'nearest',
-                                intersect: true
-                            },
-                            scales: {
-                                yAxes: [
-                                {
-                                    type: 'linear',
-                                    display: true,
-                                    position: 'left',
-                                    id: 'y-axis-1',
+                    // var lineChart = document.getElementById('lineChart').getContext('2d');
+                    // window.myLine = Chart.Line(lineChart, {
+                    //     data: lineChartData,
+                    //     options: {
+                    //         responsive: true,
+                    //         maintainAspectRatio: false,
+                    //         hoverMode: 'index',
+                    //         stacked: false,
+                    //         legend: {
+                    //             display: false
+                    //         },
+                    //         title: {
+                    //             display: false,
+                    //             text: 'Chart.js Line Chart - Multi Axis'
+                    //         },
+                    //         tooltips: {
+                    //             mode: 'index',
+                    //             intersect: false,
+                    //         },
+                    //         hover: {
+                    //             mode: 'nearest',
+                    //             intersect: true
+                    //         },
+                    //         scales: {
+                    //             yAxes: [
+                    //             {
+                    //                 type: 'linear',
+                    //                 display: true,
+                    //                 position: 'left',
+                    //                 id: 'y-axis-1',
 
-                                    ticks: {
-                                        min: 0,
-                                        max: {{ $max + 4 }},
+                    //                 ticks: {
+                    //                     min: 0,
+                    //                     max: {{ $max + 4 }},
 
-                                        step: 10
-                                    }
-                                }, {
-                                    type: 'linear',
-                                    display: false,
-                                    position: 'right',
-                                    id: 'y-axis-2',
+                    //                     step: 10
+                    //                 }
+                    //             }, {
+                    //                 type: 'linear',
+                    //                 display: false,
+                    //                 position: 'right',
+                    //                 id: 'y-axis-2',
 
-                                    ticks: {
-                                        min: 0,
-                                        max: {{ $max + 4 }},
+                    //                 ticks: {
+                    //                     min: 0,
+                    //                     max: {{ $max + 4 }},
 
-                                        step: 10
-                                    }
-                                }, {
-                                    type: 'linear',
-                                    display: false,
-                                    position: 'right',
-                                    id: 'y-axis-3',
+                    //                     step: 10
+                    //                 }
+                    //             }, {
+                    //                 type: 'linear',
+                    //                 display: false,
+                    //                 position: 'right',
+                    //                 id: 'y-axis-3',
 
-                                    ticks: {
-                                        min: 0,
-                                        max: {{ $max + 4 }},
+                    //                 ticks: {
+                    //                     min: 0,
+                    //                     max: {{ $max + 4 }},
 
-                                        step: 10
-                                    }
-                                }, {
-                                    type: 'linear',
-                                    display: false,
-                                    position: 'right',
-                                    id: 'y-axis-4',
+                    //                     step: 10
+                    //                 }
+                    //             }, {
+                    //                 type: 'linear',
+                    //                 display: false,
+                    //                 position: 'right',
+                    //                 id: 'y-axis-4',
 
-                                    ticks: {
-                                        min: 0,
-                                        max: {{ $max + 4 }},
+                    //                 ticks: {
+                    //                     min: 0,
+                    //                     max: {{ $max + 4 }},
 
-                                        step: 10
-                                    }
-                                }],
-                            },
-                            elements: {
-                                line: {
-                                    tension: 0.4
-                                }
-                            },
-                        }
-                    });
-
+                    //                     step: 10
+                    //                 }
+                    //             }],
+                    //         },
+                    //         elements: {
+                    //             line: {
+                    //                 tension: 0.4
+                    //             }
+                    //         },
+                    //     }
+                    // });
+                    
                 // polar area
 
                     var polarConfig = {
@@ -462,70 +446,168 @@
                     var myDoughnut = document.getElementById('myDoughnut').getContext('2d');
                     window.myDoughnut = new Chart(myDoughnut, doughnutConfig);
 
-                // c3.generate({
-                //     bindto: '#slineChart',
-                //     data:{
-                //         columns: [
-                //             ['Lawang',          
-                //                 <?php 
-                //                     $con = mysqli_connect("localhost","root","","dishut");
-                //                     for ($i = 1; $i <= 12; $i++) {
-                //                         $bln    = substr('0'.$i, -2); 
-                //                         $lawang_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-                //                         $lawang = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-                //                         echo $lawang+$lawang_anggota.',';
-                //                     } 
-                //                 ?>],
-                //             ['Tambaksari',      
-                //                 <?php 
-                //                     for ($i = 1; $i <= 12; $i++) {
-                //                         $bln    = substr('0'.$i, -2); 
-                //                         $tambaksari_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-                //                         $tambaksari = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-                //                         echo $tambaksari+$tambaksari_anggota.',';
-                //                     } 
-                //                 ?>],
-                //             ['Sumberbrantas',  
-                //                 <?php 
-                //                     for ($i = 1; $i <= 12; $i++) {
-                //                         $bln    = substr('0'.$i, -2); 
-                //                         $sumber_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-                //                         $sumber = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-                //                         echo $sumber+$sumber_anggota.',';
-                //                     } 
-                //                 ?>],
-                //             ['Tretes', 
-                //                 <?php 
-                //                     for ($i = 1; $i <= 12; $i++) {
-                //                         $bln    = substr('0'.$i, -2); 
-                //                         $tambaksari_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-                //                         $tambaksari = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-                //                         echo $tambaksari+$tambaksari_anggota.',';
-                //                     } 
-                //                 ?>]
-                //         ],
-                //         type: 'spline',
-                //         labels: true,
-                //         colors:{
-                //             Lawang: '#A5D6A7',
-                //             Tambaksari: '#80DEEA',
-                //             Sumberbrantas: '#FFCC80',
-                //             Tretes: '#FF8A65'
-                //         }
-                //     },
-                //     axis: {
-                //         x: {
-                //             type: 'category',
-                //             categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
-                //         },
-                //         y: {
-                //             label: {
-                //                 text: 'Pendaki',
-                //                 position: 'outer-middle'
-                //             }
-                //         }
-                //     }
-                // });
+                c3.generate({
+                    bindto: '#slineChart',
+                    data:{
+                        columns: [
+                            ['Lawang',          
+                                <?php 
+                                    // $con = mysqli_connect("localhost","root","","dishut");
+                                    $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
+                                    for ($i = 1; $i <= 12; $i++) {
+                                        $bln    = substr('0'.$i, -2); 
+                                        $lawang_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        $lawang = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        echo $lawang+$lawang_anggota.',';
+                                    } 
+                                ?>],
+                            ['Tambaksari',      
+                                <?php 
+                                    for ($i = 1; $i <= 12; $i++) {
+                                        $bln    = substr('0'.$i, -2); 
+                                        $tambaksari_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        $tambaksari = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        echo $tambaksari+$tambaksari_anggota.',';
+                                    } 
+                                ?>],
+                            ['Sumberbrantas',  
+                                <?php 
+                                    for ($i = 1; $i <= 12; $i++) {
+                                        $bln    = substr('0'.$i, -2); 
+                                        $sumber_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        $sumber = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        echo $sumber+$sumber_anggota.',';
+                                    } 
+                                ?>],
+                            ['Tretes', 
+                                <?php 
+                                    for ($i = 1; $i <= 12; $i++) {
+                                        $bln    = substr('0'.$i, -2); 
+                                        $tambaksari_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        $tambaksari = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        echo $tambaksari+$tambaksari_anggota.',';
+                                    } 
+                                ?>]
+                        ],
+                        type: 'spline',
+                        labels: true,
+                        colors:{
+                            Lawang: '#A5D6A7',
+                            Tambaksari: '#80DEEA',
+                            Sumberbrantas: '#FFCC80',
+                            Tretes: '#FF8A65'
+                        }
+                    },
+                    axis: {
+                        x: {
+                            type: 'category',
+                            categories: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+                        },
+                        y: {
+                            label: {
+                                text: 'Pendaki',
+                                position: 'outer-middle'
+                            }
+                        }
+                    }
+                });
+                
+                var pieConfig = {
+                        type: 'pie',
+                        data: {
+                            datasets: [{
+                                data: [
+                                    <?php
+                                        $regist = mysqli_num_rows(mysqli_query($con, 'SELECT pd_id FROM tb_pendakian'));
+                                        $naik = mysqli_num_rows(mysqli_query($con, 'SELECT pd_id FROM tb_pendakian WHERE pd_pos_pendakian != ""')); 
+                                        $turun = mysqli_num_rows(mysqli_query($con, 'SELECT pd_id FROM tb_pendakian WHERE pd_pos_turun != ""')); 
+                                        echo $regist.','.$naik.','.$turun; ?>
+                                        ],
+                                backgroundColor: [
+                                    'rgba(255, 64, 129, 0.5)',
+                                    'rgba(3, 169, 244, 0.5)',
+                                    'rgba(255, 136, 0, 0.5)'
+                                ],
+                                label: 'Dataset 1'
+                            }],
+                            labels: ['Jumlah Registrasi', 'Rombongan Sudah Naik', 'Rombongan Sudah Turun']
+                        },
+                        options: {
+                            responsive: true,
+                            legend: {
+                                display: false,
+                                position: 'top',
+                            },
+                            title: {
+                                display: false,
+                                text: 'Chart.js Pie Chart'
+                            },
+                            animation: {
+                                animateScale: true,
+                                animateRotate: true
+                            }
+                        }
+                    };
+
+                    var myPieChart = document.getElementById('myPieChart').getContext('2d');
+                    window.myPieChart = new Chart(myPieChart, pieConfig);
+
+                    // var lawang = {
+                    //   label: "Lawang",
+                    //   data: [<?php 
+                    //                 for ($i = 1; $i <= 12; $i++) {
+                    //                     $bln    = substr('0'.$i, -2); 
+                    //                     $lawang_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                    //                     $lawang = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                    //                     echo $lawang+$lawang_anggota;
+                    //                 } 
+                    //             ?>
+                    //  ] 
+                    // };
+
+                    // var tambaksari = {
+                    //   label: "Tambaksari",
+                    //   data: [<?php 
+                    //                 for ($i = 1; $i <= 12; $i++) {
+                    //                     $bln    = substr('0'.$i, -2); 
+                    //                     $tambaksari_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                    //                     $tambaksari = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                    //                     echo $tambaksari+$tambaksari_anggota;
+                    //                 } 
+                    //             ?>
+                    //         ]
+                    // };
+
+                    // var speedData = {
+                    //   labels: ['Januari', '2', '3','4','5','6','7','8','9','10','11','12'],
+                    //   datasets: [lawang, tambaksari]
+                    // };
+
+                    // var lineConfig = {
+                    //     type: 'line',
+                    //     data: speedData,  
+                    //     options: {
+                    //         responsive: true,
+                    //         steppedLine: false,
+
+                    //         legend: {
+                    //             display: true,
+                    //             position: 'bottom',
+                    //         },
+                    //         title: {
+                    //             display: false,
+                    //             text: 'Chart.js Line Chart'
+                    //         },
+                    //         animation: {
+                    //             animateScale: true,
+                    //             animateRotate: true
+                    //         }
+                    //     }
+                    // };
+
+                    // var myLineChart = document.getElementById('myLineChart').getContext('2d');
+                    // window.myLineChart = new Chart(myLineChart, lineConfig);
+
             });
         @else
             $(document).ready(function (){

@@ -43,7 +43,7 @@
     <td style="padding: 10px 0" class="tg-xeyn" colspan="4">SURAT IJIN KHUSUS PENDAKIAN GUNUNG DI KAWASAN TAHURA R. SOERJO</td>
   </tr>
   <tr>
-    <td class="tg-lj5e" colspan="4">Nomor Registrasi : {{ $data->pd_nomor }} Tanggal {{ date('d/m/Y', strtotime($data->updated_at)) }}</td>
+    <td class="tg-lj5e" colspan="4">Nomor Registrasi : {{ $data->pd_nomor }} Tanggal {{ date('d/m/Y', strtotime($data->created_at)) }}</td>
   </tr>
   <tr>
     <td style="padding-bottom: 10px" class="tg-lj5e" colspan="4">Nomor Karcis : .......................s/d...........................</td>
@@ -340,7 +340,7 @@
 </colgroup>
   <tr>
     <th class="tg-hgcj">Telah dicek oleh :</th>
-    <th class="tg-hgcj">Tanggal "Register"</th>
+    <th class="tg-hgcj">Tanggal {{ date('d/m/Y', strtotime($data->created_at))  }}</th>
   </tr>
   <tr>
     <td class="tg-baqh" style="padding-bottom: 60px">Petugas Pos Pendakian</td>
@@ -352,7 +352,7 @@
   </tr>
   <tr>
     <td class="tg-baqh">..............</td>
-    <td class="tg-baqh">"Nama Ketua"</td>
+    <td class="tg-baqh">...............</td>
   </tr>
 </table>
 			

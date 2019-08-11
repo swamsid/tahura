@@ -49,7 +49,7 @@
     <th width="15%">Tanggal Turun</th>
     <th width="17%">Jalur Turun</th>
     <th width="10%">Anggota</th>
-    <th width="10%">Status</th>
+    <th width="10%">Total</th>
   </tr>
   <?php $totKetua = $totAnggota = 0; ?>
   <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $pd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -61,14 +61,19 @@
       <td><?php echo e(date('d/m/Y', strtotime($pd->pd_tgl_turun))); ?> &nbsp;<small><b><?php echo e(($pd->pd_pos_turun) ? '' : '(rencana)'); ?></b></small></td>
       <td><?php echo e(($pd->pd_pos_turun) ? $pd->pp_nama : '---'); ?></td>
       <td><?php echo e(count($pd->anggota)); ?> Orang</td>
-      <td><?php echo e($pd->pd_status); ?></td>
+      <td><?php echo e(count($pd->anggota) + 1); ?> Orang</td>
     </tr>
 
     <?php $totKetua++; $totAnggota += count($pd->anggota) ?>
   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    <tr>
+      
+      <td colspan="7"><strong>Total Pendaki</strong></td>
+      <td><?php echo e($totAnggota + $totKetua); ?> orang</td>
+    </tr>
 </table>
 
-<table class="ta" style="margin-top: 30px; width: 30%; ">
+<!-- <table class="ta" style="margin-top: 30px; width: 30%; ">
   <tr>
     <th colspan="2">Total Pendaki Naik :</th>
   </tr>
@@ -87,4 +92,4 @@
     <td style="background: #cccccc; font-weight: bold">Total</td>
     <td style="background: #cccccc; font-weight: bold"><?php echo e($totAnggota + $totKetua); ?> orang</td>
   </tr>
-</table><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/pdf/laporan.blade.php ENDPATH**/ ?>
+</table> --><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/pdf/laporan.blade.php ENDPATH**/ ?>

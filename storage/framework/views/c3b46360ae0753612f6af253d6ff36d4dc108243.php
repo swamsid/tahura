@@ -29,7 +29,15 @@
 <script src="<?php echo e(asset('public/backend/js/demo/sparkline-demo.js')); ?>"></script>
 
 <!-- ChartJS-->
-<script src="<?php echo e(asset('public/backend/js/plugins/chartJs/dists/chart.min.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/plugins/chartJs/dist/chart.min.js')); ?>"></script>
 
 <!-- Toastr -->
-<script src="<?php echo e(asset('public/backend/js/plugins/toastr/toastr.min.js')); ?>"></script><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/_partials/_script.blade.php ENDPATH**/ ?>
+<script src="<?php echo e(asset('public/backend/js/plugins/toastr/toastr.min.js')); ?>"></script>
+
+<!-- Flot -->
+<script src="<?php echo e(asset('public/backend/js/plugins/flot/jquery.flot.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/plugins/flot/jquery.flot.tooltip.min.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/plugins/flot/jquery.flot.spline.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/plugins/flot/jquery.flot.resize.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/plugins/flot/jquery.flot.pie.js')); ?>"></script>
+<?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/_partials/_script.blade.php ENDPATH**/ ?>
