@@ -80,13 +80,13 @@
                 <h2>Registrasi Pendakian</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="../index.php">Home</a>
                     </li>
                     <li>
-                        <a href="tatacara.html">Tata Cara Pendaftaran</a>
+                        <a href="<?php echo e(Route('frontend.registrasi')); ?>">Tata Cara Pendaftaran</a>
                     </li>
                     <li>
-                        <a href="sop.html">SOP Pendakian</a>
+                        <a href="<?php echo e(Route('frontend.registrasi.sop')); ?>">SOP Pendakian</a>
                     </li>
                     <li class="active">
                         <strong>Registrasi Pendakian</strong>
