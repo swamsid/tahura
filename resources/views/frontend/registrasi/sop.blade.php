@@ -80,7 +80,7 @@
                                 Pendaftaran dilakukan secara online;
                             </div>
                             <div class="well wells">
-                                Pendaftaran dilakukan dengan mengisi formulir yang bisa diakses dari website resmi UPT Tahura Raden Soerjo : http://radensoerjo-sipenerang.or.id/ dengan mengikuti alur pendaftaran;
+                                Pendaftaran dilakukan dengan mengisi formulir yang bisa diakses dari website resmi UPT Tahura Raden Soerjo : sipenerang.tahuraradensoerjo.or.id dengan mengikuti alur pendaftaran;
                             </div>
                             <div class="well wells">
                                 Pendaftaran dapat dilakukan maksimal 3 (tiga) hari sebelum hari pendakian (H-3);

@@ -38,6 +38,7 @@ class pendaki_controller extends Controller
                     ->leftJoin('villages', 'villages.id', 'pd_desa')
                     ->leftJoin('user as naik', 'naik.user_id', '=', 'tb_pendakian.pd_acc_naik_by')
                     ->leftJoin('user as turun', 'turun.user_id', '=', 'tb_pendakian.pd_acc_turun_by')
+                    ->leftJoin('user as acc', 'acc.user_id', '=', 'tb_pendakian.pd_acc_by')
                     ->with('kontak')
                     ->with('anggota')
                     ->with('peralatan')
@@ -51,7 +52,8 @@ class pendaki_controller extends Controller
                         'districts.name as kecamatan',
                         'villages.name as kelurahan',
                         'naik.nama as acc_naik_by',
-                        'turun.nama as acc_turun_by'
+                        'turun.nama as acc_turun_by',
+                        'acc.nama as acc_by'
                     )->first();
 
         $qrcode = QrCode::format('png')->size(1000)

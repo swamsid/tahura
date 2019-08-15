@@ -194,7 +194,7 @@
 	<tr>
 		<td class="tg-2c25">No. Registrasi</td>
 		<td class="tg-2c25">:</td>
-		<td class="tg-2c25">REG/{{ $data->pd_nomor }}</td>
+		<td class="tg-2c25">{{ $data->pd_nomor }}</td>
 	</tr>
 </table>
 
@@ -209,16 +209,18 @@
 <table class="ta">
   <tr>
     <th class="tg-hgcj" style="width: 20px">No</th>
-    <th class="tg-hgcj" style="width: 290px">Nama</th>
-    <th class="tg-hgcj" style="width: 120px">No. Identitas</th>
-    <th class="tg-hgcj" style="width: 70px">L/P</th>
-    <th class="tg-hgcj" style="width: 160px">Keterangan Kesehatan</th>
+    <th class="tg-hgcj" style="width: 200px">Nama</th>
+    <th class="tg-hgcj" style="width: 100px">No. Identitas</th>
+    <th class="tg-hgcj" style="width: 130px">Kewarganegaraan</th>
+    <th class="tg-hgcj" style="width: 50px">L/P</th>
+    <th class="tg-hgcj" style="width: 130px">Keterangan Kesehatan</th>
   </tr>
   <tr>
     <td class="tg-0lax">1.</td>
     <td class="tg-0lax">{{ $data->pd_nama_ketua }}</td>
     <td class="tg-0lax">{{ $data->pd_no_ktp }}</td>
-    <td class="tg-0lax">{{ ($data->pd_jenis_kelamin == 'L') ? 'Laki-laki' : Perempuan }}</td>
+    <td class="tg-0lax">{{ ($data->pd_kewarganegaraan == 'WNI') ? 'Warga Negara Indonesia' : 'Warga Negara Asing' }}</td>
+    <td class="tg-0lax">{{ ($data->pd_jenis_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
     <td class="tg-0lax"></td>
   </tr>
 
@@ -228,7 +230,8 @@
 	    <td class="tg-0lax">{{ $no }}. </td>
 	    <td class="tg-0lax">{{ $anggota->ap_nama }}</td>
 	    <td class="tg-0lax">{{ $anggota->ap_no_ktp }}</td>
-	    <td class="tg-0lax">{{ ($anggota->ap_kelamin == 'L') ? 'Laki-laki' : Perempuan }}</td>
+      <td class="tg-0lax">{{ ($anggota->ap_kewarganegaraan == 'WNI') ? 'Warga Negara Indonesia' : 'Warga Negara Asing' }}</td>
+	    <td class="tg-0lax">{{ ($anggota->ap_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
 	    <td class="tg-0lax"></td>
   	</tr>
   	<?php $no++; ?>

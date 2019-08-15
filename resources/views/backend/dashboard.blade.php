@@ -19,8 +19,8 @@
                 <div class="row text-center">
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #1ab394;"></i> &nbsp;
                     <?php
-                        $con = mysqli_connect("localhost","root","","dishut");
-                        // $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
+                        // $con = mysqli_connect("localhost","root","","dishut");
+                        $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
                         $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' "));
                         $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' "));
                         $tot = $total_anggota+$total;
@@ -40,16 +40,19 @@
                     <div class="ibox-content">
                         <h1 class="no-margins" style="padding-bottom: 5px;">
                             <?php
-                                $tambak_dash_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' "));
-                                $tambak_dash = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' "));
-                                echo $tambak_dash+$tambak_dash_anggota;
+                                $tambak_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $tambak_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $tambak_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $tambak_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $tambak_dash_wni+$tambak_dash_wna+$tambak_dash_anggota_wni+$tambak_dash_wna;
                             ?>
-                        Orang</h1>
-                        <small>
-                            <b class="text-success">
-                                
+                        <small style="float: right;">
+                            <b class="text-info">
+                                <?php echo $tambak_dash_wni+$tambak_dash_anggota_wni; ?> WNI <br>
+                                <?php echo $tambak_dash_wna+$tambak_dash_anggota_wna; ?> WNA
                             </b>
                         </small>
+                        Orang</h1>
                     </div>
                 </div>
             </div>
@@ -62,16 +65,19 @@
                     <div class="ibox-content">
                         <h1 class="no-margins" style="padding-bottom: 5px;">
                             <?php
-                                $sumber_dash_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' "));
-                                $sumber_dash = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' "));
-                                echo $sumber_dash+$sumber_dash_anggota;
+                                $sumber_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $sumber_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $sumber_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $sumber_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $sumber_dash_wni+$sumber_dash_wna+$sumber_dash_anggota_wni+$sumber_dash_anggota_wna;
                             ?>
-                        Orang</h1>
-                        <small>
-                            <b class="text-success">
-                                
+                        <small style="float: right;">
+                            <b class="text-info">
+                                <?php echo $sumber_dash_wni+$sumber_dash_anggota_wni; ?> WNI <br>
+                                <?php echo $sumber_dash_wna+$sumber_dash_anggota_wna; ?> WNA
                             </b>
                         </small>
+                        Orang</h1>
                     </div>
                 </div>
             </div>
@@ -84,16 +90,19 @@
                     <div class="ibox-content">
                         <h1 class="no-margins" style="padding-bottom: 5px;">
                             <?php
-                                $lawang_dash_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' "));
-                                $lawang_dash = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' "));
-                                echo $lawang_dash+$lawang_dash_anggota;
+                                $lawang_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $lawang_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $lawang_dash_wni= mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $lawang_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $lawang_dash_wni+$lawang_dash_wna+$lawang_dash_anggota_wni+$lawang_dash_anggota_wna;
                             ?>
-                        Orang</h1>
-                        <small>
-                            <b class="text-success">
-                                
+                        <small style="float: right;">
+                            <b class="text-info">
+                                <?php echo $lawang_dash_wni+$lawang_dash_anggota_wni; ?> WNI <br>
+                                <?php echo $lawang_dash_wna+$lawang_dash_anggota_wna; ?> WNA
                             </b>
                         </small>
+                        Orang</h1>
                     </div>
                 </div>
             </div>
@@ -105,20 +114,24 @@
                     <div class="ibox-content">
                         <h1 class="no-margins" style="padding-bottom: 5px;">
                             <?php
-                                $tretes_dash_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' "));
-                                $tretes_dash = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' "));
-                                echo $tretes_dash+$tretes_dash_anggota;
+                                $tretes_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $tretes_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $tretes_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $tretes_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $tretes_dash_wni+$tretes_dash_wna+$tretes_dash_anggota_wni+$tretes_dash_anggota_wna;
                             ?>
-                        Orang</h1>
-                        <small>
-                            <b class="text-success">
-                                
+                        <small style="float: right;">
+                            <b class="text-info">
+                                <?php echo $tretes_dash_wni+$tretes_dash_anggota_wni; ?> WNI <br>
+                                <?php echo $tretes_dash_wna+$tretes_dash_anggota_wna; ?> WNA
                             </b>
                         </small>
+                        Orang</h1>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row border-bottom white-bg dashboard-header">
             <div class="col-sm-12">
                 <div class="row text-center" style="margin-bottom: 20px">
@@ -131,10 +144,17 @@
                     <span>Total Pendaki Pada Tahun <?php echo date('Y').' </span><span style="color:white; background-color:#23c6c8; padding:6px 12px; border-radius:5px">'.$tot_naik?></span>&nbsp;
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #1ab394;"></i>
                 </div>
+            </div>
+            <div class="col-sm-9">
                 <div class="chart-container">
                     <canvas class="flot-chart-content" id="flot-dashboard-chart" height="350"></canvas>
                 </div>
-            </div>        
+            </div>
+            <div class="col-sm-3">
+                <div class="chart-container">
+                    <canvas id="pie-chart" height="350"></canvas>
+                </div>
+            </div>
         </div>
         
             
@@ -369,9 +389,38 @@
                             }
                         }
                 };
-                    var myPieChart = document.getElementById('flot-dashboard-chart').getContext('2d');
-                    window.myPieChart = new Chart(myPieChart, data);
+                var myLineChart = document.getElementById('flot-dashboard-chart').getContext('2d');
+                window.myLineChart = new Chart(myLineChart, data);
                 
+                new Chart(document.getElementById("pie-chart"), 
+                {
+                    type: 'pie',
+                    data: {
+                      labels: ["Warga Negara Indonesia", "Warga Negara Asing"],
+                      datasets: [{
+                        backgroundColor: ["#80DEEA","#90A4AE"],
+                        data: [
+                            <?php
+                                $anggotaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNI' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                                $ketuaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNI' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                                echo $anggotaWNI+$ketuaWNI;
+                            ?>
+                            ,
+                            <?php
+                                $anggotaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNA' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                                $ketuaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNA' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                                echo $anggotaWNA+$ketuaWNA;
+                            ?>
+                            ]
+                      }]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'bottom'
+                        },
+                    }
+                });
 
             });
         @else

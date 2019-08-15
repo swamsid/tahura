@@ -44,7 +44,7 @@ class pendaki_masuk_controller extends Controller
                     ->where('pd_pos_pendakian', $request->jalur)
     				->with('anggota')
     				->get();
-
+    
     	$pdf = PDF::loadView('backend.pdf.laporan', compact('jalur', 'data'))->setPaper('a4', 'landscape');
 
         // return json_encode($data);

@@ -139,6 +139,7 @@
                                    <tr>
                                        <th>Nama Anggota</th>
                                        <th>No Identitas</th>
+                                       <th>Kewarganegaraan</th>
                                        <th>Jenis Kelamin</th>
                                    </tr>
 
@@ -146,6 +147,7 @@
                                         <tr>
                                            <td class="text-center">{{ $anggota->ap_nama }}</td>
                                            <td class="text-center">{{ $anggota->ap_no_ktp }}</td>
+                                           <td class="text-center">{{ ($anggota->ap_kewarganegaraan == 'WNI') ? 'Warga Negara Indonesia' : 'Warga Negara Asing' }}</td>
                                            <td class="text-center">{{ ($anggota->ap_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
                                        </tr>
                                    @endforeach
@@ -233,14 +235,26 @@
                                        <th width="10%">Nomor Registrasi</th>
                                        <th width="14%">Tanggal Registrasi</th>
                                        <th width="14%">Status Pendakian</th>
+                                       <th width="14%">Persetujuan</th>
                                    </tr>
 
                                    <tr>
                                         <td class="text-center">{{ $data->pd_nomor }}</td>
                                         <td class="text-center">{{ date('d/m/Y', strtotime($data->pd_tanggal_registrasi)) }}</td>
                                         <td class="text-center" style="font-weight: 500;">
-                                          <span class="label label-info">{{ $data->pd_status }}</span>
+                                          <?php
+                                                $class = 'label-info';
+
+                                                if($data->pd_status == 'disetujui')
+                                                    $class = 'label-success';
+                                                else if($data->pd_status == 'ditolak')
+                                                    $class = 'label-danger';
+                                                else if($data->pd_status == 'sudah naik' || $data->pd_status == 'sudah turun')
+                                                    $class = 'label-warning';
+                                             ?>
+                                          <span class="label {{ $class }}">{{ $data->pd_status }}</span>
                                         </td>
+                                        <td class="text-center">{{ $data->acc_by }}</td>
                                    </tr>
                                 </table>
                             </div>

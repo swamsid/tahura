@@ -310,8 +310,9 @@
                                                         <tr>
                                                             <th width="5%">***</th>
                                                             <th width="40%">Nama</th>
-                                                            <th width="30%">No Identitas</th>
-                                                            <th width="25%">Jenis Kelamin</th>
+                                                            <th width="20%">No Identitas</th>
+                                                            <th width="20%">Kewarganegaraan</th>
+                                                            <th width="15%">Jenis Kelamin</th>
                                                         </tr>
                                                     </thead>
 
@@ -331,6 +332,11 @@
                                                             </td>
                                                             <td>
                                                                 <input type="mail" name="no_ktp_anggota[]"  class="form-control" :placeholder="'No KTP Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
+                                                                    <option v-for="kewarganegaraan in kewarganegaraan" :value="kewarganegaraan.id">@{{ kewarganegaraan.text }}</option>
+                                                                </select>
                                                             </td>
                                                             <td>
                                                                 <select class="form-control hint" name="kelamin_anggota[]" v-model="anggota.kelamin">
@@ -619,6 +625,18 @@
                     }
                 ],
 
+                kewarganegaraan: [
+                    {
+                        id: 'WNI',
+                        text: 'Warga Negara Indonesia'
+                    },
+
+                    {
+                        id: 'WNA',
+                        text: 'Warga Negara Asing'
+                    },
+                ],
+
                 kelamin: [
                     {
                         id: 'L',
@@ -635,6 +653,7 @@
                     {
                         nama: '',
                         no_ktp: '',
+                        kewarganegaraan: 'WNI',
                         kelamin: 'L',
                     }
 
@@ -822,6 +841,7 @@
                     this.anggota.push({
                         nama: '',
                         no_ktp: '',
+                        kewarganegaraan: 'WNI',
                         kelamin: 'L',
                     });
                 },
@@ -985,6 +1005,7 @@
                         {
                             nama: '',
                             no_ktp: '',
+                            kewarganegaraan: 'WNI',
                             kelamin: 'L',
                         }
 
