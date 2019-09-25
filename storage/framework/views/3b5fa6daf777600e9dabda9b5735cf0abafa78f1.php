@@ -51,7 +51,7 @@
                                             <td class="text-center"><?php echo e($key + 1); ?></td>
                                             <td class="text-center"><?php echo e($data->pd_nomor); ?></td>
                                             <td class="text-center"><?php echo e($data->pd_nama_ketua); ?></td>
-                                            <td class="text-center"><?php echo e(date('d-m-Y', strtotime($data->created_at))); ?></td>
+                                            <td class="text-center"><?php echo e(date('d-m-Y', strtotime($data->pd_tanggal_registrasi))); ?></td>
                                             <td class="text-center"><?php echo e(date('d-m-Y', strtotime($data->pd_tgl_naik))); ?></td>
                                             <td class="text-center">
                                                 <?php

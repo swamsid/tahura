@@ -111,11 +111,11 @@
                             <p>Setiap pendaki di kawasan Arjuno - Welirang dikenakan tarif karcis masuk sesuai dengan ketentuan yang tercantum pada Peraturan Pemerintah RI Nomor 12 tahun 2014 tentang Jenis dan Tarif Atas Jenis Penerimaan Negara Bukan Pajak Yang Berlaku Pada Kementerian Kehutanan. Bila terdapat aturan / kebijakan baru tentang tarif karcis masuk di kawasan konservasi, maka tarif karcis pendakian akan disesuaikan sebagaimana peraturan terbaru tersebut.</p>
                             <p>1. Tarif karcis masuk pendaki Wisatawan Nusantara</p>
                             <div class="well wells">
-                                <strong>Rp. 10.000,-</strong> per orang per hari
+                                <strong>Sesuai Ketentuan yang Berlaku</strong>
                             </div>
                             <p style="margin-top: 10px;">2. Tarif karcis masuk pendaki Wisatawan Mancanegara</p>
                             <div class="well wells">
-                                 <strong>Rp. 25.000,-</strong> per orang per hari
+                                 <strong>Sesuai Ketentuan yang Berlaku</strong> 
                             </div>
                             <p style="margin-top: 10px;">3. Pembayaran dapat dilakukan di pos masuk pendakian</p>
                         </div>
