@@ -21,6 +21,7 @@ class pendaki_controller extends Controller
             return Session::get('roles');
 
         $data = DB::table('tb_pendakian')->get();
+        
         return view('backend.pendaki.index', compact('data'));
     }
 
