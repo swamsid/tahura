@@ -392,35 +392,35 @@
                 var myLineChart = document.getElementById('flot-dashboard-chart').getContext('2d');
                 window.myLineChart = new Chart(myLineChart, data);
                 
-                // new Chart(document.getElementById("pie-chart"), 
-                // {
-                //     type: 'pie',
-                //     data: {
-                //       labels: ["Warga Negara Indonesia", "Warga Negara Asing"],
-                //       datasets: [{
-                //         backgroundColor: ["#80DEEA","#90A4AE"],
-                //         data: [
-                //             <?php
-                //                 $anggotaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNI' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                //                 $ketuaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNI' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                //                 echo $anggotaWNI+$ketuaWNI;
-                //             ?>
-                //             ,
-                //             <?php
-                //                 $anggotaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNA' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                //                 $ketuaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNA' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                //                 echo $anggotaWNA+$ketuaWNA;
-                //             ?>
-                //             ]
-                //       }]
-                //     },
-                //     options: {
-                //         responsive: true,
-                //         legend: {
-                //             position: 'bottom'
-                //         },
-                //     }
-                // });
+                new Chart(document.getElementById("pie-chart"), 
+                {
+                    type: 'pie',
+                    data: {
+                      labels: ["Warga Negara Indonesia", "Warga Negara Asing"],
+                      datasets: [{
+                        backgroundColor: ["#80DEEA","#90A4AE"],
+                        data: [
+                            <?php
+                                $anggotaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNI' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                                $ketuaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNI' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                                echo $anggotaWNI+$ketuaWNI;
+                            ?>
+                            ,
+                            <?php
+                                $anggotaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNA' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                                $ketuaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNA' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                                echo $anggotaWNA+$ketuaWNA;
+                            ?>
+                            ]
+                      }]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: {
+                            position: 'bottom'
+                        },
+                    }
+                });
 
             });
         @else
