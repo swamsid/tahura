@@ -72,7 +72,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td class="text-left" style="background: #eee; font-weight: 600;">No Hp </td>
+                                        <td class="text-left" style="background: #eee; font-weight: 600;">No Telepon </td>
                                         <td><?php echo e($data->pd_no_hp); ?></td>
 
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Desa/Kelurahan </td>
@@ -104,31 +104,6 @@
 
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
-                                <strong>Informasi Kontak Darurat</strong>
-                            </div>
-
-                            <div class="col-md-12" style="margin-top: 10px;">
-                                <table class="table-mini" width="100%" border="1">
-                                   <tr>
-                                       <th>Nama Kontak Darurat</th>
-                                       <th>No Hp Kontak Darurat</th>
-                                       <th>Alamat Email Kontak Darurat</th>
-                                       <th>Hubungan Keluarga</th>
-                                   </tr>
-
-                                   <?php $__currentLoopData = $data->kontak; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $kontak): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <tr>
-                                           <td class="text-center"><?php echo e($kontak->kd_nama); ?></td>
-                                           <td class="text-center"><?php echo e($kontak->kd_no_telp); ?></td>
-                                           <td class="text-center"><?php echo e($kontak->kd_email); ?></td>
-                                           <td class="text-center"><?php echo e($kontak->kd_hubungan); ?></td>
-                                       </tr>
-                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </table>
-                            </div>
-
-                            <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
-                                <i class="fa fa-arrow-right"></i> &nbsp;
                                 <strong>Informasi Anggota Regu</strong>
                             </div>
 
@@ -136,7 +111,7 @@
                                 <table class="table-mini" width="100%" border="1">
                                    <tr>
                                        <th>Nama Anggota</th>
-                                       <th>No Identitas</th>
+                                       <th>No Telepon</th>
                                        <th>Kewarganegaraan</th>
                                        <th>Jenis Kelamin</th>
                                    </tr>
@@ -154,7 +129,32 @@
 
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
-                                <strong>Informasi Anggota Regu</strong>
+                                <strong>Informasi Kontak Darurat</strong>
+                            </div>
+
+                            <div class="col-md-12" style="margin-top: 10px;">
+                                <table class="table-mini" width="100%" border="1">
+                                   <tr>
+                                       <th>Nama</th>
+                                       <th>No Telepon </th>
+                                       <th>Alamat </th>
+                                       <th>Hubungan Keluarga</th>
+                                   </tr>
+
+                                   <?php $__currentLoopData = $data->kontak; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $kontak): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <tr>
+                                           <td class="text-center"><?php echo e($kontak->kd_nama); ?></td>
+                                           <td class="text-center"><?php echo e($kontak->kd_no_telp); ?></td>
+                                           <td class="text-center"><?php echo e($kontak->kd_email); ?></td>
+                                           <td class="text-center"><?php echo e($kontak->kd_hubungan); ?></td>
+                                       </tr>
+                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </table>
+                            </div>
+
+                            <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
+                                <i class="fa fa-arrow-right"></i> &nbsp;
+                                <strong>Informasi Perlengkapan</strong>
                             </div>
 
                             <div class="col-md-12" style="margin-top: 10px;">

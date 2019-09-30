@@ -71,7 +71,10 @@
                                 Pastikan alamat email benar karena konfirmasi pendaftaran pendakian akan dikirim ke alamat email yang anda gunakan ketika mendaftar. Apabila tidak ada pesan pemberitahuan pada kotak masuk gmail harap periksa pada spam.
                             </div>
                             <div class="well wells">
-                                Waktu Pelayanan surat ijin pendakian dimulai dari jam 07.00 s/d 15.30 WIB disetiap pos ijin pendakian
+                                Waktu pelayanan administrasi registrasi pendakian pada hari Senin s/d Jumat jam 07.00 s/d 15.30 WIB.
+                            </div>
+                            <div class="well wells">
+                                Waktu pelayanan perijinan pendakian pada setiap pos pendakian 24/7.
                             </div>
                             <div class="well wells">
                                 Pendaftaran diberlakukan bagi calon pendaki, baik nusantara maupun mancanegara;
@@ -108,7 +111,7 @@
                             </div>
                         </div>
                         <div class="ibox-content" id="ibox-content" style="background-color: #ffffff;font-size: 14px">
-                            <p>Setiap pendaki di kawasan Arjuno - Welirang dikenakan tarif karcis masuk sesuai dengan ketentuan yang tercantum pada Peraturan Pemerintah RI Nomor 12 tahun 2014 tentang Jenis dan Tarif Atas Jenis Penerimaan Negara Bukan Pajak Yang Berlaku Pada Kementerian Kehutanan. Bila terdapat aturan / kebijakan baru tentang tarif karcis masuk di kawasan konservasi, maka tarif karcis pendakian akan disesuaikan sebagaimana peraturan terbaru tersebut.</p>
+                            <p>Setiap pendaki di kawasan Tahura Raden Soerjo dikenakan tarif karcis masuk sesuai dengan ketentuan yang tercantum pada Peraturan Pemerintah RI Nomor 12 tahun 2014 tentang Jenis dan Tarif Atas Jenis Penerimaan Negara Bukan Pajak yang Berlaku Pada Kementerian Kehutanan. Bila terdapat aturan / kebijakan baru tentang tarif karcis masuk di kawasan konservasi, maka tarif karcis pendakian akan disesuaikan sebagaimana peraturan terbaru tersebut.</p>
                             <p>1. Tarif karcis masuk pendaki Wisatawan Nusantara</p>
                             <div class="well wells">
                                 <strong>Sesuai Ketentuan yang Berlaku</strong>
@@ -136,11 +139,11 @@
                         </div>
                         <div class="ibox-content" id="ibox-content" style="background-color: #ffffff;font-size: 14px">
                             <ol>
-                                <li>Bukti konfirmasi melalui email harus dicetak dan dibawa untuk menjadi alat bukti masuk ke pintu masuk pendakian jalur Tretes, jalur Lawang, jalur Purwosari, jalur Batu-Cangar</li>
+                                <li>Bukti konfirmasi melalui email harus dicetak dan dibawa untuk menjadi alat bukti masuk ke pintu masuk pendakian pos pendakian Tretes, pos pendakian Lawang, pos pendakian Tambaksari, pos pendakian Sumber Brantas.</li>
                                 <li>Persyaratan memperoleh izin pendakian :</li>
                             </ol>
                             <div class="well wells">
-                                Bukti cetak pendaftaran, surat pernyataan, daftar perlengkapan dan perbekalan menjadi alat bukti pengambilan karcis masuk pada pintu masuk pendakian;
+                                Bukti cetak pendaftaran, surat pernyataan, daftar perlengkapan dan perbekalan menjadi syarat perizinan pendakian di kawasan Tahura Raden Soerjo;
                             </div>
                             <div class="well wells">
                                 Bukti identitas asli ketua (KTP/Kartu Pelajar/KTM/SIM/Pasport) wajib diserahkan kepada petugas selama masa pendakian;
@@ -278,15 +281,15 @@
                                 </tr>
                                 <tr>
                                     <td><input id="question2" name="question2" type="checkbox" value="2"></td>
-                                    <td><label> Membawa surat keterangan sehat dari dokter </label></td>
+                                    <td><label> Membawa surat keterangan sehat </label></td>
                                 </tr>
                                 <tr>
                                     <td><input id="question3" name="question3" type="checkbox" value="3"></td>
-                                    <td><label> Membawa fotokopy KTP/KTM/Paspor yang masih berlaku </label></td>
+                                    <td><label> Membawa KTP/KTM/SIM/Paspor yang masih berlaku </label></td>
                                 </tr>
                                 <tr>
                                     <td><input id="question4" name="question4" type="checkbox" value="4"></td>
-                                    <td><label> Bagi yang belum memiliki KTP, membawa surat ijin dari orang tua bermaterai dan FotoCopy KTP orang tua </label></td>
+                                    <td><label> Pendaki usia kurang dari 17 tahun harus menyerahkan surat ijin dari orangtua/wali</label></td>
                                 </tr>
                                 <tr>
                                     <td><input id="question5" name="question5" type="checkbox" value="4"></td>

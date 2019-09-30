@@ -94,16 +94,16 @@ class pendaftaran_controller extends Controller
     		foreach($request->nama_kontak_darurat as $key => $kontak){
 
     			$noTelp 	= $request->no_kontak_darurat[$key];
-    			$email 		= $request->email_kontak_darurat[$key];
+    			$alamat 	= $request->alamat_kontak_darurat[$key];
     			$hubungan 	= $request->hubungan_kontak_darurat[$key];
 
-    			if(!is_null($kontak) && !is_null($noTelp) && !is_null($email) && !is_null($hubungan)){
+    			if(!is_null($kontak) && !is_null($noTelp) && !is_null($alamat) && !is_null($hubungan)){
     				DB::table('tb_kontak_darurat')->insert([
 	    				'kd_pendakian'		=> $id,
 	    				'kd_nomor'			=> $num,
 	    				'kd_nama'			=> $kontak,
 	    				'kd_no_telp'		=> $noTelp,
-	    				'kd_email'			=> $email,
+	    				'kd_email'			=> $alamat,
 	    				'kd_hubungan'		=> $hubungan
 	    			]);
 

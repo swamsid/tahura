@@ -29,14 +29,14 @@
             </div>
         </div>
         <div class="row dashboard-header">
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
                         <h5>Pos Tambaksari</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
                             <?php
                                 $tambak_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
                                 $tambak_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
@@ -54,14 +54,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
                         <h5>Pos Sumberbrantas</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
                             <?php
                                 $sumber_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
                                 $sumber_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
@@ -79,14 +79,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
                         <h5>Pos Lawang</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
                             <?php
                                 $lawang_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
                                 $lawang_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
@@ -104,13 +104,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <h5>Pos Tretes</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
                             <?php
                                 $tretes_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
                                 $tretes_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
@@ -122,6 +122,54 @@
                             <b class="text-info">
                                 <?php echo $tretes_dash_wni+$tretes_dash_anggota_wni; ?> WNI <br>
                                 <?php echo $tretes_dash_wna+$tretes_dash_anggota_wna; ?> WNA
+                            </b>
+                        </small>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <h5>Lelaku (Makutoromo)</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
+                            <?php
+                                $lelaku_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $lelaku_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $lelaku_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $lelaku_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $lelaku_dash_wni+$lelaku_dash_wna+$lelaku_dash_anggota_wni+$lelaku_dash_anggota_wna;
+                            ?>
+                        <small style="float: right;">
+                            <b class="text-info">
+                                <?php echo $lelaku_dash_wni+$lelaku_dash_anggota_wni; ?> WNI <br>
+                                <?php echo $lelaku_dash_wna+$lelaku_dash_anggota_wna; ?> WNA
+                            </b>
+                        </small>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <h5>Gunung Pundak</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
+                            <?php
+                                $pundak_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $pundak_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $pundak_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $pundak_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $pundak_dash_wni+$pundak_dash_wna+$pundak_dash_anggota_wni+$pundak_dash_anggota_wna;
+                            ?>
+                        <small style="float: right;">
+                            <b class="text-info">
+                                <?php echo $pundak_dash_wni+$pundak_dash_anggota_wni; ?> WNI <br>
+                                <?php echo $pundak_dash_wna+$pundak_dash_anggota_wna; ?> WNA
                             </b>
                         </small>
                         Orang</h1>

@@ -42,6 +42,7 @@
 						            <th>Nama Ketua</th>
                                     <th>Tanggal Registrasi</th>
 						            <th>Tanggal Naik</th>
+                                    <th>Tanggal Turun</th>
                                     <th>Status</th>
 						            <th width="60px">Action</th>
 						          </tr>
@@ -54,7 +55,8 @@
                                             <td class="text-center">{{ $data->pd_nomor }}</td>
                                             <td class="text-center">{{ $data->pd_nama_ketua }}</td>
                                             <td class="text-center">{{ date('d-m-Y', strtotime($data->pd_tanggal_registrasi)) }}</td>
-                                            <td class="text-center">{{ date('d-m-Y', strtotime($data->pd_tgl_naik)) }}</td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data->pd_tgl_naik)) }} <small><b>{{ ($data->pd_pos_pendakian) ? '' : '(rencana)' }}</b></small> </td>
+                                            <td class="text-center">{{ date('d-m-Y', strtotime($data->pd_tgl_turun)) }} <small><b>{{ ($data->pd_pos_turun) ? '' : '(rencana)' }}</b></small></td>
                                             <td class="text-center">
                                                 <?php
                                                     $class = 'label-info';

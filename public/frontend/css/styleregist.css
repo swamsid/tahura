@@ -8306,6 +8306,13 @@ body.md-skin {
   }
 }
 
+@media (max-height:860px ){
+  .scroll{
+    height: 580px !important; 
+    overflow: auto; 
+  }
+}
+
 .wizard > .steps > ul > li {
     width: 20% ;
 }
