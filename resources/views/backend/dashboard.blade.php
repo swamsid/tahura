@@ -1,7 +1,11 @@
+<?php
+    $select = "SELECT *, b.name as desa, c.name as kecamatan, d.name as kabupaten, e.name as provinsi FROM tb_pendakian a JOIN villages b ON a.pd_desa = b.id JOIN districts c ON a.pd_kecamatan = c.id JOIN regencies d ON a.pd_kabupaten = d.id JOIN provinces e ON a.pd_provinsi = e.id WHERE pd_status = 'sudah naik' AND pd_pos_pendakian";
+?>
+
 @extends('backend.main')
 
 @section('extra_style')
-    
+    <link href="{{ asset('public/backend/css/plugins/dataTables/datatables.min.css') }}" rel="stylesheet">
     <style type="text/css">
         #lineChart{
             width: 100% !important;
@@ -31,11 +35,12 @@
             </div>
         </div>
         <div class="row dashboard-header">
+        <a data-toggle='modal' data-target="#modal1">
             <div class="col-lg-2" style="padding: 5px">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
-                        <h5>Pos Tambaksari</h5>
+                        <h5 style="color: #676a6c">Pos Tambaksari</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
@@ -56,11 +61,95 @@
                     </div>
                 </div>
             </div>
+        </a>
+        <!-- Modal 1 -->
+        <div id="modal1" class="modal fade bd-example-modal-lg" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- konten modal-->
+                <div class="modal-content">
+                    <!-- heading modal -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Pos Tambakasari</h4>
+                    </div>
+                    <!-- body modal -->
+                    <div class="modal-body">
+                        <div class="table-responsive" style="height: 500px">
+                            <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
+                                <thead>
+                                  <tr>
+                                    <th width="20px">No</th>
+                                    <th width="115px">Nomor Registrasi</th>
+                                    <th>Nama Ketua <span style="font-size: 90%">(Telepon - Alamat)</span></th>
+                                    <th width="120px">Anggota <span style="font-size: 90%">(Telepon)</span></th>
+                                    <th width="100px">Kontak Darurat</th>
+                                    <th width="100px">Tanggal Naik</th>
+                                    <th width="100px">Tanggal Turun <span style="font-size: 90%">(Rencana)</span></th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   <?php
+                                        $no = 1;
+                                        $result = mysqli_query($con, " ".$select." = 1");
+                                        while ($data = mysqli_fetch_array($result))
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td> <?php echo $no ?> </td>
+                                                <td> <?php echo $data['pd_nomor'] ?> </td>
+                                                <td> <?php echo "<b>" .$data['pd_nama_ketua']."</b> (" .$data['pd_no_hp']. " - " .$data['pd_alamat']. ", " .$data['desa']. ", ".$data['kecamatan']. ", ".$data['kabupaten']. ", ".$data['provinsi']. ")"?> </td>
+                                                <td>
+                                                    <ol style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_anggota_pendakian WHERE ap_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ol>
+                                                </td>
+                                                <td>
+                                                    <ul style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_kontak_darurat WHERE kd_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['kd_nama']. "</b> (" .$res['kd_no_telp']. " - ". $res['kd_hubungan'] .")" ; ?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ul>
+                                                </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_naik'])) ?> </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_turun'])) ?> </td>
+                                            </tr>
+                                            <?php
+                                        $no++;
+                                        }
+                                        ?>
+                                </tbody>                          
+                            </table>
+                        </div>
+                    </div>
+                    <!-- footer modal -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <a data-toggle='modal' data-target="#modal2">
             <div class="col-lg-2" style="padding: 5px">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
-                        <h5>Pos Sumberbrantas</h5>
+                        <h5 style="color: #676a6c">Pos Sumberbrantas</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
@@ -81,11 +170,94 @@
                     </div>
                 </div>
             </div>
+        </a>
+        <div id="modal2" class="modal fade bd-example-modal-lg" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- konten modal-->
+                <div class="modal-content">
+                    <!-- heading modal -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Pos SumberBrantas</h4>
+                    </div>
+                    <!-- body modal -->
+                    <div class="modal-body">
+                        <div class="table-responsive" style="height: 500px">
+                            <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
+                                <thead>
+                                  <tr>
+                                    <th width="20px">No</th>
+                                    <th width="115px">Nomor Registrasi</th>
+                                    <th>Nama Ketua <span style="font-size: 90%">(Telepon - Alamat)</span></th>
+                                    <th width="120px">Anggota <span style="font-size: 90%">(Telepon)</span></th>
+                                    <th width="100px">Kontak Darurat</th>
+                                    <th width="100px">Tanggal Naik</th>
+                                    <th width="100px">Tanggal Turun <span style="font-size: 90%">(Rencana)</span></th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   <?php
+                                        $no = 1;
+                                        $result = mysqli_query($con, " ".$select." = 2");
+                                        while ($data = mysqli_fetch_array($result))
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td> <?php echo $no ?> </td>
+                                                <td> <?php echo $data['pd_nomor'] ?> </td>
+                                                <td> <?php echo "<b>" .$data['pd_nama_ketua']."</b> (" .$data['pd_no_hp']. " - " .$data['pd_alamat']. ", " .$data['desa']. ", ".$data['kecamatan']. ", ".$data['kabupaten']. ", ".$data['provinsi']. ")"?> </td>
+                                                <td>
+                                                    <ol style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_anggota_pendakian WHERE ap_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ol>
+                                                </td>
+                                                <td>
+                                                    <ul style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_kontak_darurat WHERE kd_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['kd_nama']. "</b> (" .$res['kd_no_telp']. " - ". $res['kd_hubungan'] .")" ; ?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ul>
+                                                </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_naik'])) ?> </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_turun'])) ?> </td>
+                                            </tr>
+                                            <?php
+                                        $no++;
+                                        }
+                                        ?>
+                                </tbody>                          
+                            </table>
+                        </div>
+                    </div>
+                    <!-- footer modal -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a data-toggle='modal' data-target="#modal3">
             <div class="col-lg-2" style="padding: 5px">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
-                        <h5>Pos Lawang</h5>
+                        <h5 style="color: #676a6c">Pos Lawang</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
@@ -106,10 +278,93 @@
                     </div>
                 </div>
             </div>
+        </a>
+        <div id="modal3" class="modal fade bd-example-modal-lg" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- konten modal-->
+                <div class="modal-content">
+                    <!-- heading modal -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Pos Lawang</h4>
+                    </div>
+                    <!-- body modal -->
+                    <div class="modal-body">
+                        <div class="table-responsive" style="height: 500px">
+                            <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
+                                <thead>
+                                  <tr>
+                                    <th width="20px">No</th>
+                                    <th width="115px">Nomor Registrasi</th>
+                                    <th>Nama Ketua <span style="font-size: 90%">(Telepon - Alamat)</span></th>
+                                    <th width="120px">Anggota <span style="font-size: 90%">(Telepon)</span></th>
+                                    <th width="100px">Kontak Darurat</th>
+                                    <th width="100px">Tanggal Naik</th>
+                                    <th width="100px">Tanggal Turun <span style="font-size: 90%">(Rencana)</span></th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   <?php
+                                        $no = 1;
+                                        $result = mysqli_query($con, " ".$select." = 3");
+                                        while ($data = mysqli_fetch_array($result))
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td> <?php echo $no ?> </td>
+                                                <td> <?php echo $data['pd_nomor'] ?> </td>
+                                                <td> <?php echo "<b>" .$data['pd_nama_ketua']."</b> (" .$data['pd_no_hp']. " - " .$data['pd_alamat']. ", " .$data['desa']. ", ".$data['kecamatan']. ", ".$data['kabupaten']. ", ".$data['provinsi']. ")"?> </td>
+                                                <td>
+                                                    <ol style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_anggota_pendakian WHERE ap_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ol>
+                                                </td>
+                                                <td>
+                                                    <ul style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_kontak_darurat WHERE kd_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['kd_nama']. "</b> (" .$res['kd_no_telp']. " - ". $res['kd_hubungan'] .")" ; ?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ul>
+                                                </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_naik'])) ?> </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_turun'])) ?> </td>
+                                            </tr>
+                                            <?php
+                                        $no++;
+                                        }
+                                        ?>
+                                </tbody>                          
+                            </table>
+                        </div>
+                    </div>
+                    <!-- footer modal -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a data-toggle='modal' data-target="#modal4">
             <div class="col-lg-2" style="padding: 5px">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
-                        <h5>Pos Tretes</h5>
+                        <h5 style="color: #676a6c">Pos Tretes</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
@@ -130,10 +385,93 @@
                     </div>
                 </div>
             </div>
+        </a>
+        <div id="modal4" class="modal fade bd-example-modal-lg" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- konten modal-->
+                <div class="modal-content">
+                    <!-- heading modal -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Pos Tretes</h4>
+                    </div>
+                    <!-- body modal -->
+                    <div class="modal-body">
+                        <div class="table-responsive" style="height: 500px">
+                            <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
+                                <thead>
+                                  <tr>
+                                    <th width="20px">No</th>
+                                    <th width="115px">Nomor Registrasi</th>
+                                    <th>Nama Ketua <span style="font-size: 90%">(Telepon - Alamat)</span></th>
+                                    <th width="120px">Anggota <span style="font-size: 90%">(Telepon)</span></th>
+                                    <th width="100px">Kontak Darurat</th>
+                                    <th width="100px">Tanggal Naik</th>
+                                    <th width="100px">Tanggal Turun <span style="font-size: 90%">(Rencana)</span></th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   <?php
+                                        $no = 1;
+                                        $result = mysqli_query($con, " ".$select." = 4");
+                                        while ($data = mysqli_fetch_array($result))
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td> <?php echo $no ?> </td>
+                                                <td> <?php echo $data['pd_nomor'] ?> </td>
+                                                <td> <?php echo "<b>" .$data['pd_nama_ketua']."</b> (" .$data['pd_no_hp']. " - " .$data['pd_alamat']. ", " .$data['desa']. ", ".$data['kecamatan']. ", ".$data['kabupaten']. ", ".$data['provinsi']. ")"?> </td>
+                                                <td>
+                                                    <ol style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_anggota_pendakian WHERE ap_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ol>
+                                                </td>
+                                                <td>
+                                                    <ul style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_kontak_darurat WHERE kd_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['kd_nama']. "</b> (" .$res['kd_no_telp']. " - ". $res['kd_hubungan'] .")" ; ?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ul>
+                                                </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_naik'])) ?> </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_turun'])) ?> </td>
+                                            </tr>
+                                            <?php
+                                        $no++;
+                                        }
+                                        ?>
+                                </tbody>                          
+                            </table>
+                        </div>
+                    </div>
+                    <!-- footer modal -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a data-toggle='modal' data-target="#modal5">
             <div class="col-lg-2" style="padding: 5px">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
-                        <h5>Lelaku (Makutoromo)</h5>
+                        <h5 style="color: #676a6c">Lelaku (Makutoromo)</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
@@ -154,10 +492,94 @@
                     </div>
                 </div>
             </div>
+        </a>
+        <!-- Modal 5 -->
+        <div id="modal5" class="modal fade bd-example-modal-lg" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- konten modal-->
+                <div class="modal-content">
+                    <!-- heading modal -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Lelaku Makutoromo</h4>
+                    </div>
+                    <!-- body modal -->
+                    <div class="modal-body">
+                        <div class="table-responsive" style="height: 500px">
+                            <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
+                                <thead>
+                                  <tr>
+                                    <th width="20px">No</th>
+                                    <th width="115px">Nomor Registrasi</th>
+                                    <th>Nama Ketua <span style="font-size: 90%">(Telepon - Alamat)</span></th>
+                                    <th width="120px">Anggota <span style="font-size: 90%">(Telepon)</span></th>
+                                    <th width="100px">Kontak Darurat</th>
+                                    <th width="100px">Tanggal Naik</th>
+                                    <th width="100px">Tanggal Turun <span style="font-size: 90%">(Rencana)</span></th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   <?php
+                                        $no = 1;
+                                        $result = mysqli_query($con, " ".$select." = 6");
+                                        while ($data = mysqli_fetch_array($result))
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td> <?php echo $no ?> </td>
+                                                <td> <?php echo $data['pd_nomor'] ?> </td>
+                                                <td> <?php echo "<b>" .$data['pd_nama_ketua']."</b> (" .$data['pd_no_hp']. " - " .$data['pd_alamat']. ", " .$data['desa']. ", ".$data['kecamatan']. ", ".$data['kabupaten']. ", ".$data['provinsi']. ")"?> </td>
+                                                <td>
+                                                    <ol style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_anggota_pendakian WHERE ap_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ol>
+                                                </td>
+                                                <td>
+                                                    <ul style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_kontak_darurat WHERE kd_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['kd_nama']. "</b> (" .$res['kd_no_telp']. " - ". $res['kd_hubungan'] .")" ; ?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ul>
+                                                </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_naik'])) ?> </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_turun'])) ?> </td>
+                                            </tr>
+                                            <?php
+                                        $no++;
+                                        }
+                                        ?>
+                                </tbody>                          
+                            </table>
+                        </div>
+                    </div>
+                    <!-- footer modal -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a data-toggle='modal' data-target="#modal6">
             <div class="col-lg-2" style="padding: 5px">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
-                        <h5>Gunung Pundak</h5>
+                        <h5 style="color: #676a6c">Gunung Pundak</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px">
@@ -178,6 +600,88 @@
                     </div>
                 </div>
             </div>
+        </a>
+        <div id="modal6" class="modal fade bd-example-modal-lg" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <!-- konten modal-->
+                <div class="modal-content">
+                    <!-- heading modal -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" >Gunung Pundak</h4>
+                    </div>
+                    <!-- body modal -->
+                    <div class="modal-body">
+                        <div class="table-responsive" style="height: 500px">
+                            <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
+                                <thead>
+                                  <tr>
+                                    <th width="20px">No</th>
+                                    <th width="115px">Nomor Registrasi</th>
+                                    <th>Nama Ketua <span style="font-size: 90%">(Telepon - Alamat)</span></th>
+                                    <th width="120px">Anggota <span style="font-size: 90%">(Telepon)</span></th>
+                                    <th width="100px">Kontak Darurat</th>
+                                    <th width="100px">Tanggal Naik</th>
+                                    <th width="100px">Tanggal Turun <span style="font-size: 90%">(Rencana)</span></th>
+                                  </tr>
+                                </thead>
+                                
+                                <tbody>
+                                   <?php
+                                        $no = 1;
+                                        $result = mysqli_query($con, " ".$select." = 5");
+                                        while ($data = mysqli_fetch_array($result))
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td> <?php echo $no ?> </td>
+                                                <td> <?php echo $data['pd_nomor'] ?> </td>
+                                                <td> <?php echo "<b>" .$data['pd_nama_ketua']."</b> (" .$data['pd_no_hp']. " - " .$data['pd_alamat']. ", " .$data['desa']. ", ".$data['kecamatan']. ", ".$data['kabupaten']. ", ".$data['provinsi']. ")"?> </td>
+                                                <td>
+                                                    <ol style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_anggota_pendakian WHERE ap_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ol>
+                                                </td>
+                                                <td>
+                                                    <ul style="padding-left: 15px">
+                                                        <?php
+                                                            $query = mysqli_query($con, "SELECT * FROM tb_kontak_darurat WHERE kd_pendakian = '".$data['pd_id']."' ");
+                                                            while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
+                                                            {
+                                                                ?>
+                                                                    <li><?php echo "<b>" .$res['kd_nama']. "</b> (" .$res['kd_no_telp']. " - ". $res['kd_hubungan'] .")" ; ?></li>
+                                                                <?php
+                                                            }
+                                                        ?>
+                                                    </ul>
+                                                </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_naik'])) ?> </td>
+                                                <td> <?php echo date('d/m/Y', strtotime($data['pd_tgl_turun'])) ?> </td>
+                                            </tr>
+                                            <?php
+                                        $no++;
+                                        }
+                                        ?>
+                                </tbody>                          
+                            </table>
+                        </div>
+                    </div>
+                    <!-- footer modal -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         </div>
 
         <div class="row border-bottom white-bg dashboard-header">
@@ -484,5 +988,39 @@
                 }, 1300);
             });
         @endif
+    </script>
+
+    <script src="{{ asset('public/backend/js/plugins/dataTables/datatables.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            @if(Session::has('message'))
+                // alert('{{ Session::get("message") }}');
+                // {{ Session::forget('message') }}
+            @endif
+
+            $('.dataTables-example').DataTable({
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    {extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel'},
+                    {extend: 'pdf'},
+
+                    {extend: 'print',
+                     customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
+                    }
+                ]
+
+            });
+
+        });
     </script>
 @endsection

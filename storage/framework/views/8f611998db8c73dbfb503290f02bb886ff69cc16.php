@@ -245,6 +245,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                            <input type="checkbox" id="checkbox" v-model="checked">
+                                                           <label>Khusus untuk pendakian Lelaku (Makutoromo) atau Gunung Pundak silahkan centang kolom checkbox disamping</label>
                                                         </div>
                                                     </div>
                                                 </div>

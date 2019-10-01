@@ -20,9 +20,10 @@ class pendaki_controller extends Controller
         if(!Auth::user()->can('read', 'data_pendaftar'))
             return Session::get('roles');
 
-        $data = DB::table('tb_pendakian')->get();
+        $data = DB::table('tb_pendakian')->orderBy('pd_id','desc')->get();
         
         return view('backend.pendaki.index', compact('data'));
+        return view('backend.dashboard', compact('data'));
     }
 
     protected function detail(Request $request){
