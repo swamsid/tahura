@@ -243,10 +243,10 @@
                                                             <label>Jenis Kelamin</label>
                                                             <vue-select :name="'kelamin_ketua'" :options="kelamin" :search="false"></vue-select>
                                                         </div>
-                                                        <div class="form-group">
+                                                        <!-- <div class="form-group">
                                                            <input type="checkbox" id="checkbox" v-model="checked">
                                                            <label>Khusus untuk pendakian Lelaku (Makutoromo) atau Gunung Pundak silahkan centang kolom checkbox disamping</label>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </fieldset>
