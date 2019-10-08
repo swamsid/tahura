@@ -545,9 +545,6 @@
 
     <script>
 
-        Vue.use(window.vuelidate.default)
-        const { required, minLength } = window.validators;
-
         var vue = new Vue({
             el: '#page-wrapper',
             data: {
