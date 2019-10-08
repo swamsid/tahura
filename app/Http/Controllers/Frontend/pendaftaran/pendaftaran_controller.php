@@ -7,7 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Model\backend\tb_pendakian as pendakian;
 
 use DB;
+use PDF;
+use Auth;
 use Mail;
+use QrCode;
 use Session;
 
 class pendaftaran_controller extends Controller
@@ -47,7 +50,6 @@ class pendaftaran_controller extends Controller
 
     protected function save(Request $request){
     	// return json_encode($request->all());
-        
     	try {
     		
     		do {
@@ -62,33 +64,53 @@ class pendaftaran_controller extends Controller
     		$tgl_naik = explode('/', $request->tgl_naik)[2].'-'.explode('/', $request->tgl_naik)[1].'-'.explode('/', $request->tgl_naik)[0];
     		$tgl_turun = explode('/', $request->tgl_turun)[2].'-'.explode('/', $request->tgl_turun)[1].'-'.explode('/', $request->tgl_turun)[0];
 
-    		DB::table('tb_pendakian')->insert([
-    			'pd_id'					=> $id,
-    			'pd_nomor'				=> $nomor,
-    			'pd_nama_ketua' 		=> $request->nama_ketua,
-    			'pd_no_ktp'				=> $request->no_ktp_ketua,
-    			'pd_tempat_lahir'		=> $request->tempat_lahir_ketua,
-    			'pd_tgl_lahir'			=> $tgl_lahir,
-    			'pd_no_hp'				=> $request->no_hp_ketua,
-    			'pd_email'				=> $request->email_ketua,
-    			'pd_tgl_naik'			=> $tgl_naik,
-    			'pd_tgl_turun'			=> $tgl_turun,
-    			'pd_alamat'				=> $request->alamat_ketua,
-    			'pd_provinsi'			=> $request->provinsi_ketua,
-    			'pd_kabupaten'			=> $request->kabupaten_ketua,
-    			'pd_kecamatan'			=> $request->kecamatan_ketua,
-    			'pd_desa'				=> $request->desa_ketua,
-    			'pd_kewarganegaraan'	=> $request->kewarganegaraan_ketua,
-    			'pd_jenis_kelamin'		=> $request->kelamin_ketua,
-    			'pd_status'				=> 'belum disetujui'
-
-    		]);
-
-            Mail::send('addition.email.daftar', ['kode' => $nomor], function ($message) use ($request){
-                $message->subject("Pendaftaran Pendakian");
-                $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
-                $message->to($request->email_ketua);
-            });
+            if(!isset($request->pundak)){
+                // return json_encode('o');
+                DB::table('tb_pendakian')->insert([
+                    'pd_id'					=> $id,
+                    'pd_nomor'				=> $nomor,
+                    'pd_nama_ketua' 		=> $request->nama_ketua,
+                    'pd_no_ktp'				=> $request->no_ktp_ketua,
+                    'pd_tempat_lahir'		=> $request->tempat_lahir_ketua,
+                    'pd_tgl_lahir'			=> $tgl_lahir,
+                    'pd_no_hp'				=> $request->no_hp_ketua,
+                    'pd_email'				=> $request->email_ketua,
+                    'pd_tgl_naik'			=> $tgl_naik,
+                    'pd_tgl_turun'			=> $tgl_turun,
+                    'pd_alamat'				=> $request->alamat_ketua,
+                    'pd_provinsi'			=> $request->provinsi_ketua,
+                    'pd_kabupaten'			=> $request->kabupaten_ketua,
+                    'pd_kecamatan'			=> $request->kecamatan_ketua,
+                    'pd_desa'				=> $request->desa_ketua,
+                    'pd_kewarganegaraan'	=> $request->kewarganegaraan_ketua,
+                    'pd_jenis_kelamin'		=> $request->kelamin_ketua,
+                    'pd_status'				=> 'belum disetujui'
+    
+                ]);
+            }else{
+                // return json_encode('a');
+                DB::table('tb_pendakian')->insert([
+                    'pd_id'					=> $id,
+                    'pd_nomor'				=> $nomor,
+                    'pd_nama_ketua' 		=> $request->nama_ketua,
+                    'pd_no_ktp'				=> $request->no_ktp_ketua,
+                    'pd_tempat_lahir'		=> $request->tempat_lahir_ketua,
+                    'pd_tgl_lahir'			=> $tgl_lahir,
+                    'pd_no_hp'				=> $request->no_hp_ketua,
+                    'pd_email'				=> $request->email_ketua,
+                    'pd_tgl_naik'			=> $tgl_naik,
+                    'pd_tgl_turun'			=> $tgl_turun,
+                    'pd_alamat'				=> $request->alamat_ketua,
+                    'pd_provinsi'			=> $request->provinsi_ketua,
+                    'pd_kabupaten'			=> $request->kabupaten_ketua,
+                    'pd_kecamatan'			=> $request->kecamatan_ketua,
+                    'pd_desa'				=> $request->desa_ketua,
+                    'pd_kewarganegaraan'	=> $request->kewarganegaraan_ketua,
+                    'pd_jenis_kelamin'		=> $request->kelamin_ketua,
+                    'pd_status'				=> 'disetujui'
+    
+                ]);
+            }
 
     		$num = 1;
     		foreach($request->nama_kontak_darurat as $key => $kontak){
@@ -164,6 +186,55 @@ class pendaftaran_controller extends Controller
 	    			$num++;
     			}
     		}
+
+            if(isset($request->pundak)){
+                // return 'c';
+                Mail::send('addition.email.daftar', ['kode' => $nomor], function ($message) use ($request){
+                    $message->subject("Pendaftaran Pendakian");
+                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
+                    $message->to($request->email_ketua);
+                });
+            }else{
+                // return 'b';
+                $data = pendakian::where('pd_id', $id)
+                    ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
+                    ->leftJoin('tb_pos_pendakian as b', 'b.pp_id', '=', 'tb_pendakian.pd_pos_turun')
+                    ->leftJoin('provinces', 'provinces.id', 'pd_provinsi')
+                    ->leftJoin('regencies', 'regencies.id', 'pd_kabupaten')
+                    ->leftJoin('districts', 'districts.id', 'pd_kecamatan')
+                    ->leftJoin('villages', 'villages.id', 'pd_desa')
+                    ->with('kontak')
+                    ->with('anggota')
+                    ->with('peralatan')
+                    ->with('logistik')
+                    ->select(
+                        'tb_pendakian.*',
+                        'a.pp_nama as pos_naik',
+                        'b.pp_nama as pos_turun',
+                        'provinces.name as provinsi',
+                        'regencies.name as kabupaten',
+                        'districts.name as kecamatan',
+                        'villages.name as kelurahan'
+                    )->first();
+
+                // return json_encode($data);
+
+                $qrcode = QrCode::format('png')->size(1000)
+                            ->merge('/public/backend/img/LogoJawaTimur.png', .3)
+                            ->generate(Route('wpadmin.pendaki.detail', 'id='.$id));
+
+                $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
+                
+                $email = $request->email_ketua;
+
+                Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
+                    $message->subject("Konfirmasi Pendaftaran");
+                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
+                    $message->to($request->email_ketua);
+                    $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
+                    $message->attachData($qrcode, 'kode.png');
+                });
+            }
 
     		DB::commit();
 

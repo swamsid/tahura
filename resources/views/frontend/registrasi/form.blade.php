@@ -243,10 +243,21 @@
                                                             <label>Jenis Kelamin</label>
                                                             <vue-select :name="'kelamin_ketua'" :options="kelamin" :search="false"></vue-select>
                                                         </div>
-                                                        <!-- <div class="form-group">
-                                                           <input type="checkbox" id="checkbox" v-model="checked">
-                                                           <label>Khusus untuk pendakian Lelaku (Makutoromo) atau Gunung Pundak silahkan centang kolom checkbox disamping</label>
-                                                        </div> -->
+                                                        <div class="form-group" style="margin-top: 20px;">
+                                                            <table width="100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <td width="5%" style="vertical-align: top;">
+                                                                            <input type="checkbox" id="checkbox" v-model="checked" name="pundak">
+                                                                        </td>
+
+                                                                        <td style="padding-top: 0px;">
+                                                                            <label>Khusus untuk pendakian Lelaku (Makutoromo) atau Gunung Pundak silahkan centang kolom checkbox disamping</label>
+                                                                        </td>
+                                                                    </tr>
+                                                                </thead>
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -557,6 +568,9 @@
     <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
 
     <script>
+
+        Vue.use(window.vuelidate.default)
+        const { required, minLength } = window.validators
 
         var vue = new Vue({
             el: '#page-wrapper',
@@ -953,6 +967,7 @@
 
                                     if(response.data.status == 'success'){
                                         $("#modal-info").modal('show');
+                                        // alert('berhasil')
                                         this.formReset();
                                     }
 

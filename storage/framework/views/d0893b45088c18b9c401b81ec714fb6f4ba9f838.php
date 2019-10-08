@@ -36,7 +36,7 @@
                 <h2>Tata Cara Pendaftaran</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="../index.php">Home</a>
                     </li>
                     <li class="active">
                         <strong>Tata Cara Pendaftaran</strong>
@@ -61,8 +61,7 @@
 
                                 <div class="vertical-timeline-content">
                                     <h2>PORTAL PENDAFTARAN ONLINE</h2>
-                                    <p>http://radensoerjo-sipenerang.or.id
-                                    </p>
+                                    <p>sipenerang.tahuraradensoerjo.or.id</p>
                                 </div>
                             </div>
 
