@@ -9,6 +9,7 @@
     <title>Registrasi Pendakian </title>
 
     <link href="<?php echo e(asset('public/frontend/css/bootstrap.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/bootstrap-vue.min.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('public/frontend/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('public/frontend/css/plugins/iCheck/custom.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('public/frontend/css/plugins/steps/jquery.steps.css')); ?>" rel="stylesheet">
@@ -80,13 +81,13 @@
                 <h2>Registrasi Pendakian</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">Home</a>
+                        <a href="../index.php">Home</a>
                     </li>
                     <li>
-                        <a href="tatacara.html">Tata Cara Pendaftaran</a>
+                        <a href="<?php echo e(Route('frontend.registrasi')); ?>">Tata Cara Pendaftaran</a>
                     </li>
                     <li>
-                        <a href="sop.html">SOP Pendakian</a>
+                        <a href="<?php echo e(Route('frontend.registrasi.sop')); ?>">SOP Pendakian</a>
                     </li>
                     <li class="active">
                         <strong>Registrasi Pendakian</strong>
@@ -156,7 +157,7 @@
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label>No Hp</label>
+                                                            <label>No Telepon</label>
                                                             <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Masukkan Nomor Hp Ketua" v-model="single.no_hp_ketua">
                                                         </div>
 
@@ -195,22 +196,42 @@
 
                                                         <div class="form-group">
                                                             <label>Provinsi</label>
-                                                            <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="true" @option-change="provinsiChange"></vue-select>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-check fa-fw" v-if="!provinsiSearch"></i><i class="fa fa-hourglass fa-dw" v-if="provinsiSearch" style="font-size: 8pt;"></i>
+                                                                </span>
+                                                                <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="true" @option-change="provinsiChange"></vue-select>
+                                                            </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Kabupaten / Kota</label>
-                                                            <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="true" @option-change="kabupatenChange"></vue-select>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-check fa-fw" v-if="!kotaSearch"></i><i class="fa fa-hourglass fa-dw" v-if="kotaSearch" style="font-size: 8pt;"></i>
+                                                                </span>
+                                                                <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="true" @option-change="kabupatenChange"></vue-select>
+                                                            </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Kecamatan</label>
-                                                            <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="true" @option-change="kecamatanChange"></vue-select>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-check fa-fw" v-if="!kecamatanSearch"></i><i class="fa fa-hourglass fa-dw" v-if="kecamatanSearch" style="font-size: 8pt;"></i>
+                                                                </span>
+                                                                <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="true" @option-change="kecamatanChange"></vue-select>
+                                                            </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Desa / Kelurahan</label>
-                                                            <vue-select :name="'desa_ketua'" :id="'desa_ketua'" :options="desa_ketua" :search="true"></vue-select>
+                                                            <div class="input-group date">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-check fa-fw" v-if="!kelurahanSearch"></i><i class="fa fa-hourglass fa-dw" v-if="kelurahanSearch" style="font-size: 8pt;"></i>
+                                                                </span>
+                                                                <vue-select :name="'desa_ketua'" :id="'desa_ketua'" :options="desa_ketua" :search="true"></vue-select>
+                                                            </div>
                                                         </div>
 
                                                         <div class="form-group">
@@ -222,44 +243,10 @@
                                                             <label>Jenis Kelamin</label>
                                                             <vue-select :name="'kelamin_ketua'" :options="kelamin" :search="false"></vue-select>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </div>
-
-                                        <div class="col-md-12" style="margin-top: 20px;">
-                                            <h3 style="color: #1ab394">
-                                                Kontak Darurat &nbsp;
-                                                <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan kontak darurat yang suatu saat dapat dihubungi (keluarga, saudara, teman selain yang mengikuti rombongan pendakian)"></i>
-                                            </h3>
-                                        </div>
-
-                                        <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
-                                            <fieldset style="font-size: 9pt;">  
-                                                <div class="row" v-for="(kontak, idx) in kontak_darurat">
-                                                    <div class="col-lg-3">
-                                                        <div class="form-group">
-                                                            <label>Nama</label>
-                                                            <input name="nama_kontak_darurat[]" type="text" class="form-control":placeholder="'Nama kontak darurat '+(idx + 1)" v-model="kontak.nama">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <div class="form-group">
-                                                            <label>No HP</label>
-                                                            <input name="no_kontak_darurat[]" type="text" class="form-control" :placeholder="'No hp kontak darurat '+(idx + 1)" v-model="kontak.no_hp">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <div class="form-group">
-                                                            <label>Alamat Email</label>
-                                                            <input id="email" name="email_kontak_darurat[]" type="text" class="form-control" :placeholder="'Email kontak darurat '+(idx + 1)" v-model="kontak.email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <div class="form-group">
-                                                            <label>Hubungan Keluarga</label>
-                                                            <vue-select :name="'hubungan_kontak_darurat[]'" :options="hubungan_kontak_darurat" :search="false"></vue-select>
-                                                        </div>
+                                                        <!-- <div class="form-group">
+                                                           <input type="checkbox" id="checkbox" v-model="checked">
+                                                           <label>Khusus untuk pendakian Lelaku (Makutoromo) atau Gunung Pundak silahkan centang kolom checkbox disamping</label>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -290,8 +277,9 @@
                                                         <tr>
                                                             <th width="5%">***</th>
                                                             <th width="40%">Nama</th>
-                                                            <th width="30%">No Identitas</th>
-                                                            <th width="25%">Jenis Kelamin</th>
+                                                            <th width="20%">No Telepon</th>
+                                                            <th width="20%">Kewarganegaraan</th>
+                                                            <th width="15%">Jenis Kelamin</th>
                                                         </tr>
                                                     </thead>
 
@@ -310,7 +298,12 @@
                                                                 <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="mail" name="no_ktp_anggota[]"  class="form-control" :placeholder="'No KTP Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/>
+                                                                <input type="number" name="no_ktp_anggota[]"  class="form-control" :placeholder="'No Telp Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
+                                                                    <option v-for="kewarganegaraan in kewarganegaraan" :value="kewarganegaraan.id">{{ kewarganegaraan.text }}</option>
+                                                                </select>
                                                             </td>
                                                             <td>
                                                                 <select class="form-control hint" name="kelamin_anggota[]" v-model="anggota.kelamin">
@@ -320,6 +313,44 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="col-md-12" style="margin-top: 20px;">
+                                            <h3 style="color: #1ab394">
+                                                Kontak Darurat &nbsp;
+                                                <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan kontak darurat yang suatu saat dapat dihubungi (keluarga, saudara, teman selain yang mengikuti rombongan pendakian)"></i>
+                                            </h3>
+                                        </div>
+
+                                        <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
+                                            <fieldset style="font-size: 9pt;">  
+                                                <div class="row" v-for="(kontak, idx) in kontak_darurat">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label>Nama</label>
+                                                            <input name="nama_kontak_darurat[]" type="text" class="form-control":placeholder="'Nama kontak darurat '+(idx + 1)" v-model="kontak.nama">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label>No Telepon</label>
+                                                            <input name="no_kontak_darurat[]" type="number" class="form-control" :placeholder="'No hp kontak darurat '+(idx + 1)" v-model="kontak.no">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label>Alamat</label>
+                                                            <input name="alamat_kontak_darurat[]" type="text" class="form-control" :placeholder="'Alamat kontak darurat '+(idx + 1)" v-model="kontak.alamat">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <label>Hubungan Keluarga</label>
+                                                            <vue-select :name="'hubungan_kontak_darurat[]'" :options="hubungan_kontak_darurat" :search="false"></vue-select>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </fieldset>
                                         </div>
 
@@ -518,6 +549,8 @@
 
     <!-- Vue js -->
     <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vue.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/bootstrap-vue.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/portal-vue.umd.min.js')); ?>"></script>
     <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js')); ?>"></script>
     <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/select/select.component.js')); ?>"></script>
     <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js')); ?>"></script>
@@ -537,6 +570,11 @@
                 onRequest: false,
                 requestMessage: "Sedang Mengirim Formulir Registrasi",
                 downloadingResource: true,
+
+                provinsiSearch : false,
+                kotaSearch : false,
+                kecamatanSearch : false,
+                kelurahanSearch : false,
 
                 // data
                 provinsi: [],
@@ -581,17 +619,29 @@
                 kontak_darurat: [
                     {
                         nama: '',
-                        no_hp: '',
-                        email: '',
+                        no: '',
+                        alamat: '',
                         hub: 'Orang Tua',
                     },
 
                     {
                         nama: '',
-                        no_hp: '',
-                        email: '',
+                        no: '',
+                        alamat: '',
                         hub: 'Orang Tua',
                     }
+                ],
+
+                kewarganegaraan: [
+                    {
+                        id: 'WNI',
+                        text: 'Warga Negara Indonesia'
+                    },
+
+                    {
+                        id: 'WNA',
+                        text: 'Warga Negara Asing'
+                    },
                 ],
 
                 kelamin: [
@@ -610,6 +660,7 @@
                     {
                         nama: '',
                         no_ktp: '',
+                        kewarganegaraan: 'WNI',
                         kelamin: 'L',
                     }
 
@@ -770,12 +821,11 @@
                             // console.log(response.data);
 
                             this.provinsi = response.data.provinsi;
-                            this.kabupaten = response.data.kota;
-                            this.kecamatan = response.data.kecamatan;
-                            this.desa = response.data.kelurahan;
+                            this.kabupaten_ketua = response.data.kota;
+                            this.kecamatan_ketua = response.data.kecamatan;
+                            this.desa_ketua = response.data.kelurahan;
 
                             this.provinsi_ketua = this.provinsi;
-                            this.provinsiChange(this.provinsi_ketua[0].id);
 
                             setTimeout(function(e){
                                 $('[data-toggle="tooltip"]').tooltip();
@@ -798,6 +848,7 @@
                     this.anggota.push({
                         nama: '',
                         no_ktp: '',
+                        kewarganegaraan: 'WNI',
                         kelamin: 'L',
                     });
                 },
@@ -827,17 +878,56 @@
                 },
 
                 provinsiChange(e){
-                    this.kabupaten_ketua = $.grep(this.kabupaten, function(a) { return a.province_id == e });
-                    this.kabupatenChange(this.kabupaten_ketua[0].id);
+                    // this.kabupaten_ketua = $.grep(this.kabupaten, function(a) { return a.province_id == e });
+                    // this.kabupatenChange(this.kabupaten_ketua[0].id);
+                    this.kotaSearch = this.kecamatanSearch = this.kelurahanSearch = true;
+
+                    axios.get("<?php echo e(Route('frontend.registrasi.resource.byprovinsi')); ?>?id="+e)
+                            .then((response) => {
+                                // console.log(response.data)
+                                this.kabupaten_ketua = response.data.kota;
+                                this.kecamatan_ketua = response.data.kecamatan;
+                                this.desa_ketua = response.data.kelurahan;
+
+                                this.kotaSearch = this.kecamatanSearch = this.kelurahanSearch = false;
+                            })
+                            .catch((err) => {
+                                alert('system bermasalah saat memuat resource');
+                                console.log('err => '+err);
+                            })
                 },
 
                 kabupatenChange(e){
-                    this.kecamatan_ketua = $.grep(this.kecamatan, function(a) { return a.regency_id == e });
-                    this.kecamatanChange(this.kecamatan_ketua[0].id);
+                    this.kecamatanSearch = this.kelurahanSearch = true;
+                    axios.get("<?php echo e(Route('frontend.registrasi.resource.bykabupaten')); ?>?id="+e)
+                            .then((response) => {
+                                // console.log(response.data)
+
+                                this.kecamatan_ketua = response.data.kecamatan;
+                                this.desa_ketua = response.data.kelurahan;
+
+                                this.kecamatanSearch = this.kelurahanSearch = true;
+                            })
+                            .catch((err) => {
+                                alert('system bermasalah saat memuat resource');
+                                console.log('err => '+err);
+                            })
                 },
 
                 kecamatanChange(e){
-                    this.desa_ketua = $.grep(this.desa, function(a) { return a.district_id == e });
+                    this.kelurahanSearch = true;
+                    axios.get("<?php echo e(Route('frontend.registrasi.resource.bykecamatan')); ?>?id="+e)
+                            .then((response) => {
+                                // console.log(response.data)
+                                
+                                this.desa_ketua = response.data.kelurahan;
+
+                                this.kelurahanSearch = false;
+                            })
+                            .catch((err) => {
+                                alert('system bermasalah saat memuat resource');
+                                console.log('err => '+err);
+                            })
                 },
 
                 send: function(e){
@@ -922,6 +1012,7 @@
                         {
                             nama: '',
                             no_ktp: '',
+                            kewarganegaraan: 'WNI',
                             kelamin: 'L',
                         }
 
@@ -930,15 +1021,15 @@
                     this.kontak_darurat = [
                         {
                             nama: '',
-                            no_hp: '',
-                            email: '',
+                            no: '',
+                            alamat: '',
                             hub: 'Orang Tua',
                         },
 
                         {
                             nama: '',
-                            no_hp: '',
-                            email: '',
+                            no: '',
+                            alamat: '',
                             hub: 'Orang Tua',
                         }
                     ];

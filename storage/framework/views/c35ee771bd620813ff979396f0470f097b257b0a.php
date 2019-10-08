@@ -42,33 +42,41 @@
 
 <table class="ta" style="margin-top: 15px; width: 100%">
   <tr>
-    <th width="5%">No</th>
-    <th width="10%">Nama Ketua</th>
-    <th width="18%">Kota Asal</th>
-    <th width="15%">Tanggal Naik</th>
-    <th width="15%">Tanggal Turun</th>
-    <th width="17%">Jalur Turun</th>
-    <th width="10%">Anggota</th>
-    <th width="10%">Total</th>
+    <th rowspan="2" width="5%">No</th>
+    <th rowspan="2" width="10%">Nama Ketua</th>
+    <th rowspan="2" width="18%">Kota Asal (Kewarganegaraan)</th>
+    <th rowspan="2" width="10%">Tanggal Naik</th>
+    <th rowspan="2" width="10%">Tanggal Turun</th>
+    <th rowspan="2" width="10%">Jalur Turun</th>
+    <th colspan="2" width="10%">Anggota</th>
+    <th rowspan="2" width="10%">Total</th>
   </tr>
-  <?php $totKetua = $totAnggota = 0; ?>
+
+  <tr>
+    <th>WNI</th>
+    <th>WNA</th>
+  </tr>
+  <?php $totKetua = $totAnggota = $totwni = $totwna = 0; ?>
   <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $pd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <tr>
       <td><?php echo e($key + 1); ?>.</td>
       <td><?php echo e($pd->pd_nama_ketua); ?></td>
-      <td><?php echo e($pd->name); ?></td>
+      <td><?php echo e($pd->name); ?> (<?php echo e($pd->pd_kewarganegaraan); ?>)</td>
       <td><?php echo e(date('d/m/Y', strtotime($pd->pd_tgl_naik))); ?></td>
       <td><?php echo e(date('d/m/Y', strtotime($pd->pd_tgl_turun))); ?> &nbsp;<small><b><?php echo e(($pd->pd_pos_turun) ? '' : '(rencana)'); ?></b></small></td>
       <td><?php echo e(($pd->pd_pos_turun) ? $pd->pp_nama : '---'); ?></td>
-      <td><?php echo e(count($pd->anggota)); ?> Orang</td>
+      <td><?php echo e($pd->wni()->tot); ?></td>
+      <td><?php echo e($pd->wna()->tot); ?></td>
       <td><?php echo e(count($pd->anggota) + 1); ?> Orang</td>
     </tr>
 
-    <?php $totKetua++; $totAnggota += count($pd->anggota) ?>
+    <?php $totKetua++; $totAnggota += count($pd->anggota); $totwna += $pd->wna()->tot; $totwni += $pd->wni()->tot; ?>
   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     <tr>
       
-      <td colspan="7"><strong>Total Pendaki</strong></td>
+      <td colspan="6"><strong>Total Pendaki</strong></td>
+      <td><?php echo e($totwni); ?></td>
+      <td><?php echo e($totwna); ?></td>
       <td><?php echo e($totAnggota + $totKetua); ?> orang</td>
     </tr>
 </table>

@@ -42,33 +42,41 @@
 
 <table class="ta" style="margin-top: 15px; width: 100%">
   <tr>
-    <th width="5%">No</th>
-    <th width="10%">Nama Ketua</th>
-    <th width="18%">Kota Asal</th>
-    <th width="15%">Tanggal Naik</th>
-    <th width="15%">Tanggal Turun</th>
-    <th width="17%">Jalur Turun</th>
-    <th width="10%">Anggota</th>
-    <th width="10%">Total</th>
+    <th rowspan="2" width="5%">No</th>
+    <th rowspan="2" width="10%">Nama Ketua</th>
+    <th rowspan="2" width="18%">Kota Asal (Kewarganegaraan)</th>
+    <th rowspan="2" width="10%">Tanggal Naik</th>
+    <th rowspan="2" width="10%">Tanggal Turun</th>
+    <th rowspan="2" width="10%">Jalur Turun</th>
+    <th colspan="2" width="10%">Anggota</th>
+    <th rowspan="2" width="10%">Total</th>
   </tr>
-  <?php $totKetua = $totAnggota = 0; ?>
+
+  <tr>
+    <th>WNI</th>
+    <th>WNA</th>
+  </tr>
+  <?php $totKetua = $totAnggota = $totwni = $totwna = 0; ?>
   @foreach($data as $key => $pd)
     <tr>
       <td>{{ $key + 1 }}.</td>
       <td>{{ $pd->pd_nama_ketua }}</td>
-      <td>{{ $pd->name }}</td>
+      <td>{{ $pd->name }} ({{ $pd->pd_kewarganegaraan }})</td>
       <td>{{ date('d/m/Y', strtotime($pd->pd_tgl_naik)) }}</td>
       <td>{{ date('d/m/Y', strtotime($pd->pd_tgl_turun)) }} &nbsp;<small><b>{{ ($pd->pd_pos_turun) ? '' : '(rencana)' }}</b></small></td>
       <td>{{ ($pd->pd_pos_turun) ? $pd->pp_nama : '---' }}</td>
-      <td>{{ count($pd->anggota) }} Orang</td>
+      <td>{{ $pd->wni()->tot }}</td>
+      <td>{{ $pd->wna()->tot }}</td>
       <td>{{ count($pd->anggota) + 1 }} Orang</td>
     </tr>
 
-    <?php $totKetua++; $totAnggota += count($pd->anggota) ?>
+    <?php $totKetua++; $totAnggota += count($pd->anggota); $totwna += $pd->wna()->tot; $totwni += $pd->wni()->tot; ?>
   @endforeach
     <tr>
       
-      <td colspan="7"><strong>Total Pendaki</strong></td>
+      <td colspan="6"><strong>Total Pendaki</strong></td>
+      <td>{{ $totwni }}</td>
+      <td>{{ $totwna }}</td>
       <td>{{ $totAnggota + $totKetua }} orang</td>
     </tr>
 </table>

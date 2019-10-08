@@ -20,9 +20,10 @@ class pendaki_controller extends Controller
         if(!Auth::user()->can('read', 'data_pendaftar'))
             return Session::get('roles');
 
-        $data = DB::table('tb_pendakian')->get();
+        $data = DB::table('tb_pendakian')->orderBy('pd_id','desc')->get();
         
         return view('backend.pendaki.index', compact('data'));
+        return view('backend.dashboard', compact('data'));
     }
 
     protected function detail(Request $request){
@@ -39,6 +40,7 @@ class pendaki_controller extends Controller
                     ->leftJoin('villages', 'villages.id', 'pd_desa')
                     ->leftJoin('user as naik', 'naik.user_id', '=', 'tb_pendakian.pd_acc_naik_by')
                     ->leftJoin('user as turun', 'turun.user_id', '=', 'tb_pendakian.pd_acc_turun_by')
+                    ->leftJoin('user as acc', 'acc.user_id', '=', 'tb_pendakian.pd_acc_by')
                     ->with('kontak')
                     ->with('anggota')
                     ->with('peralatan')
@@ -52,7 +54,8 @@ class pendaki_controller extends Controller
                         'districts.name as kecamatan',
                         'villages.name as kelurahan',
                         'naik.nama as acc_naik_by',
-                        'turun.nama as acc_turun_by'
+                        'turun.nama as acc_turun_by',
+                        'acc.nama as acc_by'
                     )->first();
 
         $qrcode = QrCode::format('png')->size(1000)
@@ -123,11 +126,11 @@ class pendaki_controller extends Controller
                             ->merge('/public/backend/img/LogoJawaTimur.png', .3)
                             ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
 
-                $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'));
+                $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
 
                 Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
-                    $message->from('noreply@dishut.com', 'UPT Tahura Raden Soerjo');
+                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                     $message->to($email);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                     $message->attachData($qrcode, 'kode.png');
@@ -165,11 +168,11 @@ class pendaki_controller extends Controller
                 //             ->merge('/public/backend/img/LogoJawaTimur.png', .3)
                 //             ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
 
-                $pdf = PDF::loadView('backend.pdf.berkas_tolak', compact('data'));
+                $pdf = PDF::loadView('backend.pdf.berkas_tolak', compact('data'))->setPAPER('a4');
 
                 Mail::send('addition.email.tolak', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
-                    $message->from('noreply@dishut.com', 'UPT Tahura Raden Soerjo');
+                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                     $message->to($email);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                 });
@@ -221,9 +224,9 @@ class pendaki_controller extends Controller
                             ->merge('/public/backend/img/LogoJawaTimur.png', .3)
                             ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
 
-            $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'));
+            $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
 
-            return $pdf->stream();
+            return $pdf->stream('Berkas_pendaftaran_'.$data->pd_nomor);
 
         } catch (Exception $e) {
             return json_encode([

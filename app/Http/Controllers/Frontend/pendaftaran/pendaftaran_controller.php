@@ -86,7 +86,7 @@ class pendaftaran_controller extends Controller
 
             Mail::send('addition.email.daftar', ['kode' => $nomor], function ($message) use ($request){
                 $message->subject("Pendaftaran Pendakian");
-                $message->from('noreply@dishut.com', 'UPT Tahura Raden Soerjo');
+                $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                 $message->to($request->email_ketua);
             });
 
@@ -94,16 +94,16 @@ class pendaftaran_controller extends Controller
     		foreach($request->nama_kontak_darurat as $key => $kontak){
 
     			$noTelp 	= $request->no_kontak_darurat[$key];
-    			$email 		= $request->email_kontak_darurat[$key];
+    			$alamat 	= $request->alamat_kontak_darurat[$key];
     			$hubungan 	= $request->hubungan_kontak_darurat[$key];
 
-    			if(!is_null($kontak) && !is_null($noTelp) && !is_null($email) && !is_null($hubungan)){
+    			if(!is_null($kontak) && !is_null($noTelp) && !is_null($alamat) && !is_null($hubungan)){
     				DB::table('tb_kontak_darurat')->insert([
 	    				'kd_pendakian'		=> $id,
 	    				'kd_nomor'			=> $num,
 	    				'kd_nama'			=> $kontak,
 	    				'kd_no_telp'		=> $noTelp,
-	    				'kd_email'			=> $email,
+	    				'kd_email'			=> $alamat,
 	    				'kd_hubungan'		=> $hubungan
 	    			]);
 
@@ -114,16 +114,18 @@ class pendaftaran_controller extends Controller
     		$num = 1;
     		foreach($request->nama_anggota as $key => $anggota){
 
-    			$noKtp 		= $request->no_ktp_anggota[$key];
-    			$kelamin 	= $request->kelamin_anggota[$key];
+    			$noKtp 		       = $request->no_ktp_anggota[$key];
+                $kewarganegaraan   = $request->kewarganegaraan_anggota[$key];
+    			$kelamin 	       = $request->kelamin_anggota[$key];
 
-    			if(!is_null($anggota) && !is_null($noKtp) && !is_null($kelamin)){
+    			if(!is_null($anggota) && !is_null($noKtp) && !is_null($kewarganegaraan) && !is_null($kelamin)){
     				DB::table('tb_anggota_pendakian')->insert([
-	    				'ap_pendakian'		=> $id,
-	    				'ap_nomor'			=> $num,
-	    				'ap_nama'			=> $anggota,
-	    				'ap_no_ktp'			=> $noKtp,
-	    				'ap_kelamin'		=> $kelamin,
+	    				'ap_pendakian'		   => $id,
+	    				'ap_nomor'			   => $num,
+	    				'ap_nama'			   => $anggota,
+	    				'ap_no_ktp'			   => $noKtp,
+                        'ap_kewarganegaraan'   => $kewarganegaraan,
+	    				'ap_kelamin'		   => $kelamin,
 	    			]);
 
 	    			$num++;

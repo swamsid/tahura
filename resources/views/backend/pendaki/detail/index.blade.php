@@ -74,7 +74,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td class="text-left" style="background: #eee; font-weight: 600;">No Hp </td>
+                                        <td class="text-left" style="background: #eee; font-weight: 600;">No Telepon </td>
                                         <td>{{ $data->pd_no_hp }}</td>
 
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Desa/Kelurahan </td>
@@ -106,15 +106,40 @@
 
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
+                                <strong>Informasi Anggota Regu</strong>
+                            </div>
+
+                            <div class="col-md-12" style="margin-top: 10px;">
+                                <table class="table-mini" width="100%" border="1">
+                                   <tr>
+                                       <th>Nama Anggota</th>
+                                       <th>No Telepon</th>
+                                       <th>Kewarganegaraan</th>
+                                       <th>Jenis Kelamin</th>
+                                   </tr>
+
+                                   @foreach($data->anggota as $key => $anggota)
+                                        <tr>
+                                           <td class="text-center">{{ $anggota->ap_nama }}</td>
+                                           <td class="text-center">{{ $anggota->ap_no_ktp }}</td>
+                                           <td class="text-center">{{ ($anggota->ap_kewarganegaraan == 'WNI') ? 'Warga Negara Indonesia' : 'Warga Negara Asing' }}</td>
+                                           <td class="text-center">{{ ($anggota->ap_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
+                                       </tr>
+                                   @endforeach
+                                </table>
+                            </div>
+
+                            <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
+                                <i class="fa fa-arrow-right"></i> &nbsp;
                                 <strong>Informasi Kontak Darurat</strong>
                             </div>
 
                             <div class="col-md-12" style="margin-top: 10px;">
                                 <table class="table-mini" width="100%" border="1">
                                    <tr>
-                                       <th>Nama Kontak Darurat</th>
-                                       <th>No Hp Kontak Darurat</th>
-                                       <th>Alamat Email Kontak Darurat</th>
+                                       <th>Nama</th>
+                                       <th>No Telepon </th>
+                                       <th>Alamat </th>
                                        <th>Hubungan Keluarga</th>
                                    </tr>
 
@@ -131,30 +156,7 @@
 
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
-                                <strong>Informasi Anggota Regu</strong>
-                            </div>
-
-                            <div class="col-md-12" style="margin-top: 10px;">
-                                <table class="table-mini" width="100%" border="1">
-                                   <tr>
-                                       <th>Nama Anggota</th>
-                                       <th>No Identitas</th>
-                                       <th>Jenis Kelamin</th>
-                                   </tr>
-
-                                   @foreach($data->anggota as $key => $anggota)
-                                        <tr>
-                                           <td class="text-center">{{ $anggota->ap_nama }}</td>
-                                           <td class="text-center">{{ $anggota->ap_no_ktp }}</td>
-                                           <td class="text-center">{{ ($anggota->ap_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
-                                       </tr>
-                                   @endforeach
-                                </table>
-                            </div>
-
-                            <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
-                                <i class="fa fa-arrow-right"></i> &nbsp;
-                                <strong>Informasi Anggota Regu</strong>
+                                <strong>Informasi Perlengkapan</strong>
                             </div>
 
                             <div class="col-md-12" style="margin-top: 10px;">
@@ -233,14 +235,26 @@
                                        <th width="10%">Nomor Registrasi</th>
                                        <th width="14%">Tanggal Registrasi</th>
                                        <th width="14%">Status Pendakian</th>
+                                       <th width="14%">Persetujuan</th>
                                    </tr>
 
                                    <tr>
                                         <td class="text-center">{{ $data->pd_nomor }}</td>
                                         <td class="text-center">{{ date('d/m/Y', strtotime($data->pd_tanggal_registrasi)) }}</td>
                                         <td class="text-center" style="font-weight: 500;">
-                                          <span class="label label-info">{{ $data->pd_status }}</span>
+                                          <?php
+                                                $class = 'label-info';
+
+                                                if($data->pd_status == 'disetujui')
+                                                    $class = 'label-success';
+                                                else if($data->pd_status == 'ditolak')
+                                                    $class = 'label-danger';
+                                                else if($data->pd_status == 'sudah naik' || $data->pd_status == 'sudah turun')
+                                                    $class = 'label-warning';
+                                             ?>
+                                          <span class="label {{ $class }}">{{ $data->pd_status }}</span>
                                         </td>
+                                        <td class="text-center">{{ $data->acc_by }}</td>
                                    </tr>
                                 </table>
                             </div>
