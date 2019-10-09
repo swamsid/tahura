@@ -188,13 +188,6 @@ class pendaftaran_controller extends Controller
     		}
 
             if(isset($request->pundak)){
-                // return 'c';
-                Mail::send('addition.email.daftar', ['kode' => $nomor], function ($message) use ($request){
-                    $message->subject("Pendaftaran Pendakian");
-                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
-                    $message->to($request->email_ketua);
-                });
-            }else{
                 // return 'b';
                 $data = pendakian::where('pd_id', $id)
                     ->leftJoin('tb_pos_pendakian as a', 'a.pp_id', '=', 'tb_pendakian.pd_pos_pendakian')
@@ -233,6 +226,13 @@ class pendaftaran_controller extends Controller
                     $message->to($request->email_ketua);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                     $message->attachData($qrcode, 'kode.png');
+                });
+            }else{
+                 // return 'c';
+                Mail::send('addition.email.daftar', ['kode' => $nomor], function ($message) use ($request){
+                    $message->subject("Pendaftaran Pendakian");
+                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
+                    $message->to($request->email_ketua);
                 });
             }
 

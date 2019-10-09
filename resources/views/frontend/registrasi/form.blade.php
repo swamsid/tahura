@@ -243,21 +243,6 @@
                                                             <label>Jenis Kelamin</label>
                                                             <vue-select :name="'kelamin_ketua'" :options="kelamin" :search="false"></vue-select>
                                                         </div>
-                                                        <div class="form-group" style="margin-top: 20px;">
-                                                            <table width="100%">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <td width="5%" style="vertical-align: top;">
-                                                                            <input type="checkbox" id="checkbox" v-model="checked" name="pundak">
-                                                                        </td>
-
-                                                                        <td style="padding-top: 0px;">
-                                                                            <label>Khusus untuk pendakian Lelaku (Makutoromo) atau Gunung Pundak silahkan centang kolom checkbox disamping</label>
-                                                                        </td>
-                                                                    </tr>
-                                                                </thead>
-                                                            </table>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -476,6 +461,25 @@
                                                 </table>
                                             </fieldset>
                                         </div>
+
+                                        <div class="col-md-12" style="margin-top: 20px;">
+                                            <div class="form-group" style="margin-top: 20px;">
+                                                <table width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <td width="2.5%" style="vertical-align: top;">
+                                                                <input type="checkbox" id="checkbox" v-model="checked" name="pundak">
+                                                            </td>
+
+                                                            <td style="padding-top: 0px;">
+                                                                <label>Khusus untuk pendakian Lelaku (Makutoromo) atau pendakian Gunung Pundak silahkan centang kolom checkbox disamping</label>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 30px 0px 0px;">

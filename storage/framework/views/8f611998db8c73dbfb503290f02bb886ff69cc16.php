@@ -243,10 +243,6 @@
                                                             <label>Jenis Kelamin</label>
                                                             <vue-select :name="'kelamin_ketua'" :options="kelamin" :search="false"></vue-select>
                                                         </div>
-                                                        <!-- <div class="form-group">
-                                                           <input type="checkbox" id="checkbox" v-model="checked">
-                                                           <label>Khusus untuk pendakian Lelaku (Makutoromo) atau Gunung Pundak silahkan centang kolom checkbox disamping</label>
-                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -465,6 +461,25 @@
                                                 </table>
                                             </fieldset>
                                         </div>
+
+                                        <div class="col-md-12" style="margin-top: 20px;">
+                                            <div class="form-group" style="margin-top: 20px;">
+                                                <table width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <td width="2.5%" style="vertical-align: top;">
+                                                                <input type="checkbox" id="checkbox" v-model="checked" name="pundak">
+                                                            </td>
+
+                                                            <td style="padding-top: 0px;">
+                                                                <label>Khusus untuk pendakian Lelaku (Makutoromo) atau pendakian Gunung Pundak silahkan centang kolom checkbox disamping</label>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 30px 0px 0px;">
@@ -559,7 +574,7 @@
     <script>
 
         Vue.use(window.vuelidate.default)
-        const { required, minLength } = window.validators;
+        const { required, minLength } = window.validators
 
         var vue = new Vue({
             el: '#page-wrapper',
@@ -956,6 +971,7 @@
 
                                     if(response.data.status == 'success'){
                                         $("#modal-info").modal('show');
+                                        // alert('berhasil')
                                         this.formReset();
                                     }
 
