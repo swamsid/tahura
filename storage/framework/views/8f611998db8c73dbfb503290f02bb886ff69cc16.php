@@ -98,6 +98,165 @@
 
             </div>
         </div>
+
+        <!-- <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row">
+                <div class="col-lg-12 kotak" style="padding-top: 20px !important">
+                    <div class="ibox float-e-margins" style="margin-bottom: 0px">
+                        <div class="ibox-title">
+                            <?php
+                                $con = mysqli_connect("localhost","root","","dishut");
+                                // $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
+                                $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' "));
+                                $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' "));
+                                $tot = $total_anggota+$total;
+                            ?>
+                            <h5 style="font-size: 13px">Total Pendaki Naik Pada <?php echo date('j F Y').' </span><span style="color:white; background-color:#1AB394; padding:6px 12px; border-radius:5px; ">'.$tot?></h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link" aria-expanded="false">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content" id="ibox-content" style="background-color: #ffffff; font-size: 14px">
+                            <div class="row dashboard-header">
+        
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px;">
+                    <div class="ibox-title">
+                        <span class="pull-right"></span>
+                        <h5 style="color: #1AB394">Pos Tambaksari</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $tambak_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $tambak_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $tambak_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $tambak_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $tambak_dash_wni+$tambak_dash_wna+$tambak_dash_anggota_wni+$tambak_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <span class="pull-right"></span>
+                        <h5 style="color: #1AB394">Pos Sumberbrantas</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $sumber_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $sumber_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $sumber_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $sumber_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $sumber_dash_wni+$sumber_dash_wna+$sumber_dash_anggota_wni+$sumber_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <span class="pull-right"></span>
+                        <h5 style="color: #1AB394">Pos Lawang</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $lawang_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $lawang_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $lawang_dash_wni= mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $lawang_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $lawang_dash_wni+$lawang_dash_wna+$lawang_dash_anggota_wni+$lawang_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+    
+
+        
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <h5 style="color: #1AB394">Pos Tretes</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $tretes_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $tretes_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $tretes_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $tretes_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $tretes_dash_wni+$tretes_dash_wna+$tretes_dash_anggota_wni+$tretes_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <h5 style="color: #1AB394">Lelaku</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $lelaku_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $lelaku_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $lelaku_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $lelaku_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $lelaku_dash_wni+$lelaku_dash_wna+$lelaku_dash_anggota_wni+$lelaku_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <div class="col-lg-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <h5 style="color: #1AB394">Gunung Pundak</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $pundak_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $pundak_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $pundak_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $pundak_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $pundak_dash_wni+$pundak_dash_wna+$pundak_dash_anggota_wni+$pundak_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->  
+
         <div class="wrapper wrapper-content animated fadeIn">
             <div class="row">
                 <div class="col-lg-12 kotak" style="padding-top: 20px !important">
@@ -132,17 +291,17 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Nama Ketua</label>
-                                                            <input id="nama_ketua" name="nama_ketua" type="text" :class="$v.single.nama_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="contoh: Amiruzzuhhad Gunes" v-model="single.nama_ketua">
+                                                            <input id="nama_ketua" name="nama_ketua" type="text" :class="$v.single.nama_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Nama ketua regu" v-model="single.nama_ketua">
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label>No Identitas (KTP, Kartu Pelajar)</label>
-                                                            <input id="no_ktp_ketua" name="no_ktp_ketua" type="number" :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Contoh: 928938872800001" v-model="single.no_ktp_ketua">
+                                                            <label>No Identitas (KTP, Kartu Pelajar, Passport)</label>
+                                                            <input id="no_ktp_ketua" name="no_ktp_ketua" type="number" :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="No identitas ketua regu " v-model="single.no_ktp_ketua">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Tempat Lahir</label>
-                                                            <input id="tempat_lahir_ketua" name="tempat_lahir_ketua" type="text" :class="$v.single.tempat_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Contoh : Surabaya" v-model="single.tempat_lahir_ketua">
+                                                            <input id="tempat_lahir_ketua" name="tempat_lahir_ketua" type="text" :class="$v.single.tempat_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Tempat lahir ketua regu" v-model="single.tempat_lahir_ketua">
                                                         </div>
 
                                                         <div class="form-group" id="data_1">
@@ -152,18 +311,18 @@
                                                                     <i class="fa fa-calendar"></i>
                                                                 </span>
 
-                                                                <vue-datepicker :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :class="$v.single.tgl_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Tanggal Lahir'" :readonly="true" v-model="single.tgl_lahir_ketua"></vue-datepicker>
+                                                                <vue-datepicker :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :class="$v.single.tgl_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Tanggal lahir'" :readonly="true" v-model="single.tgl_lahir_ketua"></vue-datepicker>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>No Telepon</label>
-                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Masukkan Nomor Hp Ketua" v-model="single.no_hp_ketua">
+                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Nomor Hp ketua regu" v-model="single.no_hp_ketua">
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Email</label>
-                                                            <input id="email_ketua" name="email_ketua" type="email" :class=" $v.single.email_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Masukkan Email Ketua" v-model="single.email_ketua">
+                                                            <input id="email_ketua" name="email_ketua" type="email" :class=" $v.single.email_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Email ketua regu" v-model="single.email_ketua">
                                                         </div>
 
                                                         <div class="form-group" id="data_1">
@@ -191,7 +350,7 @@
 
                                                         <div class="form-group">
                                                             <label>Alamat Lengkap</label>
-                                                            <textarea rows="1" :class="$v.single.alamat_ketua.$invalid ? 'form-control error' : 'form-control'" style="resize: none;" placeholder="Masukkan Alamat Ketua" name="alamat_ketua" v-model="single.alamat_ketua"> </textarea>
+                                                            <textarea rows="1" :class="$v.single.alamat_ketua.$invalid ? 'form-control error' : 'form-control'" style="resize: none;" placeholder="Alamat ketua regu" name="alamat_ketua" v-model="single.alamat_ketua"> </textarea>
                                                         </div>
 
                                                         <div class="form-group">
@@ -472,7 +631,7 @@
                                                             </td>
 
                                                             <td style="padding-top: 0px;">
-                                                                <label>Khusus untuk pendakian Lelaku (Makutoromo) atau pendakian Gunung Pundak silahkan centang kolom checkbox disamping</label>
+                                                                <label> Khusus untuk pengunjung ke situs purbakala (spiritual) jalur Tambaksari atau pendakian Gunung Pundak silahkan centang kolom checkbox disamping</label>
                                                             </td>
                                                         </tr>
                                                     </thead>
@@ -621,6 +780,21 @@
                     },
 
                     {
+                        id: 'Suami',
+                        text: 'Suami'
+                    },
+
+                    {
+                        id: 'Istri',
+                        text: 'Istri'
+                    },
+
+                    {
+                        id: 'Anak',
+                        text: 'Anak'
+                    },
+
+                    {
                         id: 'Saudara',
                         text: 'Saudara'
                     },
@@ -629,6 +803,8 @@
                         id: 'Teman',
                         text: 'Teman'
                     }
+
+
                 ],
 
                 kontak_darurat: [

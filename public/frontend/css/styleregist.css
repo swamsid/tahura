@@ -8386,3 +8386,15 @@ body.md-skin {
 #ifrm{
   display: none;
 }
+
+.mbox{
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.05);
+  -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.05);
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.05);
+  border: none !important;
+}
+
+.mbox .ibox-title {
+  border: none !important;
+}
+

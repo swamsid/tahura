@@ -167,7 +167,7 @@
                                 Semua calon pendaki wajib mengikuti pengarahan/briefing;
                             </div>
                             <ol start="3">
-                                <li>Mematuhi dan membayar restribusi Masuk Kawasan Tahura Raden Soerjo dan Asuransi sejumlah personil sesuai peraturan perundang-undangan yang berlaku dan pastikan Bukti Retribusi adalah karcis resmi yang dikeluarkan oleh UPT Tahura Raden Soerjo dan karcis Asuransi oleh PT. JASA RAHARJA sesuai dengan jumlah personil serta menyimpan bukti rertibusi tersebut.</li>
+                                <li>Mematuhi dan membayar restribusi Masuk Kawasan Tahura Raden Soerjo dan Asuransi sejumlah personil sesuai peraturan perundang-undangan yang berlaku dan pastikan Bukti Retribusi adalah karcis resmi yang dikeluarkan oleh UPT Tahura Raden Soerjo dan karcis Asuransi oleh PT. JASARAHARJA PUTERA sesuai dengan jumlah personil serta menyimpan bukti rertibusi tersebut.</li>
                                 <li>Pada saat melakukan pendakian agar berjalan secara berkelompok, tidak memisahkan diri dari kelompok/rombongan, berjalan sesuai jalur yang sudah ditetapkan dan dilarang memotong jalur atau membuat jalur baru.</li>
                                 <li>Menjaga keselamatan kelompok dan sesama pengunjung/pendaki serta menjaga kebersihan dan keamanan kawasan .</li>
                                 <li>Turut berpatisipasi dalam upaya Pencegahan, Pengendalian dan Penangulangan Bencana Alam dan memastikan bahwa tempat yang ditinggalkan tidak terdapat api/bara api.</li>
