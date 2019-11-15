@@ -99,7 +99,7 @@
             </div>
         </div>
 
-        <!-- <div class="wrapper wrapper-content animated fadeIn">
+        <div class="wrapper wrapper-content animated fadeIn">
             <div class="row">
                 <div class="col-lg-12 kotak" style="padding-top: 20px !important">
                     <div class="ibox float-e-margins" style="margin-bottom: 0px">
@@ -122,9 +122,9 @@
                             </div>
                         </div>
                         <div class="ibox-content" id="ibox-content" style="background-color: #ffffff; font-size: 14px">
-                            <div class="row dashboard-header">
+                            <div class="row dashboard-header" style="width: 600px; overflow: auto;">
         
-            <div class="col-lg-2" style="padding: 5px">
+            <div style="padding: 5px; width: 155px; float: left">
                 <div class="ibox float-e-margins mbox" style="margin-bottom: 0px;">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
@@ -143,10 +143,8 @@
                     </div>
                 </div>
             </div>
-        
-        
-        
-            <div class="col-lg-2" style="padding: 5px">
+    
+            <div style="padding: 5px; width: 155px; float: left">
                 <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
@@ -166,9 +164,7 @@
                 </div>
             </div>
         
-
-        
-            <div class="col-lg-2" style="padding: 5px">
+            <div style="padding: 5px; width: 155px; float: left">
                 <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
@@ -187,10 +183,8 @@
                     </div>
                 </div>
             </div>
-    
-
         
-            <div class="col-lg-2" style="padding: 5px">
+            <div style="padding: 5px; width: 155px; float: left">
                 <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <h5 style="color: #1AB394">Pos Tretes</h5>
@@ -208,10 +202,8 @@
                     </div>
                 </div>
             </div>
-        
-
-        
-            <div class="col-lg-2" style="padding: 5px">
+          
+            <div style="padding: 5px; width: 155px; float: left">
                 <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <h5 style="color: #1AB394">Lelaku</h5>
@@ -230,9 +222,7 @@
                 </div>
             </div>
         
-
-        
-            <div class="col-lg-2" style="padding: 5px">
+            <div style="padding: 5px; width: 155px; float: left">
                 <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <h5 style="color: #1AB394">Gunung Pundak</h5>
@@ -255,7 +245,8 @@
                     </div>
                 </div>
             </div>
-        </div> -->  
+            </div> 
+        </div>
 
         <div class="wrapper wrapper-content animated fadeIn">
             <div class="row">
@@ -411,7 +402,7 @@
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <h3 style="color: #1ab394">
-                                                        Anggota Rombongan&nbsp;
+                                                        Anggota Rombongan <small>(Ketua tidak perlu ditulis lagi)</small>&nbsp;
                                                         <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata daftar anggota rombongan"></i>
                                                     </h3>
                                                 </div>

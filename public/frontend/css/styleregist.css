@@ -8398,3 +8398,9 @@ body.md-skin {
   border: none !important;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .statistik{
+    width: 600px;
+    overflow: auto;
+  }
+}
