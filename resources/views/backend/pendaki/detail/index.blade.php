@@ -378,7 +378,7 @@
   </div>
 
     <div class="modal inmodal" id="modal-pos-naik" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="width: 30%">
+        <div class="modal-dialog">
             <div class="modal-content animated">
                 <div class="row" style="padding: 10px 20px;">
                   @foreach($pos as $key => $pos1)
@@ -392,7 +392,7 @@
     </div>
 
     <div class="modal inmodal" id="modal-pos-turun" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="width: 30%">
+        <div class="modal-dialog">
             <div class="modal-content animated">
                 <div class="row" style="padding: 10px 20px;">
                   @foreach($pos as $key => $pos2)

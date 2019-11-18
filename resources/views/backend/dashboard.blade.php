@@ -40,9 +40,9 @@
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
-                        <h5 style="color: #FF9800">Pos Tambaksari</h5>
+                        <h5 style="color: #FF9800">Tambaksari</h5>
                     </div>
-                    <div class="ibox-content">
+                    <div class="ibox-content" style="padding: 15px">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #FF9800; font-weight: 400">
                             <?php
                                 $tambak_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
@@ -52,7 +52,7 @@
                                 echo $tambak_dash_wni+$tambak_dash_wna+$tambak_dash_anggota_wni+$tambak_dash_anggota_wna;
                             ?>
                         <small style="float: right;">
-                            <b class="text-info" style="color: #FF9800; font-weight: 100">
+                            <b class="rincian" style="color: #FF9800; font-weight: 100">
                                 <?php echo $tambak_dash_wni+$tambak_dash_anggota_wni; ?> WNI <br>
                                 <?php echo $tambak_dash_wna+$tambak_dash_anggota_wna; ?> WNA
                             </b>
@@ -149,9 +149,9 @@
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
-                        <h5 style="color: #FF9800">Pos Sumberbrantas</h5>
+                        <h5 style="color: #FF9800">Sumberbrantas</h5>
                     </div>
-                    <div class="ibox-content">
+                    <div class="ibox-content" style="padding: 15px">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #FF9800; font-weight: 400">
                             <?php
                                 $sumber_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
@@ -161,7 +161,7 @@
                                 echo $sumber_dash_wni+$sumber_dash_wna+$sumber_dash_anggota_wni+$sumber_dash_anggota_wna;
                             ?>
                         <small style="float: right;">
-                            <b class="text-info" style="color: #FF9800; font-weight: 100">
+                            <b class="rincian" style="color: #FF9800; font-weight: 100">
                                 <?php echo $sumber_dash_wni+$sumber_dash_anggota_wni; ?> WNI <br>
                                 <?php echo $sumber_dash_wna+$sumber_dash_anggota_wna; ?> WNA
                             </b>
@@ -257,9 +257,9 @@
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
                         <span class="pull-right"></span>
-                        <h5 style="color: #FF9800">Pos Lawang</h5>
+                        <h5 style="color: #FF9800">Lawang</h5>
                     </div>
-                    <div class="ibox-content">
+                    <div class="ibox-content" style="padding: 15px">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #FF9800; font-weight: 400">
                             <?php
                                 $lawang_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
@@ -269,7 +269,7 @@
                                 echo $lawang_dash_wni+$lawang_dash_wna+$lawang_dash_anggota_wni+$lawang_dash_anggota_wna;
                             ?>
                         <small style="float: right;">
-                            <b class="text-info" style="color: #FF9800; font-weight: 100">
+                            <b class="rincian" style="color: #FF9800; font-weight: 100">
                                 <?php echo $lawang_dash_wni+$lawang_dash_anggota_wni; ?> WNI <br>
                                 <?php echo $lawang_dash_wna+$lawang_dash_anggota_wna; ?> WNA
                             </b>
@@ -364,9 +364,9 @@
             <div class="col-lg-2" style="padding: 5px">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
-                        <h5 style="color: #FF9800">Pos Tretes</h5>
+                        <h5 style="color: #FF9800">Tretes</h5>
                     </div>
-                    <div class="ibox-content">
+                    <div class="ibox-content" style="padding: 15px">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #FF9800; font-weight: 400">
                             <?php
                                 $tretes_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
@@ -376,7 +376,7 @@
                                 echo $tretes_dash_wni+$tretes_dash_wna+$tretes_dash_anggota_wni+$tretes_dash_anggota_wna;
                             ?>
                         <small style="float: right;">
-                            <b class="text-info" style="color: #FF9800; font-weight: 100">
+                            <b class="rincian" style="color: #FF9800; font-weight: 100">
                                 <?php echo $tretes_dash_wni+$tretes_dash_anggota_wni; ?> WNI <br>
                                 <?php echo $tretes_dash_wna+$tretes_dash_anggota_wna; ?> WNA
                             </b>
@@ -471,9 +471,9 @@
             <div class="col-lg-2" style="padding: 5px">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
-                        <h5 style="color: #FF9800">Lelaku (Makutoromo)</h5>
+                        <h5 style="color: #FF9800">Lelaku</h5>
                     </div>
-                    <div class="ibox-content">
+                    <div class="ibox-content" style="padding: 15px">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #FF9800; font-weight: 400">
                             <?php
                                 $lelaku_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
@@ -483,7 +483,7 @@
                                 echo $lelaku_dash_wni+$lelaku_dash_wna+$lelaku_dash_anggota_wni+$lelaku_dash_anggota_wna;
                             ?>
                         <small style="float: right;">
-                            <b class="text-info" style="color: #FF9800; font-weight: 100">
+                            <b class="rincian" style="color: #FF9800; font-weight: 100">
                                 <?php echo $lelaku_dash_wni+$lelaku_dash_anggota_wni; ?> WNI <br>
                                 <?php echo $lelaku_dash_wna+$lelaku_dash_anggota_wna; ?> WNA
                             </b>
@@ -581,7 +581,7 @@
                     <div class="ibox-title">
                         <h5 style="color: #FF9800">Gunung Pundak</h5>
                     </div>
-                    <div class="ibox-content">
+                    <div class="ibox-content" style="padding: 15px">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #FF9800; font-weight: 400">
                             <?php
                                 $pundak_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
@@ -591,7 +591,7 @@
                                 echo $pundak_dash_wni+$pundak_dash_wna+$pundak_dash_anggota_wni+$pundak_dash_anggota_wna;
                             ?>
                         <small style="float: right;">
-                            <b class="text-info" style="color: #FF9800; font-weight: 100">
+                            <b class="rincian" style="color: #FF9800; font-weight: 100">
                                 <?php echo $pundak_dash_wni+$pundak_dash_anggota_wni; ?> WNI <br>
                                 <?php echo $pundak_dash_wna+$pundak_dash_anggota_wna; ?> WNA
                             </b>

@@ -99,7 +99,7 @@
             </div>
         </div>
 
-        <div class="wrapper wrapper-content animated fadeIn">
+        <!-- <div class="wrapper wrapper-content animated fadeIn">
             <div class="row">
                 <div class="col-lg-12 kotak" style="padding-top: 20px !important">
                     <div class="ibox float-e-margins" style="margin-bottom: 0px">
@@ -246,7 +246,7 @@
                 </div>
             </div>
             </div> 
-        </div>
+        </div> -->
 
         <div class="wrapper wrapper-content animated fadeIn">
             <div class="row">
@@ -308,7 +308,7 @@
 
                                                         <div class="form-group">
                                                             <label>No Telepon</label>
-                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Nomor Hp ketua regu" v-model="single.no_hp_ketua">
+                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Input hanya angka tidak menggunakan tanda baca" v-model="single.no_hp_ketua" @keydown="onKeydown">
                                                         </div>
 
                                                         <div class="form-group">
@@ -444,7 +444,7 @@
                                                                 <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="no_ktp_anggota[]"  class="form-control" :placeholder="'No Telp Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/>
+                                                                <input type="number" name="no_ktp_anggota[]"  class="form-control" :placeholder="'No Telp Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/ @keydown="onKeydown">
                                                             </td>
                                                             <td>
                                                                 <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
@@ -481,7 +481,7 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>No Telepon</label>
-                                                            <input name="no_kontak_darurat[]" type="number" class="form-control" :placeholder="'No hp kontak darurat '+(idx + 1)" v-model="kontak.no">
+                                                            <input name="no_kontak_darurat[]" type="number" class="form-control" :placeholder="'No hp kontak darurat '+(idx + 1)" v-model="kontak.no" @keydown="onKeydown">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3">
@@ -516,7 +516,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Tenda</label>
-                                                        <input name="tenda" type="number" :class="$v.single.tenda.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.tenda">
+                                                        <input name="tenda" type="number" :class="$v.single.tenda.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.tenda" min="1">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Sleeping Bags / Kantong Tidur</label>
@@ -1023,6 +1023,13 @@
             },
 
             methods: {
+                onKeydown (event) {
+                    const char = String.fromCharCode(event.keyCode)
+                    if (/[^A-Za-z0-9+#-\.]/.test(char)) {
+                    event.preventDefault()
+                  }
+                },
+
                 tambahAnggota: function(e){
                     e.preventDefault();
                     e.stopImmediatePropagation();

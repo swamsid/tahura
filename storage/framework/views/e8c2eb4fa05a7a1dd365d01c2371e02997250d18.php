@@ -376,7 +376,7 @@
   </div>
 
     <div class="modal inmodal" id="modal-pos-naik" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="width: 30%">
+        <div class="modal-dialog">
             <div class="modal-content animated">
                 <div class="row" style="padding: 10px 20px;">
                   <?php $__currentLoopData = $pos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $pos1): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -390,7 +390,7 @@
     </div>
 
     <div class="modal inmodal" id="modal-pos-turun" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" style="width: 30%">
+        <div class="modal-dialog">
             <div class="modal-content animated">
                 <div class="row" style="padding: 10px 20px;">
                   <?php $__currentLoopData = $pos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $pos2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
