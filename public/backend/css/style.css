@@ -8351,7 +8351,7 @@ select.input-sm {
   display: none !important
 }
 
-@media (min-width: 1280px) and (max-width: 1599px){
+@media (min-width: 1280px) and (max-width: 1399px){
   .rincian {
     display: none !important;
   }

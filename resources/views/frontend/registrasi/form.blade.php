@@ -308,7 +308,7 @@
 
                                                         <div class="form-group">
                                                             <label>No Telepon</label>
-                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Input hanya angka tidak menggunakan tanda baca" v-model="single.no_hp_ketua" @keydown="onKeydown">
+                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Input hanya angka tanpa tanda baca" v-model="single.no_hp_ketua">
                                                         </div>
 
                                                         <div class="form-group">
@@ -444,7 +444,7 @@
                                                                 <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="no_ktp_anggota[]"  class="form-control" :placeholder="'No Telp Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/ @keydown="onKeydown">
+                                                                <input type="number" name="no_ktp_anggota[]"  class="form-control" :placeholder="'Hanya angka tanpa - atau +'" v-model="anggota.no_ktp"/>
                                                             </td>
                                                             <td>
                                                                 <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
@@ -481,7 +481,7 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>No Telepon</label>
-                                                            <input name="no_kontak_darurat[]" type="number" class="form-control" :placeholder="'No hp kontak darurat '+(idx + 1)" v-model="kontak.no" @keydown="onKeydown">
+                                                            <input name="no_kontak_darurat[]" type="number" class="form-control" :placeholder="'Hanya angka tanpa - atau +'" v-model="kontak.no">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3">
@@ -663,11 +663,11 @@
                         <div class="ibox-content" style="margin-bottom: 0px; padding-bottom: 0px; padding-top: 10px;">
                             <div class="row">
                                 <div class="col-md-12" style="padding: 0px 5px; border-bottom: 1px solid #eee;">
-                                    <h4>Terima Kasih</h4>
+                                    <h4>Terimakasih</h4>
                                 </div>
 
                                 <div class="col-md-12" style="padding-top: 20px;">
-                                    Permintaan anda sudah kami terima. Untuk selanjutnya, kami akan melakukan <b>konfirmasi permintaan anda via alamat email</b> yang sudah anda inputkan.
+                                    Data registrasi pendakian anda sudah kami simpan. Setelah kami verifikasi, <b>berkas/surat izin pendakian akan dikirim melalui email yang anda daftarkan. Jika tidak ada email balasan di kotak masuk maka silahkan cek kotak spam email anda. </b>
                                 </div>
 
                                 <div class="col-md-12 text-right" style="padding: 15px 5px 0px 5px; border-top: 1px solid #eee; margin-top: 15px;">
