@@ -101,10 +101,16 @@
     $years  = floor($diff / (365*60*60*24)); 
     $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24)); 
     $days   = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+    if ( date('d/m/Y', strtotime($data->pd_tgl_naik))  ==  date('d/m/Y', strtotime($data->pd_tgl_turun))  ) {
+      $hari = 1;
+    }
+    else{
+      $hari = $days + 1;
+    }
   ?>
   
   <tr>
-    <td style="padding: 5px 3px" class="tg-vlyc" colspan="4">Memasuki Kawasan Tahura R. SOERJO untuk melakukan pendakian Gunung Arjuna-Welirang mulai tanggal {{ date('d/m/Y', strtotime($data->pd_tgl_naik)) }} s/d {{ date('d/m/Y', strtotime($data->pd_tgl_turun)) }} selama <?php echo $days; ?>  hari, dengan ketentuan sebagai berikut :</td>
+    <td style="padding: 5px 3px" class="tg-vlyc" colspan="4">Memasuki Kawasan Tahura R. SOERJO untuk melakukan pendakian Gunung Arjuna-Welirang mulai tanggal {{ date('d/m/Y', strtotime($data->pd_tgl_naik)) }} s/d {{ date('d/m/Y', strtotime($data->pd_tgl_turun)) }} selama <?php echo $hari; ?>  hari, dengan ketentuan sebagai berikut :</td>
   </tr>
   
   <tr>

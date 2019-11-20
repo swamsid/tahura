@@ -226,7 +226,7 @@ class pendaki_controller extends Controller
 
             $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
 
-            return $pdf->stream('Berkas_pendaftaran_'.$data->pd_nomor);
+            return $pdf->stream('Berkas_pendaftaran_'.$data->pd_nomor.'.pdf');
 
         } catch (Exception $e) {
             return json_encode([
