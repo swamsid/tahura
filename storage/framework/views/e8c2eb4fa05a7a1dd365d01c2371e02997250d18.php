@@ -111,6 +111,7 @@
                                 <table class="table-mini" width="100%" border="1">
                                    <tr>
                                        <th>Nama Anggota</th>
+                                       <th>No Identitas</th>
                                        <th>No Telepon</th>
                                        <th>Kewarganegaraan</th>
                                        <th>Jenis Kelamin</th>
@@ -120,6 +121,7 @@
                                         <tr>
                                            <td class="text-center"><?php echo e($anggota->ap_nama); ?></td>
                                            <td class="text-center"><?php echo e($anggota->ap_no_ktp); ?></td>
+                                           <td class="text-center"><?php echo e($anggota->ap_no_telp); ?></td>
                                            <td class="text-center"><?php echo e(($anggota->ap_kewarganegaraan == 'WNI') ? 'Warga Negara Indonesia' : 'Warga Negara Asing'); ?></td>
                                            <td class="text-center"><?php echo e(($anggota->ap_kelamin == 'L') ? 'Laki-laki' : 'Perempuan'); ?></td>
                                        </tr>

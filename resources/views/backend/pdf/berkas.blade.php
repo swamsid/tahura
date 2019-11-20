@@ -233,19 +233,19 @@
 <table class="ta">
   <tr>
     <th class="tg-hgcj" style="width: 20px">No</th>
-    <th class="tg-hgcj" style="width: 200px">Nama</th>
+    <th class="tg-hgcj" style="width: 210px">Nama</th>
+    <th class="tg-hgcj" style="width: 120px">No Identitas</th>
     <th class="tg-hgcj" style="width: 100px">No. Telepon</th>
     <th class="tg-hgcj" style="width: 130px">Kewarganegaraan</th>
     <th class="tg-hgcj" style="width: 50px">L/P</th>
-    <th class="tg-hgcj" style="width: 130px">Keterangan Kesehatan</th>
   </tr>
   <tr>
     <td class="tg-0lax">1.</td>
     <td class="tg-0lax">{{ $data->pd_nama_ketua }}</td>
+    <td class="tg-0lax">{{ $data->pd_no_ktp }}</td>
     <td class="tg-0lax">{{ $data->pd_no_hp }}</td>
     <td class="tg-0lax">{{ ($data->pd_kewarganegaraan == 'WNI') ? 'Warga Negara Indonesia' : 'Warga Negara Asing' }}</td>
     <td class="tg-0lax">{{ ($data->pd_jenis_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
-    <td class="tg-0lax"></td>
   </tr>
 
   <?php $no = 2; ?>
@@ -253,10 +253,10 @@
   	<tr>
 	    <td class="tg-0lax">{{ $no }}. </td>
 	    <td class="tg-0lax">{{ $anggota->ap_nama }}</td>
-	    <td class="tg-0lax">{{ $anggota->ap_no_ktp }}</td>
+      <td class="tg-0lax">{{ $anggota->ap_no_ktp }}</td>
+	    <td class="tg-0lax">{{ $anggota->ap_no_telp }}</td>
       <td class="tg-0lax">{{ ($anggota->ap_kewarganegaraan == 'WNI') ? 'Warga Negara Indonesia' : 'Warga Negara Asing' }}</td>
 	    <td class="tg-0lax">{{ ($anggota->ap_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
-	    <td class="tg-0lax"></td>
   	</tr>
   	<?php $no++; ?>
   @endforeach

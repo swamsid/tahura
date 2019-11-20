@@ -142,6 +142,26 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-xs-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <span class="pull-right"></span>
+                        <h5 style="color: #1AB394">Pos Sumberbrantas</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $sumber_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $sumber_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $sumber_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $sumber_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $sumber_dash_wni+$sumber_dash_wna+$sumber_dash_anggota_wni+$sumber_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
         
             <div class="col-xs-2" style="padding: 5px">
                 <div class="ibox float-e-margins mbox" style="margin-bottom: 0px;">
@@ -177,26 +197,6 @@
                                 $lawang_dash_wni= mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
                                 $lawang_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
                                 echo $lawang_dash_wni+$lawang_dash_wna+$lawang_dash_anggota_wni+$lawang_dash_anggota_wna;
-                            ?>
-                        Orang</h1>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="col-xs-2" style="padding: 5px">
-                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
-                    <div class="ibox-title">
-                        <span class="pull-right"></span>
-                        <h5 style="color: #1AB394">Pos Sumberbrantas</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
-                            <?php
-                                $sumber_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
-                                $sumber_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
-                                $sumber_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
-                                $sumber_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
-                                echo $sumber_dash_wni+$sumber_dash_wna+$sumber_dash_anggota_wni+$sumber_dash_anggota_wna;
                             ?>
                         Orang</h1>
                     </div>
@@ -265,7 +265,7 @@
                         </div>
                         <div class="ibox-content" id="ibox-content" style="background-color: #ffffff; font-size: 14px">
                             <template v-if="!downloadingResource">
-                                <form id="form-data" class="wizard-big" enctype="multipart/form-data">
+                                <form id="form-data" class="wizard-big" enctype="multipart/form-data" >
                                     <input type="hidden" name="_token" readonly value="<?php echo e(csrf_token()); ?>">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -422,10 +422,11 @@
                                                     <thead>
                                                         <tr>
                                                             <th width="5%">***</th>
-                                                            <th width="40%">Nama</th>
-                                                            <th width="20%">No Telepon</th>
+                                                            <th width="30%">Nama</th>
+                                                            <th width="15%">No Telepon</th>
+                                                            <th width="20%">No Identitas</th>
                                                             <th width="20%">Kewarganegaraan</th>
-                                                            <th width="15%">Jenis Kelamin</th>
+                                                            <th width="10%">Jenis Kelamin</th>
                                                         </tr>
                                                     </thead>
 
@@ -444,7 +445,10 @@
                                                                 <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="no_ktp_anggota[]"  class="form-control" :placeholder="'Hanya angka tanpa - atau +'" v-model="anggota.no_ktp"/>
+                                                                <input type="number" name="no_telp_anggota[]"  class="form-control" :placeholder="'Hanya angka tanpa - atau +'" v-model="anggota.no_telp"/>
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" name="no_ktp_anggota[]"  class="form-control" :placeholder="'Identitas anggota Ke-'+(idx+1)" v-model="anggota.no_ktp"/>
                                                             </td>
                                                             <td>
                                                                 <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
@@ -516,46 +520,46 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Tenda</label>
-                                                        <input name="tenda" type="number" :class="$v.single.tenda.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.tenda" min="1">
+                                                        <input name="tenda" min="0" type="number" :class="$v.single.tenda.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.tenda" min="1">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Sleeping Bags / Kantong Tidur</label>
-                                                        <input name="sleeping_bag" type="number" :class="$v.single.sleeping_bag.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.sleeping_bag">
+                                                        <input name="sleeping_bag" min="0" type="number" :class="$v.single.sleeping_bag.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.sleeping_bag">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Peralatan Masak</label>
-                                                        <input name="peralatan_masak" type="number" :class="$v.single.peralatan_masak.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
+                                                        <input name="peralatan_masak" min="0" type="number" :class="$v.single.peralatan_masak.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Bahan Bakar</label>
-                                                        <input name="bahan_bakar" type="number" :class="$v.single.bahan_bakar.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.bahan_bakar">
+                                                        <input name="bahan_bakar" min="0" type="number" :class="$v.single.bahan_bakar.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.bahan_bakar">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Ponco / Jas Hujan</label>
-                                                        <input name="jas_hujan" type="number" :class="$v.single.jas_hujan.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.jas_hujan">
+                                                        <input name="jas_hujan" min="0" type="number" :class="$v.single.jas_hujan.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.jas_hujan">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Senter / Alat Penerangan</label>
-                                                        <input name="senter" type="number" :class="$v.single.senter.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.senter">
+                                                        <input name="senter" min="0" type="number" :class="$v.single.senter.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.senter">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Obat-Obatan Pribadi dan P3K</label>
-                                                        <input name="obat" type="number" :class="$v.single.obat.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.obat">
+                                                        <input name="obat" min="0" type="number" :class="$v.single.obat.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.obat">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Matras</label>
-                                                        <input name="matras" type="number" :class="$v.single.matras.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.matras">
+                                                        <input name="matras" min="0" type="number" :class="$v.single.matras.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.matras">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Kantong Sampah</label>
-                                                        <input name="kantong_sampah" type="number" :class="$v.single.kantong_sampah.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.kantong_sampah">
+                                                        <input name="kantong_sampah" min="0" type="number" :class="$v.single.kantong_sampah.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.kantong_sampah">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Jaket</label>
-                                                        <input name="jaket" type="number" :class="$v.single.jaket.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.jaket">
+                                                        <input name="jaket" min="0" type="number" :class="$v.single.jaket.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.jaket">
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -604,7 +608,7 @@
                                                                 <input type="text" name="nama_logistik[]" class="form-control" placeholder="Masukkan Nama Logistik" v-model="logistik.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="jumlah_logistik[]" class="form-control" placeholder="Satuan dalam unit" v-model="logistik.jumlah"/>
+                                                                <input type="number" min="0" name="jumlah_logistik[]" class="form-control" placeholder="Satuan dalam unit" v-model="logistik.jumlah"/>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -841,6 +845,7 @@
                 anggota: [
                     {
                         nama: '',
+                        no_telp: '',
                         no_ktp: '',
                         kewarganegaraan: 'WNI',
                         kelamin: 'L',
@@ -1036,6 +1041,7 @@
 
                     this.anggota.push({
                         nama: '',
+                        no_telp: '',
                         no_ktp: '',
                         kewarganegaraan: 'WNI',
                         kelamin: 'L',
@@ -1201,6 +1207,7 @@
                     this.anggota = [
                         {
                             nama: '',
+                            no_telp: '',
                             no_ktp: '',
                             kewarganegaraan: 'WNI',
                             kelamin: 'L',

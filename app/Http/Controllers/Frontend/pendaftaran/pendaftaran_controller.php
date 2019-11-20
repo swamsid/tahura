@@ -136,15 +136,17 @@ class pendaftaran_controller extends Controller
     		$num = 1;
     		foreach($request->nama_anggota as $key => $anggota){
 
-    			$noKtp 		       = $request->no_ktp_anggota[$key];
+    			$noTelp            = $request->no_telp_anggota[$key];
+                $noKtp 		       = $request->no_ktp_anggota[$key];
                 $kewarganegaraan   = $request->kewarganegaraan_anggota[$key];
     			$kelamin 	       = $request->kelamin_anggota[$key];
 
-    			if(!is_null($anggota) && !is_null($noKtp) && !is_null($kewarganegaraan) && !is_null($kelamin)){
+    			if(!is_null($anggota) && !is_null($noTelp) && !is_null($noKtp) && !is_null($kewarganegaraan) && !is_null($kelamin)){
     				DB::table('tb_anggota_pendakian')->insert([
 	    				'ap_pendakian'		   => $id,
 	    				'ap_nomor'			   => $num,
 	    				'ap_nama'			   => $anggota,
+                        'ap_no_telp'           => $noTelp,
 	    				'ap_no_ktp'			   => $noKtp,
                         'ap_kewarganegaraan'   => $kewarganegaraan,
 	    				'ap_kelamin'		   => $kelamin,
