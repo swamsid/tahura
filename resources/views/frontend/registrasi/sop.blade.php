@@ -320,7 +320,7 @@
                                 Nur Yusuf - 082245814672
                             </div>
                             <div class="well wells">
-                                Wakhid Maulana - 081230868982
+                                Talis - 085606589978
                             </div>
                             <div class="well wells">
                                 Atim Muhammad Rosul - 085856200755

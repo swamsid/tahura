@@ -434,7 +434,7 @@
                                                         <tr v-for="(anggota, idx) in anggota">
                                                             <td class="text-center">
                                                                 <template v-if="idx > 0">
-                                                                    <i class="fa fa-trash hint" @click="deleteAnggota($event, idx)"></i>
+                                                                    <i class="fa fa-trash hint" style="color: red" @click="deleteAnggota($event, idx)"></i>
                                                                 </template>
 
                                                                 <template v-if="idx == 0">
@@ -597,7 +597,7 @@
                                                         <tr v-for="(logistik, idx) in logistik">
                                                             <td class="text-center">
                                                                 <template v-if="idx > 0">
-                                                                    <i class="fa fa-trash hint" @click="deleteLogistik($event, idx)"></i>
+                                                                    <i class="fa fa-trash hint" style="color: red" @click="deleteLogistik($event, idx)"></i>
                                                                 </template>
 
                                                                 <template v-if="idx == 0">

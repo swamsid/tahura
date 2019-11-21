@@ -106,7 +106,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -214,7 +214,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -322,7 +322,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -429,7 +429,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -537,7 +537,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -644,7 +644,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -697,16 +697,16 @@
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #1ab394;"></i>
                 </div>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-12">
                 <div class="chart-container">
                     <canvas class="flot-chart-content" id="flot-dashboard-chart" height="350"></canvas>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <!-- <div class="col-sm-3">
                 <div class="chart-container">
                     <canvas id="pie-chart" height="350"></canvas>
                 </div>
-            </div>
+            </div> -->
         </div>
         
             
@@ -891,7 +891,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -999,7 +999,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -1107,7 +1107,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -1214,7 +1214,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -1322,7 +1322,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -1429,7 +1429,7 @@
                                                             while ($res = mysqli_fetch_array($query, MYSQLI_ASSOC)) 
                                                             {
                                                                 ?>
-                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_ktp']. ")" ;?></li>
+                                                                    <li><?php echo "<b>" .$res['ap_nama']. "</b> (" .$res['ap_no_telp']. ")" ;?></li>
                                                                 <?php
                                                             }
                                                         ?>
@@ -1562,6 +1562,22 @@
                                 ],
                                 backgroundColor : "rgba(255,87,34,0.4)",
                                 borderColor : "rgba(255,87,34,0.4)",
+                                borderWidth : 3,
+                                fill : false
+                            },
+                            {
+                                label: "Gunung Pundak",
+                                data: [
+                                    <?php 
+                                    for ($i = 1; $i <= 12; $i++) {
+                                        $bln    = substr('0'.$i, -2); 
+                                        $pundak_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 5 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        $pundak = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 5 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        echo $pundak+$pundak_anggota.',';
+                                    } ?>
+                                ],
+                                backgroundColor : "rgba(156,39,176,0.4)",
+                                borderColor : "rgba(156,39,176,0.4)",
                                 borderWidth : 3,
                                 fill : false
                             }
