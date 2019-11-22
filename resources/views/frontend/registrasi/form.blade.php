@@ -444,7 +444,7 @@
                                                                 </template>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="nama_anggota[]" :required="!selected" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
+                                                                <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
                                                             </td>
                                                             <td>
                                                                 <input type="number" name="no_telp_anggota[]"  class="form-control" :placeholder="'Hanya angka tanpa - atau +'" v-model="anggota.no_telp"/>
