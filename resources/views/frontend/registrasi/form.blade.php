@@ -1,3 +1,7 @@
+<?php 
+   include 'resources/views/config.php';
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -105,8 +109,6 @@
                     <div class="ibox float-e-margins" style="margin-bottom: 0px">
                         <div class="ibox-title">
                             <?php
-                                // $con = mysqli_connect("localhost","root","","dishut");
-                                $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
                                 $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' "));
                                 $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' "));
                                 $tot = $total_anggota+$total;
@@ -425,7 +427,7 @@
                                                             <th width="30%">Nama</th>
                                                             <th width="15%">No Telepon</th>
                                                             <th width="20%">No Identitas</th>
-                                                            <th width="20%">Kewarganegaraan</th>
+                                                            <th width="20%">Warga Negara</th>
                                                             <th width="10%">Jenis Kelamin</th>
                                                         </tr>
                                                     </thead>
@@ -442,7 +444,7 @@
                                                                 </template>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
+                                                                <input type="text" name="nama_anggota[]" :required="!selected" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
                                                             </td>
                                                             <td>
                                                                 <input type="number" name="no_telp_anggota[]"  class="form-control" :placeholder="'Hanya angka tanpa - atau +'" v-model="anggota.no_telp"/>
@@ -608,7 +610,7 @@
                                                                 <input type="text" name="nama_logistik[]" class="form-control" placeholder="Masukkan Nama Logistik" v-model="logistik.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="number" min="0" name="jumlah_logistik[]" class="form-control" placeholder="Satuan dalam unit" v-model="logistik.jumlah"/>
+                                                                <input type="text" name="jumlah_logistik[]" class="form-control" placeholder="Jumlah dan satuan (1 Kg)" v-model="logistik.jumlah"/>
                                                             </td>
                                                         </tr>
                                                     </tbody>

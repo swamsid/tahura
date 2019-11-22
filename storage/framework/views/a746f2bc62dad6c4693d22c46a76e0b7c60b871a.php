@@ -1,6 +1,7 @@
 <?php
     $select = "SELECT *, b.name as desa, c.name as kecamatan, d.name as kabupaten, e.name as provinsi FROM tb_pendakian a JOIN villages b ON a.pd_desa = b.id JOIN districts c ON a.pd_kecamatan = c.id JOIN regencies d ON a.pd_kabupaten = d.id JOIN provinces e ON a.pd_provinsi = e.id WHERE pd_status = 'sudah naik' AND pd_pos_pendakian";
-?>
+
+    include 'resources/views/config.php'; ?>
 
 
 
@@ -23,8 +24,6 @@
                 <div class="row text-center">
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #FF9800;"></i> &nbsp;
                     <?php
-                        $con = mysqli_connect("localhost","root","","dishut");
-                        // $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
                         $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' "));
                         $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' "));
                         $tot = $total_anggota+$total;
@@ -808,8 +807,6 @@
                 <div class="row text-center">
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #FF9800;"></i> &nbsp;
                     <?php
-                        $con = mysqli_connect("localhost","root","","dishut");
-                        // $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
                         $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' "));
                         $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' "));
                         $tot = $total_anggota+$total;

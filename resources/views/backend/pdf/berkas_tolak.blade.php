@@ -238,7 +238,7 @@
     <td class="tg-0lax">{{ $data->pd_nama_ketua }}</td>
     <td class="tg-0lax">{{ $data->pd_no_ktp }}</td>
     <td class="tg-0lax">{{ $data->pd_no_hp }}</td>
-    <td class="tg-0lax">{{ ($data->pd_kewarganegaraan == 'WNI') ? 'Warga Negara Indonesia' : 'Warga Negara Asing' }}</td>
+    <td class="tg-0lax">{{ ($data->pd_kewarganegaraan == 'WNI') ? 'WNI' : 'WNA' }}</td>
     <td class="tg-0lax">{{ ($data->pd_jenis_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
   </tr>
 
@@ -249,7 +249,7 @@
       <td class="tg-0lax">{{ $anggota->ap_nama }}</td>
       <td class="tg-0lax">{{ $anggota->ap_no_ktp }}</td>
       <td class="tg-0lax">{{ $anggota->ap_no_telp }}</td>
-      <td class="tg-0lax">{{ ($anggota->ap_kewarganegaraan == 'WNI') ? 'Warga Negara Indonesia' : 'Warga Negara Asing' }}</td>
+      <td class="tg-0lax">{{ ($anggota->ap_kewarganegaraan == 'WNI') ? 'WNI' : 'WNA' }}</td>
       <td class="tg-0lax">{{ ($anggota->ap_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
     </tr>
     <?php $no++; ?>

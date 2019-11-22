@@ -1,5 +1,7 @@
 <?php
     $select = "SELECT *, b.name as desa, c.name as kecamatan, d.name as kabupaten, e.name as provinsi FROM tb_pendakian a JOIN villages b ON a.pd_desa = b.id JOIN districts c ON a.pd_kecamatan = c.id JOIN regencies d ON a.pd_kabupaten = d.id JOIN provinces e ON a.pd_provinsi = e.id WHERE pd_status = 'sudah naik' AND pd_pos_pendakian";
+
+    include 'resources/views/config.php'; 
 ?>
 
 @extends('backend.main')
@@ -23,8 +25,6 @@
                 <div class="row text-center">
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #FF9800;"></i> &nbsp;
                     <?php
-                        // $con = mysqli_connect("localhost","root","","dishut");
-                        $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
                         $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' "));
                         $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' "));
                         $tot = $total_anggota+$total;
@@ -712,104 +712,11 @@
             
             
     @else
-        <!-- <div class="row">
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-success pull-right">Bulan Ini</span>
-                        <h5>Total Registrasi</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;">{{ $data['registrasi'] }} Tim</h1>
-                        <small>
-                            <b class="text-success">
-                                <?php
-                                    $cur = ($data['totregis'] > 0) ? ($data['registrasi'] / $data['totregis']) * 100 : 0;
-                                ?>
-                                {{ number_format($cur) }}%
-                            </b> &nbsp;
-                            Dari Total Keseluruhan
-                        </small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-danger pull-right">Bulan Ini</span>
-                        <h5>Total Ditolak</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;">{{ $data['tolak'] }} Tim</h1>
-                        <small>
-                            <b class="text-danger">
-                                <?php
-                                    $cur = ($data['tottolak'] > 0) ? ($data['tolak'] / $data['tottolak']) * 100 : 0;
-                                ?>
-                                {{ number_format($cur) }}%
-                            </b> &nbsp;
-                            Dari Total Keseluruhan
-                        </small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-info pull-right">Bulan Ini</span>
-                        <h5>Total Sudah Naik</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;">{{ $data['naik'] }} Tim</h1>
-                        <div class="stat-percent font-bold text-info">
-                            <small>
-                                <?php
-                                    $cur = ($data['totnaik'] > 0) ? ($data['naik'] / $data['totnaik']) * 100 : 0;
-                                ?>
-
-                                ({{ number_format($cur) }}%)
-                            </small>
-                        </div>
-                        <small>
-                            <b class="text-info">Total {{ $data['naik'] }} tim</b>
-                            Yang Anda Acc
-                        </small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-primary pull-right">Bulan Ini</span>
-                        <h5>Total Sudah Turun</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;">{{ $data['totturun'] }} Tim</h1>
-                        <div class="stat-percent font-bold text-navy">
-                            <?php
-                                    $cur = ($data['totturun'] > 0) ? ($data['turun'] / $data['totturun']) * 100 : 0;
-                                ?>
-
-                            <small>
-                                ({{ number_format($cur) }}%)
-                            </small>
-                        </div>
-                        <small>
-                            <b class="text-navy">Total {{ $data['turun'] }} tim</b>
-                            Yang Anda Acc
-                        </small>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
         <div class="row border-bottom dashboard-header">
             <div class="col-md-12">
                 <div class="row text-center">
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #FF9800;"></i> &nbsp;
                     <?php
-                        // $con = mysqli_connect("localhost","root","","dishut");
-                        $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
                         $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' "));
                         $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' "));
                         $tot = $total_anggota+$total;

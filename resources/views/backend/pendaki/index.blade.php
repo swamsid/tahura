@@ -1,3 +1,7 @@
+<?php
+    include 'resources/views/config.php'; 
+?>
+
 @extends('backend.main')
 
 @section('extra_style')
@@ -73,6 +77,9 @@
                                             <td class="text-center">
                                                 <center>
                                                     <a href="{{ Route('wpadmin.pendaki.detail', 'id='.$data->pd_id) }}" class='btn btn-primary btn-xs' data-id="{{ $data->pd_id }}" title='Detail'><span class='fa fa-folder-open'></span></a>
+                                                    @if(Auth::user()->posisi == 'kantor')
+                                                    <a id="{{ 'del_'.$data->pd_id }}" class='btn btn-danger btn-xs delete' title="Hapus"><span class='fa fa-trash'></span></a>
+                                                    @endif
                                                 </center>
                                             </td>
                                         </tr>
@@ -104,6 +111,38 @@
     <script src="{{ asset('public/backend/js/plugins/dataTables/datatables.min.js') }}"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
+
+            $('.delete').click(function(){
+                var result = confirm("Apakah anda yakin?");
+                if(result){
+                    var el = this;
+                    var id = this.id;
+                    var splitid = id.split("_");
+
+                    // Delete id
+                    var deleteid = splitid[1];
+                 
+                    // AJAX Request
+                    $.ajax({
+                        url: '{{ asset("resources/views/backend/pendaki/remove.php") }}',
+                        type: 'POST',
+                        data: { id:deleteid },
+                        success: function(response){
+                            if(response == 1){
+                                // Remove row from HTML Table
+                                $(el).closest('tr').css('background','rgba(26, 179, 148, 0.4)');
+                                $(el).closest('tr').fadeOut(800,function(){
+                                $(this).remove();
+                            });
+                            }
+                            else{
+                                alert('Invalid ID.');
+                            }
+                        }
+                    });
+                }
+
+            });
 
             @if(Session::has('message'))
                 // alert('{{ Session::get("message") }}');
