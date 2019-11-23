@@ -310,7 +310,7 @@
 
                                                         <div class="form-group">
                                                             <label>No Telepon</label>
-                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Input hanya angka tanpa tanda baca" v-model="single.no_hp_ketua">
+                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Input hanya angka tanpa + atau -" v-model="single.no_hp_ketua">
                                                         </div>
 
                                                         <div class="form-group">
@@ -444,7 +444,7 @@
                                                                 </template>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="nama_anggota[]" :required="!selected" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
+                                                                <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
                                                             </td>
                                                             <td>
                                                                 <input type="number" name="no_telp_anggota[]"  class="form-control" :placeholder="'Hanya angka tanpa - atau +'" v-model="anggota.no_telp"/>
@@ -620,18 +620,26 @@
 
                                         <div class="col-md-12" style="margin-top: 20px;">
                                             <div class="form-group" style="margin-top: 20px;">
-                                                <table width="100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <td width="2.5%" style="vertical-align: top;">
-                                                                <input type="checkbox" id="checkbox" v-model="checked" name="pundak">
-                                                            </td>
+                                                <table>
+                                                    <tr>
+                                                        <td width="2.5%" style="vertical-align: top;">
+                                                            <input type="radio" name="pundak" value="pundak">
+                                                        </td>
 
-                                                            <td style="padding-top: 0px;">
-                                                                <label> Khusus untuk pengunjung ke situs purbakala (spiritual) jalur Tambaksari atau pendakian Gunung Pundak silahkan centang kolom checkbox disamping</label>
-                                                            </td>
-                                                        </tr>
-                                                    </thead>
+                                                        <td style="padding: 0 0 5px 10px;">
+                                                            <label> KHUSUS <span style="font-weight: 400">untuk pendakian</span> GUNUNG PUNDAK <span style="font-weight: 400">centang kolom disamping</span></label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="2.5%" style="vertical-align: top;">
+                                                            <input type="radio" name="pundak" value="lelaku">
+                                                        </td>
+
+                                                        <td style="padding: 0 0 0 10px;">
+                                                            <label> KHUSUS <span style="font-weight: 400">untuk pendakian ke situs purbakala</span> (LELAKU) <span style="font-weight: 400">jalur Tambaksari centang kolom disamping</span></label>
+                                                        </td>
+                                                    </tr>
+
                                                 </table>
                                             </div>
                                         </div>

@@ -217,8 +217,13 @@ class pendaftaran_controller extends Controller
                 $qrcode = QrCode::format('png')->size(1000)
                             ->merge('/public/backend/img/LogoJawaTimur.png', .3)
                             ->generate(Route('wpadmin.pendaki.detail', 'id='.$id));
-
-                $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
+                            
+                if ($request->pundak == 'lelaku') {
+                    $pdf = PDF::loadView('backend.pdf.berkas_lelaku', compact('data', 'qrcode'))->setPAPER('a4');    
+                }
+                else{
+                    $pdf = PDF::loadView('backend.pdf.berkas_pundak', compact('data', 'qrcode'))->setPAPER('a4');
+                }
                 
                 $email = $request->email_ketua;
 

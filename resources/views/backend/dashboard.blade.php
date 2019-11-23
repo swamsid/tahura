@@ -2,6 +2,7 @@
     $select = "SELECT *, b.name as desa, c.name as kecamatan, d.name as kabupaten, e.name as provinsi FROM tb_pendakian a JOIN villages b ON a.pd_desa = b.id JOIN districts c ON a.pd_kecamatan = c.id JOIN regencies d ON a.pd_kabupaten = d.id JOIN provinces e ON a.pd_provinsi = e.id WHERE pd_status = 'sudah naik' AND pd_pos_pendakian";
 
     include 'resources/views/config.php'; 
+
 ?>
 
 @extends('backend.main')
@@ -74,7 +75,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -182,7 +183,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -290,7 +291,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -397,7 +398,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -505,7 +506,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -612,7 +613,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -766,7 +767,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -874,7 +875,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -982,7 +983,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -1089,7 +1090,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -1197,7 +1198,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -1304,7 +1305,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -1533,35 +1534,35 @@
                 var myLineChart = document.getElementById('flot-dashboard-chart').getContext('2d');
                 window.myLineChart = new Chart(myLineChart, data);
                 
-                new Chart(document.getElementById("pie-chart"), 
-                {
-                    type: 'pie',
-                    data: {
-                      labels: ["Warga Negara Indonesia", "Warga Negara Asing"],
-                      datasets: [{
-                        backgroundColor: ["#80DEEA","#90A4AE"],
-                        data: [
-                            <?php
-                                $anggotaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNI' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                                $ketuaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNI' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                                echo $anggotaWNI+$ketuaWNI;
-                            ?>
-                            ,
-                            <?php
-                                $anggotaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNA' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                                $ketuaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNA' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                                echo $anggotaWNA+$ketuaWNA;
-                            ?>
-                            ]
-                      }]
-                    },
-                    options: {
-                        responsive: true,
-                        legend: {
-                            position: 'bottom'
-                        },
-                    }
-                });
+                // new Chart(document.getElementById("pie-chart"), 
+                // {
+                //     type: 'pie',
+                //     data: {
+                //       labels: ["Warga Negara Indonesia", "Warga Negara Asing"],
+                //       datasets: [{
+                //         backgroundColor: ["#80DEEA","#90A4AE"],
+                //         data: [
+                //             <?php
+                //                 $anggotaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNI' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                //                 $ketuaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNI' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                //                 echo $anggotaWNI+$ketuaWNI;
+                //             ?>
+                //             ,
+                //             <?php
+                //                 $anggotaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNA' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                //                 $ketuaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNA' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                //                 echo $anggotaWNA+$ketuaWNA;
+                //             ?>
+                //             ]
+                //       }]
+                //     },
+                //     options: {
+                //         responsive: true,
+                //         legend: {
+                //             position: 'bottom'
+                //         },
+                //     }
+                // });
 
             });
         @else

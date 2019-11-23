@@ -236,7 +236,7 @@
     <th class="tg-hgcj" style="width: 210px">Nama</th>
     <th class="tg-hgcj" style="width: 120px">No Identitas</th>
     <th class="tg-hgcj" style="width: 100px">No. Telepon</th>
-    <th class="tg-hgcj" style="width: 130px">Kewarganegaraan</th>
+    <th class="tg-hgcj" style="width: 100px">Kewarganegaraan</th>
     <th class="tg-hgcj" style="width: 50px">L/P</th>
   </tr>
   <tr>
@@ -244,7 +244,7 @@
     <td class="tg-0lax"><?php echo e($data->pd_nama_ketua); ?></td>
     <td class="tg-0lax"><?php echo e($data->pd_no_ktp); ?></td>
     <td class="tg-0lax"><?php echo e($data->pd_no_hp); ?></td>
-    <td class="tg-0lax"><?php echo e(($data->pd_kewarganegaraan == 'WNI') ? 'WNI' : 'WNA'); ?></td>
+    <td class="tg-0lax" style="text-align: center;"><?php echo e(($data->pd_kewarganegaraan == 'WNI') ? 'WNI' : 'WNA'); ?></td>
     <td class="tg-0lax"><?php echo e(($data->pd_jenis_kelamin == 'L') ? 'Laki-laki' : 'Perempuan'); ?></td>
   </tr>
 
@@ -255,7 +255,7 @@
 	    <td class="tg-0lax"><?php echo e($anggota->ap_nama); ?></td>
       <td class="tg-0lax"><?php echo e($anggota->ap_no_ktp); ?></td>
 	    <td class="tg-0lax"><?php echo e($anggota->ap_no_telp); ?></td>
-      <td class="tg-0lax"><?php echo e(($anggota->ap_kewarganegaraan == 'WNI') ? 'WNI' : 'WNA'); ?></td>
+      <td class="tg-0lax" style="text-align: center;"><?php echo e(($anggota->ap_kewarganegaraan == 'WNI') ? 'WNI' : 'WNA'); ?></td>
 	    <td class="tg-0lax"><?php echo e(($anggota->ap_kelamin == 'L') ? 'Laki-laki' : 'Perempuan'); ?></td>
   	</tr>
   	<?php $no++; ?>

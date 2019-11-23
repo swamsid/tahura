@@ -1,8 +1,6 @@
 <?php
-
-
-// $con = mysqli_connect("localhost","root","","dishut");
-$con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
+$con = mysqli_connect("localhost","root","","dishut");
+// $con = mysqli_connect("tahuraradensoerjo.or.id","tahurara_tahura","amiruzg627408","tahurara_tahura");
 
 // Check connection
 if (!$con) {

@@ -1,7 +1,9 @@
 <?php
     $select = "SELECT *, b.name as desa, c.name as kecamatan, d.name as kabupaten, e.name as provinsi FROM tb_pendakian a JOIN villages b ON a.pd_desa = b.id JOIN districts c ON a.pd_kecamatan = c.id JOIN regencies d ON a.pd_kabupaten = d.id JOIN provinces e ON a.pd_provinsi = e.id WHERE pd_status = 'sudah naik' AND pd_pos_pendakian";
 
-    include 'resources/views/config.php'; ?>
+    include 'resources/views/config.php'; 
+
+?>
 
 
 
@@ -73,7 +75,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -181,7 +183,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -289,7 +291,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -396,7 +398,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -504,7 +506,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -611,7 +613,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -711,97 +713,6 @@
             
             
     <?php else: ?>
-        <!-- <div class="row">
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-success pull-right">Bulan Ini</span>
-                        <h5>Total Registrasi</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;"><?php echo e($data['registrasi']); ?> Tim</h1>
-                        <small>
-                            <b class="text-success">
-                                <?php
-                                    $cur = ($data['totregis'] > 0) ? ($data['registrasi'] / $data['totregis']) * 100 : 0;
-                                ?>
-                                <?php echo e(number_format($cur)); ?>%
-                            </b> &nbsp;
-                            Dari Total Keseluruhan
-                        </small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-danger pull-right">Bulan Ini</span>
-                        <h5>Total Ditolak</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;"><?php echo e($data['tolak']); ?> Tim</h1>
-                        <small>
-                            <b class="text-danger">
-                                <?php
-                                    $cur = ($data['tottolak'] > 0) ? ($data['tolak'] / $data['tottolak']) * 100 : 0;
-                                ?>
-                                <?php echo e(number_format($cur)); ?>%
-                            </b> &nbsp;
-                            Dari Total Keseluruhan
-                        </small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-info pull-right">Bulan Ini</span>
-                        <h5>Total Sudah Naik</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;"><?php echo e($data['naik']); ?> Tim</h1>
-                        <div class="stat-percent font-bold text-info">
-                            <small>
-                                <?php
-                                    $cur = ($data['totnaik'] > 0) ? ($data['naik'] / $data['totnaik']) * 100 : 0;
-                                ?>
-
-                                (<?php echo e(number_format($cur)); ?>%)
-                            </small>
-                        </div>
-                        <small>
-                            <b class="text-info">Total <?php echo e($data['naik']); ?> tim</b>
-                            Yang Anda Acc
-                        </small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="label label-primary pull-right">Bulan Ini</span>
-                        <h5>Total Sudah Turun</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins" style="padding-bottom: 5px;"><?php echo e($data['totturun']); ?> Tim</h1>
-                        <div class="stat-percent font-bold text-navy">
-                            <?php
-                                    $cur = ($data['totturun'] > 0) ? ($data['turun'] / $data['totturun']) * 100 : 0;
-                                ?>
-
-                            <small>
-                                (<?php echo e(number_format($cur)); ?>%)
-                            </small>
-                        </div>
-                        <small>
-                            <b class="text-navy">Total <?php echo e($data['turun']); ?> tim</b>
-                            Yang Anda Acc
-                        </small>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
         <div class="row border-bottom dashboard-header">
             <div class="col-md-12">
                 <div class="row text-center">
@@ -856,7 +767,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -964,7 +875,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -1072,7 +983,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -1179,7 +1090,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -1287,7 +1198,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -1394,7 +1305,7 @@
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
-                        <div class="table-responsive" style="height: 500px">
+                        <div class="table-responsive" style="height: 500px; overflow: auto;">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example" style="width: 1000px; overflow: auto;">
                                 <thead>
                                   <tr>
@@ -1623,35 +1534,35 @@
                 var myLineChart = document.getElementById('flot-dashboard-chart').getContext('2d');
                 window.myLineChart = new Chart(myLineChart, data);
                 
-                new Chart(document.getElementById("pie-chart"), 
-                {
-                    type: 'pie',
-                    data: {
-                      labels: ["Warga Negara Indonesia", "Warga Negara Asing"],
-                      datasets: [{
-                        backgroundColor: ["#80DEEA","#90A4AE"],
-                        data: [
-                            <?php
-                                $anggotaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNI' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                                $ketuaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNI' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                                echo $anggotaWNI+$ketuaWNI;
-                            ?>
-                            ,
-                            <?php
-                                $anggotaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNA' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                                $ketuaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNA' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
-                                echo $anggotaWNA+$ketuaWNA;
-                            ?>
-                            ]
-                      }]
-                    },
-                    options: {
-                        responsive: true,
-                        legend: {
-                            position: 'bottom'
-                        },
-                    }
-                });
+                // new Chart(document.getElementById("pie-chart"), 
+                // {
+                //     type: 'pie',
+                //     data: {
+                //       labels: ["Warga Negara Indonesia", "Warga Negara Asing"],
+                //       datasets: [{
+                //         backgroundColor: ["#80DEEA","#90A4AE"],
+                //         data: [
+                //             <?php
+                //                 $anggotaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNI' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                //                 $ketuaWNI = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNI' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                //                 echo $anggotaWNI+$ketuaWNI;
+                //             ?>
+                //             ,
+                //             <?php
+                //                 $anggotaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE b.ap_kewarganegaraan = 'WNA' AND YEAR(a.pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                //                 $ketuaWNA = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_kewarganegaraan = 'WNA' AND YEAR(pd_tgl_naik) = YEAR(curdate()) AND pd_pos_pendakian != '' "));
+                //                 echo $anggotaWNA+$ketuaWNA;
+                //             ?>
+                //             ]
+                //       }]
+                //     },
+                //     options: {
+                //         responsive: true,
+                //         legend: {
+                //             position: 'bottom'
+                //         },
+                //     }
+                // });
 
             });
         <?php else: ?>
