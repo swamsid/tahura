@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Registrasi Pendakian </title>
+    <title>Registrasi Pendakian Gunung Arjuno - Welirang </title>
 
     <link href="{{ asset('public/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('public/frontend/css/bootstrap-vue.min.css') }}" rel="stylesheet">
