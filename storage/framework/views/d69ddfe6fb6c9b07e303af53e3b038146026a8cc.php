@@ -1,3 +1,7 @@
+<?php 
+   include 'resources/views/config.php';
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -72,7 +76,7 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header" style="padding: 15px 10px 0px 15px;">
-                    <a href="<?php echo e(Route('frontend.cek_pendakian')); ?>" style="color: #aaa; font-size: 10pt;">Cek status pendakian anda !</a>
+                    <a href="<?php echo e(Route('frontend.cek_pendakian')); ?>" style="color: #aaa; font-size: 10pt;">Cek status pendakian anda disini</a>
                 </div>
             </nav>
         </div>
@@ -98,6 +102,154 @@
 
             </div>
         </div>
+
+         <div class="wrapper wrapper-content animated fadeIn">
+            <div class="row">
+                <div class="col-lg-12 kotak" style="padding-top: 20px !important">
+                    <div class="ibox float-e-margins" style="margin-bottom: 0px">
+                        <div class="ibox-title">
+                            <?php
+                                $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' "));
+                                $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' "));
+                                $tot = $total_anggota+$total;
+                            ?>
+                            <h5 style="font-size: 13px">Pendaki Naik Pada <?php echo date('j/m/Y').' </span><span style="color:white; background-color:#1AB394; padding:6px 12px; border-radius:5px; ">'.$tot?></h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link" aria-expanded="false">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content" id="ibox-content" style="background-color: #ffffff; font-size: 14px; overflow: auto;">
+                            <div class="row dashboard-header" style="width: 1080px; padding: 0px 20px">
+
+            <div class="col-xs-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <h5 style="color: #1AB394">Pos Tretes</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $tretes_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $tretes_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $tretes_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $tretes_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 4 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $tretes_dash_wni+$tretes_dash_wna+$tretes_dash_anggota_wni+$tretes_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <span class="pull-right"></span>
+                        <h5 style="color: #1AB394">Pos Sumberbrantas</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $sumber_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $sumber_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $sumber_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $sumber_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 2 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $sumber_dash_wni+$sumber_dash_wna+$sumber_dash_anggota_wni+$sumber_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-xs-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px;">
+                    <div class="ibox-title">
+                        <span class="pull-right"></span>
+                        <h5 style="color: #1AB394">Pos Tambaksari</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $tambak_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $tambak_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $tambak_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $tambak_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 1 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $tambak_dash_wni+$tambak_dash_wna+$tambak_dash_anggota_wni+$tambak_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <span class="pull-right"></span>
+                        <h5 style="color: #1AB394">Pos Lawang</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $lawang_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $lawang_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $lawang_dash_wni= mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $lawang_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 3 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $lawang_dash_wni+$lawang_dash_wna+$lawang_dash_anggota_wni+$lawang_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <h5 style="color: #1AB394">Gunung Pundak</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $pundak_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $pundak_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $pundak_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $pundak_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 5 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $pundak_dash_wni+$pundak_dash_wna+$pundak_dash_anggota_wni+$pundak_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="col-xs-2" style="padding: 5px">
+                <div class="ibox float-e-margins mbox" style="margin-bottom: 0px">
+                    <div class="ibox-title">
+                        <h5 style="color: #1AB394">Lelaku</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #1AB394; font-weight: 400">
+                            <?php
+                                $lelaku_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $lelaku_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $lelaku_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $lelaku_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $lelaku_dash_wni+$lelaku_dash_wna+$lelaku_dash_anggota_wni+$lelaku_dash_anggota_wna;
+                            ?>
+                        Orang</h1>
+                    </div>
+                </div>
+            </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div> 
+        </div> 
+
         <div class="wrapper wrapper-content animated fadeIn">
             <div class="row">
                 <div class="col-lg-12 kotak" style="padding-top: 20px !important">
@@ -115,7 +267,7 @@
                         </div>
                         <div class="ibox-content" id="ibox-content" style="background-color: #ffffff; font-size: 14px">
                             <template v-if="!downloadingResource">
-                                <form id="form-data" class="wizard-big" enctype="multipart/form-data">
+                                <form id="form-data" class="wizard-big" enctype="multipart/form-data" >
                                     <input type="hidden" name="_token" readonly value="<?php echo e(csrf_token()); ?>">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -132,17 +284,19 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
                                                             <label>Nama Ketua</label>
-                                                            <input id="nama_ketua" name="nama_ketua" type="text" :class="$v.single.nama_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="contoh: Amiruzzuhhad Gunes" v-model="single.nama_ketua">
+                                                            <input id="nama_ketua" name="nama_ketua" type="text" :class="$v.single.nama_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Nama ketua regu" v-model="single.nama_ketua">
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <label>No Identitas (KTP, Kartu Pelajar)</label>
-                                                            <input id="no_ktp_ketua" name="no_ktp_ketua" type="number" :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Contoh: 928938872800001" v-model="single.no_ktp_ketua">
+                                                            <label>No Identitas (KTP, Kartu Pelajar, Passport)</label>
+
+                                                            <vue-mask :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'____.____.____.____'" :name="'no_ktp_ketua'" :id="'no_ktp_ketua'" :mask="'0000.0000.0000.0000'" :css="'text-align: left;'" v-model="single.no_ktp_ketua"></vue-mask>
+
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Tempat Lahir</label>
-                                                            <input id="tempat_lahir_ketua" name="tempat_lahir_ketua" type="text" :class="$v.single.tempat_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Contoh : Surabaya" v-model="single.tempat_lahir_ketua">
+                                                            <input id="tempat_lahir_ketua" name="tempat_lahir_ketua" type="text" :class="$v.single.tempat_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Tempat lahir ketua regu" v-model="single.tempat_lahir_ketua">
                                                         </div>
 
                                                         <div class="form-group" id="data_1">
@@ -152,18 +306,19 @@
                                                                     <i class="fa fa-calendar"></i>
                                                                 </span>
 
-                                                                <vue-datepicker :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :class="$v.single.tgl_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Tanggal Lahir'" :readonly="true" v-model="single.tgl_lahir_ketua"></vue-datepicker>
+                                                                <vue-mask :class="$v.single.tgl_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'__/__/____'" :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :mask="'00/00/0000'" :css="'text-align: left;'" v-model="single.tgl_lahir_ketua"></vue-mask>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>No Telepon</label>
-                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Masukkan Nomor Hp Ketua" v-model="single.no_hp_ketua">
+
+                                                            <vue-mask :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'____-____-_____'" :name="'no_hp_ketua'" :id="'no_hp_ketua'" :mask="'0000-0000-00000'" :css="'text-align: left;'" v-model="single.no_hp_ketua"></vue-mask>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>Email</label>
-                                                            <input id="email_ketua" name="email_ketua" type="email" :class=" $v.single.email_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Masukkan Email Ketua" v-model="single.email_ketua">
+                                                            <input id="email_ketua" name="email_ketua" type="email" :class=" $v.single.email_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Email ketua regu" v-model="single.email_ketua">
                                                         </div>
 
                                                         <div class="form-group" id="data_1">
@@ -191,7 +346,7 @@
 
                                                         <div class="form-group">
                                                             <label>Alamat Lengkap</label>
-                                                            <textarea rows="1" :class="$v.single.alamat_ketua.$invalid ? 'form-control error' : 'form-control'" style="resize: none;" placeholder="Masukkan Alamat Ketua" name="alamat_ketua" v-model="single.alamat_ketua"> </textarea>
+                                                            <textarea rows="1" :class="$v.single.alamat_ketua.$invalid ? 'form-control error' : 'form-control'" style="resize: none;" placeholder="Alamat ketua regu" name="alamat_ketua" v-model="single.alamat_ketua"> </textarea>
                                                         </div>
 
                                                         <div class="form-group">
@@ -243,21 +398,6 @@
                                                             <label>Jenis Kelamin</label>
                                                             <vue-select :name="'kelamin_ketua'" :options="kelamin" :search="false"></vue-select>
                                                         </div>
-                                                        <div class="form-group" style="margin-top: 20px;">
-                                                            <table width="100%">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <td width="5%" style="vertical-align: top;">
-                                                                            <input type="checkbox" id="checkbox" v-model="checked" name="pundak">
-                                                                        </td>
-
-                                                                        <td style="padding-top: 0px;">
-                                                                            <label>Khusus untuk pendakian Lelaku (Makutoromo) atau Gunung Pundak silahkan centang kolom checkbox disamping</label>
-                                                                        </td>
-                                                                    </tr>
-                                                                </thead>
-                                                            </table>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -267,7 +407,7 @@
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <h3 style="color: #1ab394">
-                                                        Anggota Rombongan&nbsp;
+                                                        Anggota Rombongan <small>(Ketua tidak perlu ditulis lagi)</small>&nbsp;
                                                         <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata daftar anggota rombongan"></i>
                                                     </h3>
                                                 </div>
@@ -287,10 +427,11 @@
                                                     <thead>
                                                         <tr>
                                                             <th width="5%">***</th>
-                                                            <th width="40%">Nama</th>
-                                                            <th width="20%">No Telepon</th>
-                                                            <th width="20%">Kewarganegaraan</th>
-                                                            <th width="15%">Jenis Kelamin</th>
+                                                            <th width="30%">Nama</th>
+                                                            <th width="15%">No Telepon</th>
+                                                            <th width="20%">No Identitas</th>
+                                                            <th width="20%">Warga Negara</th>
+                                                            <th width="10%">Jenis Kelamin</th>
                                                         </tr>
                                                     </thead>
 
@@ -298,7 +439,7 @@
                                                         <tr v-for="(anggota, idx) in anggota">
                                                             <td class="text-center">
                                                                 <template v-if="idx > 0">
-                                                                    <i class="fa fa-trash hint" @click="deleteAnggota($event, idx)"></i>
+                                                                    <i class="fa fa-trash hint" style="color: red" @click="deleteAnggota($event, idx)"></i>
                                                                 </template>
 
                                                                 <template v-if="idx == 0">
@@ -309,7 +450,11 @@
                                                                 <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="no_ktp_anggota[]"  class="form-control" :placeholder="'No Telp Anggota Ke '+(idx+1)" v-model="anggota.no_ktp"/>
+                                                                <vue-mask :class="'form-control'" :placeholder="'____-____-_____'" :name="'no_telp_anggota[]'" :mask="'0000-0000-00000'" :css="'text-align: left;'" v-model="anggota.no_telp"></vue-mask>
+
+                                                            </td>
+                                                            <td>
+                                                                <vue-mask :class="'form-control'" :placeholder="'____.____.____.____'" :name="'no_ktp_anggota[]'" :mask="'0000.0000.0000.0000'" :css="'text-align: left;'" v-model="anggota.no_ktp"></vue-mask>
                                                             </td>
                                                             <td>
                                                                 <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
@@ -346,7 +491,7 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>No Telepon</label>
-                                                            <input name="no_kontak_darurat[]" type="number" class="form-control" :placeholder="'No hp kontak darurat '+(idx + 1)" v-model="kontak.no">
+                                                            <vue-mask :class="'form-control'" :placeholder="'____-____-_____'" :name="'no_kontak_darurat[]'" :mask="'0000-0000-00000'" :css="'text-align: left;'" v-model="kontak.no"></vue-mask>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3">
@@ -381,46 +526,56 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Tenda</label>
-                                                        <input name="tenda" type="number" :class="$v.single.tenda.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.tenda">
+                                        
+                                                        <vue-mask :class="$v.single.tenda.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'tenda'" :mask="'000000'" :css="'text-align: left;'" v-model="single.tenda"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Sleeping Bags / Kantong Tidur</label>
-                                                        <input name="sleeping_bag" type="number" :class="$v.single.sleeping_bag.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.sleeping_bag">
+
+                                                        <vue-mask :class="$v.single.sleeping_bag.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'sleeping_bag'" :mask="'000000'" :css="'text-align: left;'" v-model="single.sleeping_bag"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Peralatan Masak</label>
-                                                        <input name="peralatan_masak" type="number" :class="$v.single.peralatan_masak.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
+
+                                                        <vue-mask :class="$v.single.peralatan_masak.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'peralatan_masak'" :mask="'000000'" :css="'text-align: left;'" v-model="single.peralatan_masak"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Bahan Bakar</label>
-                                                        <input name="bahan_bakar" type="number" :class="$v.single.bahan_bakar.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.bahan_bakar">
+
+                                                        <vue-mask :class="$v.single.bahan_bakar.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'bahan_bakar'" :mask="'000000'" :css="'text-align: left;'" v-model="single.bahan_bakar"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Ponco / Jas Hujan</label>
-                                                        <input name="jas_hujan" type="number" :class="$v.single.jas_hujan.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.jas_hujan">
+                                                        
+                                                        <vue-mask :class="$v.single.jas_hujan.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'jas_hujan'" :mask="'000000'" :css="'text-align: left;'" v-model="single.jas_hujan"></vue-mask>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Senter / Alat Penerangan</label>
-                                                        <input name="senter" type="number" :class="$v.single.senter.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.senter">
+
+                                                        <vue-mask :class="$v.single.senter.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'senter'" :mask="'000000'" :css="'text-align: left;'" v-model="single.senter"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Obat-Obatan Pribadi dan P3K</label>
-                                                        <input name="obat" type="number" :class="$v.single.obat.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.obat">
+                                                        
+                                                        <vue-mask :class="$v.single.obat.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'obat'" :mask="'000000'" :css="'text-align: left;'" v-model="single.obat"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Matras</label>
-                                                        <input name="matras" type="number" :class="$v.single.matras.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.matras">
+
+                                                        <vue-mask :class="$v.single.matras.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'matras'" :mask="'000000'" :css="'text-align: left;'" v-model="single.matras"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Kantong Sampah</label>
-                                                        <input name="kantong_sampah" type="number" :class="$v.single.kantong_sampah.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.kantong_sampah">
+
+                                                        <vue-mask :class="$v.single.kantong_sampah.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'kantong_sampah'" :mask="'000000'" :css="'text-align: left;'" v-model="single.kantong_sampah"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Jaket</label>
-                                                        <input name="jaket" type="number" :class="$v.single.jaket.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.jaket">
+
+                                                        <vue-mask :class="$v.single.jaket.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'jaket'" :mask="'000000'" :css="'text-align: left;'" v-model="single.jaket"></vue-mask>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -458,7 +613,7 @@
                                                         <tr v-for="(logistik, idx) in logistik">
                                                             <td class="text-center">
                                                                 <template v-if="idx > 0">
-                                                                    <i class="fa fa-trash hint" @click="deleteLogistik($event, idx)"></i>
+                                                                    <i class="fa fa-trash hint" style="color: red" @click="deleteLogistik($event, idx)"></i>
                                                                 </template>
 
                                                                 <template v-if="idx == 0">
@@ -469,13 +624,40 @@
                                                                 <input type="text" name="nama_logistik[]" class="form-control" placeholder="Masukkan Nama Logistik" v-model="logistik.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="jumlah_logistik[]" class="form-control" placeholder="Satuan dalam unit" v-model="logistik.jumlah"/>
+                                                                <vue-mask :class="'form-control'" :placeholder="'Jumlah yang dibawa'" :name="'jumlah_logistik[]'" :mask="'000000'" :css="'text-align: left;'" v-model="logistik.jumlah"></vue-mask>
                                                             </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </fieldset>
                                         </div>
+
+                                        <div class="col-md-12" style="margin-top: 20px;">
+                                            <div class="form-group" style="margin-top: 20px;">
+                                                <table>
+                                                    <tr>
+                                                        <td width="2.5%" style="vertical-align: top;">
+                                                            <input type="radio" name="pundak" value="pundak">
+                                                        </td>
+
+                                                        <td style="padding: 0 0 5px 10px;">
+                                                            <label> KHUSUS <span style="font-weight: 400">untuk pendakian</span> GUNUNG PUNDAK <span style="font-weight: 400">centang kolom disamping</span></label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="2.5%" style="vertical-align: top;">
+                                                            <input type="radio" name="pundak" value="lelaku">
+                                                        </td>
+
+                                                        <td style="padding: 0 0 0 10px;">
+                                                            <label> KHUSUS <span style="font-weight: 400">untuk pendakian ke situs purbakala</span> (LELAKU) <span style="font-weight: 400">jalur Tambaksari centang kolom disamping</span></label>
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 30px 0px 0px;">
@@ -503,17 +685,17 @@
         </div>
 
         <div class="modal inmodal" id="modal-info" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog" style="margin-bottom: 100px; width: 30%">
+            <div class="modal-dialog" style="margin-bottom: 100px;">
                 <div class="modal-content animated fade-in">
                     <div class="ibox product-detail">
                         <div class="ibox-content" style="margin-bottom: 0px; padding-bottom: 0px; padding-top: 10px;">
                             <div class="row">
                                 <div class="col-md-12" style="padding: 0px 5px; border-bottom: 1px solid #eee;">
-                                    <h4>Terima Kasih</h4>
+                                    <h4>Terimakasih</h4>
                                 </div>
 
                                 <div class="col-md-12" style="padding-top: 20px;">
-                                    Permintaan anda sudah kami terima. Untuk selanjutnya, kami akan melakukan <b>konfirmasi permintaan anda via alamat email</b> yang sudah anda inputkan.
+                                    Data registrasi pendakian anda sudah kami simpan. Setelah kami verifikasi, <b>berkas/surat izin pendakian akan dikirim melalui email yang anda daftarkan. Jika tidak ada email balasan di kotak masuk maka silahkan cek kotak spam email anda. </b>
                                 </div>
 
                                 <div class="col-md-12 text-right" style="padding: 15px 5px 0px 5px; border-top: 1px solid #eee; margin-top: 15px;">
@@ -557,6 +739,8 @@
     <script src="<?php echo e(asset('public/frontend/js/vendors/select2/dist/js/select2.min.js')); ?>"></script>
     <script src="<?php echo e(asset('public/frontend/js/vendors/axios/axios.min.js')); ?>"></script>
     <script src="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js')); ?>"></script>
+    
+    <script src="<?php echo e(asset('public/frontend/js/vendors/mask/dist/jquery.mask.js')); ?>"></script>
 
     <!-- Vue js -->
     <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vue.js')); ?>"></script>
@@ -566,6 +750,7 @@
     <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/select/select.component.js')); ?>"></script>
     <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js')); ?>"></script>
     <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/mask/mask.component.js')); ?>"></script>
 
     <script>
 
@@ -617,6 +802,21 @@
                     },
 
                     {
+                        id: 'Suami',
+                        text: 'Suami'
+                    },
+
+                    {
+                        id: 'Istri',
+                        text: 'Istri'
+                    },
+
+                    {
+                        id: 'Anak',
+                        text: 'Anak'
+                    },
+
+                    {
                         id: 'Saudara',
                         text: 'Saudara'
                     },
@@ -625,6 +825,8 @@
                         id: 'Teman',
                         text: 'Teman'
                     }
+
+
                 ],
 
                 kontak_darurat: [
@@ -670,6 +872,7 @@
                 anggota: [
                     {
                         nama: '',
+                        no_telp: '',
                         no_ktp: '',
                         kewarganegaraan: 'WNI',
                         kelamin: 'L',
@@ -852,12 +1055,25 @@
             },
 
             methods: {
+                // onKeydown (event) {
+                //     const char = String.fromCharCode(event.keyCode)
+                //     if (/[^A-Za-z0-9+#-\.]/.test(char)) {
+                //     event.preventDefault()
+                //   }
+                // },
+                masking: function(e){
+                    let val = $(e.target).val();
+
+                    console.log(e);
+                },
+
                 tambahAnggota: function(e){
                     e.preventDefault();
                     e.stopImmediatePropagation();
 
                     this.anggota.push({
                         nama: '',
+                        no_telp: '',
                         no_ktp: '',
                         kewarganegaraan: 'WNI',
                         kelamin: 'L',
@@ -948,6 +1164,42 @@
 
                     if(!this.$v.$invalid){
 
+                        if(!this.validasiAnggota()){
+                            $.toast({
+                                text: 'Data nama anggota tidak boleh ada yang kosong..',
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-right',
+                                stack: 1
+                            })
+
+                            return false;
+                        }
+
+                        if(!this.validasiKontak()){
+                            $.toast({
+                                text: 'Harus ada minimal 1 data kontak darurat yang terisi lengkap..',
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-right',
+                                stack: 1
+                            })
+
+                            return false;
+                        }
+
+                        if(!this.validasiLogistik()){
+                            $.toast({
+                                text: 'Harus ada minimal 1 data logistik yang terisi lengkap..',
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-right',
+                                stack: 1
+                            })
+
+                            return false;
+                        }
+
                         this.disabledButton = true;
                         this.onRequest = true;
 
@@ -966,9 +1218,9 @@
                                     })
 
                                     if(response.data.status == 'success'){
-                                        // $("#modal-info").modal('show');
-                                        alert('berhasil')
-                                        // this.formReset();
+                                        $("#modal-info").modal('show');
+                                        // alert('berhasil')
+                                        this.formReset();
                                     }
 
                                 }).catch((e) => {
@@ -994,6 +1246,44 @@
                             stack: 1
                         })
                     }
+                },
+
+                validasiAnggota: function(){
+                    let response = true;
+                    $.each(this.anggota, function(index, data){
+                        if(data.nama == "" || data.nama === undefined){
+                            response = false;
+                            return false;
+                        }
+                    });
+
+                    return response;
+                },
+
+                validasiKontak: function(){
+                    let response = false;
+
+                    $.each(this.kontak_darurat, function(index, data){
+                        if(data.nama != "" && data.no != "" && data.alamat != ""){
+                            response = true;
+                            return false;
+                        }
+                    });
+
+                    return response;
+                },
+
+                validasiLogistik: function(){
+                    let response = false;
+
+                    $.each(this.logistik, function(index, data){
+                        if(data.nama != "" && data.jumlah != ""){
+                            response = true;
+                            return false;
+                        }
+                    });
+
+                    return response;
                 },
 
                 formReset: function(e){
@@ -1023,6 +1313,7 @@
                     this.anggota = [
                         {
                             nama: '',
+                            no_telp: '',
                             no_ktp: '',
                             kewarganegaraan: 'WNI',
                             kelamin: 'L',

@@ -49,7 +49,8 @@ class pendaftaran_controller extends Controller
     }
 
     protected function save(Request $request){
-    	// return json_encode($request->all());
+        // return json_encode($request->all());
+        
     	try {
     		
     		do {
@@ -70,10 +71,10 @@ class pendaftaran_controller extends Controller
                     'pd_id'					=> $id,
                     'pd_nomor'				=> $nomor,
                     'pd_nama_ketua' 		=> $request->nama_ketua,
-                    'pd_no_ktp'				=> $request->no_ktp_ketua,
+                    'pd_no_ktp'				=> str_replace('.', '', $request->no_ktp_ketua),
                     'pd_tempat_lahir'		=> $request->tempat_lahir_ketua,
                     'pd_tgl_lahir'			=> $tgl_lahir,
-                    'pd_no_hp'				=> $request->no_hp_ketua,
+                    'pd_no_hp'				=> str_replace('-', '', $request->no_hp_ketua),
                     'pd_email'				=> $request->email_ketua,
                     'pd_tgl_naik'			=> $tgl_naik,
                     'pd_tgl_turun'			=> $tgl_turun,
@@ -93,10 +94,10 @@ class pendaftaran_controller extends Controller
                     'pd_id'					=> $id,
                     'pd_nomor'				=> $nomor,
                     'pd_nama_ketua' 		=> $request->nama_ketua,
-                    'pd_no_ktp'				=> $request->no_ktp_ketua,
+                    'pd_no_ktp'				=> str_replace('.', '', $request->no_ktp_ketua),
                     'pd_tempat_lahir'		=> $request->tempat_lahir_ketua,
                     'pd_tgl_lahir'			=> $tgl_lahir,
-                    'pd_no_hp'				=> $request->no_hp_ketua,
+                    'pd_no_hp'				=> str_replace('-', '', $request->no_hp_ketua),
                     'pd_email'				=> $request->email_ketua,
                     'pd_tgl_naik'			=> $tgl_naik,
                     'pd_tgl_turun'			=> $tgl_turun,
@@ -124,7 +125,7 @@ class pendaftaran_controller extends Controller
 	    				'kd_pendakian'		=> $id,
 	    				'kd_nomor'			=> $num,
 	    				'kd_nama'			=> $kontak,
-	    				'kd_no_telp'		=> $noTelp,
+	    				'kd_no_telp'		=> str_replace('-', '', $noTelp),
 	    				'kd_email'			=> $alamat,
 	    				'kd_hubungan'		=> $hubungan
 	    			]);
@@ -146,8 +147,8 @@ class pendaftaran_controller extends Controller
 	    				'ap_pendakian'		   => $id,
 	    				'ap_nomor'			   => $num,
 	    				'ap_nama'			   => $anggota,
-                        'ap_no_telp'           => $noTelp,
-	    				'ap_no_ktp'			   => $noKtp,
+                        'ap_no_telp'           => str_replace('-', '', $noTelp),
+	    				'ap_no_ktp'			   => str_replace('-', '', $noKtp),
                         'ap_kewarganegaraan'   => $kewarganegaraan,
 	    				'ap_kelamin'		   => $kelamin,
 	    			]);

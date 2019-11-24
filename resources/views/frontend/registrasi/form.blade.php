@@ -289,7 +289,9 @@
 
                                                         <div class="form-group">
                                                             <label>No Identitas (KTP, Kartu Pelajar, Passport)</label>
-                                                            <input id="no_ktp_ketua" name="no_ktp_ketua" type="number" :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="No identitas ketua regu " v-model="single.no_ktp_ketua">
+
+                                                            <vue-mask :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'____.____.____.____'" :name="'no_ktp_ketua'" :id="'no_ktp_ketua'" :mask="'0000.0000.0000.0000'" :css="'text-align: left;'" v-model="single.no_ktp_ketua"></vue-mask>
+
                                                         </div>
 
                                                         <div class="form-group">
@@ -304,13 +306,14 @@
                                                                     <i class="fa fa-calendar"></i>
                                                                 </span>
 
-                                                                <vue-datepicker :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :class="$v.single.tgl_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Tanggal lahir'" :readonly="true" v-model="single.tgl_lahir_ketua"></vue-datepicker>
+                                                                <vue-mask :class="$v.single.tgl_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'__/__/____'" :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :mask="'00/00/0000'" :css="'text-align: left;'" v-model="single.tgl_lahir_ketua"></vue-mask>
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label>No Telepon</label>
-                                                            <input id="no_hp_ketua" name="no_hp_ketua" type="number" :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Input hanya angka tanpa + atau -" v-model="single.no_hp_ketua">
+
+                                                            <vue-mask :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'____-____-_____'" :name="'no_hp_ketua'" :id="'no_hp_ketua'" :mask="'0000-0000-00000'" :css="'text-align: left;'" v-model="single.no_hp_ketua"></vue-mask>
                                                         </div>
 
                                                         <div class="form-group">
@@ -447,10 +450,11 @@
                                                                 <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="no_telp_anggota[]"  class="form-control" :placeholder="'Hanya angka tanpa - atau +'" v-model="anggota.no_telp"/>
+                                                                <vue-mask :class="'form-control'" :placeholder="'____-____-_____'" :name="'no_telp_anggota[]'" :mask="'0000-0000-00000'" :css="'text-align: left;'" v-model="anggota.no_telp"></vue-mask>
+
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="no_ktp_anggota[]"  class="form-control" :placeholder="'Identitas anggota Ke-'+(idx+1)" v-model="anggota.no_ktp"/>
+                                                                <vue-mask :class="'form-control'" :placeholder="'____.____.____.____'" :name="'no_ktp_anggota[]'" :mask="'0000.0000.0000.0000'" :css="'text-align: left;'" v-model="anggota.no_ktp"></vue-mask>
                                                             </td>
                                                             <td>
                                                                 <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
@@ -487,7 +491,7 @@
                                                     <div class="col-lg-3">
                                                         <div class="form-group">
                                                             <label>No Telepon</label>
-                                                            <input name="no_kontak_darurat[]" type="number" class="form-control" :placeholder="'Hanya angka tanpa - atau +'" v-model="kontak.no">
+                                                            <vue-mask :class="'form-control'" :placeholder="'____-____-_____'" :name="'no_kontak_darurat[]'" :mask="'0000-0000-00000'" :css="'text-align: left;'" v-model="kontak.no"></vue-mask>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-3">
@@ -522,46 +526,56 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Tenda</label>
-                                                        <input name="tenda" min="0" type="number" :class="$v.single.tenda.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.tenda" min="1">
+                                        
+                                                        <vue-mask :class="$v.single.tenda.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'tenda'" :mask="'000000'" :css="'text-align: left;'" v-model="single.tenda"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Sleeping Bags / Kantong Tidur</label>
-                                                        <input name="sleeping_bag" min="0" type="number" :class="$v.single.sleeping_bag.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.sleeping_bag">
+
+                                                        <vue-mask :class="$v.single.sleeping_bag.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'sleeping_bag'" :mask="'000000'" :css="'text-align: left;'" v-model="single.sleeping_bag"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Peralatan Masak</label>
-                                                        <input name="peralatan_masak" min="0" type="number" :class="$v.single.peralatan_masak.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.peralatan_masak">
+
+                                                        <vue-mask :class="$v.single.peralatan_masak.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'peralatan_masak'" :mask="'000000'" :css="'text-align: left;'" v-model="single.peralatan_masak"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Bahan Bakar</label>
-                                                        <input name="bahan_bakar" min="0" type="number" :class="$v.single.bahan_bakar.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.bahan_bakar">
+
+                                                        <vue-mask :class="$v.single.bahan_bakar.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'bahan_bakar'" :mask="'000000'" :css="'text-align: left;'" v-model="single.bahan_bakar"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Ponco / Jas Hujan</label>
-                                                        <input name="jas_hujan" min="0" type="number" :class="$v.single.jas_hujan.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.jas_hujan">
+                                                        
+                                                        <vue-mask :class="$v.single.jas_hujan.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'jas_hujan'" :mask="'000000'" :css="'text-align: left;'" v-model="single.jas_hujan"></vue-mask>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Senter / Alat Penerangan</label>
-                                                        <input name="senter" min="0" type="number" :class="$v.single.senter.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.senter">
+
+                                                        <vue-mask :class="$v.single.senter.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'senter'" :mask="'000000'" :css="'text-align: left;'" v-model="single.senter"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Obat-Obatan Pribadi dan P3K</label>
-                                                        <input name="obat" min="0" type="number" :class="$v.single.obat.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.obat">
+                                                        
+                                                        <vue-mask :class="$v.single.obat.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'obat'" :mask="'000000'" :css="'text-align: left;'" v-model="single.obat"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Matras</label>
-                                                        <input name="matras" min="0" type="number" :class="$v.single.matras.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.matras">
+
+                                                        <vue-mask :class="$v.single.matras.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'matras'" :mask="'000000'" :css="'text-align: left;'" v-model="single.matras"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Kantong Sampah</label>
-                                                        <input name="kantong_sampah" min="0" type="number" :class="$v.single.kantong_sampah.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.kantong_sampah">
+
+                                                        <vue-mask :class="$v.single.kantong_sampah.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'kantong_sampah'" :mask="'000000'" :css="'text-align: left;'" v-model="single.kantong_sampah"></vue-mask>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Jaket</label>
-                                                        <input name="jaket" min="0" type="number" :class="$v.single.jaket.$invalid ? 'form-control error' : 'form-control'" placeholder="Satuan dalam unit" v-model="single.jaket">
+
+                                                        <vue-mask :class="$v.single.jaket.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'jaket'" :mask="'000000'" :css="'text-align: left;'" v-model="single.jaket"></vue-mask>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -610,7 +624,7 @@
                                                                 <input type="text" name="nama_logistik[]" class="form-control" placeholder="Masukkan Nama Logistik" v-model="logistik.nama"/>
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="jumlah_logistik[]" class="form-control" placeholder="Jumlah dan satuan (1 Kg)" v-model="logistik.jumlah"/>
+                                                                <vue-mask :class="'form-control'" :placeholder="'Jumlah yang dibawa'" :name="'jumlah_logistik[]'" :mask="'000000'" :css="'text-align: left;'" v-model="logistik.jumlah"></vue-mask>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -725,6 +739,8 @@
     <script src="{{ asset('public/frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
     <script src="{{ asset('public/frontend/js/vendors/axios/axios.min.js') }}"></script>
     <script src="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
+    
+    <script src="{{ asset('public/frontend/js/vendors/mask/dist/jquery.mask.js') }}"></script>
 
     <!-- Vue js -->
     <script src="{{ asset('public/frontend/js/vendors/vue/vue.js') }}"></script>
@@ -734,6 +750,7 @@
     <script src="{{ asset('public/frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
     <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
     <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/mask/mask.component.js')}}"></script>
 
     <script>
 
@@ -1044,6 +1061,11 @@
                 //     event.preventDefault()
                 //   }
                 // },
+                masking: function(e){
+                    let val = $(e.target).val();
+
+                    console.log(e);
+                },
 
                 tambahAnggota: function(e){
                     e.preventDefault();
@@ -1142,6 +1164,42 @@
 
                     if(!this.$v.$invalid){
 
+                        if(!this.validasiAnggota()){
+                            $.toast({
+                                text: 'Data nama anggota tidak boleh ada yang kosong..',
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-right',
+                                stack: 1
+                            })
+
+                            return false;
+                        }
+
+                        if(!this.validasiKontak()){
+                            $.toast({
+                                text: 'Harus ada minimal 1 data kontak darurat yang terisi lengkap..',
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-right',
+                                stack: 1
+                            })
+
+                            return false;
+                        }
+
+                        if(!this.validasiLogistik()){
+                            $.toast({
+                                text: 'Data logistik yang sudah ditambahkan tidak boleh ada yang kosong..',
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-right',
+                                stack: 1
+                            })
+
+                            return false;
+                        }
+
                         this.disabledButton = true;
                         this.onRequest = true;
 
@@ -1188,6 +1246,44 @@
                             stack: 1
                         })
                     }
+                },
+
+                validasiAnggota: function(){
+                    let response = true;
+                    $.each(this.anggota, function(index, data){
+                        if(data.nama == "" || data.nama === undefined){
+                            response = false;
+                            return false;
+                        }
+                    });
+
+                    return response;
+                },
+
+                validasiKontak: function(){
+                    let response = false;
+
+                    $.each(this.kontak_darurat, function(index, data){
+                        if(data.nama != "" && data.no != "" && data.alamat != ""){
+                            response = true;
+                            return false;
+                        }
+                    });
+
+                    return response;
+                },
+
+                validasiLogistik: function(){
+                    let response = true;
+
+                    $.each(this.logistik, function(index, data){
+                        if(data.nama == "" || data.jumlah == ""){
+                            response = false;
+                            return false;
+                        }
+                    });
+
+                    return response;
                 },
 
                 formReset: function(e){
