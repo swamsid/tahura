@@ -27,7 +27,7 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header" style="padding: 15px 10px 0px 15px;">
-                    <a href="<?php echo e(Route('frontend.cek_pendakian')); ?>" style="color: #aaa; font-size: 10pt;">Cek status pendakian anda !</a>
+                    <a href="<?php echo e(Route('frontend.cek_pendakian')); ?>" style="color: #aaa; font-size: 10pt;">Cek status pendakian anda disini</a>
                 </div>
             </nav>
         </div>
@@ -68,7 +68,7 @@
                         <div class="ibox-content" id="ibox-content" style="background-color: #ffffff;font-size: 14px">
                             <p>Pendaftaran pendakian di kawasan Tahura Raden Soerjo dilakukan dengan sistem pendaftaran online, dengan ketentuan sebagai berikut :</p>
                             <div class="well wells">
-                                Pastikan alamat email benar karena konfirmasi pendaftaran pendakian akan dikirim ke alamat email yang anda gunakan ketika mendaftar. Apabila tidak ada pesan pemberitahuan pada kotak masuk gmail harap periksa pada spam.
+                                Pastikan alamat email benar karena konfirmasi pendaftaran pendakian akan dikirim ke alamat email yang anda gunakan ketika mendaftar. Apabila tidak ada pesan pemberitahuan pada kotak masuk gmail harap periksa pada kotak SPAM.
                             </div>
                             <div class="well wells">
                                 Waktu pelayanan administrasi registrasi pendakian pada hari Senin s/d Jumat jam 07.00 s/d 15.30 WIB.
@@ -114,13 +114,13 @@
                             <p>Setiap pendaki di kawasan Tahura Raden Soerjo dikenakan tarif karcis masuk sesuai dengan ketentuan yang tercantum pada Peraturan Pemerintah RI Nomor 12 tahun 2014 tentang Jenis dan Tarif Atas Jenis Penerimaan Negara Bukan Pajak yang Berlaku Pada Kementerian Kehutanan. Bila terdapat aturan / kebijakan baru tentang tarif karcis masuk di kawasan konservasi, maka tarif karcis pendakian akan disesuaikan sebagaimana peraturan terbaru tersebut.</p>
                             <p>1. Tarif karcis masuk pendaki Wisatawan Nusantara</p>
                             <div class="well wells">
-                                <strong>Sesuai Ketentuan yang Berlaku</strong>
+                                <strong>Rp. 11.000,- / Orang / Hari</strong> <small>(Karcis Rp. 10.000 + Asuransi Rp. 1.000)</small>
                             </div>
                             <p style="margin-top: 10px;">2. Tarif karcis masuk pendaki Wisatawan Mancanegara</p>
                             <div class="well wells">
-                                 <strong>Sesuai Ketentuan yang Berlaku</strong> 
+                                 <strong>Rp. 26.000,- / Orang / Hari</strong> <small>(Karcis Rp. 25.000 + Asuransi Rp. 1.000)</small>
                             </div>
-                            <p style="margin-top: 10px;">3. Pembayaran dapat dilakukan di pos masuk pendakian</p>
+                            <p style="margin-top: 10px;">3. Pembayaran dilakukan di pos masuk pendakian resmi</p>
                         </div>
                     </div>
                 </div>
@@ -143,7 +143,7 @@
                                 <li>Persyaratan memperoleh izin pendakian :</li>
                             </ol>
                             <div class="well wells">
-                                Bukti cetak pendaftaran, surat pernyataan, daftar perlengkapan dan perbekalan menjadi syarat untuk memperoleh perizinan pendakian di kawasan Tahura Raden Soerjo;
+                                Bukti cetak pendaftaran menjadi syarat untuk memperoleh perizinan pendakian di kawasan Tahura Raden Soerjo;
                             </div>
                             <div class="well wells">
                                 Bukti identitas asli ketua (KTP/Kartu Pelajar/KTM/SIM/Pasport) wajib diserahkan kepada petugas selama masa pendakian;
@@ -167,7 +167,7 @@
                                 Semua calon pendaki wajib mengikuti pengarahan/briefing;
                             </div>
                             <ol start="3">
-                                <li>Mematuhi dan membayar restribusi Masuk Kawasan Tahura Raden Soerjo dan Asuransi sejumlah personil sesuai peraturan perundang-undangan yang berlaku dan pastikan Bukti Retribusi adalah karcis resmi yang dikeluarkan oleh UPT Tahura Raden Soerjo dan karcis Asuransi oleh PT. JASA RAHARJA sesuai dengan jumlah personil serta menyimpan bukti rertibusi tersebut.</li>
+                                <li>Mematuhi dan membayar restribusi Masuk Kawasan Tahura Raden Soerjo dan Asuransi sejumlah personil sesuai peraturan perundang-undangan yang berlaku dan pastikan Bukti Retribusi adalah karcis resmi yang dikeluarkan oleh UPT Tahura Raden Soerjo dan karcis Asuransi oleh PT. JASARAHARJA PUTERA sesuai dengan jumlah personil serta menyimpan bukti rertibusi tersebut.</li>
                                 <li>Pada saat melakukan pendakian agar berjalan secara berkelompok, tidak memisahkan diri dari kelompok/rombongan, berjalan sesuai jalur yang sudah ditetapkan dan dilarang memotong jalur atau membuat jalur baru.</li>
                                 <li>Menjaga keselamatan kelompok dan sesama pengunjung/pendaki serta menjaga kebersihan dan keamanan kawasan .</li>
                                 <li>Turut berpatisipasi dalam upaya Pencegahan, Pengendalian dan Penangulangan Bencana Alam dan memastikan bahwa tempat yang ditinggalkan tidak terdapat api/bara api.</li>
@@ -268,29 +268,127 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 kotak" style="margin-top: 20px">
+                    <div class="ibox float-e-margins" >
+                        <div class="ibox-title">
+                            <h5 style="font-size: 18px">CONTACT PERSON</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content" id="ibox-content" style="background-color: #ffffff;font-size: 14px">
+                            <ol>
+                                <li> Admin </li>
+                            </ol>
+                            <div class="well wells">
+                                Amiruzzuhhad Gunes - 081216640854
+                            </div>
+                            <div class="well wells">
+                                Angga Krisnadewi - 085815536995
+                            </div>
+<div class="row">
+    <div class="col-md-6">
+                            <ol start="2">
+                                <li> Pos Tretes </li>
+                            </ol>
+                            <div class="well wells">
+                                Muhamad Junaedi - 081554432204
+                            </div>
+                            <div class="well wells">
+                                Kasiyanto - 082244528344
+                            </div>
+                            <div class="well wells">
+                                Mohamad Alfan - 081332303636
+                            </div>
+                            <div class="well wells">
+                                Wahyu Rama Dhoni - 08973854949
+                            </div>
+    </div>
+    <div class="col-md-6">
+                            <ol start="3">
+                                <li> Pos Tambaksari </li>
+                            </ol>
+                            <div class="well wells">
+                                Hadi Choirul - 082244737622
+                            </div>
+                            <div class="well wells">
+                                Nur Yusuf - 082245814672
+                            </div>
+                            <div class="well wells">
+                                Talis - 085606589978
+                            </div>
+                            <div class="well wells">
+                                Atim Muhammad Rosul - 085856200755
+                            </div>
+    </div>
+    <div class="col-md-6">
+                            <ol start="4">
+                                <li> Pos Lawang </li>
+                            </ol>
+                            <div class="well wells">
+                                Rudiono - 081330787722
+                            </div>
+                            <div class="well wells">
+                                Khairul Anam - 082231518172
+                            </div>
+                            <div class="well wells">
+                                Arif Yuwono - 081331834646
+                            </div>
+    </div>
+    <div class="col-md-6">
+                            <ol start="5">
+                                <li> Pos Sumberbrantas </li>
+                            </ol>
+                            <div class="well wells">
+                                Eko Budiono - 082234604229
+                            </div>
+                            <div class="well wells">
+                                Dadang Suhendro - 082257496114
+                            </div>
+                            <div class="well wells">
+                                Sudarmanto - 085336983164
+                            </div>
+                            <div class="well wells">
+                                Gimin - 085233337074
+                            </div>
+                            <div class="well wells">
+                                Rudi Siswanto - 081358832678
+                            </div>
+    </div>
+</div>
+
+
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-12 kotak">
                     <div class="ibox-content" id="ibox-content" style="background-color: #ffffff;font-size: 14px">
                         <div class="col-sm-12" style="padding: 20px 15px">
                             <table class="tabel">
                                 <tr>
                                     <td><input id="question1" name="question1" type="checkbox" value="1"> </td>
-                                    <td><label> Menunjukkan bukti cetak pendaftaran </label></td>
+                                    <td><label> Saya telah membaca, mensetujui, dan mengikuti semua peraturan dan SOP diatas </label></td>
                                 </tr>
                                 <tr>
                                     <td><input id="question2" name="question2" type="checkbox" value="2"></td>
-                                    <td><label> Membawa surat keterangan sehat </label></td>
+                                    <td><label> Wajib untuk dibawa : </label></td>
                                 </tr>
                                 <tr>
-                                    <td><input id="question3" name="question3" type="checkbox" value="3"></td>
-                                    <td><label> Membawa KTP/KTM/SIM/Paspor yang masih berlaku </label></td>
-                                </tr>
-                                <tr>
-                                    <td><input id="question4" name="question4" type="checkbox" value="4"></td>
-                                    <td><label> Pendaki usia kurang dari 17 tahun harus menyerahkan surat izin dari orangtua/wali</label></td>
-                                </tr>
-                                <tr>
-                                    <td><input id="question5" name="question5" type="checkbox" value="4"></td>
-                                    <td><label> Wajib membawa trash bag / kantong sampah</label></td>
+                                    <td></td>
+                                    <td>
+                                        <ol> 
+                                            <li> Berkas pendaftaran yang telah disetujui </li> 
+                                            <li> Membawa KTP/KTM/SIM/Paspor yang masih berlaku  </li>
+                                            <li> Pendaki usia kurang dari 17 tahun harus menyerahkan surat izin dari orangtua/wali </li>
+                                            <li> Membawa trash bag / kantong sampah </li>
+                                            <li> Surat keterangan sehat </li>
+                                        </ol>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -331,8 +429,8 @@
 
     <script>
         $(document).ready(function () {
-            $("#question1, #question2, #question3, #question4, #question5").change(function () {
-                if ($("#question1").is(':checked') && $("#question2").is(':checked') && $("#question3").is(':checked') && $("#question4").is(':checked') && $("#question5").is(':checked') ) {
+            $("#question1, #question2").change(function () {
+                if ($("#question1").is(':checked') && $("#question2").is(':checked') ) {
                     $('.next_button').attr('disabled', false);
                 } else {
                     $('.next_button').attr('disabled', true);
