@@ -405,15 +405,15 @@
 
                                         <div class="col-md-12" style="margin-top: 20px;">
                                             <div class="row">
-                                                <div class="col-md-10">
+                                                <div class="col-md-10 col-xs-7">
                                                     <h3 style="color: #1ab394">
-                                                        Anggota Rombongan <small>(Ketua tidak perlu ditulis lagi)</small>&nbsp;
+                                                        Anggota Rombongan&nbsp;
                                                         <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata daftar anggota rombongan"></i>
                                                     </h3>
                                                 </div>
 
-                                                <div class="col-md-2 text-right">
-                                                    <button type="button" class="btn btn-success btn-xs" @click="tambahAnggota">
+                                                <div class="col-md-2 col-xs-2">
+                                                    <button type="button" class="btn btn-success btn-xs" style="padding: 5px 5px" @click="tambahAnggota">
                                                         <i class="fa fa-plus"></i> &nbsp;
                                                         Tambah Anggota
                                                     </button>
@@ -583,15 +583,15 @@
 
                                         <div class="col-md-12" style="margin-top: 20px;">
                                             <div class="row">
-                                                <div class="col-md-10">
+                                                <div class="col-md-10 col-xs-7">
                                                     <h3 style="color: #1ab394">
                                                         Logistik yang dibawa&nbsp;
                                                         <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan jumlah makanan dan minuman yang akan dibawa mendaki (satuan yang digunakan adalah unit)"></i>
                                                     </h3>
                                                 </div>
 
-                                                <div class="col-md-2 text-right">
-                                                    <button type="button" class="btn btn-success btn-xs" @click="tambahLogistik">
+                                                <div class="col-md-2 col-xs-2">
+                                                    <button type="button" class="btn btn-success btn-xs" style="padding: 5px 5px" @click="tambahLogistik">
                                                         <i class="fa fa-plus"></i> &nbsp;
                                                         Tambah Logistik
                                                     </button>
@@ -624,7 +624,7 @@
                                                                 <input type="text" name="nama_logistik[]" class="form-control" placeholder="Masukkan Nama Logistik" v-model="logistik.nama"/>
                                                             </td>
                                                             <td>
-                                                                <vue-mask :class="'form-control'" :placeholder="'Jumlah yang dibawa'" :name="'jumlah_logistik[]'" :mask="'000000'" :css="'text-align: left;'" v-model="logistik.jumlah"></vue-mask>
+                                                                <vue-mask :class="'form-control'" :placeholder="'Jumlah yang dibawa (2Kg)'" :name="'jumlah_logistik[]'" :css="'text-align: left;'" v-model="logistik.jumlah"></vue-mask>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -700,7 +700,7 @@
 
                                 <div class="col-md-12 text-right" style="padding: 15px 5px 0px 5px; border-top: 1px solid #eee; margin-top: 15px;">
                                     <a href="{{ Route('frontend.registrasi') }}">
-                                        <button class="btn btn-primary btn-xs">Baik, Saya Mengerti</button>
+                                        <button class="btn btn-primary">Baik, Saya Mengerti</button>
                                     </a>
                                 </div>
                             </div>

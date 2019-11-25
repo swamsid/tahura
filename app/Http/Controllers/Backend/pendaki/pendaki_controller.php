@@ -67,6 +67,182 @@ class pendaki_controller extends Controller
         return view('backend.pendaki.detail.index', compact('data', 'pos', 'qrcode'));
     }
 
+    protected function edit(){
+        return view('backend.pendaki.edit');
+    }
+
+    protected function update(Request $request){
+        try {
+            
+            DB::beginTransaction();
+
+            $cek = DB::table('tb_pendakian')->where('pd_id', $request->pd_id);
+
+            if(!$cek->first()){
+                return json_encode([
+                    "status"    => 'error',
+                    "message"   => 'Data tidak bisa ditemukan. coba muat ulang halaman'
+                ]);
+            }
+
+            $id = $request->pd_id;
+            $tgl_lahir = explode('/', $request->tgl_lahir_ketua)[2].'-'.explode('/', $request->tgl_lahir_ketua)[1].'-'.explode('/', $request->tgl_lahir_ketua)[0];
+            $tgl_naik = explode('/', $request->tgl_naik)[2].'-'.explode('/', $request->tgl_naik)[1].'-'.explode('/', $request->tgl_naik)[0];
+            $tgl_turun = explode('/', $request->tgl_turun)[2].'-'.explode('/', $request->tgl_turun)[1].'-'.explode('/', $request->tgl_turun)[0];
+
+            $cek->update([
+                'pd_nama_ketua'         => $request->nama_ketua,
+                'pd_no_ktp'             => str_replace('.', '', $request->no_ktp_ketua),
+                'pd_tempat_lahir'       => $request->tempat_lahir_ketua,
+                'pd_tgl_lahir'          => $tgl_lahir,
+                'pd_no_hp'              => str_replace('-', '', $request->no_hp_ketua),
+                'pd_email'              => $request->email_ketua,
+                'pd_tgl_naik'           => $tgl_naik,
+                'pd_tgl_turun'          => $tgl_turun,
+                'pd_alamat'             => $request->alamat_ketua,
+                'pd_provinsi'           => $request->provinsi_ketua,
+                'pd_kabupaten'          => $request->kabupaten_ketua,
+                'pd_kecamatan'          => $request->kecamatan_ketua,
+                'pd_desa'               => $request->desa_ketua,
+                'pd_kewarganegaraan'    => $request->kewarganegaraan_ketua,
+                'pd_jenis_kelamin'      => $request->kelamin_ketua,
+            ]);
+
+
+            DB::table('tb_kontak_darurat')->where('kd_pendakian', $request->pd_id)->delete();
+
+            $num = 1;
+            foreach($request->nama_kontak_darurat as $key => $kontak){
+
+                $noTelp     = $request->no_kontak_darurat[$key];
+                $alamat     = $request->alamat_kontak_darurat[$key];
+                $hubungan   = $request->hubungan_kontak_darurat[$key];
+
+                if(!is_null($kontak) && !is_null($noTelp) && !is_null($alamat) && !is_null($hubungan)){
+                    DB::table('tb_kontak_darurat')->insert([
+                        'kd_pendakian'      => $id,
+                        'kd_nomor'          => $num,
+                        'kd_nama'           => $kontak,
+                        'kd_no_telp'        => str_replace('-', '', $noTelp),
+                        'kd_email'          => $alamat,
+                        'kd_hubungan'       => $hubungan
+                    ]);
+
+                    $num++;
+                }
+            }
+
+
+            DB::table('tb_anggota_pendakian')->where('ap_pendakian', $request->pd_id)->delete();
+
+            $num = 1;
+            foreach($request->nama_anggota as $key => $anggota){
+
+                $noTelp            = $request->no_telp_anggota[$key];
+                $noKtp             = $request->no_ktp_anggota[$key];
+                $kewarganegaraan   = $request->kewarganegaraan_anggota[$key];
+                $kelamin           = $request->kelamin_anggota[$key];
+
+                if(!is_null($anggota) && !is_null($kewarganegaraan) && !is_null($kelamin)){
+                    DB::table('tb_anggota_pendakian')->insert([
+                        'ap_pendakian'         => $id,
+                        'ap_nomor'             => $num,
+                        'ap_nama'              => $anggota,
+                        'ap_no_telp'           => str_replace('-', '', $noTelp),
+                        'ap_no_ktp'            => str_replace('-', '', $noKtp),
+                        'ap_kewarganegaraan'   => $kewarganegaraan,
+                        'ap_kelamin'           => $kelamin,
+                    ]);
+
+                    $num++;
+                }
+            }
+
+            DB::table('tb_logistik')->where('lg_pendakian', $request->pd_id)->delete();
+
+            $num = 1;
+            foreach($request->nama_logistik as $key => $logistik){
+
+                $jumlah = $request->jumlah_logistik[$key];
+
+                if(!is_null($logistik) && !is_null($jumlah)){
+                    DB::table('tb_logistik')->insert([
+                        'lg_pendakian'      => $id,
+                        'lg_nomor'          => $num,
+                        'lg_nama'           => $logistik,
+                        'lg_jumlah'         => $jumlah,
+                    ]);
+
+                    $num++;
+                }
+            }
+
+
+            DB::table('tb_peralatan')->where('pr_id', $request->pd_id)->delete();
+
+            $ids = DB::table('tb_peralatan')->max('pr_id') + 1;
+            DB::table('tb_peralatan')->insert([
+                'pr_id'                 => $ids,
+                'pr_pendakian'          => $id,
+                'pr_tenda'              => ($request->tenda) ? $request->tenda : 0,
+                'pr_sleeping_bag'       => ($request->sleeping_bag) ? $request->sleeping_bag : 0,
+                'pr_peralatan_masak'    => ($request->peralatan_masak) ? $request->peralatan_masak : 0,
+                'pr_bahan_bakar'        => ($request->bahan_bakar) ? $request->bahan_bakar : 0,
+                'pr_ponco'              => ($request->jas_hujan) ? $request->jas_hujan : 0,
+                'pr_senter'             => ($request->senter) ? $request->senter : 0,
+                'pr_obat'               => ($request->obat) ? $request->obat : 0,
+                'pr_matras'             => ($request->matras) ? $request->matras : 0,
+                'pr_kantong_sampah'     => ($request->kantong_sampah) ? $request->kantong_sampah : 0,
+                'pr_jaket'              => ($request->jaket) ? $request->jaket : 0
+            ]);
+
+            DB::commit();
+
+            return json_encode([
+                "status"    => 'success',
+                "message"   => 'Data berhasil di update'
+            ]);
+
+        } catch (Exception $e) {
+            DB::rollback();
+
+            return json_encode([
+                "status"    => 'error',
+                "message"   => 'System mengalami masalah '.$e
+            ]);
+        }
+    }
+
+    protected function getData(Request $request){
+        $data = pendakian::where('pd_id', $request->id)
+                            ->with('anggota')
+                            ->with('kontak')
+                            ->with('peralatan')
+                            ->with('logistik')
+                            ->select(
+                                'pd_id',
+                                'pd_nama_ketua',
+                                'pd_no_ktp',
+                                'pd_tempat_lahir',
+                                'pd_no_hp',
+                                'pd_email',
+                                'pd_alamat',
+                                'pd_provinsi',
+                                'pd_kabupaten',
+                                'pd_kecamatan',
+                                'pd_desa',
+                                'pd_kewarganegaraan',
+                                'pd_jenis_kelamin',
+                                 DB::raw('DATE_FORMAT(pd_tgl_lahir, "%d/%m/%Y") as pd_tgl_lahir'),
+                                 DB::raw('DATE_FORMAT(pd_tgl_naik, "%d/%m/%Y") as pd_tgl_naik'),
+                                 DB::raw('DATE_FORMAT(pd_tgl_turun, "%d/%m/%Y") as pd_tgl_turun'),
+                            )->first();
+
+        return response()->json([
+            'data'  => $data
+        ]);
+    }
+
     protected function konfirmasi(Request $request){
         // return json_encode($request->all());
 
@@ -130,7 +306,7 @@ class pendaki_controller extends Controller
 
                 Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
-                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
+                    // $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                     $message->to($email);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                     $message->attachData($qrcode, 'kode.png');
@@ -172,7 +348,7 @@ class pendaki_controller extends Controller
 
                 Mail::send('addition.email.tolak', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
-                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
+                    // $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                     $message->to($email);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                 });

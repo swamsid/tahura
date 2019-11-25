@@ -131,6 +131,18 @@ Route::group(['middleware' => 'auth'], function(){
 		'uses' => 'Backend\pendaki\pendaki_controller@index'
 	])->name('wpadmin.pendaki.index');
 
+	Route::get('wpadmin/manajemen-pendaki/data-pendaftar/edit', [
+		'uses' => 'Backend\pendaki\pendaki_controller@edit'
+	])->name('wpadmin.pendaki.edit');
+
+	Route::get('wpadmin/manajemen-pendaki/data-pendaftar/edit/getData', [
+		'uses' => 'Backend\pendaki\pendaki_controller@getData'
+	])->name('wpadmin.pendaki.edit.getData');
+
+	Route::post('wpadmin/manajemen-pendaki/data-pendaftar/update', [
+		'uses' => 'Backend\pendaki\pendaki_controller@update'
+	])->name('wpadmin.pendaki.edit.update');
+
 	Route::get('wpadmin/manajemen-pendaki/detail', [
 		'uses' => 'Backend\pendaki\pendaki_controller@detail'
 	])->name('wpadmin.pendaki.detail');

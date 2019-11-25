@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Registrasi Pendakian </title>
+    <title>Registrasi Pendakian Gunung Arjuno - Welirang </title>
 
     <link href="<?php echo e(asset('public/frontend/css/bootstrap.min.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('public/frontend/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet">
@@ -382,7 +382,7 @@
                                     <td></td>
                                     <td>
                                         <ol> 
-                                            <li> Berkas pendaftaran yang telah disetujui </li> 
+                                            <li> Berkas pendaftaran yang telah disetujui</li> 
                                             <li> Membawa KTP/KTM/SIM/Paspor yang masih berlaku  </li>
                                             <li> Pendaki usia kurang dari 17 tahun harus menyerahkan surat izin dari orangtua/wali </li>
                                             <li> Membawa trash bag / kantong sampah </li>

@@ -53,6 +53,8 @@ class pendaftaran_controller extends Controller
         
     	try {
     		
+            DB::beginTransaction();
+
     		do {
 
     			$nomor = 'PD-'.rand(100000, 1000000);
@@ -142,7 +144,7 @@ class pendaftaran_controller extends Controller
                 $kewarganegaraan   = $request->kewarganegaraan_anggota[$key];
     			$kelamin 	       = $request->kelamin_anggota[$key];
 
-    			if(!is_null($anggota) && !is_null($noTelp) && !is_null($noKtp) && !is_null($kewarganegaraan) && !is_null($kelamin)){
+    			if(!is_null($anggota) && !is_null($kewarganegaraan) && !is_null($kelamin)){
     				DB::table('tb_anggota_pendakian')->insert([
 	    				'ap_pendakian'		   => $id,
 	    				'ap_nomor'			   => $num,
@@ -230,7 +232,7 @@ class pendaftaran_controller extends Controller
 
                 Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
-                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
+                    // $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                     $message->to($request->email_ketua);
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                     $message->attachData($qrcode, 'kode.png');
@@ -238,8 +240,8 @@ class pendaftaran_controller extends Controller
             }else{
                  // return 'c';
                 Mail::send('addition.email.daftar', ['kode' => $nomor], function ($message) use ($request){
-                    $message->subject("Pendaftaran Pendakian");
-                    $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
+                    $message->subject("Registrasi Pendakian");
+                    // $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                     $message->to($request->email_ketua);
                 });
             }
