@@ -624,7 +624,7 @@
                                                                 <input type="text" name="nama_logistik[]" class="form-control" placeholder="Masukkan Nama Logistik" v-model="logistik.nama"/>
                                                             </td>
                                                             <td>
-                                                                <vue-mask :class="'form-control'" :placeholder="'Jumlah yang dibawa (2Kg)'" :name="'jumlah_logistik[]'" :css="'text-align: left;'" v-model="logistik.jumlah"></vue-mask>
+                                                                <input type="text" :class="'form-control'" :placeholder="'Jumlah yang dibawa (2Kg)'" :name="'jumlah_logistik[]'" :css="'text-align: left;'" v-model="logistik.jumlah"></vue-mask>
                                                             </td>
                                                         </tr>
                                                     </tbody>
