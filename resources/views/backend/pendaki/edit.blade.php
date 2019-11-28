@@ -1,6 +1,3 @@
-<?php
-    include 'resources/views/config.php'; 
-?>
 
 @extends('backend.main')
 
@@ -246,13 +243,7 @@
                                                 <tbody>
                                                     <tr v-for="(anggota, idx) in anggota">
                                                         <td class="text-center">
-                                                            <template v-if="idx > 0">
-                                                                <i class="fa fa-trash hint" style="color: red" @click="deleteAnggota($event, idx)"></i>
-                                                            </template>
-
-                                                            <template v-if="idx == 0">
-                                                                <i class="fa fa-lock"></i>
-                                                            </template>
+                                                            <i class="fa fa-trash hint" style="color: red" @click="deleteAnggota($event, idx)"></i>
                                                         </td>
                                                         <td>
                                                             <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
@@ -439,12 +430,12 @@
 
                                 </div>
 
-                                <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 30px 0px 0px;">
+                                <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 0 0 0;">
                                     <div class="col-md-10 text-right" style="padding-top: 10px;">
                                         <small style="font-style: italic;" v-if="onRequest">@{{ requestMessage }}</small>
                                     </div>
                                     <div class="col-md-2 text-right">
-                                        <button type="button" class="btn btn-primary btn-sm" @click="send" :disabled="disabledButton">Kirim Formulir Registrasi</button>
+                                        <button type="button" class="btn btn-primary btn-sm" @click="send" :disabled="disabledButton">Update</button>
                                     </div>
                                 </div>
                             </form>
@@ -499,6 +490,7 @@
     <script src="{{ asset('public/frontend/js/vendors/vue/vue.js') }}"></script>
     <script src="{{ asset('public/frontend/js/vendors/vue/bootstrap-vue.min.js') }}"></script>
     <script src="{{ asset('public/frontend/js/vendors/vue/portal-vue.umd.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
     <script src="{{ asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
     <script src="{{ asset('public/frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
     <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>

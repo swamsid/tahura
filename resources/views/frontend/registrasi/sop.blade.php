@@ -286,7 +286,7 @@
                                 <li> Admin </li>
                             </ol>
                             <div class="well wells">
-                                Amiruzzuhhad Gunes - 081216640854
+                                Amiruzzuhhad Gunes - 081216640854 <i class="fa fa-ban" style="color: red"> Telepon</i>
                             </div>
                             <div class="well wells">
                                 Angga Krisnadewi - 085815536995
@@ -371,11 +371,11 @@
                         <div class="col-sm-12" style="padding: 20px 15px">
                             <table class="tabel">
                                 <tr>
-                                    <td><input id="question1" name="question1" type="checkbox" value="1"> </td>
+                                    <td style="vertical-align: top"><input id="question1" name="question1" type="checkbox" value="1"> </td>
                                     <td><label> Saya telah membaca, mensetujui, dan mengikuti semua peraturan dan SOP diatas </label></td>
                                 </tr>
                                 <tr>
-                                    <td><input id="question2" name="question2" type="checkbox" value="2"></td>
+                                    <td style="vertical-align: top"><input id="question2" name="question2" type="checkbox" value="2"></td>
                                     <td><label> Wajib untuk dibawa : </label></td>
                                 </tr>
                                 <tr>

@@ -18,10 +18,45 @@
     <link href="{{ asset('public/frontend/css/plugins/jasny/jasny-bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('public/frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('public/frontend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
-
+    <style type="text/css">
+        .vertical-alignment-helper {
+            display:table;
+            height: 100%;
+            width: 100%;
+            padding: 0pc;
+        }
+        .vertical-align-center {
+            /* To center vertically */
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .modal-content {
+            /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+            width:inherit;
+            height:inherit;
+            /* To center horizontally */
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body>
+<!-- <div id="myModal" class="modal fade vertical-alignment-helper">
+    <div class="modal-dialog vertical-align-center">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title" style="text-align:center; color: #1ab394; font-weight: 600">PERHATIAN</h2>
+            </div>
+            <div class="modal-body">
+				<p style="text-align: justify;">Sehubungan dengan adanya kegiatan <strong>Fun Hiking</strong> yang diadakan oleh Dinas Kehutanan Provinsi Jawa Timur di <strong>Gunung Pundak</strong> pada <strong>tanggal 30 November 2019</strong>, maka diharap para pendaki memarkir kendaraan dengan tertib ditempat yang sudah disediakan dan tetap berhati-hati ketika melakukan pendakian.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary"> Lanjut </button>
+            </div>
+        </div>
+    </div>
+</div> -->
     <div id="wrapper">
         <div id="page-wrapper" class="gray-bg" style="margin-top: 0">
         <div class="row border-bottom">
@@ -72,7 +107,7 @@
 
                                 <div class="vertical-timeline-content">
                                     <h2>SOP PENDAKIAN</h2>
-                                    <p>Cermati SOP Pendakian sebelum melakakukan pendaftaran.</p>
+                                    <p>Cermati SOP dan Peraturan Pendakian sebelum melakukan registrasi.</p>
                                 </div>
                             </div>
 
@@ -83,7 +118,7 @@
 
                                 <div class="vertical-timeline-content">
                                     <h2>PENGISIAN FORM</h2>
-                                    <p>Lengkapi Form Ketua Regu, Kontak Darurat, Anggota, Perlengkapan, Logistik</p>
+                                    <p>Lengkapi Form Ketua Regu, Kontak Darurat, Anggota, Perlengkapan, Logistik. Setelah submit form, sistem otomatis mengirim bukti registrasi berupa kode pendaftaran ke email pendaftar.</p>
                                 </div>
                             </div>
 
@@ -94,7 +129,7 @@
 
                                 <div class="vertical-timeline-content">
                                     <h2>CEK STATUS PENDAFTARAN</h2>
-                                    <p>Setelah Melakukan Pendaftaran, Cek Status Pendaftaran Pendakian Melalui Email tau Halaman Website Pendaftaran Online </p>
+                                    <p>Untuk mengetahui status registrasi dapat dilakukan pada menu cek status pendakian yang terdapat pada pojok kiri atas halaman pendaftaran</p>
                                 </div>
                             </div>
 
@@ -105,7 +140,7 @@
 
                                 <div class="vertical-timeline-content">
                                     <h2>CETAK LAMPIRAN</h2>
-                                    <p>Cek Email atau Search Pada Halaman Website. Kemudian Cetak Bukti Pendaftaran dan Daftar Perlengkapan untuk Dibawa Ke Lokasi Pendakian</p>
+                                    <p> Setelah data registrasi anda diverifikasi oleh admin, sistem otomatis mengirim berkas perizinan pendakian melalui email. Berkas registrasi tersebut wajib dicetak dan diserahkan ke petugas pos pendakian.</p>
                                 </div>
                             </div>
                         </div>
@@ -144,6 +179,12 @@
 
     <!-- iCheck -->
     <script src="{{ asset('public/frontend/js/plugins/iCheck/icheck.min.js') }}"></script>
+
+    <!-- <script>
+    	$(document).ready(function(){
+    		$("#myModal").modal('show');
+    	});
+    </script> -->
 
 </body>
 

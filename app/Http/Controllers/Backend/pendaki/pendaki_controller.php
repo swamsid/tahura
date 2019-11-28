@@ -149,7 +149,7 @@ class pendaki_controller extends Controller
                         'ap_nomor'             => $num,
                         'ap_nama'              => $anggota,
                         'ap_no_telp'           => str_replace('-', '', $noTelp),
-                        'ap_no_ktp'            => str_replace('-', '', $noKtp),
+                        'ap_no_ktp'            => str_replace('.', '', $noKtp),
                         'ap_kewarganegaraan'   => $kewarganegaraan,
                         'ap_kelamin'           => $kelamin,
                     ]);
@@ -235,7 +235,7 @@ class pendaki_controller extends Controller
                                 'pd_jenis_kelamin',
                                  DB::raw('DATE_FORMAT(pd_tgl_lahir, "%d/%m/%Y") as pd_tgl_lahir'),
                                  DB::raw('DATE_FORMAT(pd_tgl_naik, "%d/%m/%Y") as pd_tgl_naik'),
-                                 DB::raw('DATE_FORMAT(pd_tgl_turun, "%d/%m/%Y") as pd_tgl_turun'),
+                                 DB::raw('DATE_FORMAT(pd_tgl_turun, "%d/%m/%Y") as pd_tgl_turun')
                             )->first();
 
         return response()->json([

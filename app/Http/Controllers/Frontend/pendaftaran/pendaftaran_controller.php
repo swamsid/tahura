@@ -150,7 +150,7 @@ class pendaftaran_controller extends Controller
 	    				'ap_nomor'			   => $num,
 	    				'ap_nama'			   => $anggota,
                         'ap_no_telp'           => str_replace('-', '', $noTelp),
-	    				'ap_no_ktp'			   => str_replace('-', '', $noKtp),
+	    				'ap_no_ktp'			   => str_replace('.', '', $noKtp),
                         'ap_kewarganegaraan'   => $kewarganegaraan,
 	    				'ap_kelamin'		   => $kelamin,
 	    			]);

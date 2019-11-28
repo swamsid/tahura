@@ -694,8 +694,8 @@
                                     <h4>Terimakasih</h4>
                                 </div>
 
-                                <div class="col-md-12" style="padding-top: 20px;">
-                                    Data registrasi pendakian anda sudah kami simpan. Setelah kami verifikasi, <b>berkas/surat izin pendakian akan dikirim melalui email yang anda daftarkan. Jika tidak ada email balasan di kotak masuk maka silahkan cek kotak spam email anda. </b>
+                                <div class="col-md-12" style="padding-top: 20px; text-align: justify;">
+                                    Data registrasi pendakian anda sudah kami simpan. Setelah kami verifikasi, <b>berkas/surat izin pendakian akan dikirim melalui email yang telah anda daftarkan. Jika tidak ada email balasan, silahkan cek kotak spam email anda. </b>
                                 </div>
 
                                 <div class="col-md-12 text-right" style="padding: 15px 5px 0px 5px; border-top: 1px solid #eee; margin-top: 15px;">
