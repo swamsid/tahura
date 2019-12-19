@@ -41,22 +41,22 @@
 </head>
 
 <body>
-<!-- <div id="myModal" class="modal fade vertical-alignment-helper">
+<div id="myModal" class="modal fade vertical-alignment-helper">
     <div class="modal-dialog vertical-align-center">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h2 class="modal-title" style="text-align:center; color: #1ab394; font-weight: 600">PERHATIAN</h2>
+                <h2 class="modal-title" style="text-align:center; color: #1ab394; font-weight: 600">PEMBERITAHUAN</h2>
             </div>
             <div class="modal-body">
-				<p style="text-align: justify;">Sehubungan dengan adanya kegiatan <strong>Fun Hiking</strong> yang diadakan oleh Dinas Kehutanan Provinsi Jawa Timur di <strong>Gunung Pundak</strong> pada <strong>tanggal 30 November 2019</strong>, maka diharap para pendaki memarkir kendaraan dengan tertib ditempat yang sudah disediakan dan tetap berhati-hati ketika melakukan pendakian.</p>
+				<p style="text-align: justify;">Sehubungan dengan terjadinya cuaca yang tidak menentu di kawasan gunung Arjuno Welirang, maka pendakian sewaktu waktu dapat ditutup kembali. Pendaki dihimbau untuk tetap berhati-hati dan tetap waspada.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary"> Lanjut </button>
             </div>
         </div>
     </div>
-</div> -->
+</div>
     <div id="wrapper">
         <div id="page-wrapper" class="gray-bg" style="margin-top: 0">
         <div class="row border-bottom">
@@ -180,11 +180,11 @@
     <!-- iCheck -->
     <script src="<?php echo e(asset('public/frontend/js/plugins/iCheck/icheck.min.js')); ?>"></script>
 
-    <!-- <script>
+    <script>
     	$(document).ready(function(){
     		$("#myModal").modal('show');
     	});
-    </script> -->
+    </script>
 
 </body>
 

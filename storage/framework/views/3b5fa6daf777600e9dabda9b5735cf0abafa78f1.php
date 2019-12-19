@@ -53,9 +53,7 @@
 						        </thead>
 
 						        <tbody>
-                                    <?php $count = 0; ?>
                                     <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if($count == 200) break; ?>
                                         <tr>
                                             <td class="text-center"><?php echo e($key + 1); ?></td>
                                             <td class="text-center"><?php echo e($data->pd_nomor); ?></td>
@@ -86,7 +84,6 @@
                                                 </center>
                                             </td>
                                         </tr>
-                                        <?php $count++; ?>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				              	</tbody>
 					      </table>

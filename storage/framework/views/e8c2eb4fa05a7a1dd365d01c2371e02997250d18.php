@@ -163,42 +163,42 @@
                                 <table class="table-mini" width="100%" border="1">
                                     <tr>
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Tenda </td>
-                                        <td class="text-center"><?php echo e($data->peralatan->pr_tenda); ?> Unit</td>
+                                        <td class="text-center"><?php echo e($data->peralatan['pr_tenda']); ?> Unit</td>
 
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Senter/Alat Penerangan </td>
-                                        <td class="text-center"><?php echo e($data->peralatan->pr_senter); ?> Unit</td>
+                                        <td class="text-center"><?php echo e($data->peralatan['pr_senter']); ?> Unit</td>
                                     </tr>
 
                                     <tr>
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Sleeping Bags/Kantong Tidur </td>
-                                        <td class="text-center"><?php echo e($data->peralatan->pr_sleeping_bag); ?> Unit</td>
+                                        <td class="text-center"><?php echo e($data->peralatan['pr_sleeping_bag']); ?> Unit</td>
 
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Obat-obatan Pribadi dan P3K </td>
-                                        <td class="text-center"><?php echo e($data->peralatan->pr_obat); ?> Unit</td>
+                                        <td class="text-center"><?php echo e($data->peralatan['pr_obat']); ?> Unit</td>
                                     </tr>
 
                                     <tr>
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Peralatan Masak </td>
-                                        <td class="text-center"><?php echo e($data->peralatan->pr_peralatan_masak); ?> Unit</td>
+                                        <td class="text-center"><?php echo e($data->peralatan['pr_peralatan_masak']); ?> Unit</td>
 
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Matras </td>
-                                        <td class="text-center"><?php echo e($data->peralatan->pr_matras); ?> Unit</td>
+                                        <td class="text-center"><?php echo e($data->peralatan['pr_matras']); ?> Unit</td>
                                     </tr>
 
                                     <tr>
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Bahan Bakar </td>
-                                        <td class="text-center"><?php echo e($data->peralatan->pr_bahan_bakar); ?> Unit</td>
+                                        <td class="text-center"><?php echo e($data->peralatan['pr_bahan_bakar']); ?> Unit</td>
 
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Kantong Sampah </td>
-                                        <td class="text-center"><?php echo e($data->peralatan->pr_kantong_sampah); ?> Unit</td>
+                                        <td class="text-center"><?php echo e($data->peralatan['pr_kantong_sampah']); ?> Unit</td>
                                     </tr>
 
                                     <tr>
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Ponco/Jas Hujan </td>
-                                        <td class="text-center"><?php echo e($data->peralatan->pr_ponco); ?> Unit</td>
+                                        <td class="text-center"><?php echo e($data->peralatan['pr_ponco']); ?> Unit</td>
 
                                         <td class="text-left" style="background: #eee; font-weight: 600;">Jaket </td>
-                                        <td class="text-center"><?php echo e($data->peralatan->pr_jaket); ?> Unit</td>
+                                        <td class="text-center"><?php echo e($data->peralatan['pr_jaket']); ?> Unit</td>
                                     </tr>
                                 </table>
                             </div>

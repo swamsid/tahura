@@ -323,7 +323,7 @@
                                 Talis - 085606589978
                             </div>
                             <div class="well wells">
-                                Atim Muhammad Rosul - 085856200755
+                                Karyadi - 081331330207
                             </div>
     </div>
     <div class="col-md-6">
@@ -338,6 +338,9 @@
                             </div>
                             <div class="well wells">
                                 Arif Yuwono - 081331834646
+                            </div>
+                            <div class="well wells">
+                                Roni S. - 082244447790
                             </div>
     </div>
     <div class="col-md-6">

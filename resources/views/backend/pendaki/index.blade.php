@@ -53,9 +53,7 @@
 						        </thead>
 
 						        <tbody>
-                                    <?php $count = 0; ?>
                                     @foreach($data as $key => $data)
-                                    <?php if($count == 200) break; ?>
                                         <tr>
                                             <td class="text-center">{{ $key + 1 }}</td>
                                             <td class="text-center">{{ $data->pd_nomor }}</td>
@@ -86,7 +84,6 @@
                                                 </center>
                                             </td>
                                         </tr>
-                                        <?php $count++; ?>
                                     @endforeach
 				              	</tbody>
 					      </table>

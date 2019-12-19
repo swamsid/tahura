@@ -1134,8 +1134,8 @@
                     let response = true;
 
                     $.each(this.logistik, function(index, data){
-                        if(data.nama == "" || data.jumlah == ""){
-                            response = false;
+                        if(data.nama != "" && data.jumlah != ""){
+                            response = true;
                             return false;
                         }
                     });

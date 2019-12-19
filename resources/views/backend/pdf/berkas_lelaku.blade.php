@@ -288,49 +288,49 @@
 		<td>
 			<table class="ta">
 				<tr>
-				    <th class="tg-hgcj" style="width: 200px">Peralatan Standar</th>
-				    <th class="tg-hgcj" style="width: 100px">Jumlah</th>
-				</tr>
-				<tr>
-					<td class="tg-0lax">Tenda</td>
-					<td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_tenda }}</td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Sleeping Bag / Kantong Tidur</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_sleeping_bag }}</td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Peralatan Masak</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_peralatan_masak }}</td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Bahan Bakar</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_bahan_bakar }}</td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Ponco / Jas Hujan</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_ponco }}</td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Senter / Alat Penerangan</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_senter }}</td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Obat - Obatan dan P3K</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_obat }}</td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Matras / Alas Tidur</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_matras }}</td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Kantong Sampah</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_kantong_sampah }}</td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Jaket</td>
-				    <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan->pr_jaket }}</td>
-				</tr>		
+            <th class="tg-hgcj" style="width: 200px">Peralatan Standar</th>
+            <th class="tg-hgcj" style="width: 100px">Jumlah</th>
+        </tr>
+        <tr>
+          <td class="tg-0lax">Tenda</td>
+          <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan['pr_tenda'] }}</td>
+        </tr>
+        <tr>
+            <td class="tg-0lax">Sleeping Bag / Kantong Tidur</td>
+            <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan['pr_sleeping_bag'] }}</td>
+        </tr>
+        <tr>
+            <td class="tg-0lax">Peralatan Masak</td>
+            <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan['pr_peralatan_masak'] }}</td>
+        </tr>
+        <tr>
+            <td class="tg-0lax">Bahan Bakar</td>
+            <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan['pr_bahan_bakar'] }}</td>
+        </tr>
+        <tr>
+            <td class="tg-0lax">Ponco / Jas Hujan</td>
+            <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan['pr_ponco'] }}</td>
+        </tr>
+        <tr>
+            <td class="tg-0lax">Senter / Alat Penerangan</td>
+            <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan['pr_senter'] }}</td>
+        </tr>
+        <tr>
+            <td class="tg-0lax">Obat - Obatan dan P3K</td>
+            <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan['pr_obat'] }}</td>
+        </tr>
+        <tr>
+            <td class="tg-0lax">Matras / Alas Tidur</td>
+            <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan['pr_matras'] }}</td>
+        </tr>
+        <tr>
+            <td class="tg-0lax">Kantong Sampah</td>
+            <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan['pr_kantong_sampah'] }}</td>
+        </tr>
+        <tr>
+            <td class="tg-0lax">Jaket</td>
+            <td class="tg-0lax" style="text-align: center;">{{ $data->peralatan['pr_jaket'] }}</td>
+        </tr>   
 			</table>
 		</td>
 

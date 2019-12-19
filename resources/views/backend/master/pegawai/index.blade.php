@@ -47,6 +47,7 @@
 						          <tr>
 						            <th width="5%">No</th>
 						            <th width="15%">Nip Pegawai</th>
+                                    <th width="15%">Password</th>
 						            <th>Nama Pegawai</th>
                                     <th>Jabatan Pegawai</th>
 						          </tr>
@@ -57,6 +58,7 @@
                                         <tr>
                                             <td style="text-align: center;">{{ $key+1 }}</td>
                                             <td>{{ $user->nip }}</td>
+                                            <td>{{ $user->password }}</td>
                                             <td>{{ $user->nama }}</td>
                                             <td>{{ $user->nama_jabatan }}</td>
                                         </tr>

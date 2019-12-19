@@ -45,6 +45,7 @@
 						          <tr>
 						            <th width="5%">No</th>
 						            <th width="15%">Nip Pegawai</th>
+                                    <th width="15%">Password</th>
 						            <th>Nama Pegawai</th>
                                     <th>Jabatan Pegawai</th>
 						          </tr>
@@ -55,6 +56,7 @@
                                         <tr>
                                             <td style="text-align: center;"><?php echo e($key+1); ?></td>
                                             <td><?php echo e($user->nip); ?></td>
+                                            <td><?php echo e($user->password); ?></td>
                                             <td><?php echo e($user->nama); ?></td>
                                             <td><?php echo e($user->nama_jabatan); ?></td>
                                         </tr>
