@@ -108,31 +108,6 @@ class pendaki_controller extends Controller
                 'pd_jenis_kelamin'      => $request->kelamin_ketua,
             ]);
 
-
-            DB::table('tb_kontak_darurat')->where('kd_pendakian', $request->pd_id)->delete();
-
-            $num = 1;
-            foreach($request->nama_kontak_darurat as $key => $kontak){
-
-                $noTelp     = $request->no_kontak_darurat[$key];
-                $alamat     = $request->alamat_kontak_darurat[$key];
-                $hubungan   = $request->hubungan_kontak_darurat[$key];
-
-                if(!is_null($kontak) && !is_null($noTelp) && !is_null($alamat) && !is_null($hubungan)){
-                    DB::table('tb_kontak_darurat')->insert([
-                        'kd_pendakian'      => $id,
-                        'kd_nomor'          => $num,
-                        'kd_nama'           => $kontak,
-                        'kd_no_telp'        => str_replace('-', '', $noTelp),
-                        'kd_email'          => $alamat,
-                        'kd_hubungan'       => $hubungan
-                    ]);
-
-                    $num++;
-                }
-            }
-
-
             DB::table('tb_anggota_pendakian')->where('ap_pendakian', $request->pd_id)->delete();
 
             $num = 1;
@@ -158,6 +133,30 @@ class pendaki_controller extends Controller
                 }
             }
 
+if($request->tujuan == ''){
+            DB::table('tb_kontak_darurat')->where('kd_pendakian', $request->pd_id)->delete();
+
+            $num = 1;
+            foreach($request->nama_kontak_darurat as $key => $kontak){
+
+                $noTelp     = $request->no_kontak_darurat[$key];
+                $alamat     = $request->alamat_kontak_darurat[$key];
+                $hubungan   = $request->hubungan_kontak_darurat[$key];
+
+                if(!is_null($kontak) && !is_null($noTelp) && !is_null($alamat) && !is_null($hubungan)){
+                    DB::table('tb_kontak_darurat')->insert([
+                        'kd_pendakian'      => $id,
+                        'kd_nomor'          => $num,
+                        'kd_nama'           => $kontak,
+                        'kd_no_telp'        => str_replace('-', '', $noTelp),
+                        'kd_email'          => $alamat,
+                        'kd_hubungan'       => $hubungan
+                    ]);
+
+                    $num++;
+                }
+            }
+
             DB::table('tb_logistik')->where('lg_pendakian', $request->pd_id)->delete();
 
             $num = 1;
@@ -177,7 +176,6 @@ class pendaki_controller extends Controller
                 }
             }
 
-
             DB::table('tb_peralatan')->where('pr_id', $request->pd_id)->delete();
 
             $ids = DB::table('tb_peralatan')->max('pr_id') + 1;
@@ -195,6 +193,7 @@ class pendaki_controller extends Controller
                 'pr_kantong_sampah'     => ($request->kantong_sampah) ? $request->kantong_sampah : 0,
                 'pr_jaket'              => ($request->jaket) ? $request->jaket : 0
             ]);
+}
 
             DB::commit();
 
@@ -233,6 +232,7 @@ class pendaki_controller extends Controller
                                 'pd_desa',
                                 'pd_kewarganegaraan',
                                 'pd_jenis_kelamin',
+                                'keterangan',
                                  DB::raw('DATE_FORMAT(pd_tgl_lahir, "%d/%m/%Y") as pd_tgl_lahir'),
                                  DB::raw('DATE_FORMAT(pd_tgl_naik, "%d/%m/%Y") as pd_tgl_naik'),
                                  DB::raw('DATE_FORMAT(pd_tgl_turun, "%d/%m/%Y") as pd_tgl_turun')
@@ -297,6 +297,7 @@ class pendaki_controller extends Controller
                     )->first();
 
                 $email = $data->pd_email;
+                $nomor = $data->pd_nomor;
                 
                 $qrcode = QrCode::format('png')->size(1000)
                             ->merge('/public/backend/img/LogoJawaTimur.png', .3)
@@ -315,6 +316,26 @@ class pendaki_controller extends Controller
                 $context->update([
                     'pd_acc_by' => Auth::user()->user_id
                 ]);
+
+                $userkey = "5fjezh"; //userkey lihat di zenziva
+                  $passkey = "5fjezh"; // set passkey di zenziva
+                  $number  = $data->pd_no_hp;
+                  $message = "Registrasi ".$nomor." telah kami verifikasi. Silahkan cek inbox atau kotak spam anda. Berkas perizinan juga dapat diunduh di menu cek pendakian shorturl.at/degkF";
+                  $url = "https://reguler.zenziva.net/apps/smsapi.php";
+                  $data = 'userkey='.$userkey.'&passkey='.$passkey.'&nohp='.$number.'&pesan='.urlencode($message);
+
+                  $curlHandle = curl_init();
+                  curl_setopt($curlHandle, CURLOPT_URL, $url);
+                  curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $data);
+                  curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+                  curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+                  curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
+                  curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+                  curl_setopt($curlHandle, CURLOPT_TIMEOUT,30);
+                  curl_setopt($curlHandle, CURLOPT_POST, 1);
+                  $results = curl_exec($curlHandle);
+                  curl_close($curlHandle);
+
             }else if($request->sts == 'ditolak'){
 
                 $data = pendakian::where('pd_id', $request->id)
@@ -400,7 +421,16 @@ class pendaki_controller extends Controller
                             ->merge('/public/backend/img/LogoJawaTimur.png', .3)
                             ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
 
-            $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
+            if($data->keterangan == 'pundak'){
+                $pdf = PDF::loadView('backend.pdf.berkas_pundak', compact('data', 'qrcode'))->setPAPER('a4');
+            }
+            elseif($data->keterangan == 'lelaku'){
+                $pdf = PDF::loadView('backend.pdf.berkas_lelaku', compact('data', 'qrcode'))->setPAPER('a4');
+            }
+            else{
+                $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
+            }
+
 
             return $pdf->stream('Berkas_pendaftaran_'.$data->pd_nomor.'.pdf');
 

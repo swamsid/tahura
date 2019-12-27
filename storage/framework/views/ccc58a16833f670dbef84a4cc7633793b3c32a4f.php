@@ -122,9 +122,7 @@
                                                 <tr>
                                                     <th width="20%" class="text-center">Nomor Pendakian</th>
                                                     <th width="20%" class="text-center">Nama Ketua</th>
-                                                    <th width="20%" class="text-center">Kewarganegaraan</th>
-                                                    <th width="20%" class="text-center">Jenis Kelamin</th>
-                                                    <th width="20%" class="text-center">Kota Asal</th>
+                                                    <th width="20%" class="text-center">Email</th>
                                                 </tr>
                                             </thead>
 
@@ -132,9 +130,24 @@
                                                 <tr>
                                                     <th class="text-center"><?php echo e($data->pd_nomor); ?></th>
                                                     <th class="text-center"><?php echo e($data->pd_nama_ketua); ?></th>
-                                                    <th class="text-center"><?php echo e(($data->pd_kewarganegaraan == "WNI") ? 'Indonesia' : 'Asing'); ?></th>
-                                                    <th class="text-center"><?php echo e(($data->pd_jenis_kelamin == 'L') ? 'Laki-laki' : 'Perempuan'); ?></th>
-                                                    <th class="text-center"><?php echo e($data->kabupaten); ?></th>
+                                                    <th class="text-center"><?php echo e($data->pd_email); ?></th>
+                                                </tr>
+                                                <tr>
+                                                    <th class="text-center" colspan="3">
+                                                        <div class="file-box" style="margin: auto; float: none;">
+                                                            <div class="file" style="margin: unset;">
+                                                                <a href="<?php echo e(Route('frontend.cek_pendakian.pdf', 'id='.$data->pd_id)); ?>" target="_blank">
+                                                                    <span class="corner"></span>
+                                                                    <div class="icon">
+                                                                        <i class="fa fa-file-pdf-o" style="color: #0099CC"></i>
+                                                                    </div>
+                                                                    <div class="file-name text-center">
+                                                                        berkas-pendaftaran.pdf
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </th>
                                                 </tr>
                                             </tbody>
                                         </table>

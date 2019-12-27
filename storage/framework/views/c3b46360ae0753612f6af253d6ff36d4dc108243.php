@@ -1,6 +1,6 @@
 <!-- Mainly scripts -->
-<script src="<?php echo e(asset('public/backend/js/jquery-2.1.1.js')); ?>"></script>
-<script src="<?php echo e(asset('public/backend/js/bootstrap.min.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/jquery-3.3.1.js')); ?>"></script>
+<script src="<?php echo e(asset('public/backend/js/bootstrap-3.4.1.min.js')); ?>"></script>
 <script src="<?php echo e(asset('public/backend/js/plugins/metisMenu/jquery.metisMenu.js')); ?>"></script>
 <script src="<?php echo e(asset('public/backend/js/plugins/slimscroll/jquery.slimscroll.min.js')); ?>"></script>
 

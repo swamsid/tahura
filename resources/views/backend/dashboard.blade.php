@@ -1474,6 +1474,22 @@
                                 fill : false
                             },
                             {
+                                label: "Lelaku",
+                                data: [
+                                    <?php 
+                                    for ($i = 1; $i <= 12; $i++) {
+                                        $bln    = substr('0'.$i, -2); 
+                                        $lelaku_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        $lelaku = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        echo $lelaku+$lelaku_anggota.',';
+                                    } ?>
+                                ],
+                                backgroundColor : "rgba(121,85,72,0.6)",
+                                borderColor : "rgba(121,85,72,0.6)",
+                                borderWidth : 3,
+                                fill : false
+                            },
+                            {
                                 label: "Gunung Pundak",
                                 data: [
                                     <?php 

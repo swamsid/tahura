@@ -106,6 +106,10 @@ Route::get('qrcode', function () {
 	    'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@cek_pendakian'
 	])->name('frontend.cek_pendakian.send');
 
+	Route::get('cek-pendakian/pdf', [
+	    'uses'	=> 'Frontend\pendaftaran\pendaftaran_controller@pdf'
+	])->name('frontend.cek_pendakian.pdf');
+
 
 Route::group(['middleware' => ['guest', 'web']], function(){
 	Route::get('wpadmin', function(){

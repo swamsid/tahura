@@ -64,21 +64,26 @@
                                             <td class="text-center">
                                                 <?php
                                                     $class = 'label-info';
-
                                                     if($data->pd_status == 'disetujui')
                                                         $class = 'label-success';
                                                     else if($data->pd_status == 'ditolak')
                                                         $class = 'label-danger';
                                                     else if($data->pd_status == 'sudah naik' || $data->pd_status == 'sudah turun')
                                                         $class = 'label-warning';
+
+                                                    if ($data->pd_tgl_naik < date("Y-m-d") && $data->pd_status == 'disetujui' ) {
+                                                        echo '<span class="label" style="color:red">EXPIRED</span>';   
+                                                    }
+                                                    else{
+                                                        echo '<span class="label '.$class.'">'.$data->pd_status.'</span>';
+                                                    }
                                                  ?>
-                                                <span class="label <?php echo e($class); ?>"><?php echo e($data->pd_status); ?></span>
                                             </td>
                                             <td class="text-center">
                                                 <center>
                                                     <a href="<?php echo e(Route('wpadmin.pendaki.detail', 'id='.$data->pd_id)); ?>" class='btn btn-primary btn-xs' data-id="<?php echo e($data->pd_id); ?>" title='Detail'><span class='fa fa-folder-open'></span></a>
+                                                    <a href="<?php echo e(Route('wpadmin.pendaki.edit', 'id='.$data->pd_id)); ?>" class='btn btn-warning btn-xs' data-id="<?php echo e($data->pd_id); ?>" title='Edit'><span class='fa fa-edit'></span></a>
                                                     <?php if(Auth::user()->posisi == 'kantor'): ?>
-                                                        <a href="<?php echo e(Route('wpadmin.pendaki.edit', 'id='.$data->pd_id)); ?>" class='btn btn-warning btn-xs' data-id="<?php echo e($data->pd_id); ?>" title='Edit'><span class='fa fa-edit'></span></a>
                                                         <a id="<?php echo e('del_'.$data->pd_id); ?>" class='btn btn-danger btn-xs delete' title="Hapus"><span class='fa fa-trash'></span></a>
                                                     <?php endif; ?>
                                                 </center>
@@ -152,6 +157,7 @@
             <?php endif; ?>
 
             $('.dataTables-example').DataTable({
+
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
                     {extend: 'copy'},

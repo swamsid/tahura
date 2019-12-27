@@ -130,7 +130,7 @@
                                    @endforeach
                                 </table>
                             </div>
-
+@if($data->keterangan == '' )
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
                                 <strong>Informasi Kontak Darurat</strong>
@@ -225,7 +225,7 @@
                                    @endforeach
                                 </table>
                             </div>
-
+@endif
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
                                 <strong>Informasi Pendakian</strong>
@@ -256,7 +256,11 @@
                                              ?>
                                           <span class="label {{ $class }}">{{ $data->pd_status }}</span>
                                         </td>
-                                        <td class="text-center">{{ $data->acc_by }}</td>
+                                        @if($data->pd_status == 'disetujui' && $data->acc_by == '')
+                                          <td class="text-center">{{ $data->keterangan }}</td>  
+                                        @else
+                                          <td class="text-center">{{ $data->acc_by }}</td>
+                                        @endif
                                    </tr>
                                 </table>
                             </div>
@@ -336,6 +340,7 @@
 
                         <div class="row" style="margin-top: 20px; border-top: 1px solid #eee;">
                             <div class="col-md-12 text-right" style="padding-top: 15px;">
+                                <a href="{{ Route('wpadmin.pendaki.edit', 'id='.$data->pd_id) }}" class='btn btn-warning btn-xs' data-id="{{ $data->pd_id }}" style="padding: 5px 20px">Edit</span></a>
                                 @if($data->pd_status == 'belum disetujui')
                                     
                                     @if(Auth::user()->posisi == 'kantor')
@@ -353,8 +358,13 @@
                                 @elseif($data->pd_status == 'disetujui')
 
                                   @if(Auth::user()->posisi == 'pos' || Auth::user()->posisi == 'kantor')
-                                    <button data-toggle="modal" data-target="#modal-pos-naik" class="btn btn-primary dropdown-toggle btn-sm">
+                                    @if ($data->pd_tgl_naik >= date("Y-m-d") ) 
+                                      <button data-toggle="modal" data-target="#modal-pos-naik" class="btn btn-primary dropdown-toggle btn-sm">
                                     Tandai Sudah Naik &nbsp;<span class="caret"></span></button>
+                                    @else
+                                      <button disabled="" data-toggle="modal" data-target="#modal-pos-naik" class="btn btn-danger">
+                                    EXPIRED</button>
+                                    @endif
                                   @else
                                     <span class="label label-info">Hanya Petugas Pos Yang Dapat Acc Naik/Turun</span>
                                   @endif  

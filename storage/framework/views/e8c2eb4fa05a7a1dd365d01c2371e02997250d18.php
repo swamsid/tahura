@@ -128,7 +128,7 @@
                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </table>
                             </div>
-
+<?php if($data->keterangan == '' ): ?>
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
                                 <strong>Informasi Kontak Darurat</strong>
@@ -223,7 +223,7 @@
                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </table>
                             </div>
-
+<?php endif; ?>
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
                                 <strong>Informasi Pendakian</strong>
@@ -254,7 +254,11 @@
                                              ?>
                                           <span class="label <?php echo e($class); ?>"><?php echo e($data->pd_status); ?></span>
                                         </td>
-                                        <td class="text-center"><?php echo e($data->acc_by); ?></td>
+                                        <?php if($data->pd_status == 'disetujui' && $data->acc_by == ''): ?>
+                                          <td class="text-center"><?php echo e($data->keterangan); ?></td>  
+                                        <?php else: ?>
+                                          <td class="text-center"><?php echo e($data->acc_by); ?></td>
+                                        <?php endif; ?>
                                    </tr>
                                 </table>
                             </div>
@@ -334,6 +338,7 @@
 
                         <div class="row" style="margin-top: 20px; border-top: 1px solid #eee;">
                             <div class="col-md-12 text-right" style="padding-top: 15px;">
+                                <a href="<?php echo e(Route('wpadmin.pendaki.edit', 'id='.$data->pd_id)); ?>" class='btn btn-warning btn-xs' data-id="<?php echo e($data->pd_id); ?>" style="padding: 5px 20px">Edit</span></a>
                                 <?php if($data->pd_status == 'belum disetujui'): ?>
                                     
                                     <?php if(Auth::user()->posisi == 'kantor'): ?>
@@ -351,8 +356,13 @@
                                 <?php elseif($data->pd_status == 'disetujui'): ?>
 
                                   <?php if(Auth::user()->posisi == 'pos' || Auth::user()->posisi == 'kantor'): ?>
-                                    <button data-toggle="modal" data-target="#modal-pos-naik" class="btn btn-primary dropdown-toggle btn-sm">
+                                    <?php if($data->pd_tgl_naik >= date("Y-m-d") ): ?> 
+                                      <button data-toggle="modal" data-target="#modal-pos-naik" class="btn btn-primary dropdown-toggle btn-sm">
                                     Tandai Sudah Naik &nbsp;<span class="caret"></span></button>
+                                    <?php else: ?>
+                                      <button disabled="" data-toggle="modal" data-target="#modal-pos-naik" class="btn btn-danger">
+                                    EXPIRED</button>
+                                    <?php endif; ?>
                                   <?php else: ?>
                                     <span class="label label-info">Hanya Petugas Pos Yang Dapat Acc Naik/Turun</span>
                                   <?php endif; ?>  

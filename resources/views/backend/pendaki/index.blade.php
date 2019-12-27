@@ -64,21 +64,26 @@
                                             <td class="text-center">
                                                 <?php
                                                     $class = 'label-info';
-
                                                     if($data->pd_status == 'disetujui')
                                                         $class = 'label-success';
                                                     else if($data->pd_status == 'ditolak')
                                                         $class = 'label-danger';
                                                     else if($data->pd_status == 'sudah naik' || $data->pd_status == 'sudah turun')
                                                         $class = 'label-warning';
+
+                                                    if ($data->pd_tgl_naik < date("Y-m-d") && $data->pd_status == 'disetujui' ) {
+                                                        echo '<span class="label" style="color:red">EXPIRED</span>';   
+                                                    }
+                                                    else{
+                                                        echo '<span class="label '.$class.'">'.$data->pd_status.'</span>';
+                                                    }
                                                  ?>
-                                                <span class="label {{ $class }}">{{ $data->pd_status }}</span>
                                             </td>
                                             <td class="text-center">
                                                 <center>
                                                     <a href="{{ Route('wpadmin.pendaki.detail', 'id='.$data->pd_id) }}" class='btn btn-primary btn-xs' data-id="{{ $data->pd_id }}" title='Detail'><span class='fa fa-folder-open'></span></a>
+                                                    <a href="{{ Route('wpadmin.pendaki.edit', 'id='.$data->pd_id) }}" class='btn btn-warning btn-xs' data-id="{{ $data->pd_id }}" title='Edit'><span class='fa fa-edit'></span></a>
                                                     @if(Auth::user()->posisi == 'kantor')
-                                                        <a href="{{ Route('wpadmin.pendaki.edit', 'id='.$data->pd_id) }}" class='btn btn-warning btn-xs' data-id="{{ $data->pd_id }}" title='Edit'><span class='fa fa-edit'></span></a>
                                                         <a id="{{ 'del_'.$data->pd_id }}" class='btn btn-danger btn-xs delete' title="Hapus"><span class='fa fa-trash'></span></a>
                                                     @endif
                                                 </center>
@@ -151,6 +156,7 @@
             @endif
 
             $('.dataTables-example').DataTable({
+
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [
                     {extend: 'copy'},

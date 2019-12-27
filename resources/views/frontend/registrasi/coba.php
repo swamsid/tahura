@@ -9,25 +9,24 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Registrasi Pendakian Gunung Arjuno - Welirang </title>
 
-    <link href="<?php echo e(asset('public/frontend/css/bootstrap.min.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('public/frontend/css/bootstrap-vue.min.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('public/frontend/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('public/frontend/css/plugins/iCheck/custom.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('public/frontend/css/plugins/steps/jquery.steps.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('public/frontend/css/animate.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('public/frontend/css/styleregist.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('public/frontend/css/plugins/jasny/jasny-bootstrap.min.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('public/frontend/css/plugins/iCheck/custom.css')); ?>" rel="stylesheet">
-    <link href="<?php echo e(asset('public/frontend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')); ?>" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css')); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/select2/dist/css/select2.min.css')); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css')); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css')); ?>">
-
+    <link href="{{ asset('public/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/bootstrap-vue.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/styleregist.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/plugins/jasny/jasny-bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/frontend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
 
     <style type="text/css">
         
@@ -36,10 +35,7 @@
 
 <body>
 
-<?php 
-    if (!isset($_GET['variable'])) {
-?>
-<div id="myModal" class="modal fade vertical-alignment-helper" style="padding-left: 0px !important">
+<div id="myModal" class="modal fade vertical-alignment-helper">
     <div class="modal-dialog vertical-align-center">
         <div class="modal-content">
             <div class="modal-header">
@@ -48,15 +44,15 @@
             </div>
             <div class="modal-body" style="padding-bottom: 15px">
                 <div class="containerOuter">
-                  <div class="kontener">
+                  <div class="container" style="padding-left: 0px; height: 180px; ">
                     <input type="radio" class="hidden" id="input1" name="colorRadio" value="arjuno">
                     <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">GUNUNG ARJUNO WELIRANG</div></label>
-                    <input type="radio" class="hidden" id="input3" name="colorRadio" value="lelaku">
+                    <input type="radio" class="hidden" id="input3" name="colorRadio" value="pundak">
                     <label class="entry" for="input3"><div class="circle"></div><div class="entry-label">LELAKU MAKUTOROMO</div></label>
                     <input type="radio" class="hidden" id="input2" name="colorRadio" value="pundak">
                     <label class="entry" for="input2"><div class="circle"></div><div class="entry-label">GUNUNG PUNDAK / PUTHUK PULOSARI</div></label>
                     <div class="highlight"></div>
-                    <div class="overlay"></div>
+                    <!-- <div class="overlay"></div> -->
                   </div>
                 </div>
                 <svg width="0" height="0" viewBox="0 0 40 140">
@@ -76,13 +72,12 @@
         </div>
     </div>
 </div>
-<?php } ?>
 
     <div id="page-wrapper" class="gray-bg" style="margin-top: -5px;">    
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header" style="padding: 15px 10px 0px 15px;">
-                    <a href="<?php echo e(Route('frontend.cek_pendakian')); ?>" style="color: #aaa; font-size: 10pt;">Cek status pendakian anda disini</a>
+                    <a href="{{ Route('frontend.cek_pendakian') }}" style="color: #aaa; font-size: 10pt;">Cek status pendakian anda disini</a>
                 </div>
             </nav>
         </div>
@@ -94,10 +89,10 @@
                         <a href="../index.php">Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo e(Route('frontend.registrasi')); ?>">Tata Cara Pendaftaran</a>
+                        <a href="{{ Route('frontend.registrasi') }}">Tata Cara Pendaftaran</a>
                     </li>
                     <li>
-                        <a href="<?php echo e(Route('frontend.registrasi.sop')); ?>">SOP Pendakian</a>
+                        <a href="{{ Route('frontend.registrasi.sop') }}">SOP Pendakian</a>
                     </li>
                     <li class="active">
                         <strong>Registrasi Pendakian</strong>
@@ -109,9 +104,6 @@
             </div>
         </div>
 
-<?php 
-    if (isset($_GET['variable'])) {
-?>
         <div class="wrapper wrapper-content animated fadeIn">
             <div class="row">
                 <div class="col-lg-12 kotak" style="padding-top: 20px !important">
@@ -128,15 +120,18 @@
                             </div>
                         </div>
                         <div class="ibox-content" id="ibox-content" style="background-color: #ffffff; font-size: 14px">
-                            <div>
+                            <div class="pundak box">
                                 <template v-if="!downloadingResource">
                                     <form id="form-data" class="wizard-big" enctype="multipart/form-data" >
-                                        <?php echo csrf_field(); ?>
-                                        <input type="radio" hidden value="<?php echo $_GET['variable'] ?>" checked name="tujuan">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h3 style="color: #1ab394">
                                                     Informasi Ketua Regu &nbsp;
+                                                    <?php 
+                                                        $status = 'pundak';
+                                                        echo($status);
+                                                     ?>
                                                     <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata ketua regu"></i>
                                                 </h3>
                                             </div>
@@ -154,7 +149,7 @@
                                                             <div class="form-group">
                                                                 <label>No Identitas (KTP, Kartu Pelajar, Passport)</label>
 
-                                                                <vue-mask :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'______.______.____'" :name="'no_ktp_ketua'" :id="'no_ktp_ketua'" :mask="'000000.000000.0000'" :css="'text-align: left;'" v-model="single.no_ktp_ketua"></vue-mask>
+                                                                <vue-mask :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'____.____.____.____'" :name="'no_ktp_ketua'" :id="'no_ktp_ketua'" :mask="'0000.0000.0000.0000'" :css="'text-align: left;'" v-model="single.no_ktp_ketua"></vue-mask>
 
                                                             </div>
 
@@ -271,7 +266,7 @@
                                                 <div class="row">
                                                     <div class="col-md-10 col-xs-7">
                                                         <h3 style="color: #1ab394">
-                                                            Anggota Rombongan <small>Ketua tidak perlu ditulis kembali</small>
+                                                            Anggota Rombongan&nbsp;
                                                             <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata daftar anggota rombongan"></i>
                                                         </h3>
                                                     </div>
@@ -285,7 +280,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12" style="background: #eee; margin-top: 10px; padding: 0px; overflow: auto;">
+                                            <div class="col-md-12" style="background: #eee; margin-top: 10px; padding: 0px;">
                                                 <fieldset style="font-size: 9pt;">
                                                     <table class="table-mini" width="100%">
                                                         <thead>
@@ -318,16 +313,16 @@
 
                                                                 </td>
                                                                 <td>
-                                                                    <vue-mask :class="'form-control'" :placeholder="'______.______.____'" :name="'no_ktp_anggota[]'" :mask="'000000.000000.0000'" :css="'text-align: left;'" v-model="anggota.no_ktp"></vue-mask>
+                                                                    <vue-mask :class="'form-control'" :placeholder="'____.____.____.____'" :name="'no_ktp_anggota[]'" :mask="'0000.0000.0000.0000'" :css="'text-align: left;'" v-model="anggota.no_ktp"></vue-mask>
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
-                                                                        <option v-for="kewarganegaraan in kewarganegaraan" :value="kewarganegaraan.id">{{ kewarganegaraan.text }}</option>
+                                                                        <option v-for="kewarganegaraan in kewarganegaraan" :value="kewarganegaraan.id">@{{ kewarganegaraan.text }}</option>
                                                                     </select>
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control hint" name="kelamin_anggota[]" v-model="anggota.kelamin">
-                                                                        <option v-for="kelamin in kelamin" :value="kelamin.id">{{ kelamin.text }}</option>
+                                                                        <option v-for="kelamin in kelamin" :value="kelamin.id">@{{ kelamin.text }}</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
@@ -336,20 +331,241 @@
                                                 </fieldset>
                                             </div>
 
-                                            <?php 
-                                                if (isset($_GET['variable']) && $_GET['variable'] == 'arjuno') {
-                                            ?>
+                                        </div>
 
-                                            <div class="col-md-12" style="margin-top: 20px">
+                                        <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 30px 0px 0px;">
+                                            <div class="col-md-10 text-right" style="padding-top: 10px;">
+                                                <small style="font-style: italic;" v-if="onRequest">@{{ requestMessage }}</small>
+                                            </div>
+                                            <div class="col-md-2 text-right">
+                                                <button type="button" class="btn btn-primary btn-sm" @click="send" :disabled="disabledButton">Kirim Formulir Registrasi</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </template>
+                            </div>
+
+                            <div class="arjuno box">
+                                <template v-if="!downloadingResource">
+                                    <form id="form-data" class="wizard-big" enctype="multipart/form-data" >
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h3 style="color: #1ab394">
+                                                    Informasi Ketua Regu &nbsp;
+                                                    <?php 
+                                                        $status = 'arjuno';
+                                                        echo(isset($var_PHP_data));
+                                                     ?>
+                                                    <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata ketua regu"></i>
+                                                </h3>
+                                            </div>
+
+                                            <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
+                                                <fieldset style="font-size: 9pt;">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <label>Nama Ketua</label>
+                                                                <input id="nama_ketua" name="nama_ketua" type="text" :class="$v.single.nama_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Nama ketua regu" v-model="single.nama_ketua">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>No Identitas (KTP, Kartu Pelajar, Passport)</label>
+
+                                                                <vue-mask :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'____.____.____.____'" :name="'no_ktp_ketua'" :id="'no_ktp_ketua'" :mask="'0000.0000.0000.0000'" :css="'text-align: left;'" v-model="single.no_ktp_ketua"></vue-mask>
+
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>Tempat Lahir</label>
+                                                                <input id="tempat_lahir_ketua" name="tempat_lahir_ketua" type="text" :class="$v.single.tempat_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Tempat lahir ketua regu" v-model="single.tempat_lahir_ketua">
+                                                            </div>
+
+                                                            <div class="form-group" id="data_1">
+                                                                <label>Tanggal Lahir</label>
+                                                                <div class="input-group date">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+
+                                                                    <vue-mask :class="$v.single.tgl_lahir_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'__/__/____'" :name="'tgl_lahir_ketua'" :id="'tgl_lahir_ketua'" :mask="'00/00/0000'" :css="'text-align: left;'" v-model="single.tgl_lahir_ketua"></vue-mask>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>No Telepon</label>
+
+                                                                <vue-mask :class="$v.single.no_hp_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'____-____-_____'" :name="'no_hp_ketua'" :id="'no_hp_ketua'" :mask="'0000-0000-00000'" :css="'text-align: left;'" v-model="single.no_hp_ketua"></vue-mask>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>Email</label>
+                                                                <input id="email_ketua" name="email_ketua" type="email" :class=" $v.single.email_ketua.$invalid ? 'form-control error' : 'form-control'" placeholder="Email ketua regu" v-model="single.email_ketua">
+                                                            </div>
+
+                                                            <div class="form-group" id="data_1">
+                                                                <label>Tanggal Naik</label>
+                                                                <div class="input-group date">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                    <vue-datepicker :name="'tgl_naik'" :id="'tgl_naik'" :class="$v.single.tgl_naik.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Pilih Tanggal Naik'" :readonly="true" v-model="single.tgl_naik"></vue-datepicker>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group" id="data_1">
+                                                                <label>Tanggal Turun</label>
+                                                                <div class="input-group date">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                    </span>
+                                                                    <vue-datepicker :name="'tgl_turun'" :id="'tgl_turun'" :class="$v.single.tgl_turun.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Pilih Tanggal Turun'" :readonly="true" v-model="single.tgl_turun"></vue-datepicker>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+
+                                                            <div class="form-group">
+                                                                <label>Alamat Lengkap</label>
+                                                                <textarea rows="1" :class="$v.single.alamat_ketua.$invalid ? 'form-control error' : 'form-control'" style="resize: none;" placeholder="Alamat ketua regu" name="alamat_ketua" v-model="single.alamat_ketua"> </textarea>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>Provinsi</label>
+                                                                <div class="input-group date">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-check fa-fw" v-if="!provinsiSearch"></i><i class="fa fa-hourglass fa-dw" v-if="provinsiSearch" style="font-size: 8pt;"></i>
+                                                                    </span>
+                                                                    <vue-select :name="'provinsi_ketua'" :id="'provinsi_ketua'" :options="provinsi_ketua" :search="true" @option-change="provinsiChange"></vue-select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>Kabupaten / Kota</label>
+                                                                <div class="input-group date">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-check fa-fw" v-if="!kotaSearch"></i><i class="fa fa-hourglass fa-dw" v-if="kotaSearch" style="font-size: 8pt;"></i>
+                                                                    </span>
+                                                                    <vue-select :name="'kabupaten_ketua'" :id="'kabupaten_ketua'" :options="kabupaten_ketua" :search="true" @option-change="kabupatenChange"></vue-select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>Kecamatan</label>
+                                                                <div class="input-group date">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-check fa-fw" v-if="!kecamatanSearch"></i><i class="fa fa-hourglass fa-dw" v-if="kecamatanSearch" style="font-size: 8pt;"></i>
+                                                                    </span>
+                                                                    <vue-select :name="'kecamatan_ketua'" :id="'kecamatan_ketua'" :options="kecamatan_ketua" :search="true" @option-change="kecamatanChange"></vue-select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>Desa / Kelurahan</label>
+                                                                <div class="input-group date">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="fa fa-check fa-fw" v-if="!kelurahanSearch"></i><i class="fa fa-hourglass fa-dw" v-if="kelurahanSearch" style="font-size: 8pt;"></i>
+                                                                    </span>
+                                                                    <vue-select :name="'desa_ketua'" :id="'desa_ketua'" :options="desa_ketua" :search="true"></vue-select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>Kewarganegaraan</label>
+                                                                <vue-select :name="'kewarganegaraan_ketua'" :id="'kewarganegaraan_ketua'" :options="kewarganegaraan_ketua" :search="false"></vue-select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>Jenis Kelamin</label>
+                                                                <vue-select :name="'kelamin_ketua'" :options="kelamin" :search="false"></vue-select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+
+                                            <div class="col-md-12" style="margin-top: 20px;">
+                                                <div class="row">
+                                                    <div class="col-md-10 col-xs-7">
+                                                        <h3 style="color: #1ab394">
+                                                            Anggota Rombongan&nbsp;
+                                                            <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan biodata daftar anggota rombongan"></i>
+                                                        </h3>
+                                                    </div>
+
+                                                    <div class="col-md-2 col-xs-2">
+                                                        <button type="button" class="btn btn-success btn-xs" style="padding: 5px 5px" @click="tambahAnggota">
+                                                            <i class="fa fa-plus"></i> &nbsp;
+                                                            Tambah Anggota
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12" style="background: #eee; margin-top: 10px; padding: 0px;">
+                                                <fieldset style="font-size: 9pt;">
+                                                    <table class="table-mini" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th width="5%">***</th>
+                                                                <th width="30%">Nama</th>
+                                                                <th width="15%">No Telepon</th>
+                                                                <th width="20%">No Identitas</th>
+                                                                <th width="20%">Warga Negara</th>
+                                                                <th width="10%">Jenis Kelamin</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            <tr v-for="(anggota, idx) in anggota">
+                                                                <td class="text-center">
+                                                                    <template v-if="idx > 0">
+                                                                        <i class="fa fa-trash hint" style="color: red" @click="deleteAnggota($event, idx)"></i>
+                                                                    </template>
+
+                                                                    <template v-if="idx == 0">
+                                                                        <i class="fa fa-lock"></i>
+                                                                    </template>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" name="nama_anggota[]" class="form-control" style="width: 100%" :placeholder="'Nama Anggota Ke '+(idx+1)" v-model="anggota.nama"/>
+                                                                </td>
+                                                                <td>
+                                                                    <vue-mask :class="'form-control'" :placeholder="'____-____-_____'" :name="'no_telp_anggota[]'" :mask="'0000-0000-00000'" :css="'text-align: left;'" v-model="anggota.no_telp"></vue-mask>
+
+                                                                </td>
+                                                                <td>
+                                                                    <vue-mask :class="'form-control'" :placeholder="'____.____.____.____'" :name="'no_ktp_anggota[]'" :mask="'0000.0000.0000.0000'" :css="'text-align: left;'" v-model="anggota.no_ktp"></vue-mask>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
+                                                                        <option v-for="kewarganegaraan in kewarganegaraan" :value="kewarganegaraan.id">@{{ kewarganegaraan.text }}</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control hint" name="kelamin_anggota[]" v-model="anggota.kelamin">
+                                                                        <option v-for="kelamin in kelamin" :value="kelamin.id">@{{ kelamin.text }}</option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </fieldset>
+                                            </div>
+
+                                            <div class="col-md-12" style="margin-top: 20px;">
                                                 <h3 style="color: #1ab394">
                                                     Kontak Darurat &nbsp;
                                                     <i class="fa fa-question-circle fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Diisi dengan kontak darurat yang suatu saat dapat dihubungi (keluarga, saudara, teman selain yang mengikuti rombongan pendakian)"></i>
                                                 </h3>
                                             </div>
 
-                                            <div class="col-md-12" style="background: #eee;">
+                                            <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
                                                 <fieldset style="font-size: 9pt;">  
-                                                    <div class="row" v-for="(kontak, idx) in kontak_darurat" style="border-bottom: 1px solid white; padding-top: 10px">
+                                                    <div class="row" v-for="(kontak, idx) in kontak_darurat">
                                                         <div class="col-lg-3">
                                                             <div class="form-group">
                                                                 <label>Nama</label>
@@ -500,17 +716,38 @@
                                                 </fieldset>
                                             </div>
 
-                                            <?php 
-                                               } 
-                                            ?>
+                                            <!-- <div class="col-md-12" style="margin-top: 20px;">
+                                                <div class="form-group" style="margin-top: 20px;">
+                                                    <table>
+                                                        <tr>
+                                                            <td width="2.5%" style="vertical-align: top;">
+                                                                <input type="radio" name="pundak" value="pundak">
+                                                            </td>
+
+                                                            <td style="padding: 0 0 5px 10px;">
+                                                                <label> KHUSUS <span style="font-weight: 400">untuk pendakian</span> GUNUNG PUNDAK <span style="font-weight: 400">centang kolom disamping</span></label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="2.5%" style="vertical-align: top;">
+                                                                <input type="radio" name="pundak" value="lelaku">
+                                                            </td>
+
+                                                            <td style="padding: 0 0 0 10px;">
+                                                                <label> KHUSUS <span style="font-weight: 400">untuk pendakian ke situs purbakala</span> (LELAKU) <span style="font-weight: 400">jalur Tambaksari centang kolom disamping</span></label>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div> -->
 
                                         </div>
 
-                                        <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 0 0 0 ;">
+                                        <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 30px 0px 0px;">
                                             <div class="col-md-10 text-right" style="padding-top: 10px;">
-                                                <small style="font-style: italic;" v-if="onRequest">{{ requestMessage }}</small>
+                                                <small style="font-style: italic;" v-if="onRequest">@{{ requestMessage }}</small>
                                             </div>
-                                            <div class="col-md-2 text-right" >
+                                            <div class="col-md-2 text-right">
                                                 <button type="button" class="btn btn-primary btn-sm" @click="send" :disabled="disabledButton">Kirim Formulir Registrasi</button>
                                             </div>
                                         </div>
@@ -529,8 +766,8 @@
                     </div>
                 </div>
             </div>
-        </div>        
-<?php } ?>
+        </div>
+
         <div class="modal inmodal" id="modal-info" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog" style="margin-bottom: 100px;">
                 <div class="modal-content animated fade-in">
@@ -546,7 +783,7 @@
                                 </div>
 
                                 <div class="col-md-12 text-right" style="padding: 15px 5px 0px 5px; border-top: 1px solid #eee; margin-top: 15px;">
-                                    <a href="<?php echo e(Route('frontend.registrasi')); ?>">
+                                    <a href="{{ Route('frontend.registrasi') }}">
                                         <button class="btn btn-primary">Baik, Saya Mengerti</button>
                                     </a>
                                 </div>
@@ -561,43 +798,43 @@
 
 
     <!-- Mainly scripts -->
-    <script src="<?php echo e(asset('public/frontend/js/jquery-2.1.1.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/bootstrap.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/plugins/metisMenu/jquery.metisMenu.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/plugins/slimscroll/jquery.slimscroll.min.js')); ?>"></script>
+    <script src="{{ asset('public/frontend/js/jquery-2.1.1.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="<?php echo e(asset('public/frontend/js/inspinia.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/plugins/pace/pace.min.js')); ?>"></script>
+    <script src="{{ asset('public/frontend/js/inspinia.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/plugins/pace/pace.min.js') }}"></script>
 
     <!-- Steps -->
-    <script src="<?php echo e(asset('public/frontend/js/plugins/staps/jquery.steps.min.js')); ?>"></script>
+    <script src="{{ asset('public/frontend/js/plugins/staps/jquery.steps.min.js') }}"></script>
 
     <!-- Jquery Validate -->
-    <script src="<?php echo e(asset('public/frontend/js/plugins/validate/jquery.validate.min.js')); ?>"></script>
+    <script src="{{ asset('public/frontend/js/plugins/validate/jquery.validate.min.js') }}"></script>
 
     <!-- Input Mask-->
-    <script src="<?php echo e(asset('public/frontend/js/plugins/jasny/jasny-bootstrap.min.js')); ?>"></script>
+    <script src="{{ asset('public/frontend/js/plugins/jasny/jasny-bootstrap.min.js') }}"></script>
 
     <!-- iCheck -->
-    <script src="<?php echo e(asset('public/frontend/js/plugins/iCheck/icheck.min.js')); ?>"></script>
+    <script src="{{ asset('public/frontend/js/plugins/iCheck/icheck.min.js') }}"></script>
 
-    <script src="<?php echo e(asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/vendors/select2/dist/js/select2.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/vendors/axios/axios.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js')); ?>"></script>
+    <script src="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/axios/axios.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
     
-    <script src="<?php echo e(asset('public/frontend/js/vendors/mask/dist/jquery.mask.js')); ?>"></script>
+    <script src="{{ asset('public/frontend/js/vendors/mask/dist/jquery.mask.js') }}"></script>
 
     <!-- Vue js -->
-    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vue.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/bootstrap-vue.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/portal-vue.umd.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/select/select.component.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/mask/mask.component.js')); ?>"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vue.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/bootstrap-vue.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/portal-vue.umd.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
+    <script src="{{ asset('public/frontend/js/vendors/vue/components/mask/mask.component.js')}}"></script>
 
     <script>
 
@@ -749,7 +986,7 @@
                         tgl_lahir_ketua: '',
                         no_hp_ketua: '',
                         email_ketua: '',
-                        tgl_naik: '<?php echo e(date("d/m/Y")); ?>',
+                        tgl_naik: '{{ date("d/m/Y") }}',
                         tgl_turun: '',
                         alamat_ketua: '',
 
@@ -806,7 +1043,30 @@
                         required,
                     },
 
-                    <?php if (isset($_GET['variable']) && $_GET['variable'] == 'arjuno') { ?>
+                    // nama_kontak_darurat: {
+                    //     required,
+                    // },
+
+                    // no_kontak_darurat: {
+                    //     required,
+                    // },
+
+                    // email_kontak_darurat: {
+                    //     required,
+                    // },
+
+                    // hubungan_kontak_darurat: {
+                    //     required,
+                    // },
+
+                    // nama_anggota: {
+                    //     required,
+                    // },
+
+                    // no_ktp_anggota: {
+                    //     required,
+                    // },
+
                     tenda: {
                         required,
                     },
@@ -846,14 +1106,21 @@
                     jaket: {
                         required,
                     },
-                 <?php } ?>
+
+                    // nama_logistik: {
+                    //     required,
+                    // },
+
+                    // jumlah_logistik: {
+                    //     required,
+                    // },
                 }
             },
 
             mounted: function(){
                 console.log('vue ready');
 
-                axios.get('<?php echo e(Route("frontend.registrasi.resource")); ?>')
+                axios.get('{{ Route("frontend.registrasi.resource") }}')
                         .then((response) => {
                             // console.log(response.data);
 
@@ -932,7 +1199,7 @@
                     // this.kabupatenChange(this.kabupaten_ketua[0].id);
                     this.kotaSearch = this.kecamatanSearch = this.kelurahanSearch = true;
 
-                    axios.get("<?php echo e(Route('frontend.registrasi.resource.byprovinsi')); ?>?id="+e)
+                    axios.get("{{ Route('frontend.registrasi.resource.byprovinsi') }}?id="+e)
                             .then((response) => {
                                 // console.log(response.data)
                                 this.kabupaten_ketua = response.data.kota;
@@ -949,7 +1216,7 @@
 
                 kabupatenChange(e){
                     this.kecamatanSearch = this.kelurahanSearch = true;
-                    axios.get("<?php echo e(Route('frontend.registrasi.resource.bykabupaten')); ?>?id="+e)
+                    axios.get("{{ Route('frontend.registrasi.resource.bykabupaten') }}?id="+e)
                             .then((response) => {
                                 // console.log(response.data)
 
@@ -966,7 +1233,7 @@
 
                 kecamatanChange(e){
                     this.kelurahanSearch = true;
-                    axios.get("<?php echo e(Route('frontend.registrasi.resource.bykecamatan')); ?>?id="+e)
+                    axios.get("{{ Route('frontend.registrasi.resource.bykecamatan') }}?id="+e)
                             .then((response) => {
                                 // console.log(response.data)
                                 
@@ -987,50 +1254,48 @@
 
                     if(!this.$v.$invalid){
 
-                        <?php if (isset($_GET['variable']) && $_GET['variable'] == 'arjuno') { ?>
-                            if(!this.validasiAnggota()){
-                                $.toast({
-                                    text: 'Data nama anggota tidak boleh ada yang kosong..',
-                                    showHideTransition: 'slide',
-                                    icon: 'error',
-                                    position: 'top-right',
-                                    stack: 1
-                                })
+                        if(!this.validasiAnggota()){
+                            $.toast({
+                                text: 'Data nama anggota tidak boleh ada yang kosong..',
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-right',
+                                stack: 1
+                            })
 
-                                return false;
-                            }
+                            return false;
+                        }
 
-                            if(!this.validasiKontak()){
-                                $.toast({
-                                    text: 'Harus ada minimal 1 data kontak darurat yang terisi lengkap..',
-                                    showHideTransition: 'slide',
-                                    icon: 'error',
-                                    position: 'top-right',
-                                    stack: 1
-                                })
+                        if(!this.validasiKontak()){
+                            $.toast({
+                                text: 'Harus ada minimal 1 data kontak darurat yang terisi lengkap..',
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-right',
+                                stack: 1
+                            })
 
-                                return false;
-                            }
+                            return false;
+                        }
 
-                            if(!this.validasiLogistik()){
-                                $.toast({
-                                    text: 'Data logistik yang sudah ditambahkan tidak boleh ada yang kosong..',
-                                    showHideTransition: 'slide',
-                                    icon: 'error',
-                                    position: 'top-right',
-                                    stack: 1
-                                })
+                        if(!this.validasiLogistik()){
+                            $.toast({
+                                text: 'Data logistik yang sudah ditambahkan tidak boleh ada yang kosong..',
+                                showHideTransition: 'slide',
+                                icon: 'error',
+                                position: 'top-right',
+                                stack: 1
+                            })
 
-                                return false;
-                            }
-                        <?php } ?>
+                            return false;
+                        }
 
                         this.disabledButton = true;
                         this.onRequest = true;
 
                         var dataForm = $('#form-data').serialize();
 
-                        axios.post('<?php echo e(Route("frontend.registrasi.save")); ?>', dataForm)
+                        axios.post('{{ Route("frontend.registrasi.save") }}', dataForm)
                                 .then((response) => {
                                     console.log(response.data);
                                     
@@ -1116,10 +1381,10 @@
                         this.single.nama_ketua = '';
                         this.single.no_ktp_ketua = '';
                         this.single.tempat_lahir_ketua = '';
-                        this.single.tgl_lahir_ketua = '<?php echo e(date("d/m/Y")); ?>';
+                        this.single.tgl_lahir_ketua = '{{ date("d/m/Y") }}';
                         this.single.no_hp_ketua = '';
                         this.single.email_ketua = '';
-                        this.single.tgl_naik = '<?php echo e(date("d/m/Y")); ?>';
+                        this.single.tgl_naik = '{{ date("d/m/Y") }}';
                         this.single.tgl_turun = '';
                         this.single.alamat_ketua = '';
 
@@ -1181,9 +1446,16 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $("input[type='button']").click(function(){
-                var radioValue = $("input[name='colorRadio']:checked").val();
-                window.location.href = "<?php echo e(Route('frontend.registrasi.form')); ?>?variable=" + radioValue;
+            $('input[type="radio"]').click(function(){
+                var inputValue = $(this).attr("value");
+                var targetBox = $("." + inputValue);
+                $(".box").not(targetBox).hide();
+                $(targetBox).show();
+            });
+
+            
+            $('.colorRadio:not(:checked)').on('change', function() {
+                window.location.href = "http://www.example.com?variable=" + this.value;
             });
         });
     </script>
@@ -1191,4 +1463,3 @@
 </body>
 
 </html>
-<?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/frontend/registrasi/form.blade.php ENDPATH**/ ?>

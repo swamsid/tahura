@@ -110,7 +110,7 @@
   ?>
   
   <tr>
-    <td style="padding: 5px 3px" class="tg-vlyc" colspan="4">Memasuki Kawasan Tahura R. SOERJO untuk melakukan pendakian ke situs purbakala (LELAKU) mulai tanggal <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_naik))); ?> s/d <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_turun))); ?> selama <?php echo $hari; ?>  hari, dengan ketentuan sebagai berikut :</td>
+    <td style="padding: 5px 3px" class="tg-vlyc" colspan="4">Memasuki Kawasan Tahura R. SOERJO untuk melakukan pendakian ke situs purbakala (Lelaku) mulai tanggal <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_naik))); ?> s/d <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_turun))); ?> selama <?php echo $hari; ?>  hari, dengan ketentuan sebagai berikut :</td>
   </tr>
   
   <tr>
@@ -262,96 +262,6 @@
   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </table>
 
-<h5 style="margin-bottom: 5px">II. NAMA, ALAMAT DAN NOMOR TELEPON YANG DAPAT DIHUBUNGI DALAM KEADAAN DARURAT</h5>
-<table class="ta">
-  <tr>
-    <th class="tg-hgcj" style="width: 20px">No</th>
-    <th class="tg-hgcj" style="width: 280px">Nama</th>
-    <th class="tg-hgcj" style="width: 80px">No. Telepon</th>
-    <th class="tg-hgcj" style="width: 190px">Alamat</th>
-    <th class="tg-hgcj" style="width: 80px">Hubungan</th>
-  </tr>
-  <?php $__currentLoopData = $data->kontak; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $kontak): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-  	<tr>
-	    <td class="tg-0lax"><?php echo e($key+1); ?>. </td>
-	    <td class="tg-0lax"><?php echo e($kontak->kd_nama); ?></td>
-	    <td class="tg-0lax"><?php echo e($kontak->kd_no_telp); ?></td>
-	    <td class="tg-0lax"><?php echo e($kontak->kd_email); ?></td>
-	    <td class="tg-0lax"><?php echo e($kontak->kd_hubungan); ?></td>
-	</tr>
-  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-</table>
-
-<h5 style="margin-bottom: 5px">III. DAFTAR PERLENGKAPAN DAN LOGISTIK YANG DIBAWA</h5>
-<table width="100%">
-	<tr>
-		<td>
-			<table class="ta">
-				<tr>
-				    <th class="tg-hgcj" style="width: 200px">Peralatan Standar</th>
-				    <th class="tg-hgcj" style="width: 100px">Jumlah</th>
-				</tr>
-				<tr>
-					<td class="tg-0lax">Tenda</td>
-					<td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_tenda); ?></td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Sleeping Bag / Kantong Tidur</td>
-				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_sleeping_bag); ?></td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Peralatan Masak</td>
-				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_peralatan_masak); ?></td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Bahan Bakar</td>
-				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_bahan_bakar); ?></td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Ponco / Jas Hujan</td>
-				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_ponco); ?></td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Senter / Alat Penerangan</td>
-				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_senter); ?></td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Obat - Obatan dan P3K</td>
-				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_obat); ?></td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Matras / Alas Tidur</td>
-				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_matras); ?></td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Kantong Sampah</td>
-				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_kantong_sampah); ?></td>
-				</tr>
-				<tr>
-				    <td class="tg-0lax">Jaket</td>
-				    <td class="tg-0lax" style="text-align: center;"><?php echo e($data->peralatan->pr_jaket); ?></td>
-				</tr>		
-			</table>
-		</td>
-
-		<td style="vertical-align: top;">
-			<table class="ta">
-				<tr>
-				    <th class="tg-hgcj" style="width: 200px">Makanan</th>
-				    <th class="tg-hgcj" style="width: 100px">Jumlah</th>
-				</tr>
-					
-				<?php $__currentLoopData = $data->logistik; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $logistik): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-				  	<tr>
-						<td class="tg-0lax"><?php echo e($logistik->lg_nama); ?></td>
-						<td class="tg-0lax"><?php echo e($logistik->lg_jumlah); ?></td>
-					</tr>
-				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-			</table>
-		</td>
-	</tr>
-</table>
-
 <style type="text/css">
 .tb  {border-collapse:collapse;border-spacing:0;}
 .tb td{font-family:Arial, sans-serif;font-size:12px;padding:0;border-style:solid;border-width:0;overflow:hidden;word-break:normal;border-color:black;}
@@ -389,22 +299,14 @@
 	</tr>
 	<tr>
 		<td class="tg-vlyc">1. </td>
-		<td class="tg-vlyc">Pendaki usia kurang dari 17 tahun harus menyerahkan surat ijin dari orangtua/wali</td>
-	</tr>
-	<tr>
-		<td class="tg-vlyc">2. </td>
 		<td class="tg-vlyc">Pendaki wajib melaporkan diri saat naik dan ketika turun di pos pendakian resmi Tahura Raden Soerjo</td>
 	</tr>
 	<tr>
-		<td class="tg-vlyc">3. </td>
+		<td class="tg-vlyc">2. </td>
 		<td class="tg-vlyc">Membawa dan menyerahkan kembali sampah yg di hasilkan ke pos penjagaan</td>
 	</tr>
 	<tr>
-		<td class="tg-vlyc">4. </td>
+		<td class="tg-vlyc">3. </td>
 		<td class="tg-vlyc">Wajib membawa tanda pengenal asli</td>
-	</tr>
-	<tr>
-		<td class="tg-vlyc">5. </td>
-		<td class="tg-vlyc">Wajib membawa surat keterangan kesehatan</td>
 	</tr>
 </table><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/pdf/berkas_lelaku.blade.php ENDPATH**/ ?>

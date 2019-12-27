@@ -1,3 +1,8 @@
+<?php 
+    include 'resources/views/config.php';  
+    $query = mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_id = $_GET[id]");
+    $data = mysqli_fetch_array($query, MYSQLI_ASSOC);
+?>
 
 @extends('backend.main')
 
@@ -60,22 +65,12 @@
         <div class="row">
             <div class="col-lg-12 kotak" style="padding-top: 20px !important">
                 <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5 style="font-size: 18px">Diisi Oleh Ketua Rombongan</h5>
-                        <div class="ibox-tools">
-                            <a class="collapse-link">
-                                <i class="fa fa-chevron-up"></i>
-                            </a>
-                            <a class="close-link">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-                    </div>
                     <div class="ibox-content" id="ibox-content" style="background-color: #ffffff; font-size: 14px">
                         <template v-if="!downloadingResource">
                             <form id="form-data" class="wizard-big" enctype="multipart/form-data" >
                                 <input type="hidden" name="_token" readonly value="{{ csrf_token() }}">
                                 <input type="hidden" name="pd_id" readonly value="{{ isset($_GET['id']) ? $_GET['id'] : 'null' }}">
+                                <input type="hidden" name="tujuan" value="<?php echo $data['keterangan'] ?>">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h3 style="color: #1ab394">
@@ -86,7 +81,6 @@
                                     <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
                                         <fieldset style="font-size: 9pt;">
                                             <div class="row">
-
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label>Nama Ketua</label>
@@ -96,7 +90,7 @@
                                                     <div class="form-group">
                                                         <label>No Identitas (KTP, Kartu Pelajar, Passport)</label>
 
-                                                        <vue-mask :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'____.____.____.____'" :name="'no_ktp_ketua'" :id="'no_ktp_ketua'" :mask="'0000.0000.0000.0000'" :css="'text-align: left;'" v-model="single.no_ktp_ketua"></vue-mask>
+                                                        <vue-mask :class="$v.single.no_ktp_ketua.$invalid ? 'form-control error' : 'form-control'" :placeholder="'______.______.____'" :name="'no_ktp_ketua'" :id="'no_ktp_ketua'" :mask="'000000.000000.0000'" :css="'text-align: left;'" v-model="single.no_ktp_ketua"></vue-mask>
 
                                                     </div>
 
@@ -253,7 +247,7 @@
 
                                                         </td>
                                                         <td>
-                                                            <vue-mask :class="'form-control'" :placeholder="'____.____.____.____'" :name="'no_ktp_anggota[]'" :mask="'0000.0000.0000.0000'" :css="'text-align: left;'" v-model="anggota.no_ktp"></vue-mask>
+                                                            <vue-mask :class="'form-control'" :placeholder="'______.______.____'" :name="'no_ktp_anggota[]'" :mask="'000000.000000.0000'" :css="'text-align: left;'" v-model="anggota.no_ktp"></vue-mask>
                                                         </td>
                                                         <td>
                                                             <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
@@ -271,6 +265,9 @@
                                         </fieldset>
                                     </div>
 
+<?php 
+    if ($data['keterangan'] == ''){
+?>                
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <h3 style="color: #1ab394">
                                             Kontak Darurat &nbsp;
@@ -427,7 +424,8 @@
                                             </table>
                                         </fieldset>
                                     </div>
-
+<?php } ?>
+                                  
                                 </div>
 
                                 <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 0 0 0;">
@@ -700,31 +698,7 @@
                     alamat_ketua: {
                         required,
                     },
-
-                    // nama_kontak_darurat: {
-                    //     required,
-                    // },
-
-                    // no_kontak_darurat: {
-                    //     required,
-                    // },
-
-                    // email_kontak_darurat: {
-                    //     required,
-                    // },
-
-                    // hubungan_kontak_darurat: {
-                    //     required,
-                    // },
-
-                    // nama_anggota: {
-                    //     required,
-                    // },
-
-                    // no_ktp_anggota: {
-                    //     required,
-                    // },
-
+<?php if ($data['keterangan'] == ''){ ?>
                     tenda: {
                         required,
                     },
@@ -764,14 +738,7 @@
                     jaket: {
                         required,
                     },
-
-                    // nama_logistik: {
-                    //     required,
-                    // },
-
-                    // jumlah_logistik: {
-                    //     required,
-                    // },
+<?php } ?>
                 }
             },
 
@@ -840,7 +807,7 @@
                                         this.single.desa_ketua = response.data.data.pd_desa;
                                         this.single.kewarganegaraan_ketua = response.data.data.pd_kewarganegaraan;
                                         this.single.kelamin_ketua = response.data.data.pd_jenis_kelamin;
-
+<?php if ($data['keterangan'] == ''){ ?>
                                         this.single.tenda = response.data.data.peralatan.pr_tenda;
                                         this.single.sleeping_bag = response.data.data.peralatan.pr_sleeping_bag;
                                         this.single.peralatan_masak = response.data.data.peralatan.pr_peralatan_masak;
@@ -851,7 +818,7 @@
                                         this.single.matras = response.data.data.peralatan.pr_matras;
                                         this.single.kantong_sampah = response.data.data.peralatan.pr_kantong_sampah;
                                         this.single.jaket = response.data.data.peralatan.pr_jaket;
-
+<?php } ?>
                                         $('#provinsi_ketua').val(response.data.data.pd_provinsi).trigger('change.select2');
                                         this.provinsiChange(response.data.data.pd_provinsi);
 
@@ -870,6 +837,7 @@
                                             );
                                         });
 
+<?php if ($data['keterangan'] == ''){ ?>
                                         $.each(response.data.data.kontak, function(idx, data){
                                             that.kontak_darurat.push(
                                                 {
@@ -889,6 +857,8 @@
                                                 }
                                             );
                                         });
+<?php } ?>
+
                                     }
 
                                 }).catch((e) => {
@@ -1024,6 +994,7 @@
 
                     if(!this.$v.$invalid){
 
+<?php if ($data['keterangan'] == ''){ ?>
                         if(!this.validasiAnggota()){
                             $.toast({
                                 text: 'Data nama anggota tidak boleh ada yang kosong..',
@@ -1059,7 +1030,7 @@
 
                             return false;
                         }
-
+<?php } ?>
                         this.disabledButton = true;
                         this.onRequest = true;
 
