@@ -91,67 +91,69 @@
                             <template v-if="!downloadingResource">
 
                                 <div class="row" style="padding: 0px 20px;">
-                                	<table width="100%">
+                                	<table width="100%" class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th class="text-center" style="padding: 5px; background: #eee;">Nomor Pendakian</th>
-                                                <th class="text-center" style="padding: 5px; background: #eee;">Tanggal Registrasi</th>
-                                                <th class="text-center" style="padding: 5px; background: #eee;">Status Pendakian</th>
+                                                <th class="text-center" style="padding: 5px;">Kode Registrasi</th>
+                                                <th class="text-center" style="padding: 5px;">Nama Ketua</th>
+                                                <th class="text-center" style="padding: 5px;">Status Pendaki</th>
                                             </tr>
-
+                                        </thead> 
+                                        <tbody style="color: #1ab394;">
                                             <tr>
-                                                <th class="text-center" style="padding: 10px; color: #1ab394; border-left: 0px solid #ddd;"><?php echo e($data->pd_nomor); ?></th>
-                                                <th class="text-center" style="padding: 10px; color: #1ab394; border-left: 1px solid #ddd;"><?php echo e(date('d/m/Y', strtotime($data->pd_tanggal_registrasi))); ?></th>
-                                                <th class="text-center" style="padding: 10px; color: #1ab394; border-left: 1px solid #ddd;"><?php echo e($data->pd_status); ?></th>
+                                                <th class="text-center" style="padding: 10px;"><?php echo e($data->pd_nomor); ?></th>
+                                                <th class="text-center"><?php echo e($data->pd_nama_ketua); ?></th>
+                                                <th class="text-center" style="padding: 10px;"><?php echo e($data->pd_status); ?></th>
                                             </tr>
-                                        </thead>   
+                                        </tbody>  
                                     </table>
                                 </div>
 
-                                <div class="row" style="padding: 0px 20px; border-top: 1px solid #ddd; padding-top: 10px; margin-top: 20px;">
-                                    <div class="col-md-12">
+                                <div class="row" style="padding: 0 20px">
+                                    <!-- <div class="col-md-12">
                                         <h5 style="color: #1ab394">
                                             <i class="fa fa-arrow-right"></i> &nbsp;
                                             Data Utama Pendakian
                                         </h5>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="col-md-12" style="margin-top: 5px;">
-                                        <table class="table table-bordered" style="font-size: 9pt;">
-                                            <thead>
-                                                <tr>
-                                                    <th width="20%" class="text-center">Nomor Pendakian</th>
-                                                    <th width="20%" class="text-center">Nama Ketua</th>
-                                                    <th width="20%" class="text-center">Email</th>
-                                                </tr>
-                                            </thead>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th width="20%" class="text-center">Tanggal Registrasi</th>
+                                                <th width="20%" class="text-center">Tanggal Naik</th>
+                                                <th width="20%" class="text-center">Tanggal Turun</th>
+                                            </tr>
+                                        </thead>
 
-                                            <tbody>
-                                                <tr>
-                                                    <th class="text-center"><?php echo e($data->pd_nomor); ?></th>
-                                                    <th class="text-center"><?php echo e($data->pd_nama_ketua); ?></th>
-                                                    <th class="text-center"><?php echo e($data->pd_email); ?></th>
-                                                </tr>
-                                                <tr>
-                                                    <th class="text-center" colspan="3">
-                                                        <div class="file-box" style="margin: auto; float: none;">
-                                                            <div class="file" style="margin: unset;">
-                                                                <a href="<?php echo e(Route('frontend.cek_pendakian.pdf', 'id='.$data->pd_id)); ?>" target="_blank">
-                                                                    <span class="corner"></span>
-                                                                    <div class="icon">
-                                                                        <i class="fa fa-file-pdf-o" style="color: #0099CC"></i>
-                                                                    </div>
-                                                                    <div class="file-name text-center">
-                                                                        berkas-pendaftaran.pdf
-                                                                    </div>
-                                                                </a>
-                                                            </div>
+                                        <tbody>
+                                            <tr style="color: #1ab394; font-size: 14px">
+                                                <th class="text-center" style="padding: 10px;"><?php echo e(date('d/m/Y', strtotime($data->pd_tanggal_registrasi))); ?></th>
+                                                <th class="text-center"><?php echo e(date('d/m/Y', strtotime($data->pd_tgl_naik))); ?> </th>
+                                                <th class="text-center"><?php echo e(date('d/m/Y', strtotime($data->pd_tgl_turun))); ?></th>
+                                                
+                                            </tr>
+                                                            <?php if($data->pd_status == 'disetujui'): ?>
+                                            <tr>
+                                                <th class="text-center" colspan="4">
+                                                    <div class="file-box" style="margin: 20px auto; float: none;">
+                                                        <div class="file" style="margin: unset;">
+                                                            <a href="<?php echo e(Route('frontend.cek_pendakian.pdf', 'id='.$data->pd_id)); ?>" target="_blank">
+                                                                <span class="corner"></span>
+                                                                <div class="icon">
+                                                                    <i class="fa fa-file-pdf-o" style="color: #0099CC"></i>
+                                                                </div>
+                                                                <div class="file-name text-center">
+                                                                    berkas-pendaftaran.pdf
+                                                                </div>
+                                                            </a>
                                                         </div>
-                                                    </th>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
 
                             </template>

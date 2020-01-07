@@ -131,6 +131,7 @@
                             <div>
                                 <template v-if="!downloadingResource">
                                     <form id="form-data" class="wizard-big" enctype="multipart/form-data" >
+                                        <input type="hidden" name="_token" readonly value="<?php echo e(csrf_token()); ?>">
                                         <?php echo csrf_field(); ?>
                                         <input type="radio" hidden value="<?php echo $_GET['variable'] ?>" checked name="tujuan">
                                         <div class="row">

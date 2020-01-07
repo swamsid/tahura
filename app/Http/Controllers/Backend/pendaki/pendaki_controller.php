@@ -320,7 +320,7 @@ if($request->tujuan == ''){
                 $userkey = "5fjezh"; //userkey lihat di zenziva
                   $passkey = "5fjezh"; // set passkey di zenziva
                   $number  = $data->pd_no_hp;
-                  $message = "Registrasi ".$nomor." telah kami verifikasi. Silahkan cek inbox atau kotak spam anda. Berkas perizinan juga dapat diunduh di menu cek pendakian shorturl.at/degkF";
+                  $message = "Registrasi ".$nomor." telah kami verifikasi. Silahkan cek inbox atau kotak spam anda. Berkas perizinan juga dapat diunduh di menu cek pendakian shorturl.at/afuwO";
                   $url = "https://reguler.zenziva.net/apps/smsapi.php";
                   $data = 'userkey='.$userkey.'&passkey='.$passkey.'&nohp='.$number.'&pesan='.urlencode($message);
 
@@ -377,6 +377,26 @@ if($request->tujuan == ''){
                 $context->update([
                     'pd_acc_by' => Auth::user()->user_id
                 ]);
+                
+                $nomor = $data->pd_nomor;
+                $userkey = "5fjezh"; //userkey lihat di zenziva
+                  $passkey = "5fjezh"; // set passkey di zenziva
+                  $number  = $data->pd_no_hp;
+                  $message = "Mohon maaf registrasi dengan kode pendaftaran ".$nomor." kami tolak karena tidak memenuhi persyaratan (dilarang solo hiking, ada data yang tidak sesuai,dll).";
+                  $url = "https://reguler.zenziva.net/apps/smsapi.php";
+                  $data = 'userkey='.$userkey.'&passkey='.$passkey.'&nohp='.$number.'&pesan='.urlencode($message);
+
+                  $curlHandle = curl_init();
+                  curl_setopt($curlHandle, CURLOPT_URL, $url);
+                  curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $data);
+                  curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+                  curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+                  curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
+                  curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+                  curl_setopt($curlHandle, CURLOPT_TIMEOUT,30);
+                  curl_setopt($curlHandle, CURLOPT_POST, 1);
+                  $results = curl_exec($curlHandle);
+                  curl_close($curlHandle);
             }
 
             DB::commit();

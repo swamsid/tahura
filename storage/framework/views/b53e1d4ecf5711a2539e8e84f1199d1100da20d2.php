@@ -111,9 +111,9 @@
 	                                    </div>
                                     </div>
 
-                                    <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 10px;">
-                                        <div class="col-md-2 col-md-offset-8 text-right">
-                                            <button type="button" class="btn btn-primary btn-sm" @click="send" :disabled="disabledButton">Kirim Formulir Registrasi</button>
+                                    <div class="row" style="padding: 0 20px;">
+                                        <div style="float: right;">
+                                            <button type="button" class="btn btn-primary btn-sm" @click="send" :disabled="disabledButton">Cek Status</button>
                                         </div>
                                     </div>
                                 </form>

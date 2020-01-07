@@ -71,10 +71,10 @@
                                 Pastikan alamat email benar karena konfirmasi pendaftaran pendakian akan dikirim ke alamat email yang anda gunakan ketika mendaftar. Apabila tidak ada pesan pemberitahuan pada kotak masuk gmail harap periksa pada kotak SPAM.
                             </div>
                             <div class="well wells">
-                                Waktu pelayanan administrasi registrasi pendakian pada hari Senin s/d Jumat jam 07.00 s/d 15.30 WIB.
+                                <span style="color: red"> Waktu verifikasi data registrasi dilakukan pada hari Senin s/d Jumat jam 07.00 s/d 15.30 WIB. </span>
                             </div>
                             <div class="well wells">
-                                Waktu pelayanan perizinan pendakian pada setiap pos pendakian 24/7.
+                                Waktu pelayanan perizinan pendakian pada setiap pos pendakian 07.00 - 20.00 WIB.
                             </div>
                             <div class="well wells">
                                 Pendaftaran diberlakukan bagi calon pendaki, baik nusantara maupun mancanegara;

@@ -20,17 +20,17 @@
 
 <?php $__env->startSection('content'); ?>
 
-    <?php if(Auth::user()->posisi == 'kantor'): ?>
+    <?php if(Auth::user()->posisi == 'kantor'): ?> 
         <div class="row border-bottom dashboard-header">
             <div class="col-md-12">
                 <div class="row text-center">
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #FF9800;"></i> &nbsp;
                     <?php
-                        $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' "));
-                        $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' "));
+                        $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' AND pd_pos_pendakian != 5 "));
+                        $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' AND pd_pos_pendakian != 5  "));
                         $tot = $total_anggota+$total;
                     ?>
-                    <span style="font-size: 16px">Total Pendaki Sedang Naik Pada <?php echo date('j F Y').' </span><span style="color:white; background-color:#FF9800; padding:6px 12px; border-radius:5px; line-height:40px">'.$tot?></span>&nbsp;
+                    <span style="font-size: 16px">Total Pendaki Sedang Naik di Gunung Arjuno-Welirang Pada <?php echo date('j F Y').' </span><span style="color:white; background-color:#FF9800; padding:6px 12px; border-radius:5px; line-height:40px">'.$tot?></span>&nbsp;
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #FF9800;"></i>
                 </div>
             </div>
@@ -689,8 +689,8 @@
             <div class="col-sm-12">
                 <div class="row text-center" style="margin-bottom: 20px">
                     <?php
-                        $total_anggota_naik = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian != '' "));
-                        $total_naik = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian != '' "));
+                        $total_anggota_naik = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian != '' AND YEAR(pd_tgl_naik) = YEAR(curdate()) "));
+                        $total_naik = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian != '' AND YEAR(pd_tgl_naik) = YEAR(curdate()) "));
                         $tot_naik = $total_anggota_naik+$total_naik;
                     ?>
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #1ab394;"></i> &nbsp;

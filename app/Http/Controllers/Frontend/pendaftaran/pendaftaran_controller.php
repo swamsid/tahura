@@ -325,7 +325,7 @@ class pendaftaran_controller extends Controller
         if($data){
             return view('frontend.cek_pendakian.result', compact('data'));
         }else{
-            Session::flash('message', 'Kode pendakian yang anda maksud tidak ditemukan');
+            Session::flash('message', 'Kode pendaftaran tidak ditemukan');
             return redirect()->back();
         }
     }

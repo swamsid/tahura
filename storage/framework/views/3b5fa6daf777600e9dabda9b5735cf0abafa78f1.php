@@ -5,8 +5,8 @@
 
 
 <?php $__env->startSection('extra_style'); ?>
-	<!-- Data Tables -->
-	<link href="<?php echo e(asset('public/backend/css/plugins/dataTables/datatables.min.css')); ?>" rel="stylesheet">
+    <!-- Data Tables -->
+    <link href="<?php echo e(asset('public/backend/css/plugins/dataTables/datatables.min.css')); ?>" rel="stylesheet">
     <style type="text/css">
         .table-mini th, .table-mini td{
             border: 1px solid #ccc;
@@ -22,82 +22,46 @@
         .table-mini td{
             padding: 0px;
         }
+        tbody td{
+            text-align: center
+        }
     </style>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-	<div class="wrapper wrapper-content animated fadeInRight minimize">
+    <div class="wrapper wrapper-content animated fadeInRight minimize">
         <div class="row">
             <div class="col-lg-12">
                 <div class="ibox float-e-margins ukuran_minimize">
                     <div class="ibox-title">
                         <h5>Data Pendaftaran Pendakian</h5>
                         <div class="ibox-tools">
-						    
+                            
                         </div>
                     </div>
                     <div class="ibox-content">
                         <div class="table-responsive">
                             <table id="example1" class="table table-striped table-bordered table-hover dataTables-example">
-						        <thead>
-						          <tr>
-						            <th width="20px">No</th>
-						            <th width="115px">Nomor Registrasi</th>
-						            <th>Nama Ketua</th>
-                                    <th>Tanggal Registrasi</th>
-						            <th>Tanggal Naik</th>
-                                    <th>Tanggal Turun</th>
-                                    <th>Status</th>
-						            <th width="60px">Action</th>
-						          </tr>
-						        </thead>
-
-						        <tbody>
-                                    <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <tr>
-                                            <td class="text-center"><?php echo e($key + 1); ?></td>
-                                            <td class="text-center"><?php echo e($data->pd_nomor); ?></td>
-                                            <td class="text-center"><?php echo e($data->pd_nama_ketua); ?></td>
-                                            <td class="text-center"><?php echo e(date('d-m-Y', strtotime($data->pd_tanggal_registrasi))); ?></td>
-                                            <td class="text-center"><?php echo e(date('d-m-Y', strtotime($data->pd_tgl_naik))); ?> <small><b><?php echo e(($data->pd_pos_pendakian) ? '' : '(rencana)'); ?></b></small> </td>
-                                            <td class="text-center"><?php echo e(date('d-m-Y', strtotime($data->pd_tgl_turun))); ?> <small><b><?php echo e(($data->pd_pos_turun) ? '' : '(rencana)'); ?></b></small></td>
-                                            <td class="text-center">
-                                                <?php
-                                                    $class = 'label-info';
-                                                    if($data->pd_status == 'disetujui')
-                                                        $class = 'label-success';
-                                                    else if($data->pd_status == 'ditolak')
-                                                        $class = 'label-danger';
-                                                    else if($data->pd_status == 'sudah naik' || $data->pd_status == 'sudah turun')
-                                                        $class = 'label-warning';
-
-                                                    if ($data->pd_tgl_naik < date("Y-m-d") && $data->pd_status == 'disetujui' ) {
-                                                        echo '<span class="label" style="color:red">EXPIRED</span>';   
-                                                    }
-                                                    else{
-                                                        echo '<span class="label '.$class.'">'.$data->pd_status.'</span>';
-                                                    }
-                                                 ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <center>
-                                                    <a href="<?php echo e(Route('wpadmin.pendaki.detail', 'id='.$data->pd_id)); ?>" class='btn btn-primary btn-xs' data-id="<?php echo e($data->pd_id); ?>" title='Detail'><span class='fa fa-folder-open'></span></a>
-                                                    <a href="<?php echo e(Route('wpadmin.pendaki.edit', 'id='.$data->pd_id)); ?>" class='btn btn-warning btn-xs' data-id="<?php echo e($data->pd_id); ?>" title='Edit'><span class='fa fa-edit'></span></a>
-                                                    <?php if(Auth::user()->posisi == 'kantor'): ?>
-                                                        <a id="<?php echo e('del_'.$data->pd_id); ?>" class='btn btn-danger btn-xs delete' title="Hapus"><span class='fa fa-trash'></span></a>
-                                                    <?php endif; ?>
-                                                </center>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-				              	</tbody>
-					      </table>
+                                <thead>
+                                    <tr>
+                                        <th width="20px">No.</th>
+                                        <th width="80px">No. Registrasi</th>
+                                        <th width="150px">Nama Ketua</th>
+                                        
+                                        <th width="80px">Tgl Registrasi</th>
+                                        <th width="50px">Tgl Naik</th>
+                                        <th width="50px">Tgl Turun</th>
+                                        <th width="50px">Status</th>
+                                        <th width="60px">action</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-    	</div>
-	</div>
+        </div>
+    </div>
 
     <div class="modal inmodal" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-md modal-sm" style="margin-bottom: 100px;">
@@ -113,11 +77,10 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('extra_script'); ?>
-	<!-- Data Tables -->
+    <!-- Data Tables -->
     <script src="<?php echo e(asset('public/backend/js/plugins/dataTables/datatables.min.js')); ?>"></script>
     <script type="text/javascript">
-    	$(document).ready(function(){
-
+        $(document).ready(function(){
             $('.delete').click(function(){
                 var result = confirm("Apakah anda yakin?");
                 if(result){
@@ -157,6 +120,18 @@
             <?php endif; ?>
 
             $('.dataTables-example').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax":{
+                    url :"<?php echo e(url('resources/views/backend/pendaki/employee-grid-data.php')); ?>", // json datasource
+                    type: "post",  // method  , by default get
+                    error: function(){  // error handling
+                        $(".employee-grid-error").html("");
+                        $("#employee-grid").append('<tbody class="employee-grid-error"><tr><th colspan="3">No data found in the server</th></tr></tbody>');
+                        $("#employee-grid_processing").css("display","none");
+                        
+                    }
+                },
 
                 dom: '<"html5buttons"B>lTfgitp',
                 buttons: [

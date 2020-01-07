@@ -90,57 +90,66 @@
 
                         <div id="vertical-timeline" class="vertical-container light-timeline center-orientation">
                             <div class="vertical-timeline-block">
-                                <div class="vertical-timeline-icon navy-bg">
-                                    <i class="fa fa-file-text"></i>
+                                <div class="vertical-timeline-icon lazur-bg">
+                                    <i class="fa fa-arrow-down"></i>
                                 </div>
 
                                 <div class="vertical-timeline-content">
-                                    <h2>PORTAL PENDAFTARAN ONLINE</h2>
+                                    <h2>1. PORTAL PENDAFTARAN ONLINE</h2>
                                     <p>sipenerang.tahuraradensoerjo.or.id</p>
                                 </div>
                             </div>
 
                             <div class="vertical-timeline-block">
-                                <div class="vertical-timeline-icon blue-bg">
-                                    <i class="fa fa-file-text"></i>
+                                <div class="vertical-timeline-icon lazur-bg">
+                                    <i class="fa fa-arrow-down"></i>
                                 </div>
 
                                 <div class="vertical-timeline-content">
-                                    <h2>SOP PENDAKIAN</h2>
+                                    <h2>2. SOP PENDAKIAN</h2>
                                     <p>Cermati SOP dan Peraturan Pendakian sebelum melakukan registrasi.</p>
                                 </div>
                             </div>
 
                             <div class="vertical-timeline-block">
                                 <div class="vertical-timeline-icon lazur-bg">
-                                    <i class="fa fa-file-text"></i>
+                                    <i class="fa fa-arrow-down"></i>
                                 </div>
 
                                 <div class="vertical-timeline-content">
-                                    <h2>PENGISIAN FORM</h2>
+                                    <h2>3. PENGISIAN FORM</h2>
                                     <p>Lengkapi Form Ketua Regu, Kontak Darurat, Anggota, Perlengkapan, Logistik. Setelah submit form, sistem otomatis mengirim bukti registrasi berupa kode pendaftaran ke email pendaftar.</p>
                                 </div>
                             </div>
 
                             <div class="vertical-timeline-block">
-                                <div class="vertical-timeline-icon yellow-bg">
-                                    <i class="fa fa-file-text"></i>
+                                <div class="vertical-timeline-icon lazur-bg">
+                                    <i class="fa fa-arrow-down"></i>
                                 </div>
 
                                 <div class="vertical-timeline-content">
-                                    <h2>CEK STATUS PENDAFTARAN</h2>
-                                    <p>Untuk mengetahui status registrasi dapat dilakukan pada menu cek status pendakian yang terdapat pada pojok kiri atas halaman pendaftaran</p>
+                                    <h2>4. CEK STATUS PENDAFTARAN</h2>
+                                    <p>Setelah melakukan pendaftaran, cek kode pendaftaran melalui email atau halaman website booking online</p>
                                 </div>
                             </div>
 
                             <div class="vertical-timeline-block">
                                 <div class="vertical-timeline-icon lazur-bg">
-                                    <i class="fa fa-file-text"></i>
+                                    <i class="fa fa-arrow-down"></i>
                                 </div>
-
                                 <div class="vertical-timeline-content">
-                                    <h2>CETAK LAMPIRAN</h2>
-                                    <p> Setelah data registrasi anda diverifikasi oleh admin, sistem otomatis mengirim berkas perizinan pendakian melalui email. Berkas registrasi tersebut wajib dicetak dan diserahkan ke petugas pos pendakian.</p>
+                                    <h2>5. VERIFIKASI DATA REGISTRASI</h2>
+                                    <p> Setelah data disetujui oleh admin, ketua kelompok akan menerima sms dan email berisi Berkas Perizinan <span style="color: red"> Verifikasi data registrasi dilakukan pada hari Senin - Jumat, 07.00 - 15.30 WIB.</span> </p>
+                                </div>
+                            </div>
+
+                            <div class="vertical-timeline-block">
+                                <div class="vertical-timeline-icon lazur-bg">
+                                    <i class="fa fa-arrow-down"></i>
+                                </div>
+                                <div class="vertical-timeline-content">
+                                    <h2>6. CETAK LAMPIRAN</h2>
+                                    <p>Cek email atau masukkan kode pendaftaran di menu cek pendakian untuk mengunduh Berkas Perizinan. Berkas tersebut wajib dicetak dan diserahkan ke petugas pos pendakian.</p>
                                 </div>
                             </div>
                         </div>
