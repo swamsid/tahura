@@ -49,7 +49,7 @@
                 <h2 class="modal-title" style="text-align:center; color: #1ab394; font-weight: 600">PEMBERITAHUAN</h2>
             </div>
             <div class="modal-body">
-				<p style="text-align: justify;">Sehubungan dengan terjadinya cuaca yang tidak menentu di kawasan gunung Arjuno Welirang, maka pendakian sewaktu waktu dapat ditutup kembali. Pendaki dihimbau untuk tetap berhati-hati dan tetap waspada.</p>
+				<p style="text-align: justify;">Terhitung mulai tanggal 02/01/2019 kegiatan pendakian Gunung Arjuno-Welirang dan Gunung Pundak ditutup sampai dengan batas waktu yang belum bisa ditentukan.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary"> Lanjut </button>
