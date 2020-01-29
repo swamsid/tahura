@@ -18,10 +18,10 @@
 <col style="width: 150px">
 </colgroup>
   <tr>
-    <th class="tg-lj5e" rowspan="5"><img style="height: 100px" src="<?php echo e(asset('public/backend/img/LogoJawaTimur.png')); ?>"></th>
+    <th class="tg-lj5e" rowspan="5"><img style="height: 100px" src="{{ asset('public/backend/img/LogoJawaTimur.png') }}"></th>
     <th class="tg-puex" colspan="2" style="font-weight: bold">PEMERINTAH PROVINSI JAWA TIMUR</th>
     <th class="tg-lj5e" rowspan="5">
-      <img src="data:image/png;base64, <?php echo e(base64_encode($qrcode)); ?>" width="100">
+      <img src="data:image/png;base64, {{ base64_encode($qrcode) }}" width="100">
     </th>
   </tr>
   <tr>
@@ -43,7 +43,7 @@
     <td style="padding: 10px 0" class="tg-xeyn" colspan="4">SURAT IJIN KHUSUS PENDAKIAN GUNUNG DI KAWASAN TAHURA R. SOERJO</td>
   </tr>
   <tr>
-    <td class="tg-lj5e" colspan="4">Nomor Registrasi : <?php echo e($data->pd_nomor); ?> Tanggal <?php echo e(date('d/m/Y', strtotime($data->pd_tanggal_registrasi))); ?></td>
+    <td class="tg-lj5e" colspan="4">Nomor Registrasi : {{ $data->pd_nomor }} Tanggal {{ date('d/m/Y', strtotime($data->pd_tanggal_registrasi)) }}</td>
   </tr>
   <tr>
     <td style="padding-bottom: 10px" class="tg-lj5e" colspan="4">Nomor Karcis : .......................s/d...........................</td>
@@ -65,32 +65,32 @@
     		<tr>
     			<td class="tg-2c25" width="70px">Nama Lengkap (Ketua) </td>
           <td width="10px">:</td>
-    			<td class="tg-vlyc" style="width: 300px"><?php echo e($data->pd_nama_ketua); ?></td>
+    			<td class="tg-vlyc" style="width: 300px">{{ $data->pd_nama_ketua }}</td>
         </tr>
         <tr>
 			    <td class="tg-2c25">Nomor Identitas </td>
           <td>:</td>
-			    <td class="tg-vlyc"><?php echo e($data->pd_no_ktp); ?></td>
+			    <td class="tg-vlyc">{{ $data->pd_no_ktp }}</td>
     		</tr>
     		<tr>
 			    <td class="tg-2c25">Tempat Tanggal Lahir </td>
           <td>:</td>
-			    <td class="tg-vlyc"><?php echo e($data->pd_tempat_lahir); ?>, <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_lahir))); ?></td>
+			    <td class="tg-vlyc">{{ $data->pd_tempat_lahir }}, {{ date('d/m/Y', strtotime($data->pd_tgl_lahir)) }}</td>
         </tr>
         <tr>
 			    <td class="tg-2c25">Kebangsaan </td>
           <td>:</td>
-			    <td class="tg-vlyc" style="padding-right: 20px;"><?php echo e($data->pd_kewarganegaraan); ?></td>
+			    <td class="tg-vlyc" style="padding-right: 20px;">{{ $data->pd_kewarganegaraan }}</td>
 			  </tr>
 			  <tr>
 			    <td class="tg-2c25">Alamat Lengkap </td>
           <td>:</td>
-			    <td class="tg-vlyc"><?php echo e($data->pd_alamat); ?>, <?php echo e($data->kelurahan); ?>, <?php echo e($data->kecamatan); ?>, <?php echo e($data->kabupaten); ?>, <?php echo e($data->provinsi); ?> </td>
+			    <td class="tg-vlyc">{{ $data->pd_alamat }}, {{ $data->kelurahan }}, {{ $data->kecamatan }}, {{ $data->kabupaten }}, {{ $data->provinsi }} </td>
         </tr>
         <tr>
 			    <td class="tg-2c25">Personel (beserta ketua)  </td>
           <td>:</td>
-			    <td class="tg-vlyc"><?php echo e(count($data->anggota) + 1); ?> Orang</td>
+			    <td class="tg-vlyc">{{ count($data->anggota) + 1 }} Orang</td>
 			  </tr>
     	</table>
 	</td>
@@ -110,7 +110,7 @@
   ?>
   
   <tr>
-    <td style="padding: 5px 3px" class="tg-vlyc" colspan="4">Memasuki Kawasan Tahura R. SOERJO untuk melakukan pendakian ke situs purbakala <b>(Lelaku)</b> mulai tanggal <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_naik))); ?> s/d <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_turun))); ?> selama <?php echo $hari; ?>  hari, dengan ketentuan sebagai berikut :</td>
+    <td style="padding: 5px 3px" class="tg-vlyc" colspan="4">Memasuki Kawasan Tahura R. SOERJO untuk melakukan pendakian Watu Jengger mulai tanggal {{ date('d/m/Y', strtotime($data->pd_tgl_naik)) }} s/d {{ date('d/m/Y', strtotime($data->pd_tgl_turun)) }} selama <?php echo $hari; ?>  hari, dengan ketentuan sebagai berikut :</td>
   </tr>
   
   <tr>
@@ -218,7 +218,7 @@
 	<tr>
 		<td class="tg-2c25">No. Registrasi</td>
 		<td class="tg-2c25">:</td>
-		<td class="tg-2c25"><?php echo e($data->pd_nomor); ?></td>
+		<td class="tg-2c25">{{ $data->pd_nomor }}</td>
 	</tr>
 </table>
 
@@ -241,26 +241,28 @@
   </tr>
   <tr>
     <td class="tg-0lax">1.</td>
-    <td class="tg-0lax"><?php echo e($data->pd_nama_ketua); ?></td>
-    <td class="tg-0lax"><?php echo e($data->pd_no_ktp); ?></td>
-    <td class="tg-0lax"><?php echo e($data->pd_no_hp); ?></td>
-    <td class="tg-0lax" style="text-align: center;"><?php echo e(($data->pd_kewarganegaraan == 'WNI') ? 'WNI' : 'WNA'); ?></td>
-    <td class="tg-0lax"><?php echo e(($data->pd_jenis_kelamin == 'L') ? 'Laki-laki' : 'Perempuan'); ?></td>
+    <td class="tg-0lax">{{ $data->pd_nama_ketua }}</td>
+    <td class="tg-0lax">{{ $data->pd_no_ktp }}</td>
+    <td class="tg-0lax">{{ $data->pd_no_hp }}</td>
+    <td class="tg-0lax" style="text-align: center;">{{ ($data->pd_kewarganegaraan == 'WNI') ? 'WNI' : 'WNA' }}</td>
+    <td class="tg-0lax">{{ ($data->pd_jenis_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
   </tr>
 
   <?php $no = 2; ?>
-  <?php $__currentLoopData = $data->anggota; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $anggota): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+  @foreach($data->anggota as $key => $anggota)
   	<tr>
-	    <td class="tg-0lax"><?php echo e($no); ?>. </td>
-	    <td class="tg-0lax"><?php echo e($anggota->ap_nama); ?></td>
-      <td class="tg-0lax"><?php echo e($anggota->ap_no_ktp); ?></td>
-	    <td class="tg-0lax"><?php echo e($anggota->ap_no_telp); ?></td>
-      <td class="tg-0lax" style="text-align: center;"><?php echo e(($anggota->ap_kewarganegaraan == 'WNI') ? 'WNI' : 'WNA'); ?></td>
-	    <td class="tg-0lax"><?php echo e(($anggota->ap_kelamin == 'L') ? 'Laki-laki' : 'Perempuan'); ?></td>
+	    <td class="tg-0lax">{{ $no }}. </td>
+	    <td class="tg-0lax">{{ $anggota->ap_nama }}</td>
+      <td class="tg-0lax">{{ $anggota->ap_no_ktp }}</td>
+	    <td class="tg-0lax">{{ $anggota->ap_no_telp }}</td>
+      <td class="tg-0lax" style="text-align: center;">{{ ($anggota->ap_kewarganegaraan == 'WNI') ? 'WNI' : 'WNA' }}</td>
+	    <td class="tg-0lax">{{ ($anggota->ap_kelamin == 'L') ? 'Laki-laki' : 'Perempuan' }}</td>
   	</tr>
   	<?php $no++; ?>
-  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+  @endforeach
 </table>
+
+
 
 <style type="text/css">
 .tb  {border-collapse:collapse;border-spacing:0;}
@@ -277,7 +279,7 @@
 </colgroup>
   <tr>
     <th class="tg-hgcj">Telah dicek oleh :</th>
-    <th class="tg-hgcj">Tanggal <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_naik))); ?></th>
+    <th class="tg-hgcj">Tanggal {{ date('d/m/Y', strtotime($data->pd_tgl_naik))  }}</th>
   </tr>
   <tr>
     <td class="tg-baqh" style="padding-bottom: 60px">Petugas Pos Pendakian</td>
@@ -309,4 +311,4 @@
 		<td class="tg-vlyc">3. </td>
 		<td class="tg-vlyc">Wajib membawa tanda pengenal asli</td>
 	</tr>
-</table><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/pdf/berkas_lelaku.blade.php ENDPATH**/ ?>
+</table>

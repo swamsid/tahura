@@ -1,7 +1,11 @@
 <?php 
     include 'resources/views/config.php';  
-    $query = mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_id = $_GET[id]");
-    $data = mysqli_fetch_array($query, MYSQLI_ASSOC);
+    $query          = mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_id = $_GET[id]");
+    $data           = mysqli_fetch_array($query, MYSQLI_ASSOC);
+    $queryAnggota   = mysqli_query($con, "SELECT * FROM tb_anggota_pendakian WHERE ap_pendakian = $_GET[id]");
+    $dataAnggota    = mysqli_num_rows($queryAnggota);
+    $queryKontak   = mysqli_query($con, "SELECT * FROM tb_kontak_darurat WHERE kd_pendakian = $_GET[id]");
+    $dataKontak    = mysqli_num_rows($queryKontak);
 ?>
 
 
@@ -202,7 +206,9 @@
                                             </div>
                                         </fieldset>
                                     </div>
-
+<?php 
+    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok' || $data['keterangan'] == 'lelaku' || $dataAnggota > 0 ){
+?>                
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <div class="row">
                                             <div class="col-md-10">
@@ -265,8 +271,8 @@
                                         </fieldset>
                                     </div>
 
-<?php 
-    if ($data['keterangan'] == ''){
+<?php }
+    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok' || $data['keterangan'] == 'lelaku' || $dataKontak > 0 ){
 ?>                
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <h3 style="color: #1ab394">
@@ -304,7 +310,9 @@
                                             </div>
                                         </fieldset>
                                     </div>
-
+<?php }
+    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){
+?>
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <div class="row">
                                             <div class="col-md-10">
@@ -698,7 +706,7 @@
                     alamat_ketua: {
                         required,
                     },
-<?php if ($data['keterangan'] == ''){ ?>
+<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' ){ ?>
                     tenda: {
                         required,
                     },
@@ -807,7 +815,7 @@
                                         this.single.desa_ketua = response.data.data.pd_desa;
                                         this.single.kewarganegaraan_ketua = response.data.data.pd_kewarganegaraan;
                                         this.single.kelamin_ketua = response.data.data.pd_jenis_kelamin;
-<?php if ($data['keterangan'] == ''){ ?>
+<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){ ?>
                                         this.single.tenda = response.data.data.peralatan.pr_tenda;
                                         this.single.sleeping_bag = response.data.data.peralatan.pr_sleeping_bag;
                                         this.single.peralatan_masak = response.data.data.peralatan.pr_peralatan_masak;
@@ -837,7 +845,7 @@
                                             );
                                         });
 
-<?php if ($data['keterangan'] == ''){ ?>
+<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok' || $data['keterangan'] == 'lelaku'){ ?>
                                         $.each(response.data.data.kontak, function(idx, data){
                                             that.kontak_darurat.push(
                                                 {
@@ -994,7 +1002,7 @@
 
                     if(!this.$v.$invalid){
 
-<?php if ($data['keterangan'] == ''){ ?>
+<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok'){ ?>
                         if(!this.validasiAnggota()){
                             $.toast({
                                 text: 'Data nama anggota tidak boleh ada yang kosong..',
@@ -1018,7 +1026,7 @@
 
                             return false;
                         }
-
+<?php } if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){ ?>
                         if(!this.validasiLogistik()){
                             $.toast({
                                 text: 'Data logistik yang sudah ditambahkan tidak boleh ada yang kosong..',

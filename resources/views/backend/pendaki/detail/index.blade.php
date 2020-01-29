@@ -130,7 +130,7 @@
                                    @endforeach
                                 </table>
                             </div>
-@if($data->keterangan == '' )
+@if($data->keterangan == '' || $data->keterangan == 'arjuno' || $data->keterangan == 'tiktok' || $data->keterangan == 'lelaku')
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
                                 <strong>Informasi Kontak Darurat</strong>
@@ -155,7 +155,8 @@
                                    @endforeach
                                 </table>
                             </div>
-
+@endif
+@if($data->keterangan == '' || $data->keterangan == 'arjuno')
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
                                 <strong>Informasi Perlengkapan</strong>

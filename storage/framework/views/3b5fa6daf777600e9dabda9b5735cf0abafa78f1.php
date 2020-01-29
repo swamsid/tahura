@@ -35,9 +35,6 @@
                 <div class="ibox float-e-margins ukuran_minimize">
                     <div class="ibox-title">
                         <h5>Data Pendaftaran Pendakian</h5>
-                        <div class="ibox-tools">
-                            
-                        </div>
                     </div>
                     <div class="ibox-content">
                         <div class="table-responsive">

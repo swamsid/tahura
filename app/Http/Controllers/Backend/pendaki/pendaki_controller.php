@@ -108,6 +108,7 @@ class pendaki_controller extends Controller
                 'pd_jenis_kelamin'      => $request->kelamin_ketua,
             ]);
 
+if($request->nama_anggota != '' ){
             DB::table('tb_anggota_pendakian')->where('ap_pendakian', $request->pd_id)->delete();
 
             $num = 1;
@@ -132,13 +133,13 @@ class pendaki_controller extends Controller
                     $num++;
                 }
             }
-
-if($request->tujuan == ''){
+}
+if($request->nama_kontak_darurat != ''){
+    
             DB::table('tb_kontak_darurat')->where('kd_pendakian', $request->pd_id)->delete();
 
             $num = 1;
             foreach($request->nama_kontak_darurat as $key => $kontak){
-
                 $noTelp     = $request->no_kontak_darurat[$key];
                 $alamat     = $request->alamat_kontak_darurat[$key];
                 $hubungan   = $request->hubungan_kontak_darurat[$key];
@@ -156,7 +157,9 @@ if($request->tujuan == ''){
                     $num++;
                 }
             }
-
+    
+}
+if($request->tujuan == '' || $request->tujuan == 'arjuno' ){
             DB::table('tb_logistik')->where('lg_pendakian', $request->pd_id)->delete();
 
             $num = 1;
@@ -303,7 +306,12 @@ if($request->tujuan == ''){
                             ->merge('/public/backend/img/LogoJawaTimur.png', .3)
                             ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
 
-                $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
+                if ($data->keterangan == '' || $data->keterangan == 'arjuno') {
+                    $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
+                }
+                elseif ($data->keterangan == 'tiktok') {
+                    $pdf = PDF::loadView('backend.pdf.berkas_tiktok', compact('data', 'qrcode'))->setPAPER('a4');
+                }
 
                 Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
@@ -446,6 +454,12 @@ if($request->tujuan == ''){
             }
             elseif($data->keterangan == 'lelaku'){
                 $pdf = PDF::loadView('backend.pdf.berkas_lelaku', compact('data', 'qrcode'))->setPAPER('a4');
+            }
+            elseif($data->keterangan == 'jengger'){
+                $pdf = PDF::loadView('backend.pdf.berkas_jengger', compact('data', 'qrcode'))->setPAPER('a4');
+            }
+            elseif($data->keterangan == 'tiktok'){
+                $pdf = PDF::loadView('backend.pdf.berkas_tiktok', compact('data', 'qrcode'))->setPAPER('a4');
             }
             else{
                 $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');

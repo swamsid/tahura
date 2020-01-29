@@ -110,7 +110,7 @@
   ?>
   
   <tr>
-    <td style="padding: 5px 3px" class="tg-vlyc" colspan="4">Memasuki Kawasan Tahura R. SOERJO untuk melakukan pendakian ke situs purbakala <b>(Lelaku)</b> mulai tanggal <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_naik))); ?> s/d <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_turun))); ?> selama <?php echo $hari; ?>  hari, dengan ketentuan sebagai berikut :</td>
+    <td style="padding: 5px 3px" class="tg-vlyc" colspan="4">Memasuki Kawasan Tahura R. SOERJO untuk melakukan pendakian Watu Jengger mulai tanggal <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_naik))); ?> s/d <?php echo e(date('d/m/Y', strtotime($data->pd_tgl_turun))); ?> selama <?php echo $hari; ?>  hari, dengan ketentuan sebagai berikut :</td>
   </tr>
   
   <tr>
@@ -262,6 +262,8 @@
   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </table>
 
+
+
 <style type="text/css">
 .tb  {border-collapse:collapse;border-spacing:0;}
 .tb td{font-family:Arial, sans-serif;font-size:12px;padding:0;border-style:solid;border-width:0;overflow:hidden;word-break:normal;border-color:black;}
@@ -309,4 +311,4 @@
 		<td class="tg-vlyc">3. </td>
 		<td class="tg-vlyc">Wajib membawa tanda pengenal asli</td>
 	</tr>
-</table><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/pdf/berkas_lelaku.blade.php ENDPATH**/ ?>
+</table><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/backend/pdf/berkas_jengger.blade.php ENDPATH**/ ?>

@@ -1,7 +1,7 @@
 <?php
 /* Database connection start */
-// $servername = "localhost"; $username = "root"; $password = ""; $dbname = "dishut";
-$servername = "tahuraradensoerjo.or.id"; $username = "tahurara_tahura"; $password = "amiruzg627408"; $dbname = "tahurara_tahura";
+$servername = "localhost"; $username = "root"; $password = ""; $dbname = "dishut";
+// $servername = "tahuraradensoerjo.or.id"; $username = "tahurara_tahura"; $password = "amiruzg627408"; $dbname = "tahurara_tahura";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
 
@@ -18,7 +18,7 @@ $columns = array(
 	0 =>'pd_tanggal_registrasi',
 	1 =>'pd_nomor',
 	2 =>'pd_nama_ketua',
-	3 =>'pd_nomor',
+	3 =>'ap_nama',
 	4 =>'pd_nomor',
 	5 =>'pd_tgl_naik',
 	6 =>'pd_tgl_turun',
@@ -34,12 +34,13 @@ $totalData = mysqli_num_rows($query);
 $totalFiltered = $totalData;  // when there is no search parameter then total number rows = total number filtered rows.
 
 
-$sql = "SELECT * ";
-$sql.=" FROM tb_pendakian WHERE 1=1";
+$sql = "SELECT DISTINCT pd_pos_pendakian, pd_pos_turun, pd_id, pd_nama_ketua, pd_nomor, pd_status, pd_tanggal_registrasi, pd_tgl_naik, pd_tgl_turun";
+$sql.=" FROM tb_pendakian a LEFT JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE 1=1";
 if( !empty($requestData['search']['value']) ) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
 	$sql.=" AND ( pd_nomor LIKE '%".$requestData['search']['value']."%' ";      
 	$sql.=" OR  pd_nama_ketua LIKE '%".$requestData['search']['value']."%'";
-	
+	$sql.=" OR  pd_status LIKE '%".$requestData['search']['value']."%'";
+	$sql.=" OR  ap_nama LIKE '%".$requestData['search']['value']."%'";
 	$sql.=" OR  pd_tanggal_registrasi LIKE '%".$requestData['search']['value']."%'";
 	$sql.=" OR  pd_tgl_naik LIKE '%".$requestData['search']['value']."%'";
 	$sql.=" OR  pd_tgl_turun LIKE '%".$requestData['search']['value']."%')";
@@ -65,7 +66,7 @@ while( $row=mysqli_fetch_array($query) ) {  // preparing an array
     else if($row['pd_status'] == 'sudah naik' || $row['pd_status'] == 'sudah turun')
         $class = 'label-warning';
 
-    if ($row['pd_tgl_naik'] < date("Y-m-d") && $row['pd_status'] == 'disetujui' ) {
+    if ($row['pd_tgl_naik'] < date("Y-m-d") ) {
         $status = '<span class="label" style="color:red">EXPIRED</span>';   
     }
     else{
@@ -74,19 +75,20 @@ while( $row=mysqli_fetch_array($query) ) {  // preparing an array
 
     $detil  = "<a href='detail?id=$row[pd_id]' class='btn btn-primary btn-xs' style='margin-right:5px' data-id='' title='Detail'><span class='fa fa-folder-open'></span></a>";
     $edit   = "<a href='data-pendaftar/edit?id=$row[pd_id]' class='btn btn-warning btn-xs' style='margin-right:5px' data-id='' title='Edit'><span class='fa fa-edit'></span></a>";
-    $delete = "<a href='javascript:void(0)' id='del_$row[pd_id]' class='btn btn-danger btn-xs delete' title='Hapus'><span class='fa fa-trash'></span></a>";
-    $query2 = mysqli_query($conn, 'SELECT * FROM tb_anggota_pendakian WHERE ap_pendakian = 42');
-	
-	$anggota = '<ol></ol>';
+    $delete = "<a id='del_$row[pd_id]' class='btn btn-danger btn-xs delete' title='Hapus'><span class='fa fa-trash'></span></a>";
+    $query2 = mysqli_query($conn, 'SELECT ap_nama FROM tb_anggota_pendakian WHERE ap_pendakian = 42');
+    while ($result = mysqli_fetch_array($query2)) {
+		$anggota = '<ol><li>'.$result['ap_nama'].'</li></ol>';
+    }
 	
 	$nestedData=array(); 
 	$nestedData[] = $no;
 	$nestedData[] = $row["pd_nomor"];
 	$nestedData[] = $row["pd_nama_ketua"];
 	
-	$nestedData[] = date('d-m-Y', strtotime($row["pd_tanggal_registrasi"]));
-	$nestedData[] = date('d-m-Y', strtotime($row["pd_tgl_naik"]))."<small><b> ". $naik ."</b></small>";
-	$nestedData[] = date('d-m-Y', strtotime($row["pd_tgl_turun"]))."<small><b> ". $turun ."</b></small>";
+	$nestedData[] = date('d/m/Y', strtotime($row["pd_tanggal_registrasi"]));
+	$nestedData[] = date('d/m/Y', strtotime($row["pd_tgl_naik"]))."<small><b> ". $naik ."</b></small>";
+	$nestedData[] = date('d/m/Y', strtotime($row["pd_tgl_turun"]))."<small><b> ". $turun ."</b></small>";
 	$nestedData[] = $status;
 	$nestedData[] = $detil.$edit;
 	$data[] = $nestedData;

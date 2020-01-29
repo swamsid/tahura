@@ -128,7 +128,7 @@
                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </table>
                             </div>
-<?php if($data->keterangan == '' ): ?>
+<?php if($data->keterangan == '' || $data->keterangan == 'arjuno' || $data->keterangan == 'tiktok' || $data->keterangan == 'lelaku'): ?>
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
                                 <strong>Informasi Kontak Darurat</strong>
@@ -153,7 +153,8 @@
                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </table>
                             </div>
-
+<?php endif; ?>
+<?php if($data->keterangan == '' || $data->keterangan == 'arjuno'): ?>
                             <div class="col-md-12" style="color: #1ab394; margin-top: 20px;">
                                 <i class="fa fa-arrow-right"></i> &nbsp;
                                 <strong>Informasi Perlengkapan</strong>

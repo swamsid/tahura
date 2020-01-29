@@ -110,7 +110,7 @@
   ?>
   
   <tr>
-    <td style="padding: 5px 3px" class="tg-vlyc" colspan="4">Memasuki Kawasan Tahura R. SOERJO untuk melakukan pendakian ke situs purbakala (Lelaku) mulai tanggal {{ date('d/m/Y', strtotime($data->pd_tgl_naik)) }} s/d {{ date('d/m/Y', strtotime($data->pd_tgl_turun)) }} selama <?php echo $hari; ?>  hari, dengan ketentuan sebagai berikut :</td>
+    <td style="padding: 5px 3px" class="tg-vlyc" colspan="4">Memasuki Kawasan Tahura R. SOERJO untuk melakukan pendakian ke situs purbakala <b>(Lelaku)</b> mulai tanggal {{ date('d/m/Y', strtotime($data->pd_tgl_naik)) }} s/d {{ date('d/m/Y', strtotime($data->pd_tgl_turun)) }} selama <?php echo $hari; ?>  hari, dengan ketentuan sebagai berikut :</td>
   </tr>
   
   <tr>
