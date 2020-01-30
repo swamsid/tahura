@@ -8289,10 +8289,10 @@ body.md-skin {
   .kotak{
     padding: 0 !important;
   }
-  .scroll{
+  /*.scroll{
     height: 550px !important; 
     overflow: auto; 
-  }
+  }*/
   .ibox{
     margin-bottom: 20px
   }
@@ -8308,10 +8308,10 @@ body.md-skin {
 }
 
 @media (max-height:860px ){
-  .scroll{
+  /*.scroll{
     height: 580px !important; 
     overflow: auto; 
-  }
+  }*/
 }
 
 .wizard > .steps > ul > li {
@@ -8377,7 +8377,7 @@ body.md-skin {
 }
 
 .scroll{
-    height: 480px; overflow: auto; margin-top: 20px
+    height: 80vh; overflow: auto; margin-top: 20px
 }
 
 .tabel tr td:nth-child(2){

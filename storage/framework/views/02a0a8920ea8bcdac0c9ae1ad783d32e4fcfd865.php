@@ -9,24 +9,24 @@
 
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
     <title>Registrasi Pendakian Gunung Arjuno - Welirang </title>
 
-    <link href="{{ asset('public/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/bootstrap-vue.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/styleregist.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/jasny/jasny-bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css') }}">
+    <link href="<?php echo e(asset('public/frontend/css/bootstrap.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/bootstrap-vue.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/iCheck/custom.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/steps/jquery.steps.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/animate.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/styleregist.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/jasny/jasny-bootstrap.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/iCheck/custom.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')); ?>" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/select2/dist/css/select2.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/select2/dist/css/select2-bootstrap.min.css')); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.css')); ?>">
 
 
     <style type="text/css">
@@ -95,7 +95,7 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header" style="padding: 15px 10px 0px 15px;">
-                    <a href="{{ Route('frontend.cek_pendakian') }}" style="color: #aaa; font-size: 10pt;">Cek status pendakian anda disini</a>
+                    <a href="<?php echo e(Route('frontend.cek_pendakian')); ?>" style="color: #aaa; font-size: 10pt;">Cek status pendakian anda disini</a>
                 </div>
             </nav>
         </div>
@@ -107,10 +107,10 @@
                         <a href="../index.php">Home</a>
                     </li>
                     <li>
-                        <a href="{{ Route('frontend.registrasi') }}">Tata Cara Pendaftaran</a>
+                        <a href="<?php echo e(Route('frontend.registrasi')); ?>">Tata Cara Pendaftaran</a>
                     </li>
                     <li>
-                        <a href="{{ Route('frontend.registrasi.sop') }}">SOP Pendakian</a>
+                        <a href="<?php echo e(Route('frontend.registrasi.sop')); ?>">SOP Pendakian</a>
                     </li>
                     <li class="active">
                         <strong>Registrasi Pendakian</strong>
@@ -144,8 +144,8 @@
                             <div>
                                 <template v-if="!downloadingResource">
                                     <form id="form-data" class="wizard-big" enctype="multipart/form-data" >
-                                        <input type="hidden" name="_token" readonly value="{{ csrf_token() }}">
-                                        @csrf
+                                        <input type="hidden" name="_token" readonly value="<?php echo e(csrf_token()); ?>">
+                                        <?php echo csrf_field(); ?>
                                         <input type="radio" hidden value="<?php echo $_GET['variable'] ?>" checked name="tujuan">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -336,12 +336,12 @@
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control hint" name="kewarganegaraan_anggota[]" v-model="anggota.kewarganegaraan">
-                                                                        <option v-for="kewarganegaraan in kewarganegaraan" :value="kewarganegaraan.id">@{{ kewarganegaraan.text }}</option>
+                                                                        <option v-for="kewarganegaraan in kewarganegaraan" :value="kewarganegaraan.id">{{ kewarganegaraan.text }}</option>
                                                                     </select>
                                                                 </td>
                                                                 <td>
                                                                     <select class="form-control hint" name="kelamin_anggota[]" v-model="anggota.kelamin">
-                                                                        <option v-for="kelamin in kelamin" :value="kelamin.id">@{{ kelamin.text }}</option>
+                                                                        <option v-for="kelamin in kelamin" :value="kelamin.id">{{ kelamin.text }}</option>
                                                                     </select>
                                                                 </td>
                                                             </tr>
@@ -522,7 +522,7 @@
 
                                         <div class="row" style="margin-top: 20px; border-top: 1px solid #ddd; padding: 20px 0 0 0 ;">
                                             <div class="col-md-10 text-right" style="padding-top: 10px;">
-                                                <small style="font-style: italic;" v-if="onRequest">@{{ requestMessage }}</small>
+                                                <small style="font-style: italic;" v-if="onRequest">{{ requestMessage }}</small>
                                             </div>
                                             <div class="col-md-2 text-right" >
                                                 <button type="button" class="btn btn-primary btn-sm" @click="send" :disabled="disabledButton">Kirim Formulir Registrasi</button>
@@ -560,7 +560,7 @@
                                 </div>
 
                                 <div class="col-md-12 text-right" style="padding: 15px 5px 0px 5px; border-top: 1px solid #eee; margin-top: 15px;">
-                                    <a href="{{ Route('frontend.registrasi') }}">
+                                    <a href="<?php echo e(Route('frontend.registrasi')); ?>">
                                         <button class="btn btn-primary">Baik, Saya Mengerti</button>
                                     </a>
                                 </div>
@@ -575,43 +575,43 @@
 
 
     <!-- Mainly scripts -->
-    <script src="{{ asset('public/frontend/js/jquery-2.1.1.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/jquery-2.1.1.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/bootstrap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/metisMenu/jquery.metisMenu.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/slimscroll/jquery.slimscroll.min.js')); ?>"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="{{ asset('public/frontend/js/inspinia.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/plugins/pace/pace.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/inspinia.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/pace/pace.min.js')); ?>"></script>
 
     <!-- Steps -->
-    <script src="{{ asset('public/frontend/js/plugins/staps/jquery.steps.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/staps/jquery.steps.min.js')); ?>"></script>
 
     <!-- Jquery Validate -->
-    <script src="{{ asset('public/frontend/js/plugins/validate/jquery.validate.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/validate/jquery.validate.min.js')); ?>"></script>
 
     <!-- Input Mask-->
-    <script src="{{ asset('public/frontend/js/plugins/jasny/jasny-bootstrap.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/jasny/jasny-bootstrap.min.js')); ?>"></script>
 
     <!-- iCheck -->
-    <script src="{{ asset('public/frontend/js/plugins/iCheck/icheck.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/iCheck/icheck.min.js')); ?>"></script>
 
-    <script src="{{ asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/select2/dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/axios/axios.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/datepicker/dist/datepicker.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/select2/dist/js/select2.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/axios/axios.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/toast/dist/jquery.toast.min.js')); ?>"></script>
     
-    <script src="{{ asset('public/frontend/js/vendors/mask/dist/jquery.mask.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/mask/dist/jquery.mask.js')); ?>"></script>
 
     <!-- Vue js -->
-    <script src="{{ asset('public/frontend/js/vendors/vue/vue.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/bootstrap-vue.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/portal-vue.umd.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/select/select.component.js')}}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/vendors/vue/components/mask/mask.component.js')}}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vue.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/bootstrap-vue.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/portal-vue.umd.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/datepicker/datepicker.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/select/select.component.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/vuelidate.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/vuelidate/dist/validators.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/vendors/vue/components/mask/mask.component.js')); ?>"></script>
 
     <script>
 
@@ -763,7 +763,7 @@
                         tgl_lahir_ketua: '',
                         no_hp_ketua: '',
                         email_ketua: '',
-                        tgl_naik: '{{ date("d/m/Y") }}',
+                        tgl_naik: '<?php echo e(date("d/m/Y")); ?>',
                         tgl_turun: '',
                         alamat_ketua: '',
 
@@ -867,7 +867,7 @@
             mounted: function(){
                 console.log('vue ready');
 
-                axios.get('{{ Route("frontend.registrasi.resource") }}')
+                axios.get('<?php echo e(Route("frontend.registrasi.resource")); ?>')
                         .then((response) => {
                             // console.log(response.data);
 
@@ -946,7 +946,7 @@
                     // this.kabupatenChange(this.kabupaten_ketua[0].id);
                     this.kotaSearch = this.kecamatanSearch = this.kelurahanSearch = true;
 
-                    axios.get("{{ Route('frontend.registrasi.resource.byprovinsi') }}?id="+e)
+                    axios.get("<?php echo e(Route('frontend.registrasi.resource.byprovinsi')); ?>?id="+e)
                             .then((response) => {
                                 // console.log(response.data)
                                 this.kabupaten_ketua = response.data.kota;
@@ -963,7 +963,7 @@
 
                 kabupatenChange(e){
                     this.kecamatanSearch = this.kelurahanSearch = true;
-                    axios.get("{{ Route('frontend.registrasi.resource.bykabupaten') }}?id="+e)
+                    axios.get("<?php echo e(Route('frontend.registrasi.resource.bykabupaten')); ?>?id="+e)
                             .then((response) => {
                                 // console.log(response.data)
 
@@ -980,7 +980,7 @@
 
                 kecamatanChange(e){
                     this.kelurahanSearch = true;
-                    axios.get("{{ Route('frontend.registrasi.resource.bykecamatan') }}?id="+e)
+                    axios.get("<?php echo e(Route('frontend.registrasi.resource.bykecamatan')); ?>?id="+e)
                             .then((response) => {
                                 // console.log(response.data)
                                 
@@ -1044,7 +1044,7 @@
 
                         var dataForm = $('#form-data').serialize();
 
-                        axios.post('{{ Route("frontend.registrasi.save") }}', dataForm)
+                        axios.post('<?php echo e(Route("frontend.registrasi.save")); ?>', dataForm)
                                 .then((response) => {
                                     console.log(response.data);
                                     
@@ -1130,10 +1130,10 @@
                         this.single.nama_ketua = '';
                         this.single.no_ktp_ketua = '';
                         this.single.tempat_lahir_ketua = '';
-                        this.single.tgl_lahir_ketua = '{{ date("d/m/Y") }}';
+                        this.single.tgl_lahir_ketua = '<?php echo e(date("d/m/Y")); ?>';
                         this.single.no_hp_ketua = '';
                         this.single.email_ketua = '';
-                        this.single.tgl_naik = '{{ date("d/m/Y") }}';
+                        this.single.tgl_naik = '<?php echo e(date("d/m/Y")); ?>';
                         this.single.tgl_turun = '';
                         this.single.alamat_ketua = '';
 
@@ -1197,11 +1197,11 @@
         $(document).ready(function(){
             $("input[type='button']").click(function(){
                 var radioValue = $("input[name='colorRadio']:checked").val();
-                window.location.href = "{{ Route('frontend.registrasi.form') }}?variable=" + radioValue;
+                window.location.href = "<?php echo e(Route('frontend.registrasi.form')); ?>?variable=" + radioValue;
             });
         });
     </script>
 
 </body>
 
-</html>
+</html><?php /**PATH C:\xampp\htdocs\tahura\resources\views/frontend/registrasi/form.blade.php ENDPATH**/ ?>

@@ -51,71 +51,24 @@ class pendaftaran_controller extends Controller
     protected function save(Request $request){
         // return json_encode($request->all());
         
-    	try {
-    		
+        try {
+            
             DB::beginTransaction();
 
-    		do {
+            do {
 
-    			$nomor = 'PD-'.rand(100000, 1000000);
-    			$cek = DB::table('tb_pendakian')->where('pd_nomor', $nomor)->first();
+                $nomor = 'PD-'.rand(100000, 1000000);
+                $cek = DB::table('tb_pendakian')->where('pd_nomor', $nomor)->first();
 
-    		} while ($cek);
+            } while ($cek);
 
-    		$id = DB::table('tb_pendakian')->max('pd_id') + 1;
-    		$tgl_lahir = explode('/', $request->tgl_lahir_ketua)[2].'-'.explode('/', $request->tgl_lahir_ketua)[1].'-'.explode('/', $request->tgl_lahir_ketua)[0];
-    		$tgl_naik = explode('/', $request->tgl_naik)[2].'-'.explode('/', $request->tgl_naik)[1].'-'.explode('/', $request->tgl_naik)[0];
-    		$tgl_turun = explode('/', $request->tgl_turun)[2].'-'.explode('/', $request->tgl_turun)[1].'-'.explode('/', $request->tgl_turun)[0];
+            $id = DB::table('tb_pendakian')->max('pd_id') + 1;
+            $tgl_lahir = explode('/', $request->tgl_lahir_ketua)[2].'-'.explode('/', $request->tgl_lahir_ketua)[1].'-'.explode('/', $request->tgl_lahir_ketua)[0];
+            $tgl_naik = explode('/', $request->tgl_naik)[2].'-'.explode('/', $request->tgl_naik)[1].'-'.explode('/', $request->tgl_naik)[0];
+            $tgl_turun = explode('/', $request->tgl_turun)[2].'-'.explode('/', $request->tgl_turun)[1].'-'.explode('/', $request->tgl_turun)[0];
 
             if($request->tujuan == 'arjuno'){
                 // return json_encode('o');
-                DB::table('tb_pendakian')->insert([
-                    'pd_id'					=> $id,
-                    'pd_nomor'				=> $nomor,
-                    'pd_nama_ketua' 		=> $request->nama_ketua,
-                    'pd_no_ktp'				=> str_replace('.', '', $request->no_ktp_ketua),
-                    'pd_tempat_lahir'		=> $request->tempat_lahir_ketua,
-                    'pd_tgl_lahir'			=> $tgl_lahir,
-                    'pd_no_hp'				=> str_replace('-', '', $request->no_hp_ketua),
-                    'pd_email'				=> $request->email_ketua,
-                    'pd_tgl_naik'			=> $tgl_naik,
-                    'pd_tgl_turun'			=> $tgl_turun,
-                    'pd_alamat'				=> $request->alamat_ketua,
-                    'pd_provinsi'			=> $request->provinsi_ketua,
-                    'pd_kabupaten'			=> $request->kabupaten_ketua,
-                    'pd_kecamatan'			=> $request->kecamatan_ketua,
-                    'pd_desa'				=> $request->desa_ketua,
-                    'pd_kewarganegaraan'	=> $request->kewarganegaraan_ketua,
-                    'pd_jenis_kelamin'		=> $request->kelamin_ketua,
-                    'pd_status'				=> 'belum disetujui',
-                    'keterangan'            => 'arjuno'
-    
-                ]);
-            }else if($request->tujuan == 'tiktok'){
-                // return json_encode('a');
-                DB::table('tb_pendakian')->insert([
-                    'pd_id'					=> $id,
-                    'pd_nomor'				=> $nomor,
-                    'pd_nama_ketua' 		=> $request->nama_ketua,
-                    'pd_no_ktp'				=> str_replace('.', '', $request->no_ktp_ketua),
-                    'pd_tempat_lahir'		=> $request->tempat_lahir_ketua,
-                    'pd_tgl_lahir'			=> $tgl_lahir,
-                    'pd_no_hp'				=> str_replace('-', '', $request->no_hp_ketua),
-                    'pd_email'				=> $request->email_ketua,
-                    'pd_tgl_naik'			=> $tgl_naik,
-                    'pd_tgl_turun'			=> $tgl_turun,
-                    'pd_alamat'				=> $request->alamat_ketua,
-                    'pd_provinsi'			=> $request->provinsi_ketua,
-                    'pd_kabupaten'			=> $request->kabupaten_ketua,
-                    'pd_kecamatan'			=> $request->kecamatan_ketua,
-                    'pd_desa'				=> $request->desa_ketua,
-                    'pd_kewarganegaraan'	=> $request->kewarganegaraan_ketua,
-                    'pd_jenis_kelamin'		=> $request->kelamin_ketua,
-                    'pd_status'				=> 'belum disetujui',
-                    'keterangan'            => 'tiktok'
-                ]);
-            }else if($request->tujuan == 'lelaku'){
-                // return json_encode('a');
                 DB::table('tb_pendakian')->insert([
                     'pd_id'                 => $id,
                     'pd_nomor'              => $nomor,
@@ -134,10 +87,11 @@ class pendaftaran_controller extends Controller
                     'pd_desa'               => $request->desa_ketua,
                     'pd_kewarganegaraan'    => $request->kewarganegaraan_ketua,
                     'pd_jenis_kelamin'      => $request->kelamin_ketua,
-                    'pd_status'             => 'disetujui',
-                    'keterangan'            => 'lelaku'
+                    'pd_status'             => 'belum disetujui',
+                    'keterangan'            => 'arjuno'
+    
                 ]);
-            }else if($request->tujuan == 'jengger'){
+            }elseif($request->tujuan == 'jengger'){
                 // return json_encode('a');
                 DB::table('tb_pendakian')->insert([
                     'pd_id'                 => $id,
@@ -159,6 +113,7 @@ class pendaftaran_controller extends Controller
                     'pd_jenis_kelamin'      => $request->kelamin_ketua,
                     'pd_status'             => 'disetujui',
                     'keterangan'            => 'jengger'
+    
                 ]);
             }else{
                 // return json_encode('a');
@@ -186,29 +141,27 @@ class pendaftaran_controller extends Controller
                 ]);
             }
 
-            if ($request->tujuan == 'arjuno' || $request->tujuan == 'tiktok' ){
-        		$num = 1;
-        		foreach($request->nama_kontak_darurat as $key => $kontak){
-        			$noTelp 	= $request->no_kontak_darurat[$key];
-        			$alamat 	= $request->alamat_kontak_darurat[$key];
-        			$hubungan 	= $request->hubungan_kontak_darurat[$key];
-
-        			if(!is_null($kontak) && !is_null($noTelp) && !is_null($alamat) && !is_null($hubungan)){
-        				DB::table('tb_kontak_darurat')->insert([
-    	    				'kd_pendakian'		=> $id,
-    	    				'kd_nomor'			=> $num,
-    	    				'kd_nama'			=> $kontak,
-    	    				'kd_no_telp'		=> str_replace('-', '', $noTelp),
-    	    				'kd_email'			=> $alamat,
-    	    				'kd_hubungan'		=> $hubungan
-    	    			]);
-
-    	    			$num++;
-        			}
-        		}
-            }
-
             if ($request->tujuan == 'arjuno'){
+                $num = 1;
+                foreach($request->nama_kontak_darurat as $key => $kontak){
+                    $noTelp     = $request->no_kontak_darurat[$key];
+                    $alamat     = $request->alamat_kontak_darurat[$key];
+                    $hubungan   = $request->hubungan_kontak_darurat[$key];
+
+                    if(!is_null($kontak) && !is_null($noTelp) && !is_null($alamat) && !is_null($hubungan)){
+                        DB::table('tb_kontak_darurat')->insert([
+                            'kd_pendakian'      => $id,
+                            'kd_nomor'          => $num,
+                            'kd_nama'           => $kontak,
+                            'kd_no_telp'        => str_replace('-', '', $noTelp),
+                            'kd_email'          => $alamat,
+                            'kd_hubungan'       => $hubungan
+                        ]);
+
+                        $num++;
+                    }
+                }
+
                 $ids = DB::table('tb_peralatan')->max('pr_id') + 1;
                 DB::table('tb_peralatan')->insert([
                     'pr_id'                 => $ids,
@@ -245,30 +198,30 @@ class pendaftaran_controller extends Controller
             }
 
 
-    		$num = 1;
-    		foreach($request->nama_anggota as $key => $anggota){
+            $num = 1;
+            foreach($request->nama_anggota as $key => $anggota){
 
-    			$noTelp            = $request->no_telp_anggota[$key];
-                $noKtp 		       = $request->no_ktp_anggota[$key];
+                $noTelp            = $request->no_telp_anggota[$key];
+                $noKtp             = $request->no_ktp_anggota[$key];
                 $kewarganegaraan   = $request->kewarganegaraan_anggota[$key];
-    			$kelamin 	       = $request->kelamin_anggota[$key];
+                $kelamin           = $request->kelamin_anggota[$key];
 
-    			if(!is_null($anggota) && !is_null($kewarganegaraan) && !is_null($kelamin)){
-    				DB::table('tb_anggota_pendakian')->insert([
-	    				'ap_pendakian'		   => $id,
-	    				'ap_nomor'			   => $num,
-	    				'ap_nama'			   => $anggota,
+                if(!is_null($anggota) && !is_null($kewarganegaraan) && !is_null($kelamin)){
+                    DB::table('tb_anggota_pendakian')->insert([
+                        'ap_pendakian'         => $id,
+                        'ap_nomor'             => $num,
+                        'ap_nama'              => $anggota,
                         'ap_no_telp'           => str_replace('-', '', $noTelp),
-	    				'ap_no_ktp'			   => str_replace('.', '', $noKtp),
+                        'ap_no_ktp'            => str_replace('.', '', $noKtp),
                         'ap_kewarganegaraan'   => $kewarganegaraan,
-	    				'ap_kelamin'		   => $kelamin,
-	    			]);
+                        'ap_kelamin'           => $kelamin,
+                    ]);
 
-	    			$num++;
-    			}
-    		}
+                    $num++;
+                }
+            }
 
-            if($request->tujuan == 'arjuno' || $request->tujuan == 'tiktok'){
+            if($request->tujuan == 'arjuno'){
                  // return 'c';
                 Mail::send('addition.email.daftar', ['kode' => $nomor], function ($message) use ($request){
                     $message->subject("Pendaftaran Pendakian");
@@ -307,16 +260,13 @@ class pendaftaran_controller extends Controller
                 if ($request->tujuan == 'pundak') {
                     $pdf = PDF::loadView('backend.pdf.berkas_pundak', compact('data', 'qrcode'))->setPAPER('a4');    
                 }
-                else if($request->tujuan == 'lelaku'){
-                    $pdf = PDF::loadView('backend.pdf.berkas_lelaku', compact('data', 'qrcode'))->setPAPER('a4');
-                }
-                else if($request->tujuan == 'jengger'){
+                elseif($request->tujuan == 'jengger'){
                     $pdf = PDF::loadView('backend.pdf.berkas_jengger', compact('data', 'qrcode'))->setPAPER('a4');
                 }
                 
                 $email = $request->email_ketua;
 
-                Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
+                Mail::send('addition.email.berkas', function ($message) use ($pdf, $qrcode, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
                     // $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                     $message->to($request->email_ketua);
@@ -325,21 +275,21 @@ class pendaftaran_controller extends Controller
                 });
             }
 
-    		DB::commit();
+            DB::commit();
 
-    		return json_encode([
-    			"status"	=> 'success',
-    			"message"	=> 'Data berhasil di simpan'
-    		]);
+            return json_encode([
+                "status"    => 'success',
+                "message"   => 'Data berhasil di simpan'
+            ]);
 
-    	} catch (Exception $e) {
-    		DB::rollback();
+        } catch (Exception $e) {
+            DB::rollback();
 
-    		return json_encode([
-    			"status"	=> 'error',
-    			"message"	=> 'System mengalami masalah '.$e
-    		]);
-    	}
+            return json_encode([
+                "status"    => 'error',
+                "message"   => 'System mengalami masalah '.$e
+            ]);
+        }
     }
 
     protected function cek_pendakian(Request $request){
@@ -411,14 +361,8 @@ class pendaftaran_controller extends Controller
             if ($data->keterangan == 'pundak') {
                 $pdf = PDF::loadView('backend.pdf.berkas_pundak', compact('data', 'qrcode'))->setPAPER('a4');
             }
-            else if ($data->keterangan == 'lelaku') {
-                $pdf = PDF::loadView('backend.pdf.berkas_lelaku', compact('data', 'qrcode'))->setPAPER('a4');
-            }
-            else if ($data->keterangan == 'jengger') {
+            elseif ($data->keterangan == 'jengger') {
                 $pdf = PDF::loadView('backend.pdf.berkas_jengger', compact('data', 'qrcode'))->setPAPER('a4');
-            }
-            else if ($data->keterangan == 'tiktok') {
-                $pdf = PDF::loadView('backend.pdf.berkas_tiktok', compact('data', 'qrcode'))->setPAPER('a4');
             }
             else{
                 $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');

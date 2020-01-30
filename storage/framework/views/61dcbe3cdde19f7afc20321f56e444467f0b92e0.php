@@ -8,16 +8,16 @@
 
     <title>Registrasi Pendakian Gunung Arjuno - Welirang </title>
 
-    <link href="{{ asset('public/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/styleregist.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/jasny/jasny-bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/frontend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/bootstrap.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/font-awesome/css/font-awesome.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/iCheck/custom.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/steps/jquery.steps.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/animate.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/styleregist.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/datapicker/datepicker3.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/jasny/jasny-bootstrap.min.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/iCheck/custom.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('public/frontend/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')); ?>" rel="stylesheet">
     <style type="text/css">
         .vertical-alignment-helper {
             display:table;
@@ -61,7 +61,7 @@
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header" style="padding: 15px 10px 0px 15px;">
-                    <a href="{{ Route('frontend.cek_pendakian') }}" style="color: #aaa; font-size: 10pt;">Cek status pendakian anda disini</a>
+                    <a href="<?php echo e(Route('frontend.cek_pendakian')); ?>" style="color: #aaa; font-size: 10pt;">Cek status pendakian anda disini</a>
                 </div>
             </nav>
         </div>
@@ -153,7 +153,7 @@
                             </div>
                         </div>
 
-                        <button class="btn btn-primary tengah"><a href="{{ Route('frontend.registrasi.sop') }}">Selanjutnya</a></button>
+                        <button class="btn btn-primary tengah"><a href="<?php echo e(Route('frontend.registrasi.sop')); ?>">Selanjutnya</a></button>
 
                     </div>
                 </div>
@@ -164,29 +164,29 @@
     </div>
 
     <!-- Mainly scripts -->
-    <script src="{{ asset('public/frontend/js/jquery-2.1.1.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/jquery-2.1.1.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/bootstrap.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/metisMenu/jquery.metisMenu.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/slimscroll/jquery.slimscroll.min.js')); ?>"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="{{ asset('public/frontend/js/inspinia.js') }}"></script>
-    <script src="{{ asset('public/frontend/js/plugins/pace/pace.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/inspinia.js')); ?>"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/pace/pace.min.js')); ?>"></script>
 
     <!-- Steps -->
-    <script src="{{ asset('public/frontend/js/plugins/staps/jquery.steps.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/staps/jquery.steps.min.js')); ?>"></script>
 
     <!-- Jquery Validate -->
-    <script src="{{ asset('public/frontend/js/plugins/validate/jquery.validate.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/validate/jquery.validate.min.js')); ?>"></script>
 
     <!-- Input Mask-->
-    <script src="{{ asset('public/frontend/js/plugins/jasny/jasny-bootstrap.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/jasny/jasny-bootstrap.min.js')); ?>"></script>
 
     <!-- Data picker -->
-    <script src="{{ asset('public/frontend/js/plugins/datapicker/bootstrap-datepicker.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/datapicker/bootstrap-datepicker.js')); ?>"></script>
 
     <!-- iCheck -->
-    <script src="{{ asset('public/frontend/js/plugins/iCheck/icheck.min.js') }}"></script>
+    <script src="<?php echo e(asset('public/frontend/js/plugins/iCheck/icheck.min.js')); ?>"></script>
 
     <!-- <script>
     	$(document).ready(function(){
@@ -197,3 +197,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\tahura\resources\views/frontend/registrasi/index.blade.php ENDPATH**/ ?>
