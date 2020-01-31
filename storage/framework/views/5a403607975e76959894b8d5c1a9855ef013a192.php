@@ -41,7 +41,7 @@
 </head>
 
 <body>
-<div id="myModal" class="modal fade vertical-alignment-helper">
+<!-- <div id="myModal" class="modal fade vertical-alignment-helper">
     <div class="modal-dialog vertical-align-center">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,12 +50,12 @@
             <div class="modal-body">
 				<p style="text-align: justify;">Terhitung mulai tanggal 02/01/2019 kegiatan pendakian Gunung Arjuno-Welirang dan Gunung Pundak ditutup sampai dengan batas waktu yang belum bisa ditentukan.</p>
             </div>
-            <!-- <div class="modal-footer">
+            <div class="modal-footer">
                 <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary"> Lanjut </button>
-            </div> -->
+            </div>
         </div>
     </div>
-</div>
+</div> -->
     <div id="wrapper">
         <div id="page-wrapper" class="gray-bg" style="margin-top: 0">
         <div class="row border-bottom">
@@ -188,11 +188,11 @@
     <!-- iCheck -->
     <script src="<?php echo e(asset('public/frontend/js/plugins/iCheck/icheck.min.js')); ?>"></script>
 
-    <script>
+    <!-- <script>
     	$(document).ready(function(){
     		$("#myModal").modal('show');
     	});
-    </script>
+    </script> -->
 
 </body>
 

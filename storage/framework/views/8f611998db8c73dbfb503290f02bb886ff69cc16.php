@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <meta charset="utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
@@ -39,7 +39,7 @@
 <?php 
     if (!isset($_GET['variable'])) {
 ?>
-<!-- <div id="alert" class="modal fade vertical-alignment-helper">
+<div id="alert" class="modal fade vertical-alignment-helper">
     <div class="modal-dialog vertical-align-center">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,7 +50,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 <div id="myModal" class="modal fade vertical-alignment-helper" style="padding-left: 0px !important">
     <div class="modal-dialog vertical-align-center">
@@ -61,21 +61,13 @@
             </div>
             <div class="modal-body" style="padding-bottom: 15px">
                 <div class="containerOuter">
-                  <div class="kontener" style="height: 230px">
+                  <div class="kontener">
                     <input type="radio" class="hidden" id="input1" name="colorRadio" value="arjuno">
                     <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">GUNUNG ARJUNO WELIRANG</div></label>
-
-                    <input type="radio" class="hidden" id="input4" name="colorRadio" value="tiktok">
-                    <label class="entry" for="input4"><div class="circle"></div><div class="entry-label">GUNUNG ARJUNO WELIRANG <span style="color: red">(TIK-TOK, RUNNING)</span></div></label>
-
-                    <input type="radio" class="hidden" id="input3" name="colorRadio" value="lelaku">
-                    <label class="entry" for="input3"><div class="circle"></div><div class="entry-label">GUNUNG ARJUNO WELIRANG <span style="color: red">(LELAKU, LAKON)</span></div></label>
-
                     <input type="radio" class="hidden" id="input2" name="colorRadio" value="pundak">
                     <label class="entry" for="input2"><div class="circle"></div><div class="entry-label">GUNUNG PUNDAK / PUTHUK PULOSARI</div></label>
-
-                    <input type="radio" class="hidden" id="input5" name="colorRadio" value="jengger">
-                    <label class="entry" for="input5"><div class="circle"></div><div class="entry-label">WATU JENGGER</div></label>
+                    <input type="radio" class="hidden" id="input3" name="colorRadio" value="jengger">
+                    <label class="entry" for="input3"><div class="circle"></div><div class="entry-label">WATU JENGGER</div></label>
                     <div class="highlight"></div>
                     <div class="overlay"></div>
                   </div>
@@ -87,7 +79,6 @@
                       <circle r="12" cx="20" cy="20" fill="black"/>
                       <circle r="12" cx="20" cy="70" fill="black"/>
                       <circle r="12" cx="20" cy="120" fill="black"/>
-
                     </mask>
                   </defs>
                 </svg>
@@ -360,7 +351,7 @@
                                             </div>
 
                                             <?php 
-                                                if ($_GET['variable'] == 'arjuno' || $_GET['variable'] == 'tiktok' || $_GET['variable'] == 'lelaku') {
+                                                if (isset($_GET['variable']) && $_GET['variable'] == 'arjuno') {
                                             ?>
 
                                             <div class="col-md-12" style="margin-top: 20px">
@@ -401,9 +392,6 @@
                                                 </fieldset>
                                             </div>
 
-                                        <?php }
-                                                if ($_GET['variable'] == 'arjuno') {
-                                            ?>
                                             <div class="col-md-12" style="margin-top: 20px;">
                                                 <div class="row">
                                                     <div class="col-md-10">
@@ -568,7 +556,7 @@
                                 </div>
 
                                 <div class="col-md-12" style="padding-top: 20px; text-align: justify;">
-                                    Data registrasi pendakian anda sudah kami simpan. Setelah kami verifikasi, <b>berkas/surat izin pendakian akan dikirim melalui email yang telah anda daftarkan. Berkas perizinan juga dapat diunduh di menu cek pendakian</b>
+                                    Data registrasi pendakian anda sudah kami simpan. Setelah kami verifikasi, <b>berkas/surat izin pendakian akan dikirim melalui email yang telah anda daftarkan. Jika tidak ada email balasan, silahkan cek kotak spam email anda. </b>
                                 </div>
 
                                 <div class="col-md-12 text-right" style="padding: 15px 5px 0px 5px; border-top: 1px solid #eee; margin-top: 15px;">
@@ -832,7 +820,7 @@
                         required,
                     },
 
-                    <?php if (isset($_GET['variable']) && $_GET['variable'] == 'arjuno') { ?>
+<?php if (isset($_GET['variable']) && $_GET['variable'] == 'arjuno') { ?>
                     tenda: {
                         required,
                     },
@@ -1012,42 +1000,44 @@
                     this.$v.$touch();
 
                     if(!this.$v.$invalid){
-                        <?php 
-                            if ($_GET['variable'] == 'arjuno' || $_GET['variable'] == 'tiktok') { ?>
-                                if(!this.validasiAnggota()){
-                                    $.toast({
-                                        text: 'Data nama anggota tidak boleh ada yang kosong..',
-                                        showHideTransition: 'slide',
-                                        icon: 'error',
-                                        position: 'top-right',
-                                        stack: 1
-                                    })
-                                    return false;
-                                }
-                                if(!this.validasiKontak()){
-                                    $.toast({
-                                        text: 'Harus ada minimal 1 data kontak darurat yang terisi lengkap..',
-                                        showHideTransition: 'slide',
-                                        icon: 'error',
-                                        position: 'top-right',
-                                        stack: 1
-                                    })
-                                    return false;
-                                }
-                           <?php }
-                            if ($_GET['variable'] == 'arjuno') { ?>
-                                if(!this.validasiLogistik()){
-                                    $.toast({
-                                        text: 'Data logistik yang sudah ditambahkan tidak boleh ada yang kosong..',
-                                        showHideTransition: 'slide',
-                                        icon: 'error',
-                                        position: 'top-right',
-                                        stack: 1
-                                    })
-                                    return false;
-                                }
-                            <?php  
-                        } ?>
+
+                        <?php if (isset($_GET['variable']) && $_GET['variable'] == 'arjuno') { ?>
+                            if(!this.validasiAnggota()){
+                                $.toast({
+                                    text: 'Data nama anggota tidak boleh ada yang kosong..',
+                                    showHideTransition: 'slide',
+                                    icon: 'error',
+                                    position: 'top-right',
+                                    stack: 1
+                                })
+
+                                return false;
+                            }
+
+                            if(!this.validasiKontak()){
+                                $.toast({
+                                    text: 'Harus ada minimal 1 data kontak darurat yang terisi lengkap..',
+                                    showHideTransition: 'slide',
+                                    icon: 'error',
+                                    position: 'top-right',
+                                    stack: 1
+                                })
+
+                                return false;
+                            }
+
+                            if(!this.validasiLogistik()){
+                                $.toast({
+                                    text: 'Data logistik yang sudah ditambahkan tidak boleh ada yang kosong..',
+                                    showHideTransition: 'slide',
+                                    icon: 'error',
+                                    position: 'top-right',
+                                    stack: 1
+                                })
+
+                                return false;
+                            }
+                        <?php } ?>
 
                         this.disabledButton = true;
                         this.onRequest = true;
@@ -1214,5 +1204,4 @@
 
 </body>
 
-</html>
-<?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/frontend/registrasi/form.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\xampp7\htdocs\sipenerang\tahura\resources\views/frontend/registrasi/form.blade.php ENDPATH**/ ?>

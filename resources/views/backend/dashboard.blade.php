@@ -26,8 +26,8 @@
                 <div class="row text-center">
                     <i class="fa fa-arrow-down" style="font-size: 8pt; color: #FF9800;"></i> &nbsp;
                     <?php
-                        $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' AND pd_pos_pendakian != 5 "));
-                        $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' AND pd_pos_pendakian != 5  "));
+                        $total_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_status = 'sudah naik' AND pd_pos_pendakian != 5 and pd_pos_pendakian != 7"));
+                        $total = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_status = 'sudah naik' AND pd_pos_pendakian != 5 and pd_pos_pendakian != 7  "));
                         $tot = $total_anggota+$total;
                     ?>
                     <span style="font-size: 16px">Total Pendaki Sedang Naik di Gunung Arjuno-Welirang Pada <?php echo date('j F Y').' </span><span style="color:white; background-color:#FF9800; padding:6px 12px; border-radius:5px; line-height:40px">'.$tot?></span>&nbsp;
@@ -1164,21 +1164,21 @@
             <div class="col-lg-2" style="padding: 5px">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
-                        <h5 style="color: #FF9800">Lelaku</h5>
+                        <h5 style="color: #FF9800">Watu Jengger</h5>
                     </div>
                     <div class="ibox-content" style="padding: 15px">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #FF9800; font-weight: 400">
                             <?php
-                                $lelaku_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
-                                $lelaku_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
-                                $lelaku_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
-                                $lelaku_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
-                                echo $lelaku_dash_wni+$lelaku_dash_wna+$lelaku_dash_anggota_wni+$lelaku_dash_anggota_wna;
+                                $jengger_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $jengger_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $jengger_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $jengger_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $jengger_dash_wni+$jengger_dash_wna+$jengger_dash_anggota_wni+$jengger_dash_anggota_wna;
                             ?>
                         <small style="float: right;">
                             <b class="rincian" style="color: #FF9800; font-weight: 100">
-                                <?php echo $lelaku_dash_wni+$lelaku_dash_anggota_wni; ?> WNI <br>
-                                <?php echo $lelaku_dash_wna+$lelaku_dash_anggota_wna; ?> WNA
+                                <?php echo $jengger_dash_wni+$jengger_dash_anggota_wni; ?> WNI <br>
+                                <?php echo $jengger_dash_wna+$jengger_dash_anggota_wna; ?> WNA
                             </b>
                         </small>
                         Orang</h1>
@@ -1194,7 +1194,7 @@
                     <!-- heading modal -->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Lelaku Makutoromo</h4>
+                        <h4 class="modal-title">Watu jengger</h4>
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
@@ -1215,7 +1215,7 @@
                                 <tbody>
                                    <?php
                                         $no = 1;
-                                        $result = mysqli_query($con, " ".$select." = 6");
+                                        $result = mysqli_query($con, " ".$select." = 7");
                                         while ($data = mysqli_fetch_array($result))
                                         {
                                             ?>
@@ -1474,14 +1474,14 @@
                                 fill : false
                             },
                             {
-                                label: "Lelaku",
+                                label: "Watu Jengger",
                                 data: [
                                     <?php 
                                     for ($i = 1; $i <= 12; $i++) {
                                         $bln    = substr('0'.$i, -2); 
-                                        $lelaku_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-                                        $lelaku = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
-                                        echo $lelaku+$lelaku_anggota.',';
+                                        $jengger_anggota = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 7 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        $jengger = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 7 AND MONTH(pd_tgl_naik) = $bln AND YEAR(pd_tgl_naik) = YEAR(curdate())"));
+                                        echo $jengger+$jengger_anggota.',';
                                     } ?>
                                 ],
                                 backgroundColor : "rgba(121,85,72,0.6)",

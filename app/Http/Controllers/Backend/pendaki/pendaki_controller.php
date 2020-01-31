@@ -323,7 +323,7 @@ if($request->tujuan == '' || $request->tujuan == 'arjuno' ){
                 $userkey = "5fjezh"; //userkey lihat di zenziva
                   $passkey = "5fjezh"; // set passkey di zenziva
                   $number  = $data->pd_no_hp;
-                  $message = "Registrasi ".$nomor." telah kami verifikasi. Silahkan cek inbox atau kotak spam anda. Berkas perizinan juga dapat diunduh di menu cek pendakian shorturl.at/afuwO";
+                  $message = "Registrasi ".$nomor." telah kami verifikasi. Silahkan cek inbox atau kotak spam anda. Berkas perizinan juga dapat diunduh di menu cek pendakian tiny.cc/y6vfjz";
                   $url = "https://reguler.zenziva.net/apps/smsapi.php";
                   $data = 'userkey='.$userkey.'&passkey='.$passkey.'&nohp='.$number.'&pesan='.urlencode($message);
 
