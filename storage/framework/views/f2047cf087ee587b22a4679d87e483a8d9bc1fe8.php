@@ -472,21 +472,21 @@
             <div class="col-lg-2" style="padding: 5px">
                 <div class="ibox float-e-margins" style="margin-bottom: 0px">
                     <div class="ibox-title">
-                        <h5 style="color: #FF9800">Lelaku</h5>
+                        <h5 style="color: #FF9800">Watu Jengger</h5>
                     </div>
                     <div class="ibox-content" style="padding: 15px">
                         <h1 class="no-margins" style="padding-bottom: 5px; font-size: 25px; color: #FF9800; font-weight: 400">
                             <?php
-                                $lelaku_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
-                                $lelaku_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
-                                $lelaku_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
-                                $lelaku_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 6 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
-                                echo $lelaku_dash_wni+$lelaku_dash_wna+$lelaku_dash_anggota_wni+$lelaku_dash_anggota_wna;
+                                $jengger_dash_anggota_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 7 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNI' "));
+                                $jengger_dash_anggota_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian a JOIN tb_anggota_pendakian b ON a.pd_id = b.ap_pendakian WHERE pd_pos_pendakian = 7 AND pd_status = 'sudah naik' AND ap_kewarganegaraan = 'WNA' "));
+                                $jengger_dash_wni = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 7 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNI' "));
+                                $jengger_dash_wna = mysqli_num_rows(mysqli_query($con, "SELECT * FROM tb_pendakian WHERE pd_pos_pendakian = 7 AND pd_status = 'sudah naik' AND pd_kewarganegaraan = 'WNA' "));
+                                echo $jengger_dash_wni+$jengger_dash_wna+$jengger_dash_anggota_wni+$jengger_dash_anggota_wna;
                             ?>
                         <small style="float: right;">
                             <b class="rincian" style="color: #FF9800; font-weight: 100">
-                                <?php echo $lelaku_dash_wni+$lelaku_dash_anggota_wni; ?> WNI <br>
-                                <?php echo $lelaku_dash_wna+$lelaku_dash_anggota_wna; ?> WNA
+                                <?php echo $jengger_dash_wni+$jengger_dash_anggota_wni; ?> WNI <br>
+                                <?php echo $jengger_dash_wna+$jengger_dash_anggota_wna; ?> WNA
                             </b>
                         </small>
                         Orang</h1>
@@ -502,7 +502,7 @@
                     <!-- heading modal -->
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Lelaku Makutoromo</h4>
+                        <h4 class="modal-title">Watu Jengger</h4>
                     </div>
                     <!-- body modal -->
                     <div class="modal-body">
@@ -523,7 +523,7 @@
                                 <tbody>
                                    <?php
                                         $no = 1;
-                                        $result = mysqli_query($con, " ".$select." = 6");
+                                        $result = mysqli_query($con, " ".$select." = 7");
                                         while ($data = mysqli_fetch_array($result))
                                         {
                                             ?>

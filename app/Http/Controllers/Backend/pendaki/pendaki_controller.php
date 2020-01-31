@@ -306,13 +306,8 @@ if($request->tujuan == '' || $request->tujuan == 'arjuno' ){
                             ->merge('/public/backend/img/LogoJawaTimur.png', .3)
                             ->generate(Route('wpadmin.pendaki.detail', 'id='.$request->id));
 
-                if ($data->keterangan == '' || $data->keterangan == 'arjuno') {
-                    $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
-                }
-                elseif ($data->keterangan == 'tiktok') {
-                    $pdf = PDF::loadView('backend.pdf.berkas_tiktok', compact('data', 'qrcode'))->setPAPER('a4');
-                }
-
+                $pdf = PDF::loadView('backend.pdf.berkas', compact('data', 'qrcode'))->setPAPER('a4');
+               
                 Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
                     // $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');

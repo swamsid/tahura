@@ -1,0 +1,2 @@
+UPT Tahura Raden Soerjo.<br>
+Data pendaftaran pendakian anda telah kami simpan. Kami akan melakukan verifikasi untuk memastikan apakah data pendaftaran anda sudah memenuhi persyaratan. Berikut adalah Kode Registrasi Anda : <strong> <?php echo e($kode); ?> </strong>. Harap Menyimpan kode pendaftaran tersebut. Terima Kasih.<?php /**PATH C:\xampp\htdocs\tahura\resources\views/addition/email/daftar.blade.php ENDPATH**/ ?>

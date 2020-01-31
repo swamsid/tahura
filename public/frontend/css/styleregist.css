@@ -8377,7 +8377,7 @@ body.md-skin {
 }
 
 .scroll{
-    height: 80vh; overflow: auto; margin-top: 20px
+    height: 75vh; overflow: auto; margin-top: 20px
 }
 
 .tabel tr td:nth-child(2){

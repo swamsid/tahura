@@ -207,7 +207,7 @@
                                         </fieldset>
                                     </div>
 <?php 
-    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok' || $data['keterangan'] == 'lelaku' || $dataAnggota > 0 ){
+    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $dataAnggota > 0 ){
 ?>                
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <div class="row">
@@ -272,7 +272,7 @@
                                     </div>
 
 <?php }
-    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok' || $data['keterangan'] == 'lelaku' || $dataKontak > 0 ){
+    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $dataKontak > 0 ){
 ?>                
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <h3 style="color: #1ab394">
@@ -310,9 +310,7 @@
                                             </div>
                                         </fieldset>
                                     </div>
-<?php }
-    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){
-?>
+
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <div class="row">
                                             <div class="col-md-10">
@@ -323,65 +321,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-12" style="background: #eee; margin-top: 10px; padding-top: 10px;">
-                                        <fieldset style="font-size: 9pt;">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>Tenda</label>
                                     
-                                                    <vue-mask :class="$v.single.tenda.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'tenda'" :mask="'000000'" :css="'text-align: left;'" v-model="single.tenda"></vue-mask>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Sleeping Bags / Kantong Tidur</label>
-
-                                                    <vue-mask :class="$v.single.sleeping_bag.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'sleeping_bag'" :mask="'000000'" :css="'text-align: left;'" v-model="single.sleeping_bag"></vue-mask>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Peralatan Masak</label>
-
-                                                    <vue-mask :class="$v.single.peralatan_masak.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'peralatan_masak'" :mask="'000000'" :css="'text-align: left;'" v-model="single.peralatan_masak"></vue-mask>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Bahan Bakar</label>
-
-                                                    <vue-mask :class="$v.single.bahan_bakar.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'bahan_bakar'" :mask="'000000'" :css="'text-align: left;'" v-model="single.bahan_bakar"></vue-mask>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Ponco / Jas Hujan</label>
-                                                    
-                                                    <vue-mask :class="$v.single.jas_hujan.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'jas_hujan'" :mask="'000000'" :css="'text-align: left;'" v-model="single.jas_hujan"></vue-mask>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label>Senter / Alat Penerangan</label>
-
-                                                    <vue-mask :class="$v.single.senter.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'senter'" :mask="'000000'" :css="'text-align: left;'" v-model="single.senter"></vue-mask>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Obat-Obatan Pribadi dan P3K</label>
-                                                    
-                                                    <vue-mask :class="$v.single.obat.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'obat'" :mask="'000000'" :css="'text-align: left;'" v-model="single.obat"></vue-mask>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Matras</label>
-
-                                                    <vue-mask :class="$v.single.matras.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'matras'" :mask="'000000'" :css="'text-align: left;'" v-model="single.matras"></vue-mask>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Kantong Sampah</label>
-
-                                                    <vue-mask :class="$v.single.kantong_sampah.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'kantong_sampah'" :mask="'000000'" :css="'text-align: left;'" v-model="single.kantong_sampah"></vue-mask>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Jaket</label>
-
-                                                    <vue-mask :class="$v.single.jaket.$invalid ? 'form-control error' : 'form-control'" :placeholder="'Satuan dalam unit'" :name="'jaket'" :mask="'000000'" :css="'text-align: left;'" v-model="single.jaket"></vue-mask>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
 
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <div class="row">
@@ -845,7 +785,7 @@
                                             );
                                         });
 
-<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok' || $data['keterangan'] == 'lelaku'){ ?>
+<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){ ?>
                                         $.each(response.data.data.kontak, function(idx, data){
                                             that.kontak_darurat.push(
                                                 {
@@ -1002,7 +942,7 @@
 
                     if(!this.$v.$invalid){
 
-<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok'){ ?>
+<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){ ?>
                         if(!this.validasiAnggota()){
                             $.toast({
                                 text: 'Data nama anggota tidak boleh ada yang kosong..',
@@ -1026,7 +966,7 @@
 
                             return false;
                         }
-<?php } if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){ ?>
+                        
                         if(!this.validasiLogistik()){
                             $.toast({
                                 text: 'Data logistik yang sudah ditambahkan tidak boleh ada yang kosong..',

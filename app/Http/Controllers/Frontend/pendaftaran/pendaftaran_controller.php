@@ -266,7 +266,7 @@ class pendaftaran_controller extends Controller
                 
                 $email = $request->email_ketua;
 
-                Mail::send('addition.email.berkas', function ($message) use ($pdf, $qrcode, $request, $email){
+                Mail::send('addition.email.berkas', ['nama' => 'Dirga Ambara', 'pesan' => 'Halloo'], function ($message) use ($pdf, $qrcode, $request, $email){
                     $message->subject("Konfirmasi Pendaftaran");
                     // $message->from('noreply@tahuraradensoerjo.or.id', 'UPT Tahura Raden Soerjo');
                     $message->to($request->email_ketua);

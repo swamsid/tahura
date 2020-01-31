@@ -66,7 +66,7 @@ while( $row=mysqli_fetch_array($query) ) {  // preparing an array
     else if($row['pd_status'] == 'sudah naik' || $row['pd_status'] == 'sudah turun')
         $class = 'label-warning';
 
-    if ($row['pd_tgl_naik'] < date("Y-m-d") ) {
+    if ($row['pd_tgl_naik'] < date("Y-m-d") && $row['pd_status'] == 'disetujui' ) {
         $status = '<span class="label" style="color:red">EXPIRED</span>';   
     }
     else{

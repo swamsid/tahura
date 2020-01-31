@@ -207,7 +207,7 @@
                                         </fieldset>
                                     </div>
 <?php 
-    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok' || $data['keterangan'] == 'lelaku' || $dataAnggota > 0 ){
+    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $dataAnggota > 0 ){
 ?>                
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <div class="row">
@@ -272,7 +272,7 @@
                                     </div>
 
 <?php }
-    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok' || $data['keterangan'] == 'lelaku' || $dataKontak > 0 ){
+    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $dataKontak > 0 ){
 ?>                
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <h3 style="color: #1ab394">
@@ -310,9 +310,7 @@
                                             </div>
                                         </fieldset>
                                     </div>
-<?php }
-    if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){
-?>
+
                                     <div class="col-md-12" style="margin-top: 20px;">
                                         <div class="row">
                                             <div class="col-md-10">
@@ -845,7 +843,7 @@
                                             );
                                         });
 
-<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok' || $data['keterangan'] == 'lelaku'){ ?>
+<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){ ?>
                                         $.each(response.data.data.kontak, function(idx, data){
                                             that.kontak_darurat.push(
                                                 {
@@ -1002,7 +1000,7 @@
 
                     if(!this.$v.$invalid){
 
-<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno' || $data['keterangan'] == 'tiktok'){ ?>
+<?php if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){ ?>
                         if(!this.validasiAnggota()){
                             $.toast({
                                 text: 'Data nama anggota tidak boleh ada yang kosong..',
@@ -1026,7 +1024,7 @@
 
                             return false;
                         }
-<?php } if ($data['keterangan'] == '' || $data['keterangan'] == 'arjuno'){ ?>
+                        
                         if(!this.validasiLogistik()){
                             $.toast({
                                 text: 'Data logistik yang sudah ditambahkan tidak boleh ada yang kosong..',
