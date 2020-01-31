@@ -1,7 +1,7 @@
 <?php
 /* Database connection start */
-$servername = "localhost"; $username = "root"; $password = ""; $dbname = "dishut";
-// $servername = "tahuraradensoerjo.or.id"; $username = "tahurara_tahura"; $password = "amiruzg627408"; $dbname = "tahurara_tahura";
+// $servername = "localhost"; $username = "root"; $password = ""; $dbname = "dishut";
+$servername = "tahuraradensoerjo.or.id"; $username = "tahurara_tahura"; $password = "amiruzg627408"; $dbname = "tahurara_tahura";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname) or die("Connection failed: " . mysqli_connect_error());
 
