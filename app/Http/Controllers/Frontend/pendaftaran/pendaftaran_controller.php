@@ -273,6 +273,28 @@ class pendaftaran_controller extends Controller
                     $message->attachData($pdf->output(), "berkas-pendaftaran.pdf");
                     $message->attachData($qrcode, 'kode.png');
                 });
+
+                // $userkey = '5fjezh';
+                // $passkey = '5fjezh';
+                // $telepon = $data->pd_no_hp;
+                // $message = "Registrasi ".$nomor." telah kami verifikasi. Silahkan unduh Berkas Perizinan di menu cek pendakian atau melalui link tersebut TinyURL.com/y5362lsf";
+                // $url = 'https://gsm.zenziva.net/api/sendWA/';
+                // $curlHandle = curl_init();
+                // curl_setopt($curlHandle, CURLOPT_URL, $url);
+                // curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+                // curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+                // curl_setopt($curlHandle, CURLOPT_SSL_VERIFYHOST, 2);
+                // curl_setopt($curlHandle, CURLOPT_SSL_VERIFYPEER, 0);
+                // curl_setopt($curlHandle, CURLOPT_TIMEOUT,30);
+                // curl_setopt($curlHandle, CURLOPT_POST, 1);
+                // curl_setopt($curlHandle, CURLOPT_POSTFIELDS, array(
+                //     'userkey' => $userkey,
+                //     'passkey' => $passkey,
+                //     'nohp' => $telepon,
+                //     'pesan' => $message
+                // ));
+                // $results = json_decode(curl_exec($curlHandle), true);
+                // curl_close($curlHandle);
             }
 
             DB::commit();
