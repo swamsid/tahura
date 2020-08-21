@@ -39,18 +39,18 @@
 <?php 
     if (!isset($_GET['variable'])) {
 ?>
-<div id="alert" class="modal fade vertical-alignment-helper">
-    <div class="modal-dialog vertical-align-center">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" style="text-align:center; color: #1ab394; font-weight: 600">PEMBERITAHUAN</h2>
-            </div>
-            <div class="modal-body">
-                <p style="text-align: justify;">Terhitung mulai tanggal 02/01/2019 kegiatan pendakian Gunung Arjuno-Welirang dan Gunung Pundak ditutup sampai dengan batas waktu yang belum bisa ditentukan.</p>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div id="alert" class="modal fade vertical-alignment-helper">-->
+<!--    <div class="modal-dialog vertical-align-center">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h2 class="modal-title" style="text-align:center; color: #1ab394; font-weight: 600">PEMBERITAHUAN</h2>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <p style="text-align: justify;">Terhitung mulai tanggal 02/01/2019 kegiatan pendakian Gunung Arjuno-Welirang dan Gunung Pundak ditutup sampai dengan batas waktu yang belum bisa ditentukan.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div id="myModal" class="modal fade vertical-alignment-helper" style="padding-left: 0px !important">
     <div class="modal-dialog vertical-align-center">
@@ -62,14 +62,14 @@
             <div class="modal-body" style="padding-bottom: 15px">
                 <div class="containerOuter">
                   <div class="kontener">
-                    <input type="radio" class="hidden" id="input1" name="colorRadio" value="arjuno">
-                    <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">GUNUNG ARJUNO WELIRANG</div></label>
+                    <!--<input type="radio" class="hidden" id="input1" name="colorRadio" value="arjuno">-->
+                    <!--<label class="entry" for="input1"><div class="circle"></div><div class="entry-label">GUNUNG ARJUNO WELIRANG</div></label>-->
                     <input type="radio" class="hidden" id="input2" name="colorRadio" value="pundak">
                     <label class="entry" for="input2"><div class="circle"></div><div class="entry-label">GUNUNG PUNDAK / PUTHUK PULOSARI</div></label>
                     <input type="radio" class="hidden" id="input3" name="colorRadio" value="jengger">
                     <label class="entry" for="input3"><div class="circle"></div><div class="entry-label">WATU JENGGER</div></label>
                     <div class="highlight"></div>
-                    <div class="overlay"></div>
+                    <div class="overlay" style="height:80px"></div>
                   </div>
                 </div>
                 <svg width="0" height="0" viewBox="0 0 40 140">
@@ -82,6 +82,20 @@
                     </mask>
                   </defs>
                 </svg>
+            </div>
+            <div class="modal-body" style="padding: 0px 30px 30px 30px; color: #1ab394">
+                Harap diperhatikan pendaki harus memenuhi protokol kesehatan 
+                <ul style="padding-left:20px">
+                    <li>
+                        Wajib membawa hand sanitizer, memakai masker dan dipastikan kondisi sedang fit.
+                    </li>
+                    <li>
+                        1 rombongan yang beranggotakan 10 orang wajib membawa surat keterangan sehat atau surat keterangan bebas covid-19.
+                    </li>
+                    <li>
+                        Maksimal hanya boleh camp selama 1 malam dan 1 tenda berisi 2 orang.
+                    </li>
+                </ul>
             </div>
             <div class="modal-footer">
                 <input type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary" value="Lanjut">
@@ -556,7 +570,7 @@
                                 </div>
 
                                 <div class="col-md-12" style="padding-top: 20px; text-align: justify;">
-                                    Data registrasi pendakian anda sudah kami simpan. Setelah kami verifikasi, <b>berkas/surat izin pendakian akan dikirim melalui email yang telah anda daftarkan. Jika tidak ada email balasan, silahkan cek kotak spam email anda. </b>
+                                    Data registrasi pendakian anda sudah kami simpan. Anda akan mendapatkan sms notifikasi berisi nomor registrasi. Berkas perizinan dapat di unduh melalui menu cek status registrasi. </b>
                                 </div>
 
                                 <div class="col-md-12 text-right" style="padding: 15px 5px 0px 5px; border-top: 1px solid #eee; margin-top: 15px;">

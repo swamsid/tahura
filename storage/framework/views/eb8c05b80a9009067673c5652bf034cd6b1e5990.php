@@ -118,7 +118,7 @@
                             </div>
                             <p style="margin-top: 10px;">2. Tarif karcis masuk pendaki Wisatawan Mancanegara</p>
                             <div class="well wells">
-                                 <strong>Rp. 26.000,- / Orang / Hari</strong> <small>(Karcis Rp. 25.000 + Asuransi Rp. 1.000)</small>
+                                 <strong>Rp. 201.000,- / Orang / Hari</strong> <small>(Karcis Rp. 200.000 + Asuransi Rp. 1.000)</small>
                             </div>
                             <p style="margin-top: 10px;">3. Pembayaran dilakukan di pos masuk pendakian resmi</p>
                         </div>
@@ -289,7 +289,7 @@
                                 Amiruzzuhhad Gunes - 081216640854 <i class="fa fa-ban" style="color: red"> Telepon</i>
                             </div>
                             <div class="well wells">
-                                Angga Krisnadewi - 085815536995
+                                Angga Krisnadewi - 085815536995 <i class="fa fa-ban" style="color: red"> Telepon</i>
                             </div>
 <div class="row">
     <div class="col-md-6">
@@ -361,6 +361,17 @@
                             </div>
                             <div class="well wells">
                                 Rudi Siswanto - 081358832678
+                            </div>
+    </div>
+    <div class="col-md-6">
+                            <ol start="5">
+                                <li> Pos Pendakian Gunung Pundak </li>
+                            </ol>
+                            <div class="well wells">
+                                Mustam - 081232426468
+                            </div>
+                            <div class="well wells">
+                                Wahyu - 085855731963
                             </div>
     </div>
 </div>
